@@ -1,0 +1,5069 @@
+{
+  "metadata": {
+    "id": "old_sluice_v1",
+    "title": "旧水闸 v2.4.1",
+    "knowledgeVersion": "6.0",
+    "canonicalSource": "project_knowledge_v6.0.json",
+    "extractionScope": "角色创建、初查会合、旧水闸固定真相、救援与妖兽处置、职业差异、听澜楼共餐、春汀小馆次日约定及完整状态跳转",
+    "scenarioVersion": "v2.4.1",
+    "generatedFrom": "old_sluice_current.json",
+    "revisionSummary": [
+      "初始调查采用隐藏计数触发会合；玩家提前进入通道时同样在通道内相遇，页面不显示调查次数或尚未认识的人物状态",
+      "修正信息边界、体术文本、非致命态度与站位绑定、绞盘收束及妖兽证物提取顺序",
+      "增加职业专属贡献、共餐拒绝分支和三轮饭桌互动",
+      "当晚共餐地点固定为承务所附近的听澜楼；次日碰面地点固定为徐记药材铺旁的春汀小馆",
+      "主角伤口统一为有点深但可控；何炅因固定搭档关系陪王鸥采购并确认补药",
+      "统一看守 speakerId，补充场景进入效果、模板变量合同及关键状态回收",
+      "将伤员汇合与妖兽控制方案合并为单一决策回合，移除重复的第一道弯岗位选择",
+      "何炅对主角使用动态“姓＋姑娘”称呼；王鸥在饭桌上自然介绍自己与何炅的分工",
+      "优化何炅与王鸥谈及搭档关系时的动作与对白，增强自然好感与年轻感",
+      "听澜楼菜单改用锅包肉；春汀小馆约定与次日安排改为更自然的生活化表达",
+      "重新核对并固化听澜楼职业自我介绍、锅包肉菜单、何炅王鸥搭档对白，以及单回合第一道弯控制选择",
+      "点菜前王鸥只说明菜量与点菜自由；玩家主动请求后，她才推荐锅包肉",
+      "运行文本统一使用引擎已支持的 playerFormalAddress，避免 playerSurname 占位符直接显示",
+      "隐藏初始调查次数：玩家可见文本不再报告两项、三项或第三处检查进度",
+      "优化何炅王鸥初次到场、伤员信息交代、轻微毒素提醒与救援站位对白",
+      "拆分王鸥扶助伤员动作，补足妖兽控制方案依据，并优化撤离交接动作",
+      "优化货箱划伤、细雨、何炅关心与王鸥无奈嗔怪的互动",
+      "更新听澜楼锅包肉推荐、小鸥称呼玩笑、动态礼貌称呼与春汀小馆约定文本",
+      "无对白的调查结果移入后续场景叙述，不再作为选择后的“人物对白”结果块显示",
+      "调整受困看守回应顺序、救援对白、迟缓膏布置逻辑与伤口互动措辞；听澜楼话题扩展为三轮且已选话题不重复。",
+      "补全主角自我介绍与现场汇报对白；优化听澜楼菜品、搭档称呼及三轮闲谈文本。",
+      "将初遇时的现场汇报并入主角对白动作；移除前端未解析的 playerContributionSummary 占位符。",
+      "王鸥在控制方案说明中明确第一道弯外侧距离妖兽藏身处较远，遵守站位时危险很低，并补充撤退信号处理方式。",
+      "玩家已明确留在入口照看伤员或观察水位时，后续救援分支不再提供进入通道的选项，改为伤员观察、水位示警与安全绳接应。",
+      "“改用名字称呼”选项仅在何炅当轮实际使用礼貌称呼后出现；第二轮粉蒸排骨对白加入动态称呼，第三轮移除该选项并补充饭菜回应话题。"
+    ],
+    "lastRevision": "2026-07-26.r9"
+  },
+  "canonicalRules": {
+    "playerRole": "主角因家庭货物意外卷入，是中途参与者，不是承务所正式接取者、临时队长或天然指挥者。",
+    "npcAutonomy": "何炅与王鸥会主动观察、共享信息、分工和行动；何炅组织现场行动，王鸥独立判断药毒、伤势、污染和控制手段。",
+    "informationBoundary": "NPC只知道经自我介绍、他人介绍、文书、亲眼所见或合理推断获得的信息。",
+    "eventTruth": "职业只影响发现速度、判断深度和处理方式，不改变妖兽、看守、货物、绞盘、水流及捕兽夹等核心事实。",
+    "closure": "妖兽威胁解除、两名看守得到处理、货物结果明确、捕兽夹线索被发现、水闸进水得到临时控制且现场无立即危险后，立即结束现场并回承务所交接；不在本章追查幕后人员。",
+    "recheckHook": "标准成功路径结束时，主角前臂留下有点深但可控、不影响正常活动的划伤。次日上午三人在徐记药材铺旁的春汀小馆碰面，随后购买药材并在干净合适的地点拆开检查、清洗和换药。",
+    "initialMeeting": "主角独立完成三项不同的初步调查后，两名接取者自然抵达；若主角在此之前独自进入检修道，则二人在通道入口追上并叫停。调查次数只用于后台触发，不写入玩家可见文本。",
+    "choiceIntegrity": "选项文字必须与实际站位、态度和后续结果一致；表达意见不得暗中替玩家决定新的个人行动。",
+    "evidenceHandoff": "承务所登记任务结果与捕兽夹物证，随后将疑似违法设置捕兽夹的材料转交临川官署捕役调查。",
+    "addressRule": "初识时何炅使用“姓＋姑娘”的礼貌称呼；王鸥在知道姓名后直接称呼名字。饭桌上主角可以只要求何炅改用名字。",
+    "mealLocations": "任务后正式共餐在承务所附近较大的听澜楼；次日复查约定的碰面地点为徐记药材铺旁的小店春汀小馆。"
+  },
+  "playerCreation": {
+    "worldIntroduction": [
+      "这是一个修士与普通人共同生活的世界。临川城依河而兴，承务所统一受理与民生相关的委托。",
+      "你十九岁，出身临川城一个普通河运家庭，已经完成学业，却还没有正式参加过危险委托。今天，家里托你去东北旧水闸转运点核对一批迟迟没有完成交接的货物。"
+    ],
+    "professions": [
+      "炼丹师",
+      "机关傀儡师",
+      "潜行修"
+    ],
+    "weapons": [
+      "剑",
+      "匕首",
+      "枪",
+      "体"
+    ],
+    "stealthWeapon": "匕首",
+    "professionRuntime": {
+      "炼丹师": {
+        "skillSummary": "能判断常见药材、污染和材料状态，也能协助观察基础中毒反应",
+        "defaultContributionSummary": "按现场分工完成接应、观察或伤员照看，没有为了表现专业擅自越过安全边界"
+      },
+      "机关傀儡师": {
+        "skillSummary": "能理解绳索、齿轮和固定结构，并安全处理简单机械故障",
+        "defaultContributionSummary": "按现场分工完成接应、观察或伤员照看，没有为了表现专业擅自越过安全边界"
+      },
+      "潜行修": {
+        "skillSummary": "擅长控制脚步、观察出入口，并在狭窄地形中进行短距离接应",
+        "defaultContributionSummary": "按现场分工完成接应、观察或伤员照看，没有为了表现专业擅自越过安全边界"
+      }
+    }
+  },
+  "fixedFacts": {
+    "playerArrival": "主角比何炅与王鸥早到约一刻钟，拥有一小段独立行动时间，且此时不认识二人。",
+    "missingCargo": [
+      "一箱经过盐渍处理的普通妖兽肉",
+      "一箱动物油脂"
+    ],
+    "guards": [
+      "一名看守受伤后被拖入检修道，仍然活着",
+      "另一名轻伤看守从内部闩住值守房，因恐惧没有出声"
+    ],
+    "monster": "一只受违规大型捕兽夹所伤的低阶棘背穴獾，被肉腥与油脂气味吸引到转运点。",
+    "winchCause": "翻倒货车的捆货粗绳卷入齿轮，使水闸停在半开位置，水正缓慢进入废弃检修道。",
+    "initialInvestigationLimit": "主角独立调查最多三处不同现场；完成第三处后两名接取者自然抵达。若主角在此之前独自进入检修道，则二人在通道入口追上并叫停。调查次数只用于后台触发。",
+    "wound": "主角在货箱边缘被木刺划伤前臂，伤口有点深但未伤及筋骨，沾过脏水，需要次日复查换药。",
+    "postTaskMeal": "三人交完任务后在承务所附近较正式的听澜楼共餐；何炅与王鸥偶尔会来。",
+    "nextDayMeeting": "次日上午在徐记药材铺旁的春汀小馆碰面；何炅单纯陪同固定搭档王鸥，并帮助确认需要补购的药材。",
+    "waterControl": "现场离开前，缠入绞盘的废绳被安全处理，闸门得到临时固定，持续进水不再构成立即危险；正式维修留给水闸管理人员。"
+  },
+  "initialClues": [
+    {
+      "id": "clue_missing_cargo",
+      "title": "两箱货物失踪",
+      "detail": "货单上的盐渍普通妖兽肉和动物油脂各少一箱。",
+      "discoveredInSceneId": "sluice_arrival"
+    },
+    {
+      "id": "clue_absent_guards",
+      "title": "看守不在岗位",
+      "detail": "两名看守都没有出现在转运棚和值守位置。",
+      "discoveredInSceneId": "sluice_arrival"
+    },
+    {
+      "id": "clue_damaged_site",
+      "title": "现场有明显冲突痕迹",
+      "detail": "棚门被撞开，小木车侧翻，断绳卷进绞盘，泥地上留有凌乱痕迹。",
+      "discoveredInSceneId": "sluice_arrival"
+    }
+  ],
+  "discoverableClues": [
+    {
+      "id": "clue_cargo_dragged",
+      "title": "货箱被拖向检修道",
+      "detail": "破损木屑和两道沉重拖痕从转运棚延伸到废弃检修道入口。",
+      "discoveredInSceneId": "after_inspect_shed"
+    },
+    {
+      "id": "clue_guard_found",
+      "title": "值守房内找到一名看守",
+      "detail": "一名受轻伤的看守从内部闩住房门，因恐惧一直不敢出声。",
+      "discoveredInSceneId": "after_knock_guard"
+    },
+    {
+      "id": "clue_guard_testimony",
+      "title": "另一名看守被拖入检修道",
+      "detail": "获救看守确认，同伴在阻止妖兽拖走货箱时受伤，被撞进了检修道。",
+      "discoveredInSceneId": "joint_assessment"
+    },
+    {
+      "id": "clue_winch_water",
+      "title": "断绳卡住绞盘",
+      "detail": "捆货粗绳被卷进齿轮，闸门停在半开位置，水正持续流入检修道。",
+      "discoveredInSceneId": "after_inspect_winch"
+    },
+    {
+      "id": "clue_injured_creature_tracks",
+      "title": "负伤生物的移动痕迹",
+      "detail": "通往检修道的兽类足迹一侧深、一侧浅，沿途混有断续血迹和拖痕。",
+      "discoveredInSceneId": "after_inspect_tracks"
+    },
+    {
+      "id": "clue_commission_context",
+      "title": "承务所的妖兽委托",
+      "detail": "附近农户通过承务所发布委托，何炅与王鸥循着妖兽痕迹追到了旧水闸。",
+      "discoveredInSceneId": "joint_assessment"
+    },
+    {
+      "id": "clue_trapped_guard_located",
+      "title": "受困看守仍然活着",
+      "detail": "第二名看守被找到时仍有意识，但腿部受压、身体湿冷，并有轻微麻痹症状。",
+      "discoveredInSceneId": "guard_reached_inside"
+    },
+    {
+      "id": "clue_monster_metal_wound",
+      "title": "妖兽肩伤中有金属异物",
+      "detail": "棘背穴獾一侧肩部肿胀流脓，发力时避开同侧前肢，伤口中能够看见暗色金属。",
+      "discoveredInSceneId": "withdrawal_converges"
+    },
+    {
+      "id": "clue_broken_trap_fragment",
+      "title": "伤口中的捕兽夹断齿",
+      "detail": "确认棘背穴獾已经不再构成威胁后，王鸥从其感染旧伤中取出带锈迹的粗大断齿和一小截链环，判断它们来自大型捕兽夹。",
+      "discoveredInSceneId": "monster_restrained"
+    },
+    {
+      "id": "clue_cargo_damage_result",
+      "title": "自家货物损失已清点",
+      "detail": "盐渍妖兽肉那箱已经破损进水，动物油脂那箱封条裂开，但大半货物仍能清点。",
+      "discoveredInSceneId": "injury_treatment"
+    },
+    {
+      "id": "clue_trap_evidence_handed_over",
+      "title": "捕兽夹物证交给承务所",
+      "detail": "王鸥包好捕兽夹断齿和链环，何炅随任务结果交给承务所登记封存，再由承务所转交临川官署捕役调查来源。",
+      "discoveredInSceneId": "commission_handoff"
+    }
+  ],
+  "initialInventory": [
+    {
+      "id": "cargo_manifest",
+      "name": "货物清单",
+      "description": "记有本次寄放货物的种类、数量与封条样式。",
+      "quantity": 1
+    },
+    {
+      "id": "oilcloth_pouch",
+      "name": "防潮小布包",
+      "description": "河运人家常备的小布包，可收纳纸张和少量随身物。",
+      "quantity": 1
+    }
+  ],
+  "startSceneId": "sluice_arrival",
+  "scenes": [
+    {
+      "id": "sluice_arrival",
+      "title": "水声里的空岗",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸转运点",
+      "presentCharacters": [
+        "你"
+      ],
+      "narration": [
+        "离城越远，河风里的湿气越重。你沿着熟悉的运货小路来到旧水闸，原本该有人接应的转运点却异常安静，只有半开的闸门下传来持续不断的水声。",
+        "转运棚的门板向外歪着，一辆装货小木车侧翻在泥地里。你对照清单，很快确认盐渍妖兽肉和动物油脂各少了一箱；两名看守都不在岗位。断裂的粗绳缠进绞盘齿轮，地上的脚印、抓痕和拖拽痕迹一路混在湿泥中。",
+        "值守房的门紧闭。更远处，废弃检修道的入口伏在水闸阴影下，里面看不见动静。周围暂时没有正在活动的妖兽，而水正从半开的闸门缓慢流向检修道。"
+      ],
+      "npcDialogue": [],
+      "interactionPoint": true,
+      "controlPrompt": "你准备先做什么？",
+      "choices": [
+        {
+          "id": "inspect_shed",
+          "text": "先核对转运棚与封条，确认两箱货物是怎样离开的",
+          "intent": "个人行动",
+          "nextSceneId": "after_inspect_shed",
+          "effect": {
+            "addClueIds": [
+              "clue_cargo_dragged"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_shed": true
+            },
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "knock_guard_room",
+          "text": "靠近值守房，先敲门并说明自己是来核对货物的",
+          "intent": "语言",
+          "nextSceneId": "after_knock_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_found",
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_knock_guard_room": true
+            },
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "inspect_winch",
+          "text": "与绞盘保持安全距离，观察断绳、齿轮和水流",
+          "intent": "个人行动",
+          "nextSceneId": "after_inspect_winch",
+          "effect": {
+            "addClueIds": [
+              "clue_winch_water"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_winch": true
+            },
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "inspect_tracks",
+          "text": "不进入检修道，先查看入口附近的拖拽痕迹并留意声音",
+          "intent": "个人行动",
+          "nextSceneId": "after_inspect_tracks",
+          "effect": {
+            "addClueIds": [
+              "clue_injured_creature_tracks"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_tracks": true
+            },
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "after_inspect_shed",
+      "title": "被拖走的货箱",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸转运棚",
+      "presentCharacters": [
+        "你"
+      ],
+      "narration": [
+        "你从棚门开始逐一核对封条。剩余货箱的位置没有被人仔细翻找过，缺口却留着新鲜木屑；两道沉重的拖痕压过泥地，从棚内一路通向废弃检修道。靠近地面的木板上还沾着少量带刺激气味的黏液。",
+        "棚内没有新的回应。拖痕在门外与凌乱脚印交叠，经过侧翻的木车，最后消失在检修道的阴影里。"
+      ],
+      "npcDialogue": [],
+      "interactionPoint": true,
+      "controlPrompt": "货箱确实被拖向检修道。你接下来准备做什么？",
+      "choices": [
+        {
+          "id": "shed_enter_tunnel",
+          "text": "顺着货箱拖痕，自己进入检修道查看",
+          "intent": "个人行动",
+          "nextSceneId": "tunnel_entry_meeting",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "entered_tunnel_alone": true,
+              "entered_after_shed_check": true,
+              "entered_within_three_actions": true
+            },
+            "impressionTags": [],
+            "outcomeNarration": []
+          }
+        },
+        {
+          "id": "shed_check_guard_room",
+          "text": "暂不靠近通道，转去敲值守房的门",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_found",
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_knock_guard_room": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_guard": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "shed_check_winch",
+          "text": "离开棚门，去安全距离外观察绞盘和水流",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_winch_water"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_winch": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_winch": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "shed_check_tracks",
+          "text": "停在入口外，进一步辨认拖痕、足迹和声音",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_injured_creature_tracks"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_tracks": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_tracks": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_cargo_dragged"
+        ]
+      }
+    },
+    {
+      "id": "after_knock_guard",
+      "title": "门后的呼吸声",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸值守房外",
+      "presentCharacters": [
+        "你",
+        "受伤看守"
+      ],
+      "narration": [
+        "你没有直接推门，而是先敲了两下，隔着门板说明来意。最初只有水闸处传来的水声，片刻后，屋里传来压得很低的呼吸和桌脚轻响。你再次表明自己是来核对货物的，门闩才缓慢拉开一道缝。",
+        "看守脸色发白，手臂有擦伤。他确认外面暂时没有妖兽后才敢把门开大，仍不时越过你的肩头望向检修道。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "sluice_guard_surface",
+          "speakerName": "受伤看守",
+          "actionBefore": "他扶住门框，喘了两口气才把声音压稳。",
+          "text": "还有个人在里头……那东西拖箱子时，他上去拦，结果被撞进通道里了。我先是听见他喊了一声，后来水声越来越大……就听不见了。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "另一名看守可能仍在检修道内。你接下来准备做什么？",
+      "choices": [
+        {
+          "id": "guard_enter_tunnel",
+          "text": "让受伤看守留在值守房，自己沿拖痕进入检修道",
+          "intent": "个人行动",
+          "nextSceneId": "tunnel_entry_meeting",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "entered_tunnel_alone": true,
+              "entered_after_guard_found": true,
+              "entered_within_three_actions": true
+            },
+            "impressionTags": [],
+            "outcomeNarration": []
+          }
+        },
+        {
+          "id": "guard_check_shed",
+          "text": "请看守先在房内休息，转去核对货箱和棚门",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_cargo_dragged"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_shed": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_shed": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "guard_check_winch",
+          "text": "先查看卡住的水闸，判断通道里的水是否还在上涨",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_winch_water"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_winch": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_winch": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "guard_check_tracks",
+          "text": "停在入口外辨认血迹和足迹，先判断里面是什么东西",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_injured_creature_tracks"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_tracks": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_tracks": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_guard_found",
+          "clue_guard_testimony"
+        ]
+      }
+    },
+    {
+      "id": "after_inspect_winch",
+      "title": "半开的闸门",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸绞盘旁",
+      "presentCharacters": [
+        "你"
+      ],
+      "narration": [
+        "你绕开受力的绳段，从侧面观察绞盘。卷入齿轮的是装货常用的粗麻绳，断口被绞得凌乱；闸门卡在半途，水流正越过门下的缺口，持续灌向废弃检修道。贸然扳动摇柄，很可能让绳结突然崩开。",
+        "摇柄附近留着匆忙操作的擦痕，侧翻木车与绞盘之间散落着同一种粗绳纤维。水声比你刚到时更清晰，通道口的湿痕也在缓慢向外扩展。"
+      ],
+      "npcDialogue": [],
+      "interactionPoint": true,
+      "controlPrompt": "水仍在进入检修道。你接下来准备做什么？",
+      "choices": [
+        {
+          "id": "winch_enter_tunnel",
+          "text": "避开绞盘，自己进入检修道确认水势和失踪货箱",
+          "intent": "个人行动",
+          "nextSceneId": "tunnel_entry_meeting",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "entered_tunnel_alone": true,
+              "entered_after_winch_check": true,
+              "entered_within_three_actions": true
+            },
+            "impressionTags": [],
+            "outcomeNarration": []
+          }
+        },
+        {
+          "id": "winch_check_guard_room",
+          "text": "暂时不处理绞盘，转去寻找两名不在岗位的看守",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_found",
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_knock_guard_room": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_guard": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "winch_check_shed",
+          "text": "回到转运棚核对货损，确认断绳是否来自货车",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_cargo_dragged"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_shed": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_shed": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "winch_check_tracks",
+          "text": "到入口外查看血迹和拖痕，但不进入通道",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_injured_creature_tracks"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_tracks": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_tracks": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_winch_water"
+        ]
+      }
+    },
+    {
+      "id": "after_inspect_tracks",
+      "title": "通道口的血迹",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你"
+      ],
+      "narration": [
+        "你停在仍有天光的位置，没有跨进检修道。泥地上除了货箱拖痕，还有一组宽大的兽类足迹：一侧压得深，另一侧明显发虚，断续血点沿墙根延伸。更靠里的水声盖住了细小动静，你无法确认黑暗中是否有人。",
+        "入口石壁上留着几道新鲜刮痕，其中一处粘着短硬的深色毛发。拖痕和失衡足迹都朝里延伸，暂时没有折返的痕迹。"
+      ],
+      "npcDialogue": [],
+      "interactionPoint": true,
+      "controlPrompt": "痕迹全部延伸向黑暗深处。你接下来准备做什么？",
+      "choices": [
+        {
+          "id": "tracks_enter_tunnel",
+          "text": "沿着足迹，自己进入检修道",
+          "intent": "个人行动",
+          "nextSceneId": "tunnel_entry_meeting",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "entered_tunnel_alone": true,
+              "entered_after_track_check": true,
+              "entered_within_three_actions": true
+            },
+            "impressionTags": [],
+            "outcomeNarration": []
+          }
+        },
+        {
+          "id": "tracks_check_guard_room",
+          "text": "不再深入，回头敲值守房的门寻找看守",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_found",
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_knock_guard_room": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_guard": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "tracks_check_shed",
+          "text": "回转运棚核对货物，确认拖痕是否属于失踪木箱",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_cargo_dragged"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_shed": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_shed": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "tracks_check_winch",
+          "text": "先观察绞盘和水流，判断继续深入的时间压力",
+          "intent": "个人行动",
+          "nextSceneId": "after_two_initial_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_winch_water"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_winch": true,
+              "completed_two_initial_investigations": true,
+              "second_check_result_winch": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_injured_creature_tracks"
+        ]
+      }
+    },
+    {
+      "id": "after_two_initial_guard_found",
+      "title": "水声未歇",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸转运点",
+      "presentCharacters": [
+        "你",
+        "轻伤看守"
+      ],
+      "narration": [
+        "轻伤看守留在值守房外较干燥的位置，另一名看守仍可能困在检修道里。",
+        "水仍在缓慢流入通道，棚门、绞盘和通道入口之间的痕迹还没有完全理清。"
+      ],
+      "npcDialogue": [],
+      "interactionPoint": true,
+      "controlPrompt": "你准备继续查看现场，还是沿现有痕迹进入检修道？",
+      "choices": [
+        {
+          "id": "enter_tunnel_after_two_guard_known",
+          "text": "不再继续检查，沿现有痕迹自行进入检修道",
+          "intent": "个人行动",
+          "nextSceneId": "tunnel_entry_meeting",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "entered_tunnel_alone": true,
+              "entered_after_two_investigations": true,
+              "entered_within_three_actions": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "third_check_shed_guard_known",
+          "text": "核对转运棚和封条，确认失踪货箱留下的痕迹",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_inspect_shed",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_cargo_dragged"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_shed": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_shed": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "third_check_guard_guard_known",
+          "text": "敲值守房的门，确认两名不在岗位的看守去了哪里",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_knock_guard_room",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_found",
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_knock_guard_room": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_guard": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "third_check_winch_guard_known",
+          "text": "从安全距离观察绞盘和水流，确认通道的时间压力",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_inspect_winch",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_winch_water"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_winch": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_winch": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "third_check_tracks_guard_known",
+          "text": "检查入口外的拖痕、足迹与血迹，但不进入通道",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_inspect_tracks",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_injured_creature_tracks"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_tracks": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_tracks": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "conditionalNarration": [
+        {
+          "visibility": {
+            "flag": "second_check_result_shed",
+            "equals": true
+          },
+          "text": "你核对棚门和封条，确认两只失踪货箱留下的新鲜木屑与拖痕一路通向检修道。"
+        },
+        {
+          "visibility": {
+            "flag": "second_check_result_guard",
+            "equals": true
+          },
+          "text": "你敲门说明来意后，门内终于传来动静。轻伤看守打开门，告诉你同伴在阻止妖兽拖走货箱时被撞进了检修道。你先把他扶到门外较干燥的位置。"
+        },
+        {
+          "visibility": {
+            "flag": "second_check_result_winch",
+            "equals": true
+          },
+          "text": "你从侧面确认粗麻绳卷进了齿轮，闸门卡在半开位置；贸然扳动摇柄会让受力绳结突然崩开。"
+        },
+        {
+          "visibility": {
+            "flag": "second_check_result_tracks",
+            "equals": true
+          },
+          "text": "你在入口天光处确认兽类足迹一侧深、一侧浅，血点与货箱拖痕一同延伸进检修道，没有折返。"
+        }
+      ]
+    },
+    {
+      "id": "after_two_initial_no_guard",
+      "title": "水声未歇",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸转运点",
+      "presentCharacters": [
+        "你"
+      ],
+      "narration": [
+        "两名看守仍未露面。值守房的门还紧闭着，通道里只有持续的水声。",
+        "水仍在缓慢流入通道，棚门、绞盘和通道入口之间仍有值得确认的痕迹。"
+      ],
+      "npcDialogue": [],
+      "interactionPoint": true,
+      "controlPrompt": "你准备继续查看现场，还是沿现有痕迹进入检修道？",
+      "choices": [
+        {
+          "id": "enter_tunnel_after_two_guard_unknown",
+          "text": "不再继续检查，沿现有痕迹自行进入检修道",
+          "intent": "个人行动",
+          "nextSceneId": "tunnel_entry_meeting",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "entered_tunnel_alone": true,
+              "entered_after_two_investigations": true,
+              "entered_within_three_actions": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "third_check_shed_guard_unknown",
+          "text": "核对转运棚和封条，确认失踪货箱留下的痕迹",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_inspect_shed",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_cargo_dragged"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_shed": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_shed": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "third_check_guard_guard_unknown",
+          "text": "敲值守房的门，确认两名不在岗位的看守去了哪里",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_knock_guard_room",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_guard_found",
+          "effect": {
+            "addClueIds": [
+              "clue_guard_found",
+              "clue_guard_testimony"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_knock_guard_room": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_guard": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "third_check_winch_guard_unknown",
+          "text": "从安全距离观察绞盘和水流，确认通道的时间压力",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_inspect_winch",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_winch_water"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_winch": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_winch": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        },
+        {
+          "id": "third_check_tracks_guard_unknown",
+          "text": "检查入口外的拖痕、足迹与血迹，但不进入通道",
+          "intent": "个人行动",
+          "visibility": {
+            "flag": "chose_inspect_tracks",
+            "equals": false
+          },
+          "nextSceneId": "surface_meeting_no_guard",
+          "effect": {
+            "addClueIds": [
+              "clue_injured_creature_tracks"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "chose_inspect_tracks": true,
+              "completed_three_initial_investigations": true,
+              "third_check_result_tracks": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [],
+            "incrementCounters": {
+              "initialInvestigations": 1
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "conditionalNarration": [
+        {
+          "visibility": {
+            "flag": "second_check_result_shed",
+            "equals": true
+          },
+          "text": "你核对棚门和封条，确认两只失踪货箱留下的新鲜木屑与拖痕一路通向检修道。"
+        },
+        {
+          "visibility": {
+            "flag": "second_check_result_guard",
+            "equals": true
+          },
+          "text": "你敲门说明来意后，门内终于传来动静。轻伤看守打开门，告诉你同伴在阻止妖兽拖走货箱时被撞进了检修道。你先把他扶到门外较干燥的位置。"
+        },
+        {
+          "visibility": {
+            "flag": "second_check_result_winch",
+            "equals": true
+          },
+          "text": "你从侧面确认粗麻绳卷进了齿轮，闸门卡在半开位置；贸然扳动摇柄会让受力绳结突然崩开。"
+        },
+        {
+          "visibility": {
+            "flag": "second_check_result_tracks",
+            "equals": true
+          },
+          "text": "你在入口天光处确认兽类足迹一侧深、一侧浅，血点与货箱拖痕一同延伸进检修道，没有折返。"
+        }
+      ]
+    },
+    {
+      "id": "surface_meeting_guard_found",
+      "title": "巡防路上的脚步",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸转运点",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "轻伤看守"
+      ],
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_guard_found",
+          "clue_guard_testimony",
+          "clue_commission_context"
+        ]
+      },
+      "narration": [
+        "巡防路上传来急促的脚步声。两名年轻修士赶到后，佩剑青年先扫过半开的闸门、通道入口和受伤看守；同行的年轻女子将小型斜挎药包拉到身前，快步来到伤者旁边。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "佩剑青年确认通道暂时没有东西追出，随即在看守面前蹲下，语气放缓。",
+          "text": "我叫何炅，这位是王鸥。我们从承务所接了附近的妖兽委托。你还好吗？先别急，慢慢说。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥扶轻伤看守坐到干燥石阶上，检查他的手臂和瞳孔。",
+          "text": "暂时没有明显麻痹，手臂只是擦伤。你先坐稳，别急着起身。"
+        },
+        {
+          "speakerId": "sluice_guard_surface",
+          "speakerName": "受伤看守",
+          "actionBefore": "看守缓了两口气，抬手指向检修道。",
+          "text": "还有一个人在通道里。那东西拖箱子时，他上去拦，被撞进去了。刚开始还能听见他喊，后来水声越来越大……"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "两人已经接手紧急处置。你准备怎样说明自己掌握的情况？",
+      "choices": [
+        {
+          "id": "surface_found_introduce_report",
+          "text": "报上姓名，按发现顺序说明现场情况",
+          "intent": "语言",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "introduced_self": true,
+              "shared_findings": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [
+              "你从最先看到的异常说起，把自己已经确认到的货物、看守、痕迹或水位情况依次交代清楚。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "我叫{{playerName}}，家里让我来核对这批货。到的时候转运棚已经空了，两箱货不见了。之后我沿着现场查了几处——我从最先发现的地方开始说。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅认真听你按先后说完，朝你点了点头。",
+                "text": "好，{{playerFormalAddress}}。你把前后顺序说得很清楚，多谢。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "你好，{{playerGivenName}}。你先别碰积水，里面可能混着轻微毒素。等救完人，我再替你检查。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "沟通清楚",
+                "evidence": "会合后按顺序共享了现场发现"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "听得进提醒",
+                "evidence": "说明情况时仍留在安全位置"
+              }
+            ]
+          }
+        },
+        {
+          "id": "surface_found_prioritize_guard",
+          "text": "先强调受困看守仍可能活着，请他们优先救人",
+          "intent": "态度",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "prioritized_guard_information": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "明白，先救人。你留在亮处，把入口变化告诉我们就行。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "我会先准备止血和解麻痹的药。谢谢你把这件事放在前面。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "surface_found_offer_manifest",
+          "text": "递出货物清单，说明失踪的是妖兽肉和动物油脂",
+          "intent": "个人行动",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_manifest": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "肉和油脂能解释它为什么守着货箱。清单我先看一眼。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "等找到货箱，我也会帮你看看里面有没有受到污染。"
+              }
+            ],
+            "impressionTags": []
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "conditionalNarration": [
+        {
+          "visibility": {
+            "flag": "third_check_result_shed",
+            "equals": true
+          },
+          "text": "你核对棚门和封条，确认两只失踪货箱留下的新鲜木屑与拖痕一路通向检修道。"
+        },
+        {
+          "visibility": {
+            "flag": "third_check_result_guard",
+            "equals": true
+          },
+          "text": "你敲门说明来意后，门内终于传来动静。轻伤看守打开门，告诉你同伴在阻止妖兽拖走货箱时被撞进了检修道。你先把他扶到门外较干燥的位置。"
+        },
+        {
+          "visibility": {
+            "flag": "third_check_result_winch",
+            "equals": true
+          },
+          "text": "你从侧面确认粗麻绳卷进了齿轮，闸门卡在半开位置；贸然扳动摇柄会让受力绳结突然崩开。"
+        },
+        {
+          "visibility": {
+            "flag": "third_check_result_tracks",
+            "equals": true
+          },
+          "text": "你在入口天光处确认兽类足迹一侧深、一侧浅，血点与货箱拖痕一同延伸进检修道，没有折返。"
+        }
+      ]
+    },
+    {
+      "id": "surface_meeting_no_guard",
+      "title": "巡防路上的脚步",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸转运点",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "轻伤看守"
+      ],
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_guard_found",
+          "clue_guard_testimony",
+          "clue_commission_context"
+        ]
+      },
+      "narration": [
+        "巡防路上传来急促的脚步声。两名年轻修士赶到后，佩剑青年迅速看过半开的闸门、通道入口和紧闭的值守房；同行的年轻女子将小型斜挎药包拉到身前。",
+        "佩剑青年没有硬推门，而是敲门说明身份。门内很快传来压低的呼吸声，一名手臂擦伤的看守终于拉开门闩，并断断续续说出同伴被撞进检修道的经过。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅扶住看守，把他带到干燥石阶旁。",
+          "text": "我叫何炅，这位是王鸥。我们从承务所接了附近的妖兽委托。里面还有人，先救人。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥已经蹲到看守身边，检查他的擦伤和手指活动。",
+          "text": "这位暂时没有明显麻痹。你先坐稳，别再碰通道里的水。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "何炅与王鸥已经确认有人受困。你准备怎样补充自己的发现？",
+      "choices": [
+        {
+          "id": "surface_no_guard_introduce_report",
+          "text": "报上姓名，说明自己刚才确认的现场情况",
+          "intent": "语言",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "introduced_self": true,
+              "shared_findings": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "好，{{playerFormalAddress}}。这些信息够我们先定救人的路线。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "你好，{{playerGivenName}}。先留在没有积水的地方。水里可能混着轻微毒素，暂时别直接碰。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "surface_no_guard_report_absence",
+          "text": "说明自己一直没有找到看守，幸好他们及时把人叫了出来",
+          "intent": "关系回应",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "accepted_safety_warning": true,
+              "acknowledged_npc_help": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "你没有贸然进最深处，这已经帮了忙。接下来一起把人带出来。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "surface_no_guard_offer_manifest",
+          "text": "递出货物清单，说明失踪货物的气味可能吸引了妖兽",
+          "intent": "个人行动",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_manifest": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "盐渍肉和动物油脂，确实很可能是它过来的原因。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "找到箱子后我会帮你检查污染，先别自己碰开裂处。"
+              }
+            ],
+            "impressionTags": []
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "conditionalNarration": [
+        {
+          "visibility": {
+            "flag": "third_check_result_shed",
+            "equals": true
+          },
+          "text": "你核对棚门和封条，确认两只失踪货箱留下的新鲜木屑与拖痕一路通向检修道。"
+        },
+        {
+          "visibility": {
+            "flag": "third_check_result_guard",
+            "equals": true
+          },
+          "text": "你敲门说明来意后，门内终于传来动静。轻伤看守打开门，告诉你同伴在阻止妖兽拖走货箱时被撞进了检修道。你先把他扶到门外较干燥的位置。"
+        },
+        {
+          "visibility": {
+            "flag": "third_check_result_winch",
+            "equals": true
+          },
+          "text": "你从侧面确认粗麻绳卷进了齿轮，闸门卡在半开位置；贸然扳动摇柄会让受力绳结突然崩开。"
+        },
+        {
+          "visibility": {
+            "flag": "third_check_result_tracks",
+            "equals": true
+          },
+          "text": "你在入口天光处确认兽类足迹一侧深、一侧浅，血点与货箱拖痕一同延伸进检修道，没有折返。"
+        }
+      ]
+    },
+    {
+      "id": "tunnel_entry_meeting",
+      "title": "检修道里的脚步声",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口内侧",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "你跨过明暗交界，沿着拖痕进入检修道。积水很快没过鞋底，墙面潮气带着淡淡腥味；前方拐角后传来一声短促的摩擦，随即被水声盖住。",
+        "你正准备继续靠近，身后忽然传来两个人的脚步。来人没有贸然越过你，其中一人先开口叫住了你。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "佩剑青年停在入口的天光里，视线迅速掠过积水、拖痕和前方拐角。",
+          "text": "姑娘，先停一下。前面有东西活动，你一个人再往里走会很危险。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "与他同行的年轻女子把斜挎药包拉到身前，俯身看了一眼被水冲淡的血点。",
+          "text": "先退到有光的地方。水里混着血和黏液，可能带毒，暂时别用手碰。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "青年向后让出通往入口的路，语气放缓了一些，又与身旁的王鸥交换了一个眼神。",
+          "text": "我叫何炅，这位是王鸥。我们从承务所接了附近农户的委托，顺着妖兽留下的痕迹找到了这里。鸥，你先看看水里的血迹，我去敲值守房，很快回来。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥抬头看了他一眼。",
+          "actionAfter": "王鸥从斜挎药包里取出一只小药瓶，退到入口侧面的干燥石阶上。那里能看清通道里的动静，也能留意何炅那边的情况。",
+          "text": "好。门要是从里面闩着，先出声叫人，别硬推。我看完这边就过去。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "两名陌生人已经说明来意。你准备怎样回应？",
+      "choices": [
+        {
+          "id": "tunnel_step_back_report",
+          "text": "先退回亮处，报上姓名并说明自己已经发现的线索",
+          "intent": "关系回应",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "introduced_self": true,
+              "accepted_safety_warning": true,
+              "shared_findings": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "actionBefore": "你退回亮处，把自己已经确认的货物、看守、痕迹或水位情况按发现顺序说了一遍。",
+                "text": "我叫{{playerName}}。我先到了一会儿，刚才确认过的情况都在这里。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅认真听完，朝你点了点头。",
+                "text": "好，{{playerFormalAddress}}，我记住了。你说的拖痕和水位都很要紧，多谢。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥也抬眼看向你，神色缓和了一些。",
+                "text": "你好，{{playerGivenName}}。你刚才踩过里面的积水，水里可能混着轻微毒素。等这里稳下来，我替你检查。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "愿意沟通",
+                "evidence": "被叫停后愿意退回亮处并共享现场发现"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "听得进提醒",
+                "evidence": "注意到污染风险后及时离开积水"
+              }
+            ]
+          }
+        },
+        {
+          "id": "tunnel_mention_missing_guard",
+          "text": "退到入口，先告诉他们另一名受伤看守可能仍在通道里",
+          "intent": "语言",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "prioritized_guard_information": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [
+              "你退到入口，先把另一名看守可能受伤、仍在通道里的情况告诉了他们。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅的目光立刻转向通道深处。",
+                "text": "知道了，先救人。谢谢你先把这件事说出来。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "抓得住重点",
+                "evidence": "初次交谈时优先说明了可能受困的伤员"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "顾及伤者",
+                "evidence": "面对货损时仍先关注失踪看守"
+              }
+            ]
+          },
+          "visibility": {
+            "flag": "chose_knock_guard_room",
+            "equals": true
+          }
+        },
+        {
+          "id": "tunnel_report_absent_guards",
+          "text": "退到入口，说明两名看守都不在岗位，通道里可能有人",
+          "intent": "语言",
+          "visibility": {
+            "flag": "chose_knock_guard_room",
+            "equals": false
+          },
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "reported_absent_guards": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [
+              "你退到入口，只说明自己能够确定的事实：两名看守都不在岗位，通道里可能还有人。何炅随即去敲值守房，找到了躲在里面的轻伤看守。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "说得对，先把人找齐。你没有把推测当成事实，这很好。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "信息边界清楚",
+                "evidence": "只报告已经确认的失踪与风险，没有虚构看守位置"
+              }
+            ]
+          }
+        },
+        {
+          "id": "tunnel_defend_entry",
+          "text": "停下脚步，但说明自己有基础自保能力，刚才准备再往前确认",
+          "intent": "态度",
+          "nextSceneId": "joint_assessment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "revealed_training": true,
+              "defended_risky_choice": true
+            },
+            "outcomeNarration": [
+              "你停下脚步，说明自己受过基础自保训练，刚才原本打算再往前确认一点。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅看了一眼你站的位置，语气仍然平和。",
+                "text": "有自保能力是好事。不过这里地窄、水深，里面的东西还没看清，先一起把情况弄明白。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥低头看过积水边缘，又将一只小药瓶握在手里。",
+                "text": "而且水里可能有毒。你要继续靠近，至少先让我确认该怎么防。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "有行动力但略显冒险",
+                "evidence": "独自进入情况不明的检修道后仍想继续确认"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "需要留意风险边界",
+                "evidence": "具备基础训练，但对污染与伤情了解有限"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_commission_context"
+        ]
+      }
+    },
+    {
+      "id": "joint_assessment",
+      "title": "伤者与涨水",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧水闸值守房外",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "受伤看守"
+      ],
+      "narration": [
+        "轻伤看守在屋外干燥处坐稳后，王鸥开始处理他手臂上的擦伤。何炅俯身向他问清检修道的转弯、旧蓄水室方向，以及闸门内侧能够落脚的位置。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥收好染污的药布，指尖在伤者腕侧停了片刻。",
+          "text": "这位看守的伤已经稳住，暂时没有明显麻痹。另一个人的伤势还不清楚，得尽快找到。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅半蹲在入口外，用剑鞘比过拖痕的宽度，随后起身看向王鸥。",
+          "text": "我先看清前面的拐角和通道情况。鸥，控制用的药按你的判断来。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥顺手把一只止血药瓶放到伤者触手可及的位置，又从斜挎药包里换出两个更小的瓷瓶。",
+          "text": "好。我先用不会散进水里的，真碰上了再看它怎么动。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅回头看向你，语气仍然温和。",
+          "text": "{{playerKnownAddress}}，入口外相对安全。若愿意帮忙，可以告诉我们你擅长什么；留在这里陪伤者也行。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "两人已经各自行动。你准备如何说明自己的选择？",
+      "choices": [
+        {
+          "id": "joint_introduce_identity_profession",
+          "text": "报上姓名，再说明自己的专业和能做的事，询问能否在安全范围内协助",
+          "intent": "关系回应",
+          "nextSceneId": "rescue_preparation",
+          "visibility": {
+            "flag": "introduced_self",
+            "equals": false
+          },
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "introduced_self": true,
+              "revealed_profession": true,
+              "offered_skilled_help": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "actionBefore": "你看了看检修道，又看向正在准备药物和路线的两人，主动开口。",
+                "text": "我叫{{playerName}}，是{{playerProfession}}。{{playerSkillSummary}}。如果有我能在安全范围内帮忙的事，你们可以直接告诉我。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅听完，温和地点了点头。",
+                "text": "好，{{playerFormalAddress}}，认识你了。你的专业正好能帮上忙，不过先按安全的方式来。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥抬眼看向你，也轻轻点了下头。",
+                "text": "你好，{{playerGivenName}}。等何炅看清通道，我们再一起确认你适合帮哪一部分。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "主动但尊重分工",
+                "evidence": "主动介绍身份与能力，并先询问安全的协助方式"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "愿意合作",
+                "evidence": "说明专业能力时没有越过现场分工"
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_introduce_profession",
+          "text": "说明自己的专业和能做的事，询问能否在安全范围内协助",
+          "intent": "关系回应",
+          "nextSceneId": "rescue_preparation",
+          "visibility": {
+            "flag": "introduced_self",
+            "equals": true
+          },
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "revealed_profession": true,
+              "offered_skilled_help": true,
+              "accepted_safety_warning": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "actionBefore": "你接着刚才的介绍，把自己能做的事说得更具体了一些。",
+                "text": "我是{{playerProfession}}。{{playerSkillSummary}}。如果有适合我做的部分，直接告诉我就好。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅听完，认真地点了点头。",
+                "text": "明白，{{playerFormalAddress}}。你的能力能帮上忙，不过我们先把里面的位置看清。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥轻轻弯了一下唇，手上整理药瓶的动作没有停。",
+                "text": "好，{{playerGivenName}}。等进去以后，我会把需要你留意的地方说清楚。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "主动但尊重分工",
+                "evidence": "说明能力后先询问安全范围内的协助方式"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "愿意合作",
+                "evidence": "主动提供专业帮助且没有越过现场分工"
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_offer_manifest",
+          "text": "把货物清单和封条样式交给他们，自己留在亮处照看受伤看守",
+          "intent": "个人行动",
+          "nextSceneId": "rescue_preparation_surface",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_manifest": true,
+              "stayed_with_guard": true,
+              "accepted_safety_warning": true,
+              "committed_to_surface_role": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "actionBefore": "你取出防潮布包里的货物清单，连同封条样式一起递过去。",
+                "text": "失踪的是盐渍妖兽肉和动物油脂，箱子上都有我家的封条。我留在这里看着伤者，你们找到货箱时也容易确认。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅接过清单，迅速看过货物名称和数量。",
+                "text": "肉和油脂的气味很可能把它引到了这里。这张清单我带着，多谢。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥把伤者身旁的位置让开一些，方便你随时观察他的脸色。",
+                "text": "他要是突然发冷、手麻，或者开始犯困，马上叫我。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "可靠务实",
+                "evidence": "提供核货信息并主动承担安全范围内的照看工作"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "让人放心",
+                "evidence": "愿意陪伴伤者并留意其状态"
+              }
+            ]
+          }
+        },
+        {
+          "id": "joint_observe_safely",
+          "text": "接受安全提醒，留在入口外观察水位、绞盘和周围动静",
+          "intent": "个人行动",
+          "nextSceneId": "rescue_preparation_surface",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "watching_surface_risks": true,
+              "accepted_safety_warning": true,
+              "committed_to_surface_role": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "actionBefore": "你看过半开的闸门和入口边缘不断扩大的湿痕，决定先留在外侧。",
+                "text": "我留在入口外看水位和绞盘。这里有变化，我马上提醒你们。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅顺着你的视线看向卡住的绞盘。",
+                "text": "好。别碰还在受力的绳子，水位一旦涨过那块浅色石砖就叫我们。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥记下何炅指出的位置，又回头看了你一眼。",
+                "text": "也留意水里有没有新的黏液或血。看见了别碰，直接喊我。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "听得进提醒",
+                "evidence": "面对紧急情况仍遵守了明确的安全边界"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "谨慎可靠",
+                "evidence": "选择留意地面风险而没有贸然跟入通道"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_guard_found",
+          "clue_guard_testimony",
+          "clue_commission_context"
+        ]
+      }
+    },
+    {
+      "id": "rescue_preparation",
+      "title": "通道里的回应",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "受伤看守"
+      ],
+      "narration": [
+        "何炅从值守房取来一盏备用灯，试亮后照向第一道拐角。王鸥把要用的小药瓶分别扣进斜挎药包外侧，又确认腰侧的短匕首没有被背带压住。",
+        "灯光刚越过湿滑的石壁，通道深处忽然传来一声压抑的咳嗽。片刻后，又有两下很轻的敲击声从水声里透出来。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅立刻抬手示意安静，侧过头听了片刻。",
+          "text": "是人的声音，还能回应。位置应该在前面第二道弯之后。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥握紧斜挎药包的背带，目光落在通道深处。",
+          "text": "声音很弱，先让他知道有人来了，别让他为了回应一直用力。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "你现在仍在入口外。准备先帮他们确认什么？",
+      "choices": [
+        {
+          "id": "rescue_call_back",
+          "text": "留在入口朝通道里回应一声，告诉受困看守救援已经到了",
+          "intent": "语言",
+          "nextSceneId": "rescue_route_confirmed",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "called_to_trapped_guard": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "actionBefore": "你朝着敲击声传来的方向放稳声音。",
+                "text": "里面的人听着，救援已经到了。你先别费力说话，能听见就敲一下。"
+              },
+              {
+                "speakerId": "sluice_guard_trapped",
+                "speakerName": "受困看守",
+                "actionBefore": "水声后隔了片刻，石壁深处传回一下轻响。",
+                "text": "（他没有再勉强出声。）"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "能安定他人",
+                "evidence": "听见伤员回应后及时让对方知道救援已经抵达"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "顾及伤员状态",
+                "evidence": "回应受困者时没有催促其继续呼喊"
+              }
+            ]
+          }
+        },
+        {
+          "id": "rescue_listen_direction",
+          "text": "不往里走，安静辨认咳嗽和敲击声传来的方向",
+          "intent": "个人行动",
+          "nextSceneId": "rescue_route_confirmed",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "listened_for_guard_position": true
+            },
+            "outcomeNarration": [
+              "你屏住呼吸，等水声出现短暂的间隙。下一次敲击偏向通道右侧，声音发闷，位置比入口低了一些。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅顺着你指出的方向重新压低灯光。",
+                "text": "对，声音贴着右边石壁回来。第二道弯后应该有向下的落差。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅朝第二道弯后的方向扬声，语气却放得很轻。",
+                "text": "里面的人能听见吗？可以的话敲一下就好。留着力气，我们马上过去。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "临场冷静",
+                "evidence": "出现伤员回应时先帮助确认方位"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "观察细致",
+                "evidence": "没有用更多声音盖住伤员微弱的回应"
+              }
+            ]
+          }
+        },
+        {
+          "id": "rescue_ask_layout",
+          "text": "向身旁的轻伤看守确认，第二道弯附近是否有岔路或落差",
+          "intent": "语言",
+          "nextSceneId": "rescue_route_confirmed",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_about_tunnel_layout": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "第二道弯附近有岔路吗？地面有没有突然往下落？"
+              },
+              {
+                "speakerId": "sluice_guard_surface",
+                "speakerName": "受伤看守",
+                "actionBefore": "他闭眼想了一会儿，抬手比出很短的一段距离。",
+                "text": "没岔路。拐过去有三级石阶，再往右就是旧蓄水室……地上还有塌下来的木架。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅朝第二道弯后的方向扬声，语气却放得很轻。",
+                "text": "里面的人能听见吗？可以的话敲一下就好。别再费力，留着力气，我们马上过去。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "考虑周全",
+                "evidence": "进入救援前主动核实通道结构"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "风险意识清楚",
+                "evidence": "关注狭窄通道中可能影响救援的地形"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "rescue_preparation_surface",
+      "title": "通道里的回应",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "受伤看守"
+      ],
+      "narration": [
+        "何炅从值守房取来一盏备用灯，试亮后照向第一道拐角。王鸥把要用的小药瓶分别扣进斜挎药包外侧，又确认腰侧的短匕首没有被背带压住。",
+        "灯光刚越过湿滑的石壁，通道深处忽然传来一声压抑的咳嗽。片刻后，又有两下很轻的敲击声从水声里透出来。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅立刻抬手示意安静，侧过头听了片刻。",
+          "text": "是人的声音，还能回应。位置应该在前面第二道弯之后。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥握紧斜挎药包的背带，目光落在通道深处。",
+          "text": "声音很弱，先让他知道有人来了，别让他为了回应一直用力。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "何炅和王鸥已经准备进入通道。你留在入口外，准备先做什么？",
+      "choices": [
+        {
+          "id": "rescue_surface_hold_lamp",
+          "text": "接过备用灯守在入口，替他们照亮退路，并留意撤回信号",
+          "intent": "个人行动",
+          "nextSceneId": "rescue_route_confirmed",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "prepared_surface_lamp": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅朝第二道弯后的方向扬声，语气却放得很轻。",
+                "text": "里面的人能听见吗？可以的话敲一下就好。别再费力，留着力气，我们马上过去。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "rescue_surface_watch_guard",
+          "text": "留在轻伤看守身边，观察他是否出现发冷、手麻或犯困",
+          "intent": "个人行动",
+          "nextSceneId": "rescue_route_confirmed",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "prepared_surface_guard_watch": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅朝第二道弯后的方向扬声，语气却放得很轻。",
+                "text": "里面的人能听见吗？可以的话敲一下就好。别再费力，留着力气，我们马上过去。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "rescue_surface_ask_layout",
+          "text": "询问轻伤看守，第二道弯附近是否有岔路、落差或容易滑倒的地方",
+          "intent": "语言",
+          "nextSceneId": "rescue_route_confirmed",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_about_tunnel_layout": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "第二道弯附近有岔路吗？地面有没有突然往下落？"
+              },
+              {
+                "speakerId": "sluice_guard_surface",
+                "speakerName": "受伤看守",
+                "actionBefore": "他闭眼想了一会儿，抬手比出很短的一段距离。",
+                "text": "没岔路。拐过去有三级石阶，再往右就是旧蓄水室……地上还有塌下来的木架。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅朝第二道弯后的方向扬声，语气却放得很轻。",
+                "text": "里面的人能听见吗？可以的话敲一下就好。别再费力，留着力气，我们马上过去。"
+              }
+            ],
+            "impressionTags": []
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "rescue_route_confirmed",
+      "title": "各自的位置",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "受伤看守"
+      ],
+      "narration": [
+        "通道里的敲击声只响了一下，便没有继续。只有断续的咳嗽仍从第二道弯后传来。何炅把备用绳穿过入口处牢固的石环，试过受力后，将余绳盘在手边。",
+        "王鸥把止血药、解毒药和一小瓶黏附型药剂移到斜挎药包最外层。她与何炅低声确认了石阶和旧木架的位置，两人很快定下救人的顺序。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅提起灯，将佩剑调整到随时能够出鞘的位置。",
+          "text": "我走前面，鸥，你跟在后面接伤员。先把人带出第二道弯，再处理里面那只妖兽。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "何炅与王鸥已经开始救援。你准备把自己放在哪个位置？",
+      "choices": [
+        {
+          "id": "route_follow_with_lamp",
+          "text": "带上备用灯跟在王鸥身后，不越过她的位置",
+          "intent": "个人行动",
+          "nextSceneId": "guard_reached_inside",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "joined_inner_rescue": true
+            },
+            "outcomeNarration": [
+              "你提起备用灯，踩着王鸥走过的落脚点进入检修道，与她保持着一臂多的距离。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥回头确认灯光和你的位置，轻轻点了下头。",
+                "text": "就保持这个距离。脚下滑的时候先扶石壁干燥的地方，别碰发亮的黏液。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "愿意配合",
+                "evidence": "参与深入救援时主动遵守了明确的位置安排"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "听得进提醒",
+                "evidence": "进入湿滑通道时没有越过负责探路的人"
+              }
+            ]
+          },
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": false
+          }
+        },
+        {
+          "id": "route_hold_first_bend",
+          "text": "守在第一道弯处接应，负责传递灯光和安全绳",
+          "intent": "个人行动",
+          "nextSceneId": "guard_reached_relay",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "held_relay_position": true
+            },
+            "outcomeNarration": [
+              "你接过余下的绳圈和备用灯，停在第一道弯内侧仍能看见入口天光的位置。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "这里正合适。绳子连续拉两下是要收紧，一下是让你停手。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "分寸清楚",
+                "evidence": "选择了既能接应又不过度深入的位置"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "谨慎可靠",
+                "evidence": "主动承担灯光和安全绳的接应工作"
+              }
+            ]
+          },
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": false
+          }
+        },
+        {
+          "id": "route_stay_at_entrance",
+          "text": "留在入口照看轻伤看守，同时观察水位和绞盘",
+          "intent": "个人行动",
+          "nextSceneId": "guard_reached_surface",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "stayed_at_surface_during_rescue": true
+            },
+            "outcomeNarration": [
+              "你留在入口外侧，把轻伤看守安置在能看清通道动静的干燥石阶旁，随后守住水位标记和安全绳。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅在转入第一道弯前回头看了一眼。",
+                "text": "好，水涨过浅色石砖就立刻叫我们。外面交给你了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "可靠务实",
+                "evidence": "在救援开始后主动守住外部水位与伤员"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "让人放心",
+                "evidence": "愿意承担不显眼但必要的外部接应"
+              }
+            ]
+          },
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": false
+          }
+        },
+        {
+          "id": "route_surface_continue_guard_care",
+          "text": "留在轻伤看守身边，按王鸥交代观察发冷、手麻和困倦",
+          "intent": "个人行动",
+          "nextSceneId": "guard_reached_surface",
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": true
+          },
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "stayed_at_surface_during_rescue": true,
+              "continued_guard_watch": true
+            },
+            "outcomeNarration": [
+              "你留在轻伤看守身旁，把灯放到既能看清他脸色、又不妨碍通道入口的位置。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你先坐稳。发冷、手麻或者犯困，都马上告诉我。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "说到做到",
+                "evidence": "已经决定留在外面后，持续承担了伤员观察"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "照看细致",
+                "evidence": "按交代留意伤者可能加重的症状"
+              }
+            ]
+          }
+        },
+        {
+          "id": "route_surface_watch_water",
+          "text": "守住入口水线和绞盘，发现水位上涨就立刻示警",
+          "intent": "个人行动",
+          "nextSceneId": "guard_reached_surface",
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": true
+          },
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "stayed_at_surface_during_rescue": true,
+              "watched_surface_water_during_rescue": true
+            },
+            "outcomeNarration": [
+              "你留在入口外，把何炅指出的浅色石砖和半开的闸门同时纳入视线。"
+            ],
+            "outcomeDialogue": [],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "守得住后方",
+                "evidence": "救援开始后持续观察水位和绞盘变化"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "风险意识清楚",
+                "evidence": "没有因通道里的动静离开既定安全位置"
+              }
+            ]
+          }
+        },
+        {
+          "id": "route_surface_manage_relay",
+          "text": "留在入口接住安全绳和灯号，并让轻伤看守远离通道",
+          "intent": "个人行动",
+          "nextSceneId": "guard_reached_surface",
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": true
+          },
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "stayed_at_surface_during_rescue": true,
+              "managed_surface_relay": true
+            },
+            "outcomeNarration": [
+              "你把余下的安全绳理顺放在墙边，又让轻伤看守退到更高的干燥石阶旁。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "sluice_guard_surface",
+                "speakerName": "轻伤看守",
+                "text": "我留在这里，不给他们添乱。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "接应可靠",
+                "evidence": "在入口整理安全绳并维持撤离通道"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "安排周全",
+                "evidence": "同时顾及伤员位置和救援信号"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "conditionalDialogue": [
+        {
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": true
+          },
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥试过安全绳能否顺畅放出，又回头确认你和伤者的位置。",
+          "text": "{{playerFamiliarAddress}}，你按刚才说的留在入口就好。伤者、水位和安全绳，哪一处有变化都立刻叫我们。"
+        },
+        {
+          "visibility": {
+            "flag": "committed_to_surface_role",
+            "equals": false
+          },
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥抬手试了一下安全绳能否顺畅放出，又回头看向你。",
+          "text": "{{playerFamiliarAddress}}，你愿意的话可以跟在我后面；留在第一道弯或入口接应也行。保护好自己最重要。"
+        }
+      ]
+    },
+    {
+      "id": "guard_reached_inside",
+      "title": "旧蓄水室门前",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·旧蓄水室外侧",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "受困看守",
+        "棘背穴獾"
+      ],
+      "narration": [
+        "越过第二道弯的三级石阶后，灯光照见了倒塌的旧木架。受困看守半靠在木架旁，湿透的束带被断木压住；他还能抬眼，嘴唇却已经发白。",
+        "更深处，两只货箱歪在旧蓄水室门边。一团接近大型野猪的黑影伏在箱后，背部硬刺随呼吸缓慢起伏。它没有扑来，只在何炅向前一步时发出低沉的警告声。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅横剑停在蓄水室门外，将妖兽与伤员隔开。",
+          "text": "它在守货箱。鸥，先带人走，我看着它。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥蹲到看守身边，抽出腰侧短匕首，贴着木板割开被压住的湿束带。",
+          "text": "束带割开了。先别急着站，试着动一下受压的腿。"
+        },
+        {
+          "speakerId": "sluice_guard_trapped",
+          "speakerName": "受困看守",
+          "actionBefore": "他试着动了动脚尖，缓了口气才开口。",
+          "text": "还能动……就是麻，没什么力气。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥听完，擦净短匕首收回腰侧，随后扶住他的肩背。",
+          "text": "能动就好，先别自己站。我扶你起来，右腿不要用力。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "伤员已经找到，妖兽就在货箱后警戒。你准备怎样协助撤离？",
+      "choices": [
+        {
+          "id": "inside_hold_lamp",
+          "text": "稳住灯光，照清伤员脚边的断木和退路",
+          "intent": "个人行动",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "lit_guard_extraction": true
+            },
+            "outcomeNarration": [
+              "你把灯压低，避开妖兽的眼睛，光线稳稳落在伤员脚边。王鸥沿着亮处抽出断木，何炅始终守在蓄水室门前。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥腾出一只手扶住伤员的肩。",
+                "text": "很好，就照这里。下一步要抬他的右脚。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "临场沉稳",
+                "evidence": "面对近处妖兽时仍把灯光稳定留给救援"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "配合细致",
+                "evidence": "准确照清伤员脚边，没有用强光刺激妖兽"
+              }
+            ]
+          }
+        },
+        {
+          "id": "inside_fit_safety_rope",
+          "text": "按王鸥的指示把安全绳绕到伤员腋下，帮助他借力",
+          "intent": "个人行动",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "secured_trapped_guard": true
+            },
+            "outcomeNarration": [
+              "你避开伤员受压的腿，把安全绳从他背后送过。绳结收紧后，他终于能借着你和王鸥的力量离开断木。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥按住绳结检查了一遍，声音放得很轻。",
+                "text": "位置对了。慢慢起，我扶着你，不用硬撑那条腿。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "顾得上同伴",
+                "evidence": "在妖兽近处优先帮助伤员安全脱困"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "动作可靠",
+                "evidence": "能够依照指示避开伤处固定安全绳"
+              }
+            ]
+          }
+        },
+        {
+          "id": "inside_watch_monster",
+          "text": "留在王鸥身后做好自保准备，盯住妖兽但不主动靠近",
+          "intent": "个人行动",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "covered_guard_extraction": true
+            },
+            "outcomeNarration": [
+              "你在王鸥身后稳住重心，按自己的基础自保方式做好准备。妖兽换了一次重心，肿胀的一侧肩膀随即渗出新血，伤口里闪过一小块暗色金属。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅没有回头，只略微调整了横剑的角度。",
+                "text": "看着它就好，别越过我。它现在更想守住箱子。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "有行动力也守边界",
+                "evidence": "做好自保接应时没有擅自越过正面防线"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "能保护位置",
+                "evidence": "在她处理伤员时主动留意近处威胁"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "guard_reached_relay",
+      "title": "绳索另一端",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道第一道弯",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "受困看守"
+      ],
+      "narration": [
+        "何炅与王鸥的灯光越过第二道弯后，安全绳缓慢向里滑动。没过多久，里面传来何炅压低的声音：人找到了，还活着。",
+        "紧接着，绳索突然绷紧。断木摩擦石地的声音从里面传来，随后是一声受困看守压不住的痛呼；更远处，还有某种野兽沉闷的低吼。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "准备接绳。我们把人挪出来，它还守在货箱旁边。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "里面开始转移伤员。你准备如何完成接应？",
+      "choices": [
+        {
+          "id": "relay_anchor_rope",
+          "text": "把安全绳绕过固定石环，稳稳收住不断送来的余绳",
+          "intent": "个人行动",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "anchored_rescue_rope": true
+            },
+            "outcomeNarration": [
+              "你让石环承担主要拉力，双手只控制余绳。两次明确的拉动传来后，你按约定逐段收紧，为里面的伤员留住支撑。"
+            ],
+            "outcomeDialogue": [],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "接应可靠",
+                "evidence": "准确理解绳索信号并稳定承担外侧拉力"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "做事稳妥",
+                "evidence": "没有用蛮力拖拽正在撤离的伤员"
+              }
+            ]
+          }
+        },
+        {
+          "id": "relay_guide_light",
+          "text": "把灯照向湿滑石阶，短声提醒他们落脚位置",
+          "intent": "语言",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "guided_retreat_light": true
+            },
+            "outcomeNarration": [
+              "你把灯放到石阶侧上方，避开迎面直照。看到人影靠近时，你只在最滑的两处出声提醒，给他们留下听清彼此的空间。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "第二道弯后传来王鸥清楚的回应。",
+                "text": "看见了。再替我们照住最后一级。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "沟通清楚",
+                "evidence": "接应撤离时只传递必要的落脚提醒"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "观察细致",
+                "evidence": "用灯光补足了伤员撤离时的视野"
+              }
+            ]
+          }
+        },
+        {
+          "id": "relay_watch_water",
+          "text": "一边接绳，一边观察脚边水流是否突然加快",
+          "intent": "个人行动",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "monitored_water_during_extraction": true
+            },
+            "outcomeNarration": [
+              "你将余绳压在石阶干燥的一角，同时盯着水面。细小的木屑开始比刚才更快地越过鞋边，你立刻把变化朝里面报了过去。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "收到。我们直接退，不在里面停。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "能兼顾风险",
+                "evidence": "接应伤员时没有忽略正在变化的水流"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "提醒及时",
+                "evidence": "水流加快后立即通知了通道内的人"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "guard_reached_surface",
+      "title": "入口外的水线",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口外",
+      "presentCharacters": [
+        "你",
+        "受伤看守",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "两盏灯先后隐入弯道，入口只剩安全绳贴着石地缓慢移动。轻伤看守听见深处的低吼，手指一下抓紧了身下的雨衣。",
+        "水面很快漫到何炅指出的浅色石砖边缘。与此同时，绳索从通道里连续传来两次清楚的拉动——里面已经开始带人撤回。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "sluice_guard_surface",
+          "speakerName": "受伤看守",
+          "actionBefore": "他盯着拐角后的灯光，声音发紧。",
+          "text": "是它……它就在里面。他们找到我同伴了吗？"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "水位已经碰到警戒位置，轻伤看守也越来越紧张。你先做什么？",
+      "choices": [
+        {
+          "id": "surface_warn_water",
+          "text": "立刻朝通道里报告水位已经碰到浅色石砖",
+          "intent": "语言",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "warned_water_threshold": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "水到浅色石砖了，正在继续涨！"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "片刻后，何炅的声音越过两道弯传了回来。",
+                "text": "听见了。人已经找到，我们马上出来。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "提醒及时",
+                "evidence": "水位抵达约定位置后立即发出了警告"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "守得住职责",
+                "evidence": "留在外侧时持续关注水位而非只等待消息"
+              }
+            ]
+          }
+        },
+        {
+          "id": "surface_settle_guard",
+          "text": "扶轻伤看守退到更高的干燥处，让他先听见救援绳的信号",
+          "intent": "关系回应",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "settled_surface_guard": true
+            },
+            "outcomeNarration": [
+              "你扶他往上挪了两级石阶，又让他看向正在回收的安全绳。绳子有节奏地绷紧，说明里面的人正在往出口移动。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "绳子正在往回收，他们已经带到人了。你先坐稳，别再碰到水。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "顾得上旁人",
+                "evidence": "等待救援时仍帮助外侧伤员远离上涨的水"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "体贴稳当",
+                "evidence": "用看得见的信号帮助轻伤看守稳定下来"
+              }
+            ]
+          }
+        },
+        {
+          "id": "surface_prepare_dry_path",
+          "text": "铺开值守房的干雨衣，清出一条接放伤员的干燥位置",
+          "intent": "个人行动",
+          "nextSceneId": "withdrawal_converges",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "prepared_dry_treatment_area": true
+            },
+            "outcomeNarration": [
+              "你把值守房里的干雨衣铺在高处，移开石阶旁的碎木和工具，又留出足够王鸥跪坐检查伤势的位置。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "sluice_guard_surface",
+                "speakerName": "受伤看守",
+                "actionBefore": "轻伤看守也忍着疼把一盏灯挪到雨衣旁。",
+                "text": "放这里亮些……他们一出来就能看见。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "做事周全",
+                "evidence": "伤员出来前已经清理好安全落脚位置"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "让人省心",
+                "evidence": "提前为紧急检查准备了干燥空间"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "withdrawal_converges",
+      "title": "两名看守与控制方案",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "两名受伤看守"
+      ],
+      "narration": [
+        "几分钟后，灯光重新越过第一道弯。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "进了值守房，等受困看守在干雨衣上躺稳，王鸥才跪到他身旁，检查瞳孔和腿伤。",
+          "text": "人湿冷得厉害，腿上有撞伤，麻痹也还没退。我先把伤势确认清楚。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅甩去剑锋上的水，视线仍停在通道拐角。",
+          "text": "里面只有一只棘背穴獾，大得接近野猪。它守着两只货箱，一侧前肢不敢用力。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥替伤员盖好干布，抬眼接上何炅的话。",
+          "text": "那侧肩膀已经肿了，伤口里还有金属。像是留了几天的旧伤，感染得不轻。先控制住它，我才能靠近确认。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅用剑鞘在湿地上划出第一道弯和蓄水室门口的位置。王鸥刚摸到药包外侧的小瓷瓶，他已经从墙边拾起一块涂过桐油的旧木片，翻看两面后递给她。",
+          "text": "这个能用。等它追出来，就放在它下一步会踩到的位置。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥接过木片，只看了一眼便明白他的意思。她捏住没有沾水的一端，将深色膏药厚厚涂在粗糙的一面。",
+          "text": "好，这是会黏在爪底的迟缓膏。等它动作慢下来，看能不能把它和货箱分开。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "王鸥扣紧瓷瓶，把木片从干净的一端递回去。何炅接过来，握在没有沾药的位置。",
+          "text": "好。鸥，你跟我过第二道弯。我顾它的正面，情况不对你就立刻退回第一道弯。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥顺着何炅画出的路线看了一遍，视线停在第一道弯外侧的位置。",
+          "text": "这里离蓄水室还隔着第二道弯，我们会在里面拦住它。{{playerPreferredAddress}}，你愿意的话，可以守在第一道弯外侧，风险很低；如果不想靠得那么近，就留在入口照看伤者和退路。那里更安全，也一样能接应我们。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "两人已经确定控制方案。你准备如何参与这一轮行动？",
+      "choices": [
+        {
+          "id": "control_take_signal_post_alchemist",
+          "text": "守在第一道弯外侧，负责灯光与撤退信号",
+          "intent": "个人行动",
+          "nextSceneId": "control_at_first_bend",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "took_control_signal_post": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "接应可靠",
+                "evidence": "控制妖兽前主动守住撤退信号位置"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "配合有分寸",
+                "evidence": "选择能协助行动又不干扰药物投放的位置"
+              }
+            ]
+          },
+          "visibility": {
+            "playerProfession": "炼丹师"
+          }
+        },
+        {
+          "id": "control_remain_with_guards",
+          "text": "留在入口照看两名看守，同时继续盯住水位",
+          "intent": "个人行动",
+          "nextSceneId": "control_from_entrance",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "guarded_injured_during_control": true
+            },
+            "outcomeNarration": [
+              "你留在两名看守身边，把灯移到既能看清他们脸色、又能照见入口水线的位置。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥把药包重新扣好，临走前又看了一遍两名伤员。",
+                "text": "他们现在都还稳。有人突然听不清你说话，或者手麻加重，就马上叫我。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "守得住后方",
+                "evidence": "控制行动开始时继续兼顾伤员和水位"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "让人放心",
+                "evidence": "愿意留在安全位置落实伤员观察"
+              }
+            ]
+          }
+        },
+        {
+          "id": "control_voice_nonlethal_preference",
+          "text": "留在入口照看伤员。",
+          "intent": "态度",
+          "nextSceneId": "control_from_entrance",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "preferred_safe_driving_off": true,
+              "guarded_injured_during_control": true
+            },
+            "outcomeNarration": [
+              "你决定留在入口照看两名伤员。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们注意安全——情况不对时，你们用什么信号退？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅看向通道深处，回答得很明确。",
+                "text": "我会喊“回灯下”。听见这句话就各自退到有灯的位置。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥将腰侧短匕首压进鞘里，轻轻点头。",
+                "text": "你留在这里看着他们，尽量冷静判断。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "有善意也有边界",
+                "evidence": "表达不愿无谓击杀时仍把人员安全放在前面"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "理解生命但不鲁莽",
+                "evidence": "对受伤妖兽保留善意，同时主动确认撤退规则"
+              }
+            ]
+          }
+        },
+        {
+          "id": "control_alchemist_monitor",
+          "text": "以炼丹师知识留在伤员旁，协助观察麻痹变化与污染反应",
+          "intent": "专业行动",
+          "visibility": {
+            "playerProfession": "炼丹师"
+          },
+          "nextSceneId": "control_from_entrance",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "guarded_injured_during_control": true,
+              "profession_contribution_alchemist": true
+            },
+            "outcomeNarration": [
+              "你留在伤员旁，按王鸥给出的标准观察呼吸、意识和麻木范围，并把干净药布与被污染的用品分开放置。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "好。麻木如果越过手腕，或者他说话开始含糊，立刻叫我。你按炼丹师的方式记录变化就行，不要自己加药。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "wang_ou",
+                "tag": "专业配合可靠",
+                "evidence": "用炼丹师知识协助观察伤员，同时尊重用药边界"
+              }
+            ],
+            "setState": {
+              "professionContributionSummary": "协助王鸥观察麻痹变化，并在清点货物时判断污染风险"
+            }
+          }
+        },
+        {
+          "id": "control_puppeteer_secure_winch",
+          "text": "以机关傀儡师知识检查绞盘，协助安全割除松弛废绳并临时固定闸门",
+          "intent": "专业行动",
+          "visibility": {
+            "playerProfession": "机关傀儡师"
+          },
+          "nextSceneId": "control_at_first_bend",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "winch_temporarily_secured": true,
+              "profession_contribution_puppeteer": true
+            },
+            "outcomeNarration": [
+              "你先确认真正受力的是齿轮内侧那段粗绳，和轻伤看守一起从松弛端割除废绳，再用止退木楔固定摇柄。闸门没有完全修好，但流入通道的水明显减缓。随后你赶到第一道弯接应。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "这样就够了，不冒险硬修。水慢下来以后，我们的退路稳多了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "专业判断稳妥",
+                "evidence": "没有强行修复损坏绞盘，而是安全完成临时固定"
+              }
+            ],
+            "setState": {
+              "professionContributionSummary": "判断绞盘受力，协助临时固定闸门并减缓通道进水"
+            }
+          }
+        },
+        {
+          "id": "control_stealth_signal",
+          "text": "以潜行修的脚步控制守住第一道弯，负责无声观察与撤退信号",
+          "intent": "专业行动",
+          "visibility": {
+            "playerProfession": "潜行修"
+          },
+          "nextSceneId": "control_at_first_bend",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "took_control_signal_post": true,
+              "profession_contribution_stealth": true
+            },
+            "outcomeNarration": [
+              "你贴着较干燥的墙侧进入第一道弯，控制脚步与呼吸，不让额外声响盖过蓄水室里的动静。灯光和退路都保持在你视线内。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "这个位置交给你。别为了看清多走一步，信号比靠近更重要。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "专业发挥有分寸",
+                "evidence": "用潜行能力稳定接应，而不是擅自绕到妖兽背后"
+              }
+            ],
+            "setState": {
+              "professionContributionSummary": "利用脚步和位置感守住弯道，稳定传递灯光与撤退信号"
+            }
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_trapped_guard_located",
+          "clue_monster_metal_wound"
+        ]
+      },
+      "conditionalNarration": [
+        {
+          "visibility": {
+            "flag": "joined_inner_rescue",
+            "equals": true
+          },
+          "text": "你和王鸥扶着受困看守沿安全绳撤回入口，何炅持剑走在最后，直到越过弯道才重新收剑。先前从值守房出来的轻伤看守见到同伴，立刻迎过来，从你和王鸥身边接过人，把他扶进值守房。"
+        },
+        {
+          "visibility": {
+            "flag": "joined_inner_rescue",
+            "equals": true
+          },
+          "text": "通道深处的低吼没有追近。水却还在上涨，新的木屑和一缕浑浊血色正从弯后缓慢漂出来。"
+        },
+        {
+          "visibility": {
+            "flag": "joined_inner_rescue",
+            "equals": true
+          },
+          "text": "王鸥先处理受困看守明显出血的地方，轻伤看守留在一旁照应。何炅重新检查安全绳和入口水线，随后与王鸥迅速定下控制妖兽的方案。"
+        },
+        {
+          "visibility": {
+            "flag": "joined_inner_rescue",
+            "equals": false
+          },
+          "text": "何炅扶着受困看守沿安全绳撤回入口，王鸥跟在侧后方，替伤员稳住受伤的腿。先前从值守房出来的轻伤看守见到同伴，立刻迎过来，从何炅手中接过人，把他扶进值守房。"
+        },
+        {
+          "visibility": {
+            "flag": "joined_inner_rescue",
+            "equals": false
+          },
+          "text": "通道深处的低吼没有追近。水却还在上涨，新的木屑和一缕浑浊血色正从弯后缓慢漂出来。"
+        },
+        {
+          "visibility": {
+            "flag": "joined_inner_rescue",
+            "equals": false
+          },
+          "text": "王鸥先处理受困看守明显出血的地方，轻伤看守留在一旁照应。何炅重新检查安全绳和入口水线，随后与王鸥迅速定下控制妖兽的方案。"
+        }
+      ]
+    },
+    {
+      "id": "control_at_first_bend",
+      "title": "灯影后的动静",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道第一道弯",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "棘背穴獾"
+      ],
+      "narration": [
+        "你守在第一道弯外侧，把备用灯举到约定的高度。何炅与王鸥的身影越过第二道弯后，旧蓄水室里很快响起木箱摩擦石地的声音。",
+        "棘背穴獾发出一声短促低吼，沉重的脚步突然逼近。何炅的剑锋在灯下闪过，将它的冲势引向没有积水的石阶；王鸥涂过药的木片正落在它下一步会踩到的位置。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "妖兽前爪压过木片时，王鸥立刻退到何炅剑势护住的范围里。",
+          "text": "沾上了。它右边还能发力，小心它突然转身。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅顺着妖兽偏转的方向挪开半步，没有堵死它退回蓄水室的路。",
+          "text": "看见了。鸥，等药起效，不追。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "妖兽仍在挣扎，何炅与王鸥正在等待迟缓膏起效。你准备怎样接应？",
+      "choices": [
+        {
+          "id": "bend_raise_lamp",
+          "text": "把灯再抬高一些，照清第一道弯后的干燥落脚处",
+          "intent": "个人行动",
+          "nextSceneId": "monster_restrained",
+          "effect": {
+            "addClueIds": [
+              "clue_broken_trap_fragment"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "lit_control_retreat": true
+            },
+            "outcomeNarration": [
+              "你把灯抬高，光线越过石阶，何炅与王鸥身后的落脚处随即清楚起来。两人没有回头，却同时向亮处退了半步。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "灯位正好，保持住。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "接应可靠",
+                "evidence": "控制妖兽时及时照清了两人的撤退位置"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "配合细致",
+                "evidence": "没有用灯光直照妖兽，而是帮助队友确认脚下"
+              }
+            ]
+          }
+        },
+        {
+          "id": "bend_clear_rope",
+          "text": "把散在石阶上的安全绳收向墙边，避免撤退时绊脚",
+          "intent": "个人行动",
+          "nextSceneId": "monster_restrained",
+          "effect": {
+            "addClueIds": [
+              "clue_broken_trap_fragment"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "cleared_control_rope": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "能提前补位",
+                "evidence": "危险靠近前主动清除了撤退路线上的绊脚物"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "行动周全",
+                "evidence": "在紧张局面中仍留意到安全绳的位置"
+              }
+            ]
+          }
+        },
+        {
+          "id": "bend_warn_turn",
+          "text": "看见妖兽转向王鸥时，立即出声提醒她右侧来袭",
+          "intent": "语言",
+          "nextSceneId": "monster_restrained",
+          "effect": {
+            "addClueIds": [
+              "clue_broken_trap_fragment"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "warned_wang_turn": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "王鸥，右边！"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥立即侧身退开，腰侧短匕首只出鞘半寸便重新压回去；何炅的剑已经先一步隔开妖兽。",
+                "text": "看见了，我没事。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "顾得上同伴",
+                "evidence": "妖兽突然转向时及时提醒了王鸥"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "提醒及时",
+                "evidence": "在她视线受阻时准确指出了来袭方向"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "control_from_entrance",
+      "title": "值守房外的信号",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你",
+        "两名受伤看守",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "何炅与王鸥的灯光先后隐入第二道弯。你留在入口和值守房之间，只能听见木片落地、妖兽低吼和剑锋擦过石面的声音。",
+        "片刻后，通道里的灯光稳稳抬高了一次，没有快速遮动。两人仍在按原定方案推进，并未发出撤退信号。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "sluice_guard_surface",
+          "speakerName": "轻伤看守",
+          "actionBefore": "轻伤看守守在同伴身旁，听见撞击声时下意识抬起头。",
+          "text": "灯还亮着……他们没往回退，是不是控制住了？"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "你看不见蓄水室内的情况，但能观察灯号、水位和两名伤员。你先留意什么？",
+      "choices": [
+        {
+          "id": "entrance_read_signal",
+          "text": "继续盯住灯号，确认没有出现连续两次遮光",
+          "intent": "个人行动",
+          "nextSceneId": "monster_restrained",
+          "effect": {
+            "addClueIds": [
+              "clue_broken_trap_fragment"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "watched_control_signal": true
+            },
+            "outcomeNarration": [
+              "你没有用更多喊声盖住通道里的动静，只盯着弯后的光。灯影短暂晃动几次，却始终没有出现约定的撤退信号。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "还没有撤退信号。先别出声，让他们听清里面。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "沉得住气",
+                "evidence": "看不见战况时仍按约定读取信号，没有贸然打断"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "尊重现场判断",
+                "evidence": "控制行动中没有因紧张制造额外声响"
+              }
+            ]
+          }
+        },
+        {
+          "id": "entrance_check_guards",
+          "text": "逐一询问两名看守手脚的麻木感有没有加重",
+          "intent": "语言",
+          "nextSceneId": "monster_restrained",
+          "effect": {
+            "addClueIds": [
+              "clue_broken_trap_fragment"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "checked_guards_during_control": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "手脚的麻有没有变重？听我说话还清楚吗？"
+              },
+              {
+                "speakerId": "sluice_guard_trapped",
+                "speakerName": "受困看守",
+                "actionBefore": "躺着的看守费力动了动手指。",
+                "text": "听得清……手还是麻，没更重。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "顾全伤员",
+                "evidence": "控制行动期间持续关注两名看守的状态"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "记得住提醒",
+                "evidence": "依照此前说明检查麻木和意识变化"
+              }
+            ]
+          }
+        },
+        {
+          "id": "entrance_watch_water_again",
+          "text": "观察入口水线和漂出的木屑，准备在水流加快时示警",
+          "intent": "个人行动",
+          "nextSceneId": "monster_restrained",
+          "effect": {
+            "addClueIds": [
+              "clue_broken_trap_fragment"
+            ],
+            "addInventoryIds": [],
+            "setFlags": {
+              "watched_water_during_control": true
+            },
+            "outcomeNarration": [
+              "你把一片刚漂到脚边的木屑记作水线参照。水仍在缓慢上涨，但速度没有突然变化，暂时不需要发出撤退警告。"
+            ],
+            "outcomeDialogue": [],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "守得住后方",
+                "evidence": "看不见战况时仍持续监测外部水流"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "谨慎可靠",
+                "evidence": "用可见参照判断水流变化，没有凭感觉误报"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "monster_restrained",
+      "title": "伤口里的断齿",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "两名受伤看守",
+        "何炅"
+      ],
+      "narration": [
+        "迟缓膏完全起效后，何炅用粗绳把棘背穴獾限制在蓄水室内。他检查过旧维护路线和妖兽伤势，确认现场没有能够安全运输它的笼具；它前肢重伤，也无法被驱回森林后保证不再沿水渠靠近居民区。",
+        "药效会退，水位也不允许继续拖延。蓄水室里很快安静下来。确认妖兽不再能够伤人后，王鸥才靠近检查感染的肩伤，从已经松动的伤口中取出一枚带锈的粗大断齿和一小截链环。",
+        "两人回到入口。王鸥将金属放在展开的油布上，与药瓶和伤员用品分开。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥低头观察附着在断齿上的旧血和锈迹。",
+          "text": "金属至少埋了几天。形状不是水闸零件，应该来自未经登记的大型捕兽夹。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅收好沾水的粗绳，语气平静而明确。",
+          "text": "能安全驱离当然更好，但它现在不能正常捕食，我们也没有安全运输它的条件。继续等只会让药效过去，再把伤员和附近农户放回风险里。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把断齿与链环包好。",
+          "text": "物证交承务所登记，再转给官署捕役查来源。我们不在这里继续追人。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "妖兽威胁已经解除，捕兽夹断齿也已经找到。你准备怎样回应？",
+      "choices": [
+        {
+          "id": "restrained_ask_trap_age",
+          "text": "询问王鸥能否从伤口和锈迹判断捕兽夹伤了它多久",
+          "intent": "语言",
+          "nextSceneId": "injury_treatment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_trap_wound_age": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "从伤口和这些锈迹，能看出它被夹伤多久了吗？"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥没有直接碰断齿，只低头看了看附着的旧血。",
+                "text": "只能确定不是今天。伤口已经感染，金属至少留了几天；再精确就没有依据了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "追问有依据",
+                "evidence": "发现断齿后询问能够从现有物证判断的时间范围"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "尊重专业边界",
+                "evidence": "询问伤势时没有要求她给出无法确定的结论"
+              }
+            ]
+          }
+        },
+        {
+          "id": "restrained_ask_wait_investigation",
+          "text": "询问为什么不能先驱离，或等待承务所带工具接手",
+          "intent": "语言",
+          "nextSceneId": "injury_treatment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_to_wait_for_investigation": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "不能先把它赶走，或者等承务所带工具来接手吗？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅看了一眼值守房，又听了听通道里的喘息声。",
+                "text": "驱离需要它能正常移动，也要确认不会沿水渠回来；等待则要保证药效、伤员和退路都撑得住。这里三项都做不到，所以我不能把风险留给后面的人。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "原因要查，眼前的危险也必须结束。断齿已经保留下来了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "能分清轻重",
+                "evidence": "愿意保留捕兽夹调查空间，但没有因此拖延眼前处置"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "理解边界",
+                "evidence": "区分查清伤源与立即保护伤员、看守的优先级"
+              }
+            ]
+          }
+        },
+        {
+          "id": "restrained_check_cargo",
+          "text": "取出货物清单，准备确认两只货箱的封条和进水情况",
+          "intent": "个人行动",
+          "nextSceneId": "injury_treatment",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "prepared_cargo_check": true
+            },
+            "outcomeNarration": [
+              "你取出防潮小布包里的货物清单，将封条样式和箱数翻到最前面。两只货箱还在蓄水室，接下来只要安全移出，就能立刻核对损坏程度。"
+            ],
+            "outcomeDialogue": [
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥重新包好断齿，避免锈血沾到清单。",
+                "text": "等何炅叫我们过去，我帮你看箱里的东西有没有被黏液污染。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "做事有条理",
+                "evidence": "妖兽受控后及时准备核对货物结果"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "务实细致",
+                "evidence": "检查货物前主动避免物证污染清单"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_broken_trap_fragment"
+        ]
+      },
+      "conditionalDialogue": [
+        {
+          "visibility": {
+            "flag": "preferred_safe_driving_off",
+            "equals": true
+          },
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥看向你，记得你刚才表达过的态度。",
+          "text": "你说倾向驱离，我明白。刚才若有可靠的放归办法，我也会选；这次是条件不够。"
+        }
+      ]
+    },
+    {
+      "id": "injury_treatment",
+      "title": "货箱旁的包扎",
+      "phase": "旧水闸现场",
+      "location": "临川城东北·废弃检修道入口外",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "两名受伤看守"
+      ],
+      "narration": [
+        "妖兽威胁解除后，何炅与轻伤看守处理了卷进绞盘的废绳，并用止退木楔把闸门暂时固定。闸门没有完全修复，但通道不再持续进水；正式维修由水闸管理人员后续完成。",
+        "你按自家的货物清单靠近两只货箱，逐一核对封条、箱角和进水痕迹。检查到一半，天色忽然压低，细雨斜斜飘进转运棚门口。盐渍妖兽肉那箱已经破损进水，动物油脂那箱封条裂开，但大半货物仍能清点。",
+        "你伸手扶住裂开的箱沿时，木刺边缘突然刮过前臂，划出一道有点深的口子。伤口没有伤到筋骨，却沾到了箱沿的脏水。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥快步过来，眉心微蹙，先用干净布巾压住伤口，又低头看了看箱沿残留的木刺和脏水。她的语气里带着一点无奈，也有几分嗔怪。",
+          "text": "你啊，作战时没受伤，检查自家箱子倒把自己划到了。先别动，我给你压住——口子有点深，好在没伤到筋骨。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅侧身站到迎风的门边，替王鸥挡住细雨，另一只手扶稳裂开的箱盖。",
+          "text": "疼得厉害吗？先别动，箱子我来扶。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥清理完血迹，重新检查了一遍伤口边缘，才把药布和绷带一层层缠好。",
+          "text": "好了，今晚先这样包住。别碰水，也别自己拆开看。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "王鸥已经把伤口清理并包好。你准备怎样回应？",
+      "choices": [
+        {
+          "id": "injury_accept_treatment",
+          "text": "安静配合，让王鸥把包扎固定好",
+          "intent": "个人行动",
+          "nextSceneId": "commission_handoff",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "accepted_wound_treatment": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "麻烦你了，我会注意不碰到水。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "嗯。先这样，回城路上别让雨水打湿。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "wang_ou",
+                "tag": "愿意听劝",
+                "evidence": "受伤后配合清创包扎并接受保护伤口的提醒"
+              },
+              {
+                "characterId": "he_jiong",
+                "tag": "让人放心",
+                "evidence": "受伤后没有硬撑，愿意按专业建议处理"
+              }
+            ]
+          }
+        },
+        {
+          "id": "injury_joke_about_timing",
+          "text": "苦笑说作战没事，反而被货箱擦伤了",
+          "intent": "关系回应",
+          "nextSceneId": "commission_handoff",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "joked_about_wound_timing": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "妖兽没碰到我，倒是货箱补上了这一道。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗得弯了弯唇，手上仍稳稳收紧绷带。",
+                "text": "那更不能让它赢。今晚先包好，回去别碰水。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "这句话我记下了，今天最危险的原来是箱沿。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "wang_ou",
+                "tag": "能在受伤时放松",
+                "evidence": "包扎时仍能用轻松的话回应现场"
+              },
+              {
+                "characterId": "he_jiong",
+                "tag": "相处轻松",
+                "evidence": "受伤后的玩笑没有影响对安全处理的配合"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_cargo_damage_result"
+        ]
+      },
+      "conditionalNarration": [
+        {
+          "visibility": {
+            "flag": "winch_temporarily_secured",
+            "equals": true
+          },
+          "text": "你先前已经判断过绞盘受力并完成临时固定，何炅与看守只补做了最后的检查。"
+        }
+      ]
+    },
+    {
+      "id": "commission_handoff",
+      "title": "承务所的交接记录",
+      "phase": "承务所交接",
+      "location": "临川城·承务所",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "王鸥把捕兽夹断齿和链环包好，何炅接过油布包。你收好自家的货物清单，和他们同路回城，先到了承务所。",
+        "何炅与王鸥把妖兽处理结果、看守证词和捕兽夹物证交给书吏。书吏完成任务验收与物证登记后，将油布包封存，注明需要转交临川官署捕役调查来源。你在旁边等他们办完手续，前臂的绷带被袖口轻轻压着，还有一点钝痛。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把任务记录和油布包一并递给承务所的书吏，等对方盖好验收印，才转回身看向你。",
+          "text": "委托算是交上了。{{playerFormalAddress}}，你今天帮了不少忙，一起吃个饭吧？我请。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥抬眼看了看承务所门外已经暗下来的天色，又看了一眼你的前臂。",
+          "text": "先吃点东西也好。今天折腾够久了，别空着肚子回去。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "何炅邀请你一起吃饭。你准备怎样回应？",
+      "choices": [
+        {
+          "id": "handoff_accept_meal",
+          "text": "接受邀请，笑着说今天确实该吃顿热饭",
+          "intent": "关系回应",
+          "nextSceneId": "post_task_meal",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "accepted_meal_invitation": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "好，今天确实该吃顿热饭。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "那就这么说定了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "相处自然",
+                "evidence": "接受任务后的共餐邀请，愿意把紧张气氛放下来"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "愿意照顾自己",
+                "evidence": "接受休息和进食安排，没有硬撑着继续赶路"
+              }
+            ]
+          }
+        },
+        {
+          "id": "handoff_ask_cargo_first",
+          "text": "说明家里的货损已经记好，可以一起去吃饭",
+          "intent": "个人行动",
+          "nextSceneId": "post_task_meal",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "confirmed_household_cargo_first": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "家里的货损我已经记好了，可以一起去吃饭。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "那正好。先吃点热的，回去也有力气慢慢说明。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "责任心强",
+                "evidence": "完成自家货损清点后，再接受共餐邀请"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "做事有始有终",
+                "evidence": "没有因为任务结束就漏掉自己的交接责任"
+              }
+            ]
+          }
+        },
+        {
+          "id": "handoff_tease_invitation",
+          "text": "笑着问何炅是不是把请客也算进任务记录了",
+          "intent": "关系回应",
+          "nextSceneId": "post_task_meal",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "teased_he_about_meal": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "请客也要写进任务记录吗？"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥低头收好药包，唇角轻轻弯了一下。",
+                "text": "这项不用交承务所。何炅自己记着就行。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "对，我单独记，绝不占任务经费。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "愿意接近",
+                "evidence": "用轻松玩笑回应共餐邀请"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "有生活感",
+                "evidence": "在任务结束后自然接住玩笑"
+              }
+            ]
+          }
+        },
+        {
+          "id": "handoff_decline_meal",
+          "text": "先回家说明货损，礼貌谢绝这顿饭，约好改天再见",
+          "intent": "关系回应",
+          "nextSceneId": "declined_meal_recheck_hook",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "declined_meal_invitation": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "今天先不了，我得回家把货损说清楚。谢谢你们，改天再一起吃。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "当然，家里的事要紧。那这顿先记着，不急。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "可以。不过伤口明天还是要看，时间我们现在说好。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "有自己的安排",
+                "evidence": "礼貌说明家庭责任，没有被共餐邀请替自己决定行程"
+              },
+              {
+                "characterId": "wang_ou",
+                "tag": "边界清楚",
+                "evidence": "拒绝吃饭时仍认真处理复查约定"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "onEnterEffect": {
+        "addClueIds": [
+          "clue_trap_evidence_handed_over"
+        ]
+      }
+    },
+    {
+      "id": "declined_meal_recheck_hook",
+      "title": "没有吃成的晚饭",
+      "phase": "任务后收束",
+      "location": "临川承务所门外",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "你决定先回家说明货损。何炅没有继续劝，王鸥却在你离开前重新确认了绷带没有被雨水打湿。",
+        "这顿饭暂时没有吃成，但下一次见面的时间仍然被认真定了下来。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "明天上午，在徐记药材铺旁边的春汀小馆见吧。先吃点东西，再去徐记把要用的药买齐。之后去我那里，把伤口拆开重新看一遍，清洗换药。我住得离药铺近，方便。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅接得很自然，像是本来就会这样安排。",
+          "text": "我陪鸥一起过去。我们平时一道出任务，她要补哪些常用外出药，我也会跟着一起看看。明天春汀小馆见。"
+        }
+      ],
+      "interactionPoint": false,
+      "controlPrompt": null,
+      "choices": [],
+      "freeInputEnabled": false,
+      "nextMeeting": {
+        "meetingPlace": "春汀小馆",
+        "nearbyPlace": "徐记药材铺",
+        "actualTreatmentPlace": "王鸥住处",
+        "note": "春汀小馆只用于碰面和吃早点；拆药布、清洗与换药不在店内进行。"
+      }
+    },
+    {
+      "id": "post_task_meal",
+      "title": "听澜楼的晚饭",
+      "phase": "三人共餐",
+      "location": "临川城·承务所附近·听澜楼",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "承务所的记录交接完毕，何炅带你们去了附近的听澜楼。这里比他们平时常去的小馆宽敞正式，临窗能望见沿河灯火；两人偶尔会来，但并不是日常随便吃一顿的地方。",
+        "何炅说今天算是正式认识，应该好好请一次。衣摆上的水痕还没有完全干，桌上的热茶先把一路寒气压了下去。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅点了临川荷香粉蒸排骨和风味茄子，又把菜单递到你面前。",
+          "text": "{{playerKnownAddress}}，你有什么忌口，或者想吃什么？今天别只迁就我们。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥端起热茶暖了暖手，抬眼看向你。",
+          "text": "听澜楼的菜量不小，我们三个人不用点得太多。你先看看，有想吃的就说。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "菜单还在你手里。你准备怎么点？",
+      "choices": [
+        {
+          "id": "meal_order_no_taboo",
+          "text": "说明没有忌口，请他们按平时喜欢的点",
+          "intent": "语言",
+          "nextSceneId": "meal_conversation",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "meal_no_taboo": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "我没有忌口，你们按平时喜欢的点就好。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "那我就不客气了，不过会记得给你留一道自己选的。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "meal_order_warm_light",
+          "text": "想吃热汤和清淡些的菜，免得伤口不舒服",
+          "intent": "个人选择",
+          "nextSceneId": "meal_conversation",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "meal_chose_warm_light_food": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "想吃点热汤，菜清淡些就好。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥顺手把菜单翻到汤羹那一页。",
+                "text": "那就点这个。不是因为受伤必须忌口，只是今天吃热一点会舒服。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "meal_order_ask_wang",
+          "text": "请王鸥推荐一道她觉得最值得点的菜",
+          "intent": "关系回应",
+          "nextSceneId": "meal_conversation",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_wang_for_recommendation": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "那你推荐一道最值得点的吧。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥认真看了看菜单，指尖停在其中一道菜上。",
+                "text": "那就点锅包肉吧。他们家的火候一直很稳，刚出锅的时候最好吃。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅顺着她指的位置看了一眼，温和地笑起来。",
+                "text": "这个确实可以。小鸥难得主动推荐，今天听她的。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥无奈地看了他一眼，话里却带着熟悉的调笑，显然不是第一次这样抗议。",
+                "text": "谁允许你这样叫我了？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅笑意未散，很识趣地改了口。",
+                "text": "好，王鸥。你难得主动推荐，今天听你的。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "meal_order_choose_self",
+          "text": "自己挑一道想吃的菜，再把菜单递回去",
+          "intent": "个人选择",
+          "nextSceneId": "meal_conversation",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "player_chose_own_dish": true
+            },
+            "outcomeNarration": [
+              "你从菜单上挑了一道自己想吃的菜，确认价格和分量后把菜单递了回去。何炅自然地把那道菜记在最前面。"
+            ],
+            "outcomeDialogue": [],
+            "impressionTags": []
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "meal_conversation",
+      "title": "正式认识之后",
+      "phase": "任务后共餐",
+      "location": "临川城·听澜楼",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "菜陆续上桌后，谈话终于从旧水闸的紧张里松开。何炅和王鸥没有继续讨论捕兽夹的幕后来源，只聊起平时接的普通委托和临川城里的小店。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅替三人添了热茶，语气比现场轻松许多。",
+          "text": "{{playerFormalAddress}}，你学的专业，是本来就想走的方向吗？"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥点了点头，抬眼看向你，像是在顺着何炅的话认真做一次正式的自我介绍。",
+          "text": "我是学灵药和毒理的，平时会跟着他一起接些委托。要是碰上伤药、毒物、或者现场需要细看痕迹的时候，基本都是我来处理。他主要负责看路、判断现场和正面应对，我们分工久了，也就熟了。"
+        }
+      ],
+      "conditionalDialogue": [
+        {
+          "visibility": {
+            "flag": "teased_he_about_meal",
+            "equals": true
+          },
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "放心，这顿确实没写进承务所记录，我还保留着一点基本职业操守。"
+        },
+        {
+          "visibility": {
+            "flag": "preferred_safe_driving_off",
+            "equals": true
+          },
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "你刚才愿意先问能不能驱离，我记得。最后条件不允许，但这个念头本身没有错。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "话题落到你们彼此身上。你想先聊什么？",
+      "choices": [
+        {
+          "id": "meal_ask_their_work",
+          "text": "问何炅和王鸥平时还会接哪些委托",
+          "intent": "语言",
+          "nextSceneId": "meal_conversation_round_2",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_about_their_work": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们平时也常接这样的委托吗？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "找人、护送、清理低阶妖兽，什么都可能遇上。像今天这样同时牵扯伤员、货物和水闸的，倒不算每次都有。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "大多数时候没这么狼狈。至少饭前不一定全身都是水。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "asked_about_their_work",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_share_profession",
+          "text": "说说自己的专业，以及今天真正帮上忙的部分",
+          "intent": "语言",
+          "nextSceneId": "meal_conversation_round_2",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_profession_at_meal": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "我学的是{{playerProfession}}。今天也是第一次把学校里学的东西真正用到这种现场。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅听完，点了点头，温和地笑了笑。",
+                "text": "不是为了显得专业才硬找事情做，这点很好。下次真有合适的部分，我会直接问你。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "shared_profession_at_meal",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_correct_address",
+          "text": "对何炅笑一笑：不用一直这么客气，叫名字就好",
+          "intent": "关系回应",
+          "nextSceneId": "meal_conversation_round_2",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "corrected_address_at_meal": true,
+              "introduced_self": true,
+              "he_uses_given_name": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "何炅，你不用一直叫我“{{playerFormalAddress}}”，叫我{{playerPreferredAddress}}就好。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅愣了一下，随即温和地笑起来。",
+                "text": "好，{{playerPreferredAddress}}。那我就不继续客气了。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗得弯了弯唇。",
+                "text": "我本来就是这么叫的。现在总算统一了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "称呼更亲近",
+                "evidence": "主角主动允许他从礼貌称呼改用名字"
+              }
+            ]
+          },
+          "visibility": {
+            "flag": "corrected_address_at_meal",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_comment_partnership",
+          "text": "笑着说他们配合得很熟，问是不是经常一起出任务",
+          "intent": "关系回应",
+          "nextSceneId": "meal_conversation_round_2",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "noticed_he_wang_teamwork": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们今天几乎不用商量就知道对方要做什么，是不是经常一起出任务？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅说到这里，偏头看了王鸥一眼，眼里的笑意很温和。",
+                "text": "快一年了。不是每次都一起，不过需要药理和现场判断的时候，我第一个想到小鸥。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗得笑了一下，抬眼看了何炅一眼。",
+                "text": "你这话说得，好像我很好请一样。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅笑着看着她，语气里带着一点认真。",
+                "text": "难请也得请。没有你在，我有时候还真不太放心。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "noticed_he_wang_teamwork",
+            "equals": false
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "meal_conversation_round_2",
+      "title": "饭桌上的闲谈",
+      "phase": "任务后共餐",
+      "location": "临川城·听澜楼",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "话头打开以后，桌上的气氛比刚坐下时自然了许多。热菜陆续送上来，三个人边吃边聊。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把刚送来的菜往桌子中间挪了挪。",
+          "text": "尝尝看，{{playerFormalAddress}}，这个粉蒸排骨王鸥很喜欢吃，说不定你也会喜欢。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "你还想继续聊什么？",
+      "choices": [
+        {
+          "id": "meal_ask_their_work_r2",
+          "text": "问何炅和王鸥平时还会接哪些委托",
+          "intent": "语言",
+          "nextSceneId": "meal_conversation_round_3",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_about_their_work": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们平时也常接这样的委托吗？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "找人、护送、清理低阶妖兽，什么都可能遇上。像今天这样同时牵扯伤员、货物和水闸的，倒不算每次都有。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "大多数时候没这么狼狈。至少饭前不一定全身都是水。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "asked_about_their_work",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_share_profession_r2",
+          "text": "说说自己的专业，以及今天真正帮上忙的部分",
+          "intent": "语言",
+          "nextSceneId": "meal_conversation_round_3",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_profession_at_meal": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "我学的是{{playerProfession}}。今天也是第一次把学校里学的东西真正用到这种现场。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅听完，点了点头，温和地笑了笑。",
+                "text": "不是为了显得专业才硬找事情做，这点很好。下次真有合适的部分，我会直接问你。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "shared_profession_at_meal",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_correct_address_r2",
+          "text": "对何炅笑一笑：不用一直这么客气，叫名字就好",
+          "intent": "关系回应",
+          "nextSceneId": "meal_conversation_round_3",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "corrected_address_at_meal": true,
+              "introduced_self": true,
+              "he_uses_given_name": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "何炅，你不用一直叫我“{{playerFormalAddress}}”，叫我{{playerPreferredAddress}}就好。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅愣了一下，随即温和地笑起来。",
+                "text": "好，{{playerPreferredAddress}}。那我就不继续客气了。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗得弯了弯唇。",
+                "text": "我本来就是这么叫的。现在总算统一了。"
+              }
+            ],
+            "impressionTags": [
+              {
+                "characterId": "he_jiong",
+                "tag": "称呼更亲近",
+                "evidence": "主角主动允许他从礼貌称呼改用名字"
+              }
+            ]
+          },
+          "visibility": {
+            "flag": "corrected_address_at_meal",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_comment_partnership_r2",
+          "text": "笑着说他们配合得很熟，问是不是经常一起出任务",
+          "intent": "关系回应",
+          "nextSceneId": "meal_conversation_round_3",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "noticed_he_wang_teamwork": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们今天几乎不用商量就知道对方要做什么，是不是经常一起出任务？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅说到这里，偏头看了王鸥一眼，眼里的笑意很温和。",
+                "text": "快一年了。不是每次都一起，不过需要药理和现场判断的时候，我第一个想到小鸥。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗得笑了一下，抬眼看了何炅一眼。",
+                "text": "你这话说得，好像我很好请一样。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅笑着看着她，语气里带着一点认真。",
+                "text": "难请也得请。没有你在，我有时候还真不太放心。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "noticed_he_wang_teamwork",
+            "equals": false
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "meal_conversation_round_3",
+      "title": "再聊一会儿",
+      "phase": "任务后共餐",
+      "location": "临川城·听澜楼",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "窗外沿河的灯一盏盏亮起来，饭桌上的话也渐渐从职业和委托转到更具体的人。刚认识时留下的那点拘谨，已经淡了不少。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥替你添了半碗热汤，抬眼时带着一点笑。",
+          "text": "还合口味吗？要是哪道不习惯，就别勉强。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "你还想继续聊什么？",
+      "choices": [
+        {
+          "id": "meal_ask_their_work_r3",
+          "text": "问何炅和王鸥平时还会接哪些委托",
+          "intent": "语言",
+          "nextSceneId": "meal_after_topic",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "asked_about_their_work": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们平时也常接这样的委托吗？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "找人、护送、清理低阶妖兽，什么都可能遇上。像今天这样同时牵扯伤员、货物和水闸的，倒不算每次都有。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "大多数时候没这么狼狈。至少饭前不一定全身都是水。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "asked_about_their_work",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_share_profession_r3",
+          "text": "说说自己的专业，以及今天真正帮上忙的部分",
+          "intent": "语言",
+          "nextSceneId": "meal_after_topic",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_profession_at_meal": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "我学的是{{playerProfession}}。今天也是第一次把学校里学的东西真正用到这种现场。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅听完，点了点头，温和地笑了笑。",
+                "text": "不是为了显得专业才硬找事情做，这点很好。下次真有合适的部分，我会直接问你。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "shared_profession_at_meal",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_comment_partnership_r3",
+          "text": "笑着说他们配合得很熟，问是不是经常一起出任务",
+          "intent": "关系回应",
+          "nextSceneId": "meal_after_topic",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "noticed_he_wang_teamwork": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "你们今天几乎不用商量就知道对方要做什么，是不是经常一起出任务？"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅说到这里，偏头看了王鸥一眼，眼里的笑意很温和。",
+                "text": "快一年了。不是每次都一起，不过需要药理和现场判断的时候，我第一个想到小鸥。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗得笑了一下，抬眼看了何炅一眼。",
+                "text": "你这话说得，好像我很好请一样。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅笑着看着她，语气里带着一点认真。",
+                "text": "难请也得请。没有你在，我有时候还真不太放心。"
+              }
+            ],
+            "impressionTags": []
+          },
+          "visibility": {
+            "flag": "noticed_he_wang_teamwork",
+            "equals": false
+          }
+        },
+        {
+          "id": "meal_comment_flavor_r3",
+          "text": "尝一口粉蒸排骨，笑着说确实很合口味",
+          "intent": "关系回应",
+          "nextSceneId": "meal_after_topic",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "commented_on_meal_flavor": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "确实很好吃。刚才那句推荐没有夸张。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被你说得弯了弯唇，低头夹了一小块排骨。",
+                "text": "那就好。他每次点这道菜，都要顺便替我推荐一句。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "actionBefore": "何炅笑着端起茶杯。",
+                "text": "好吃的东西，经得住多推荐几次。"
+              }
+            ],
+            "impressionTags": []
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "meal_after_topic",
+      "title": "热汤之后的话题",
+      "phase": "任务后共餐",
+      "location": "临川城·听澜楼",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "热汤喝下去后，桌上的气氛彻底松了下来。窗外沿河灯火一盏盏亮起，三个人终于有余裕把对方当作刚认识的年轻人，而不是现场临时拼起来的救援队伍。"
+      ],
+      "conditionalDialogue": [
+        {
+          "visibility": {
+            "flag": "joked_about_wound_timing",
+            "equals": true
+          },
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "今天的记录里，妖兽、涨水、断绳都处理了，最后真正伤到人的还是自家货箱。这个顺序确实很难预料。"
+        },
+        {
+          "visibility": {
+            "any": [
+              {
+                "flag": "guarded_injured_during_control",
+                "equals": true
+              },
+              {
+                "flag": "chose_guard_care_during_control",
+                "equals": true
+              },
+              {
+                "flag": "stayed_at_surface_during_rescue",
+                "equals": true
+              }
+            ]
+          },
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "你留在外面照看伤员那段，帮了我不少。有人盯着变化，我在里面才能专心。"
+        },
+        {
+          "visibility": {
+            "flag": "defended_risky_choice",
+            "equals": true
+          },
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "不过下次再遇到黑漆漆的通道，最好先等搭档。能进去和适合一个人进去，是两回事。"
+        }
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥看了一眼你袖口下的绷带。",
+          "text": "还有一件事没说完。你这道口子今晚只能算临时处理，明天要拆开再看。"
+        }
+      ],
+      "interactionPoint": true,
+      "controlPrompt": "饭快吃完了。你准备怎样回应这场第一次共餐？",
+      "choices": [
+        {
+          "id": "meal_closing_ask_recheck",
+          "text": "认真询问明天什么时候、在哪里碰面",
+          "intent": "语言",
+          "nextSceneId": "recheck_hook",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "agreed_to_recheck": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "好。明天什么时候，在哪里见？"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "meal_closing_thank_them",
+          "text": "谢谢他们今天救人，也帮自己把货物结果弄清楚",
+          "intent": "关系回应",
+          "nextSceneId": "recheck_hook",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "thanked_team_at_meal": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "今天谢谢你们。人救出来了，货物也有了结果，不然我一个人真不知道会拖到什么时候。"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "你也做了自己的部分。以后再遇见，不用只记得道谢。"
+              }
+            ],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "meal_closing_family_story",
+          "text": "说起回家后要怎样解释货损，顺便讲一个河运家里的小插曲",
+          "intent": "语言",
+          "nextSceneId": "recheck_hook",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "shared_family_story": true
+            },
+            "outcomeNarration": [
+              "你说起家里清点货损时最怕遇到的并不是赔钱，而是每个人都坚称封条交到自己手里时还完好。何炅被逗得笑起来，王鸥也认真问了两句河运交接的规矩。"
+            ],
+            "outcomeDialogue": [],
+            "impressionTags": []
+          }
+        },
+        {
+          "id": "meal_closing_joke_next_breakfast",
+          "text": "开玩笑说既然明天还要见，至少要选一家早点好吃的店",
+          "intent": "关系回应",
+          "nextSceneId": "recheck_hook",
+          "effect": {
+            "addClueIds": [],
+            "addInventoryIds": [],
+            "setFlags": {
+              "joked_about_next_breakfast": true
+            },
+            "outcomeNarration": [],
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "{{playerName}}",
+                "text": "既然明天还要见，地点至少得选一家早点好吃的。"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "actionBefore": "王鸥被逗乐了。",
+                "text": "那有一家正合适，离徐记也近。"
+              }
+            ],
+            "impressionTags": []
+          }
+        }
+      ],
+      "freeInputEnabled": true
+    },
+    {
+      "id": "recheck_hook",
+      "title": "春汀小馆的约定",
+      "phase": "结束",
+      "location": "临川城·听澜楼",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥"
+      ],
+      "narration": [
+        "一顿饭吃到后面，桌上的热气慢慢淡了下去。旧水闸的惊险终于被灯火和饭香压住，只剩你袖口下那道有点深、又沾过脏水的伤，偶尔提醒着人今晚的清创和包扎还只是临时处理。",
+        "好在，这件事没有就这样散掉——下一次见面的时间和地方，也顺理成章地定了下来。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "明天上午，在徐记药材铺旁边的春汀小馆见吧。先吃点东西，再去徐记把要用的药买齐。之后去我那里，把伤口拆开重新看一遍，清洗换药。我住得离药铺近，方便。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅接得很自然，像是本来就会这样安排。",
+          "text": "我陪鸥一起过去。我们平时一道出任务，她要补哪些常用外出药，我也会跟着一起看看。明天春汀小馆见。"
+        }
+      ],
+      "interactionPoint": false,
+      "controlPrompt": null,
+      "choices": [],
+      "freeInputEnabled": false,
+      "nextMeeting": {
+        "meetingPlace": "春汀小馆",
+        "nearbyPlace": "徐记药材铺",
+        "actualTreatmentPlace": "王鸥住处",
+        "note": "春汀小馆只用于碰面和吃早点；拆药布、清洗与换药不在店内进行。"
+      }
+    }
+  ],
+  "runtimeContract": {
+    "deduplicateClues": true,
+    "sceneEntryEffects": "进入场景时先应用 onEnterEffect；即使玩家尚未点击下一选项，画面中已经发生的事实也必须写入状态。",
+    "visibilitySyntax": {
+      "singleFlag": {
+        "flag": "flag_name",
+        "equals": true
+      },
+      "any": {
+        "any": [
+          {
+            "flag": "flag_a",
+            "equals": true
+          },
+          {
+            "flag": "flag_b",
+            "equals": true
+          }
+        ]
+      },
+      "playerProfession": {
+        "playerProfession": "炼丹师"
+      }
+    },
+    "conditionalContent": "conditionalDialogue 与 conditionalNarration 按 visibility 判断后插入；不满足条件时忽略。",
+    "freeInputRouting": "自由输入应按意图映射到最接近的合法后续；不得因为玩家未点击预设按钮而替玩家决定关键行动。",
+    "counterEffects": "effect.incrementCounters 用于记录初查次数；本版固定分支不依赖计数器也能保证第二项后会合。",
+    "stateEffects": "effect.setFlags 仅保存布尔标记；effect.setState 保存字符串或其他运行时值。",
+    "dynamicAddressing": "饭桌前何炅默认使用“{{playerSurname}}姑娘”，王鸥使用名字；当 he_uses_given_name=true 后，何炅改用 {{playerPreferredAddress}}。"
+  },
+  "templateVariables": {
+    "playerName": "角色创建时输入的完整姓名。",
+    "playerGivenName": "玩家希望熟人使用的名字；默认等于完整姓名，若前端支持姓氏拆分可使用名。",
+    "playerProfession": "角色创建时选择的专业。",
+    "playerSkillSummary": "读取 playerCreation.professionRuntime[playerProfession].skillSummary。",
+    "playerContributionSummary": "优先读取运行时 state.professionContributionSummary；若本次未选择职业专属行动，则使用“按现场分工完成接应、观察或伤员照看，没有为了表现专业擅自越过安全边界”。",
+    "playerFormalAddress": "何炅使用：若姓名已知且 he_uses_given_name=false，则为“姓＋姑娘”；姓名未知时为“姑娘”；he_uses_given_name=true 后改为 playerGivenName。",
+    "playerKnownAddress": "何炅当前对主角的称呼，解析规则同 playerFormalAddress。",
+    "playerFamiliarAddress": "王鸥使用：姓名已知时为 playerGivenName，否则为“你”。",
+    "playerPreferredAddress": "主角主动要求使用的名字，默认等于 playerGivenName。",
+    "playerSurname": "从玩家输入的完整姓名中解析姓氏；单姓默认取首字，复姓按前端姓名解析表处理。何炅初识阶段据此称呼“姓＋姑娘”。"
+  },
+  "locationDefinitions": {
+    "听澜楼": {
+      "location": "临川承务所附近、靠近沿河街区",
+      "scale": "较大的正式酒楼",
+      "usage": "何炅与王鸥偶尔来吃饭；旧水闸任务后为了正式招待新认识的主角而选择这里。"
+    },
+    "春汀小馆": {
+      "location": "徐记药材铺旁",
+      "scale": "供应热粥、汤面和早点的小店",
+      "usage": "旧水闸次日上午三人碰面和吃早点的地点；真正拆药布换药不在店内进行。"
+    }
+  },
+  "validationExpectations": {
+    "uniqueSceneIds": true,
+    "allNextSceneIdsExist": true,
+    "allScenesReachableFromStart": true,
+    "initialInvestigationHasNoCycle": true,
+    "terminalSceneIds": [
+      "recheck_hook",
+      "declined_meal_recheck_hook"
+    ],
+    "postTaskMealInteractionRounds": 3,
+    "postRescueControlDecisionRounds": 1,
+    "noDuplicateFirstBendChoiceForStealth": true,
+    "surfaceCommitmentHidesTunnelEntryChoices": true,
+    "addressCorrectionOnlyAfterFormalAddress": true
+  }
+}
