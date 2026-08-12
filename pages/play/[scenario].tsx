@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import EquipmentDayGamePage from "../../components/EquipmentDayGamePage";
 import FirstAcquaintanceGamePage from "../../components/FirstAcquaintanceGamePage";
+import MisplacedRiverLightsGamePage from "../../components/MisplacedRiverLightsGamePage";
 import OldSluiceGamePage from "../../components/OldSluiceGamePage";
+import XuanjiaLizardHuntGamePage from "../../components/XuanjiaLizardHuntGamePage";
+import WesternMiningTripGamePage from "../../components/WesternMiningTripGamePage";
 import { parseScenarioId } from "../../lib/scenarioRegistry";
 
 export default function ScenarioPlayPage() {
@@ -26,6 +30,22 @@ export default function ScenarioPlayPage() {
 
   if (scenarioId === "old-sluice") {
     return <OldSluiceGamePage />;
+  }
+
+  if (scenarioId === "misplaced-river-lights") {
+    return <MisplacedRiverLightsGamePage />;
+  }
+
+  if (scenarioId === "xuanjia-lizard-hunt") {
+    return <XuanjiaLizardHuntGamePage />;
+  }
+
+  if (scenarioId === "equipment-day") {
+    return <EquipmentDayGamePage />;
+  }
+
+  if (scenarioId === "chapter5-western-mining-trip") {
+    return <WesternMiningTripGamePage />;
   }
 
   return <FirstAcquaintanceGamePage />;

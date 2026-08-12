@@ -1,12 +1,34 @@
 export type FirstAcquaintanceProfession = "潜行修";
 export type FirstAcquaintanceWeapon = "匕首";
 
+export type FirstAcquaintanceVisibility =
+  | {
+      flag: string;
+      equals: boolean;
+    }
+  | {
+      any: Array<{
+        flag: string;
+        equals: boolean;
+      }>;
+    }
+  | {
+      playerProfession: FirstAcquaintanceProfession;
+    };
+
 export type FirstAcquaintanceDialogueLine = {
   speakerId: string;
   speakerName: string;
   text: string;
   actionBefore?: string;
   actionAfter?: string;
+  visibility?: FirstAcquaintanceVisibility;
+};
+
+export type FirstAcquaintanceSceneEffect = {
+  setFlags?: Record<string, unknown>;
+  outcomeNarration?: string[];
+  outcomeDialogue?: FirstAcquaintanceDialogueLine[];
 };
 
 export type FirstAcquaintanceChoice = {
@@ -15,13 +37,9 @@ export type FirstAcquaintanceChoice = {
   text: string;
   nextSceneId: string | null;
   notice?: string | null;
-  isSelectedPath?: boolean;
   branchType?: string | null;
-  effect?: {
-    setFlags?: Record<string, unknown>;
-    outcomeNarration?: string[];
-    outcomeDialogue?: FirstAcquaintanceDialogueLine[];
-  };
+  visibility?: FirstAcquaintanceVisibility;
+  effect?: FirstAcquaintanceSceneEffect;
 };
 
 export type FirstAcquaintanceScene = {
@@ -31,7 +49,13 @@ export type FirstAcquaintanceScene = {
   location: string;
   presentCharacters?: string[];
   narration: string[];
+  conditionalNarration?: Array<{
+    text: string;
+    visibility: FirstAcquaintanceVisibility;
+  }>;
   npcDialogue: FirstAcquaintanceDialogueLine[];
+  conditionalDialogue?: FirstAcquaintanceDialogueLine[];
+  onEnterEffect?: FirstAcquaintanceSceneEffect;
   controlPrompt: string | null;
   choices: FirstAcquaintanceChoice[];
   freeInputEnabled: boolean;

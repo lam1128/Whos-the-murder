@@ -1,4 +1,11 @@
-export const scenarioIds = ["old-sluice", "first-acquaintance"] as const;
+export const scenarioIds = [
+  "old-sluice",
+  "first-acquaintance",
+  "misplaced-river-lights",
+  "xuanjia-lizard-hunt",
+  "equipment-day",
+  "chapter5-western-mining-trip",
+] as const;
 
 export type ScenarioId = (typeof scenarioIds)[number];
 
@@ -33,6 +40,42 @@ export const scenarioSummaries: Record<ScenarioId, ScenarioSummary> = {
     chapterLabel: "第二章",
     chapterTitle: "妹宝！妹宝！",
     cardDescription: "延续临川城日常与委托余波，进入更贴近人物关系的一段经历。",
+    professionMode: "stealth-only",
+    defaultProfession: "潜行修",
+    defaultWeapon: "匕首",
+  },
+  "misplaced-river-lights": {
+    id: "misplaced-river-lights",
+    chapterLabel: "第三章",
+    chapterTitle: "错位的河灯",
+    cardDescription: "第一次由主角主动加入四人正式委托，在熟悉的河运领域里并肩调查与救援。",
+    professionMode: "full",
+    defaultProfession: "炼丹师",
+    defaultWeapon: "剑",
+  },
+  "xuanjia-lizard-hunt": {
+    id: "xuanjia-lizard-hunt",
+    chapterLabel: "第三章",
+    chapterTitle: "玄甲林蜥",
+    cardDescription: "另一条第三章路线：从第二次换药之后出发，进入三人正式材料狩猎与森林同行。",
+    professionMode: "stealth-only",
+    defaultProfession: "潜行修",
+    defaultWeapon: "匕首",
+  },
+  "equipment-day": {
+    id: "equipment-day",
+    chapterLabel: "第四章",
+    chapterTitle: "添置",
+    cardDescription: "承接玄甲林蜥委托后的恢复期，在一整天的装备更新与普通同行里推进关系。",
+    professionMode: "stealth-only",
+    defaultProfession: "潜行修",
+    defaultWeapon: "匕首",
+  },
+  "chapter5-western-mining-trip": {
+    id: "chapter5-western-mining-trip",
+    chapterLabel: "第五章",
+    chapterTitle: "西原矿区换班路",
+    cardDescription: "承接第四章添置装备后的护送委托，前往西原矿区完成换班与返程护送。",
     professionMode: "stealth-only",
     defaultProfession: "潜行修",
     defaultWeapon: "匕首",

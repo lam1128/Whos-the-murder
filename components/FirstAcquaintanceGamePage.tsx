@@ -10,9 +10,11 @@ import {
   applyFirstAcquaintanceChoice,
   applyFirstAcquaintanceFreeInput,
   clearFirstAcquaintanceSave,
-  createFirstAcquaintanceInitialState,
+  FIRST_ACQUAINTANCE_ACADEMY_CHECKPOINT_SAVE_KEY,
+  FIRST_ACQUAINTANCE_REBANDAGE_CHECKPOINT_SAVE_KEY,
   FIRST_ACQUAINTANCE_SAVE_KEY,
   getFirstAcquaintanceRuntimeScene,
+  loadFirstAcquaintanceCheckpointGame,
   loadFirstAcquaintanceGame,
   saveFirstAcquaintanceGame,
 } from "../lib/firstAcquaintanceEngine";
@@ -20,13 +22,17 @@ import {
   firstAcquaintanceScenario,
   firstAcquaintanceSourceVersion,
   getFirstAcquaintanceSidebarNotes,
+  getResolvedFirstAcquaintanceDialogue,
+  getResolvedFirstAcquaintanceNarration,
+  getVisibleFirstAcquaintanceChoices,
 } from "../lib/firstAcquaintanceScenario";
 import { FirstAcquaintanceChoice, FirstAcquaintanceState } from "../lib/firstAcquaintanceTypes";
 
 function getPresentCharacters(state: FirstAcquaintanceState): string[] {
   const scene = getFirstAcquaintanceRuntimeScene(state.currentSceneId);
+  const resolvedDialogue = getResolvedFirstAcquaintanceDialogue(scene, state);
   const sceneCharacters = scene.presentCharacters ?? [];
-  const dialogueCharacters = scene.npcDialogue.map((line) => line.speakerName);
+  const dialogueCharacters = resolvedDialogue.map((line) => line.speakerName);
   const mergedCharacters = ["你", ...sceneCharacters, ...dialogueCharacters];
 
   return mergedCharacters.filter(
@@ -34,16 +40,29 @@ function getPresentCharacters(state: FirstAcquaintanceState): string[] {
   );
 }
 
+function getInjuryStatus(state: FirstAcquaintanceState): { description: string; severity: string } {
+  const currentIndex = firstAcquaintanceScenario.routeOrder.indexOf(state.currentSceneId);
+  const tomorrowReminderIndex = firstAcquaintanceScenario.routeOrder.indexOf("wang_home_rebandage_nervous");
+  const rebandagedIndex = firstAcquaintanceScenario.routeOrder.indexOf("home_exam_end_reminder");
+
+  if (
+    state.flags.tomorrow_rebandage_scheduled ||
+    (tomorrowReminderIndex !== -1 && currentIndex >= tomorrowReminderIndex)
+  ) {
+    return { description: "前臂伤口已换药，等待明日再次换药", severity: "稳定" };
+  }
+
+  if (state.flags.wound_rebandaged || (rebandagedIndex !== -1 && currentIndex >= rebandagedIndex)) {
+    return { description: "前臂伤口已换药", severity: "稳定" };
+  }
+
+  return { description: "前臂伤口待换药", severity: "轻伤" };
+}
+
 function Sidebar({ state }: { state: FirstAcquaintanceState }) {
   const scene = getFirstAcquaintanceRuntimeScene(state.currentSceneId);
   const notes = getFirstAcquaintanceSidebarNotes(state.flags);
-  const inventory = state.flags.medicine_supplies_replenished
-    ? [{ id: "medicine-supplies", name: "补齐的换药与常用药材", quantity: 1 }]
-    : [];
-  const injuryDescription = state.flags.player_wound_status
-    ? String(state.flags.player_wound_status)
-    : "前臂伤口待换药";
-  const injurySeverity = state.flags.round_complete ? "稳定" : "轻伤";
+  const injuryStatus = getInjuryStatus(state);
   const relationshipDetail = state.flags.relationship_progress ?? state.flags.relationship_status;
 
   return (
@@ -83,23 +102,14 @@ function Sidebar({ state }: { state: FirstAcquaintanceState }) {
         <div className="paper-panel p-5">
           <h2 className="section-title">主角伤势</h2>
           <div className="mt-3 flex items-center justify-between gap-4">
-            <span className="text-sm text-stone-700">{injuryDescription}</span>
-            <span className="status-safe">{injurySeverity}</span>
+            <span className="text-sm text-stone-700">{injuryStatus.description}</span>
+            <span className="status-safe shrink-0 whitespace-nowrap text-center">{injuryStatus.severity}</span>
           </div>
         </div>
         <div className="paper-panel p-5">
           <h2 className="section-title">简单背包</h2>
           <ul className="mt-3 space-y-2 text-sm text-stone-700">
-            {inventory.length > 0 ? (
-              inventory.map((item) => (
-                <li key={item.id} className="flex justify-between gap-4">
-                  <span>{item.name}</span>
-                  <span className="text-stone-400">x{item.quantity}</span>
-                </li>
-              ))
-            ) : (
-              <li className="text-stone-500">空</li>
-            )}
+            <li className="text-stone-500">空</li>
           </ul>
         </div>
       </section>
@@ -118,17 +128,30 @@ function Sidebar({ state }: { state: FirstAcquaintanceState }) {
   );
 }
 
+function cloneStateSnapshot(source: FirstAcquaintanceState): FirstAcquaintanceState {
+  return JSON.parse(JSON.stringify(source)) as FirstAcquaintanceState;
+}
+
 export default function FirstAcquaintanceGamePage() {
   const router = useRouter();
   const [state, setState] = useState<FirstAcquaintanceState | null>(null);
+  const [undoStack, setUndoStack] = useState<FirstAcquaintanceState[]>([]);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [hasSave, setHasSave] = useState(false);
+  const [hasRebandageCheckpoint, setHasRebandageCheckpoint] = useState(false);
+  const [hasAcademyCheckpoint, setHasAcademyCheckpoint] = useState(false);
 
   useEffect(() => {
     const loaded = loadFirstAcquaintanceGame();
     setState(loaded);
     setHasSave(Boolean(globalThis.localStorage?.getItem(FIRST_ACQUAINTANCE_SAVE_KEY)));
+    setHasRebandageCheckpoint(
+      Boolean(globalThis.localStorage?.getItem(FIRST_ACQUAINTANCE_REBANDAGE_CHECKPOINT_SAVE_KEY)),
+    );
+    setHasAcademyCheckpoint(
+      Boolean(globalThis.localStorage?.getItem(FIRST_ACQUAINTANCE_ACADEMY_CHECKPOINT_SAVE_KEY)),
+    );
     setReady(true);
   }, []);
 
@@ -136,12 +159,35 @@ export default function FirstAcquaintanceGamePage() {
     () => (state ? getFirstAcquaintanceRuntimeScene(state.currentSceneId) : null),
     [state],
   );
+  const visibleChoices = useMemo(
+    () => (state && scene ? getVisibleFirstAcquaintanceChoices(scene, state) : []),
+    [scene, state],
+  );
+  const resolvedNarration = useMemo(
+    () => (state && scene ? getResolvedFirstAcquaintanceNarration(scene, state) : []),
+    [scene, state],
+  );
+  const resolvedDialogue = useMemo(
+    () => (state && scene ? getResolvedFirstAcquaintanceDialogue(scene, state) : []),
+    [scene, state],
+  );
+
+  function refreshCheckpointStatus() {
+    setHasRebandageCheckpoint(
+      Boolean(globalThis.localStorage?.getItem(FIRST_ACQUAINTANCE_REBANDAGE_CHECKPOINT_SAVE_KEY)),
+    );
+    setHasAcademyCheckpoint(
+      Boolean(globalThis.localStorage?.getItem(FIRST_ACQUAINTANCE_ACADEMY_CHECKPOINT_SAVE_KEY)),
+    );
+  }
 
   function handleChoice(choice: FirstAcquaintanceChoice) {
     if (!state) return;
+    setUndoStack((current) => [...current, cloneStateSnapshot(state)]);
     const updated = applyFirstAcquaintanceChoice(state, choice);
     setState(updated);
     setNotice(updated.lastFeedback);
+    refreshCheckpointStatus();
     globalThis.requestAnimationFrame?.(() => {
       globalThis.scrollTo({ top: 0, behavior: "smooth" });
     });
@@ -149,6 +195,7 @@ export default function FirstAcquaintanceGamePage() {
 
   function handleFreeInput(text: string) {
     if (!state) return;
+    setUndoStack((current) => [...current, cloneStateSnapshot(state)]);
     const updated = applyFirstAcquaintanceFreeInput(state, text);
     setState(updated);
     setNotice(updated.lastFeedback);
@@ -159,7 +206,7 @@ export default function FirstAcquaintanceGamePage() {
     const saved = saveFirstAcquaintanceGame(state);
     setState(saved);
     setHasSave(true);
-    setNotice("第二章的本地存档已经保存。");
+    setNotice(null);
   }
 
   function handleLoad() {
@@ -169,24 +216,58 @@ export default function FirstAcquaintanceGamePage() {
       return;
     }
     setState(loaded);
-    setNotice("已读取第二章的本地存档。");
+    setUndoStack([]);
+    setNotice(null);
+  }
+
+  function handleLoadRebandageCheckpoint() {
+    const loaded = loadFirstAcquaintanceCheckpointGame("rebandage");
+    if (!loaded) {
+      setNotice("没有找到第二章换药存档。");
+      return;
+    }
+    setState(loaded);
+    setUndoStack([]);
+    setNotice(null);
+  }
+
+  function handleLoadAcademyCheckpoint() {
+    const loaded = loadFirstAcquaintanceCheckpointGame("academy");
+    if (!loaded) {
+      setNotice("没有找到第二章接人存档。");
+      return;
+    }
+    setState(loaded);
+    setUndoStack([]);
+    setNotice(null);
+  }
+
+  function handleUndoTurn() {
+    setUndoStack((current) => {
+      if (current.length === 0) {
+        setNotice("当前没有可回退的上一回合。");
+        return current;
+      }
+
+      setState(current[current.length - 1]);
+      setNotice(null);
+      return current.slice(0, -1);
+    });
   }
 
   function handleRestart() {
     if (!globalThis.confirm("确定重新开始第二章吗？这只会清除当前剧情的本地存档。")) {
       return;
     }
+
     clearFirstAcquaintanceSave();
     setHasSave(false);
-    setState(createFirstAcquaintanceInitialState({ name: state?.player.name ?? "林昭宁" }));
-    setNotice("第二章已经重新开始。");
-    globalThis.requestAnimationFrame?.(() => {
-      globalThis.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    setUndoStack([]);
+    void router.push("/create-character?scenario=first-acquaintance");
   }
 
   if (!ready) {
-    return <main className="grid min-h-screen place-items-center text-stone-500">正在读取本地存档…</main>;
+    return <main className="grid min-h-screen place-items-center text-stone-500" />;
   }
 
   if (!state || !scene) {
@@ -199,9 +280,6 @@ export default function FirstAcquaintanceGamePage() {
           <section className="paper-panel max-w-xl p-8 text-center sm:p-12">
             <p className="text-xs tracking-[0.3em] text-blue-700">第二章</p>
             <h1 className="display-title mt-4 text-4xl text-stone-900">妹宝！妹宝！</h1>
-            <p className="mt-5 leading-7 text-stone-600">
-              当前还没有这一章的角色存档。先完成角色创建，再进入第二章。
-            </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <Link
                 href="/create-character?scenario=first-acquaintance"
@@ -242,34 +320,40 @@ export default function FirstAcquaintanceGamePage() {
             <SaveLoadControls
               onSave={handleSave}
               onLoad={handleLoad}
-              onLoadRescueCheckpoint={() => setNotice("第二章当前没有额外断点存档。")}
-              onLoadMealCheckpoint={() => setNotice("第二章当前没有额外断点存档。")}
+              onLoadRescueCheckpoint={handleLoadRebandageCheckpoint}
+              onLoadMealCheckpoint={handleLoadAcademyCheckpoint}
               onRestart={handleRestart}
               hasSave={hasSave}
-              hasRescueCheckpoint={false}
-              hasMealCheckpoint={false}
+              hasRescueCheckpoint={hasRebandageCheckpoint}
+              hasMealCheckpoint={hasAcademyCheckpoint}
+              onUndoTurn={handleUndoTurn}
+              hasUndoTurn={undoStack.length > 0}
+              rescueCheckpointLabel="读取换药存档"
+              mealCheckpointLabel="读取接人存档"
             />
           </header>
 
-          {notice && (
+          {notice ? (
             <div className="mb-5 flex items-start justify-between gap-4 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
               <span>{notice}</span>
               <button type="button" onClick={() => setNotice(null)} aria-label="关闭提示">
                 ×
               </button>
             </div>
-          )}
+          ) : null}
 
           <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_310px]">
             <div className="space-y-5">
               <FirstAcquaintanceSceneView
                 scene={scene}
                 outcome={state.transitionOutcome}
+                narration={resolvedNarration}
+                dialogue={resolvedDialogue}
                 playerName={state.player.name}
                 playerProfession={state.player.profession}
               />
               <FirstAcquaintanceOptionList
-                choices={scene.choices}
+                choices={visibleChoices}
                 prompt={scene.controlPrompt}
                 onChoose={handleChoice}
               />

@@ -2,6 +2,7 @@ import {
   firstAcquaintanceScenario,
   firstAcquaintanceSourceVersion,
   getFirstAcquaintanceScene,
+  getFirstAcquaintanceSceneEntryEffect,
 } from "./firstAcquaintanceScenario";
 import { FirstAcquaintanceChoice, FirstAcquaintanceState } from "./firstAcquaintanceTypes";
 
@@ -28,11 +29,67 @@ const storageRevision = createStorageRevision({
 });
 
 export const FIRST_ACQUAINTANCE_SAVE_KEY = `first-acquaintance.game-state.${storageRevision}`;
+export const FIRST_ACQUAINTANCE_REBANDAGE_CHECKPOINT_SAVE_KEY =
+  `first-acquaintance.checkpoint.rebandage.${storageRevision}`;
+export const FIRST_ACQUAINTANCE_ACADEMY_CHECKPOINT_SAVE_KEY =
+  `first-acquaintance.checkpoint.academy.${storageRevision}`;
+export const FIRST_ACQUAINTANCE_CHECKPOINT_SCENE_IDS = new Set([
+  "home_exam_end_reminder",
+  "academy_pickup_opening",
+]);
+
+type FirstAcquaintanceCheckpointKind = "rebandage" | "academy";
+
+const FIRST_ACQUAINTANCE_CHECKPOINT_CONFIG: Record<
+  FirstAcquaintanceCheckpointKind,
+  {
+    saveKey: string;
+    sceneIds: Set<string>;
+  }
+> = {
+  rebandage: {
+    saveKey: FIRST_ACQUAINTANCE_REBANDAGE_CHECKPOINT_SAVE_KEY,
+    sceneIds: new Set(["home_exam_end_reminder"]),
+  },
+  academy: {
+    saveKey: FIRST_ACQUAINTANCE_ACADEMY_CHECKPOINT_SAVE_KEY,
+    sceneIds: new Set(["academy_pickup_opening"]),
+  },
+};
+
+function getCheckpointKind(sceneId: string): FirstAcquaintanceCheckpointKind | null {
+  for (const [kind, config] of Object.entries(FIRST_ACQUAINTANCE_CHECKPOINT_CONFIG) as [
+    FirstAcquaintanceCheckpointKind,
+    (typeof FIRST_ACQUAINTANCE_CHECKPOINT_CONFIG)[FirstAcquaintanceCheckpointKind],
+  ][]) {
+    if (config.sceneIds.has(sceneId)) return kind;
+  }
+
+  return null;
+}
+
+function isCheckpointScene(sceneId: string): boolean {
+  return FIRST_ACQUAINTANCE_CHECKPOINT_SCENE_IDS.has(sceneId);
+}
+
+function appendTransitionOutcome(
+  base: FirstAcquaintanceState["transitionOutcome"],
+  updates?: {
+    outcomeNarration?: string[];
+    outcomeDialogue?: FirstAcquaintanceState["transitionOutcome"]["npcDialogue"];
+  },
+): FirstAcquaintanceState["transitionOutcome"] {
+  return {
+    narration: [...base.narration, ...(updates?.outcomeNarration ?? [])],
+    npcDialogue: [...base.npcDialogue, ...(updates?.outcomeDialogue ?? [])],
+  };
+}
 
 export function createFirstAcquaintanceInitialState(player: {
   name: string;
 }): FirstAcquaintanceState {
   const timestamp = now();
+  const startSceneEffect = getFirstAcquaintanceSceneEntryEffect(firstAcquaintanceScenario.startSceneId);
 
   return {
     player: {
@@ -41,7 +98,10 @@ export function createFirstAcquaintanceInitialState(player: {
       weapon: "匕首",
     },
     currentSceneId: firstAcquaintanceScenario.startSceneId,
-    flags: { ...firstAcquaintanceScenario.initialFlags },
+    flags: {
+      ...firstAcquaintanceScenario.initialFlags,
+      ...(startSceneEffect?.setFlags ?? {}),
+    },
     history: [
       {
         id: `system-${Date.now()}`,
@@ -52,8 +112,8 @@ export function createFirstAcquaintanceInitialState(player: {
       },
     ],
     transitionOutcome: {
-      narration: [],
-      npcDialogue: [],
+      narration: startSceneEffect?.outcomeNarration ?? [],
+      npcDialogue: startSceneEffect?.outcomeDialogue ?? [],
     },
     lastFeedback: null,
     updatedAt: timestamp,
@@ -87,6 +147,38 @@ export function loadFirstAcquaintanceGame(): FirstAcquaintanceState | null {
   }
 }
 
+export function saveFirstAcquaintanceCheckpointGame(
+  state: FirstAcquaintanceState,
+): FirstAcquaintanceState {
+  const kind = getCheckpointKind(state.currentSceneId) ?? "rebandage";
+  const snapshot = {
+    ...state,
+    updatedAt: now(),
+  };
+
+  globalThis.localStorage?.setItem(
+    FIRST_ACQUAINTANCE_CHECKPOINT_CONFIG[kind].saveKey,
+    JSON.stringify(snapshot),
+  );
+
+  return snapshot;
+}
+
+export function loadFirstAcquaintanceCheckpointGame(
+  kind: FirstAcquaintanceCheckpointKind,
+): FirstAcquaintanceState | null {
+  const raw = globalThis.localStorage?.getItem(
+    FIRST_ACQUAINTANCE_CHECKPOINT_CONFIG[kind].saveKey,
+  );
+  if (!raw) return null;
+
+  try {
+    return JSON.parse(raw) as FirstAcquaintanceState;
+  } catch {
+    return null;
+  }
+}
+
 export function clearFirstAcquaintanceSave(): void {
   globalThis.localStorage?.removeItem(FIRST_ACQUAINTANCE_SAVE_KEY);
 }
@@ -98,20 +190,22 @@ export function applyFirstAcquaintanceChoice(
   if (!choice.nextSceneId) {
     return {
       ...state,
-      lastFeedback: choice.notice ?? "这一段已经抵达当前场景的收束位置了。",
+      lastFeedback: choice.notice ?? null,
       updatedAt: now(),
     };
   }
 
   const timestamp = now();
   const nextScene = getFirstAcquaintanceScene(choice.nextSceneId);
+  const nextSceneEntryEffect = getFirstAcquaintanceSceneEntryEffect(nextScene.id);
 
-  return {
+  const updatedState: FirstAcquaintanceState = {
     ...state,
     currentSceneId: nextScene.id,
     flags: {
       ...state.flags,
       ...(choice.effect?.setFlags ?? {}),
+      ...(nextSceneEntryEffect?.setFlags ?? {}),
     },
     history: [
       ...state.history,
@@ -123,13 +217,22 @@ export function applyFirstAcquaintanceChoice(
         createdAt: timestamp,
       },
     ],
-    transitionOutcome: {
-      narration: choice.effect?.outcomeNarration ?? [],
-      npcDialogue: choice.effect?.outcomeDialogue ?? [],
-    },
+    transitionOutcome: appendTransitionOutcome(
+      {
+        narration: choice.effect?.outcomeNarration ?? [],
+        npcDialogue: choice.effect?.outcomeDialogue ?? [],
+      },
+      nextSceneEntryEffect,
+    ),
     lastFeedback: null,
     updatedAt: timestamp,
   };
+
+  if (isCheckpointScene(nextScene.id)) {
+    return saveFirstAcquaintanceCheckpointGame(updatedState);
+  }
+
+  return updatedState;
 }
 
 export function applyFirstAcquaintanceFreeInput(
@@ -151,7 +254,7 @@ export function applyFirstAcquaintanceFreeInput(
         createdAt: now(),
       },
     ],
-    lastFeedback: "已记录你的自由输入；当前页面仍按这份 JSON 的既有分支继续运行。",
+    lastFeedback: null,
     updatedAt: now(),
   };
 }

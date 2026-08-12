@@ -3,15 +3,15 @@ import {
   FirstAcquaintanceChoice,
   FirstAcquaintanceDialogueLine,
   FirstAcquaintanceScene,
+  FirstAcquaintanceSceneEffect,
   FirstAcquaintanceScenario,
+  FirstAcquaintanceState,
+  FirstAcquaintanceVisibility,
 } from "./firstAcquaintanceTypes";
 
 type RawChoiceEffect = {
-  addClueIds?: string[];
-  addInventoryIds?: string[];
   setFlags?: Record<string, unknown>;
   setState?: Record<string, unknown>;
-  impressionTags?: string[];
   outcomeNarration?: string[];
   outcomeDialogue?: FirstAcquaintanceDialogueLine[];
 };
@@ -19,10 +19,10 @@ type RawChoiceEffect = {
 type RawChoice = {
   id: "1" | "2" | "3" | "4";
   text: string;
-  intent?: string;
   nextSceneId: string | null;
   effect?: RawChoiceEffect;
   branchType?: string;
+  visibility?: FirstAcquaintanceVisibility;
 };
 
 type RawScene = {
@@ -32,11 +32,16 @@ type RawScene = {
   location: string;
   presentCharacters?: string[];
   narration: string[];
+  conditionalNarration?: Array<{
+    text: string;
+    visibility: FirstAcquaintanceVisibility;
+  }>;
   npcDialogue: FirstAcquaintanceDialogueLine[];
+  conditionalDialogue?: FirstAcquaintanceDialogueLine[];
   choices: RawChoice[];
   freeInputEnabled: boolean;
   terminal?: boolean;
-  newCharacterIntroduction?: unknown;
+  onEnterEffect?: RawChoiceEffect;
 };
 
 type RawScenarioData = {
@@ -54,10 +59,23 @@ type RawScenarioData = {
   scenes: RawScene[];
 };
 
-const sourceData = rawScenarioData as unknown as RawScenarioData;
+const sourceData = rawScenarioData as RawScenarioData;
 const sceneIds = new Set(sourceData.scenes.map((scene) => scene.id));
 
 export const firstAcquaintanceSourceVersion = sourceData.metadata.version;
+
+function toRuntimeSceneEffect(effect?: RawChoiceEffect): FirstAcquaintanceSceneEffect | undefined {
+  if (!effect) return undefined;
+
+  return {
+    setFlags: {
+      ...(effect.setFlags ?? {}),
+      ...(effect.setState ?? {}),
+    },
+    outcomeNarration: effect.outcomeNarration ?? [],
+    outcomeDialogue: effect.outcomeDialogue ?? [],
+  };
+}
 
 function toRuntimeChoice(choice: RawChoice): FirstAcquaintanceChoice {
   const hasResolvedTarget = choice.nextSceneId ? sceneIds.has(choice.nextSceneId) : false;
@@ -69,17 +87,11 @@ function toRuntimeChoice(choice: RawChoice): FirstAcquaintanceChoice {
     nextSceneId: hasResolvedTarget ? choice.nextSceneId : null,
     notice:
       choice.nextSceneId && !hasResolvedTarget
-        ? "这个分支在当前这份初识 JSON 里还没有对应的目标场景，页面会先停留在这里。"
+        ? "This branch does not have a valid target scene in the current First Acquaintance JSON."
         : null,
     branchType: choice.branchType ?? null,
-    effect: {
-      setFlags: {
-        ...(choice.effect?.setFlags ?? {}),
-        ...(choice.effect?.setState ?? {}),
-      },
-      outcomeNarration: choice.effect?.outcomeNarration ?? [],
-      outcomeDialogue: choice.effect?.outcomeDialogue ?? [],
-    },
+    visibility: choice.visibility,
+    effect: toRuntimeSceneEffect(choice.effect),
   };
 }
 
@@ -90,7 +102,10 @@ const runtimeScenes: FirstAcquaintanceScene[] = sourceData.scenes.map((scene) =>
   location: scene.location,
   presentCharacters: scene.presentCharacters ?? [],
   narration: scene.narration ?? [],
+  conditionalNarration: scene.conditionalNarration ?? [],
   npcDialogue: scene.npcDialogue ?? [],
+  conditionalDialogue: scene.conditionalDialogue ?? [],
+  onEnterEffect: toRuntimeSceneEffect(scene.onEnterEffect),
   controlPrompt: scene.choices.length > 0 ? "你准备怎么回应？" : null,
   choices: scene.choices.map((choice) => toRuntimeChoice(choice)),
   freeInputEnabled: scene.freeInputEnabled,
@@ -119,20 +134,69 @@ export function getFirstAcquaintanceScene(sceneId: string): FirstAcquaintanceSce
   return scene;
 }
 
-export function getFirstAcquaintanceProgress(sceneId: string): {
-  current: number;
-  total: number;
-} {
-  const index = firstAcquaintanceScenario.routeOrder.indexOf(sceneId);
-  return {
-    current: index === -1 ? 0 : index + 1,
-    total: firstAcquaintanceScenario.routeOrder.length,
-  };
+export function isFirstAcquaintanceVisible(
+  visibility: FirstAcquaintanceVisibility | undefined,
+  state: Pick<FirstAcquaintanceState, "flags" | "player">,
+): boolean {
+  if (!visibility) return true;
+
+  if ("flag" in visibility) {
+    return Boolean(state.flags[visibility.flag]) === visibility.equals;
+  }
+
+  if ("any" in visibility) {
+    return visibility.any.some(
+      (condition) => Boolean(state.flags[condition.flag]) === condition.equals,
+    );
+  }
+
+  if ("playerProfession" in visibility) {
+    return state.player.profession === visibility.playerProfession;
+  }
+
+  return true;
+}
+
+export function getVisibleFirstAcquaintanceChoices(
+  scene: FirstAcquaintanceScene,
+  state: Pick<FirstAcquaintanceState, "flags" | "player">,
+): FirstAcquaintanceChoice[] {
+  return scene.choices.filter((choice) => isFirstAcquaintanceVisible(choice.visibility, state));
+}
+
+export function getResolvedFirstAcquaintanceNarration(
+  scene: FirstAcquaintanceScene,
+  state: Pick<FirstAcquaintanceState, "flags" | "player">,
+): string[] {
+  return [
+    ...scene.narration,
+    ...(scene.conditionalNarration ?? [])
+      .filter((entry) => isFirstAcquaintanceVisible(entry.visibility, state))
+      .map((entry) => entry.text),
+  ];
+}
+
+export function getResolvedFirstAcquaintanceDialogue(
+  scene: FirstAcquaintanceScene,
+  state: Pick<FirstAcquaintanceState, "flags" | "player">,
+): FirstAcquaintanceDialogueLine[] {
+  return [
+    ...scene.npcDialogue,
+    ...(scene.conditionalDialogue ?? []).filter((line) =>
+      isFirstAcquaintanceVisible(line.visibility, state),
+    ),
+  ];
+}
+
+export function getFirstAcquaintanceSceneEntryEffect(
+  sceneId: string,
+): FirstAcquaintanceSceneEffect | undefined {
+  return getFirstAcquaintanceScene(sceneId).onEnterEffect;
 }
 
 function stringifyFlag(value: unknown): string {
   if (Array.isArray(value)) {
-    return value.map((item) => String(item)).join("；");
+    return value.map((item) => String(item)).join("，");
   }
   return String(value);
 }
@@ -142,14 +206,6 @@ export function getFirstAcquaintanceSidebarNotes(
 ): Array<{ id: string; title: string; detail: string }> {
   const notes: Array<{ id: string; title: string; detail: string }> = [];
 
-  if (flags.player_wound_status) {
-    notes.push({
-      id: "wound-status",
-      title: "伤口情况",
-      detail: stringifyFlag(flags.player_wound_status),
-    });
-  }
-
   if (flags.player_aftercare_rules) {
     notes.push({
       id: "aftercare",
@@ -158,19 +214,11 @@ export function getFirstAcquaintanceSidebarNotes(
     });
   }
 
-  if (flags.wu_xin_gift || flags.wu_xin_gift_purchased) {
-    notes.push({
-      id: "wu-xin-gift",
-      title: "吴昕礼物",
-      detail: flags.wu_xin_gift ? stringifyFlag(flags.wu_xin_gift) : "礼物线已经推进到吴昕相关阶段。",
-    });
-  }
-
-  if (flags.wang_ou_blue_pendant) {
+  if (flags.wang_ou_blue_pendant || flags.wang_ou_blue_pendant_status) {
     notes.push({
       id: "wang-ou-pendant",
       title: "水蓝吊坠",
-      detail: stringifyFlag(flags.wang_ou_blue_pendant),
+      detail: "何炅送给王鸥的礼物，很好看。",
     });
   }
 
@@ -181,22 +229,6 @@ export function getFirstAcquaintanceSidebarNotes(
       detail: stringifyFlag(
         flags.relationship_progress ?? flags.relationship_status ?? flags.relationship_context,
       ),
-    });
-  }
-
-  if (flags.tomorrow_rebandage_with_wang_ou || flags.wound_rebandaged) {
-    notes.push({
-      id: "tomorrow-rebandage",
-      title: "换药安排",
-      detail: "这条线已经进入或完成王鸥换药相关流程。",
-    });
-  }
-
-  if (flags.medicine_supplies_replenished) {
-    notes.push({
-      id: "medicine-supplies",
-      title: "药材补齐",
-      detail: "这一趟已经把换药和常用药材补齐了。",
     });
   }
 

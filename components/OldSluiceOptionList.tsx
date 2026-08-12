@@ -1,3 +1,4 @@
+import React from "react";
 import { Choice } from "../lib/oldSluiceTypes";
 
 export default function OldSluiceOptionList({

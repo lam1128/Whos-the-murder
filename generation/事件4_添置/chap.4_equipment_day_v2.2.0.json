@@ -1,0 +1,4854 @@
+{
+  "metadata": {
+    "id": "equipment_day_v2_2_0",
+    "title": "添置",
+    "title_en": "Equipment Day",
+    "scenarioPrefix": "equipment_day",
+    "version": "v2.2.0",
+    "versionRuleApplied": "按作者复核提高人物对白中动作与神态描写的覆盖率，并限制相同动作描写的重复次数。",
+    "generatedFrom": [
+      "AGENTS.md",
+      "user_provided_chapter_4_outline_review"
+    ],
+    "status": "codex_ready_scenario_json",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-10",
+    "language": "zh-CN",
+    "optionNumbering": "final_json_numeric_1_2_3_4",
+    "purpose": "第四章正式运行用 Scenario JSON：记录玄甲林蜥委托结束后的恢复期、装备添置、四人日常同行与王鸥晚饭中的个人经历分享。",
+    "revisionSummary": [
+      "从王鸥在街口问路找到玩家角色开始，不设置此前已经答应过的同行约定。",
+      "以连续的一天为主线，依次推进玩家角色职业装备、两人装备送修、午饭、玄甲薄鳞护片、吴昕基础符具、家中礼物、傍晚取回装备和双人晚饭。",
+      "玩家角色最终购买二阶一品潜行靴并调整原有刀鞘，不更换匕首；何炅不换剑；吴昕只购买基础实用品。",
+      "把王鸥关于独居、父母分开以及童年居住经历的内容放在晚饭对话中，由玩家回应决定谈话落点。",
+      "所有互动选项均使用数字字符串，并在自然的对白或行动交接处回到同一条连续主线。",
+      "按作者复核修正玩家发言回应、动态熟名称呼、地点移动叙述、选项知识边界、玄甲薄鳞持有人及沉浸感措辞。",
+      "在保留纯动作选项结果的前提下，为场景对白和选项即时回应补充自然、分散且不重复堆叠的动作与神态。"
+    ]
+  },
+  "initialState": {
+    "flags": {
+      "old_sluice_completed": true,
+      "first_acquaintance_completed": true,
+      "xuanjia_lizard_hunt_completed": true,
+      "equipment_day_completed": false,
+      "wang_ou_rib_injury_recovering": true,
+      "player_boots_purchased": false,
+      "player_sheath_adjusted": false,
+      "he_jiong_maintenance_sent": false,
+      "wang_ou_kit_sent": false,
+      "rib_guard_commissioned": false,
+      "wu_xin_supplies_purchased": false,
+      "family_gift_bought": false
+    },
+    "state": {
+      "current_chapter": "equipment_day_in_progress",
+      "relationship_tier": "trusted_friends_and_field_partners",
+      "player_profession": "潜行修",
+      "player_weapon": "匕首",
+      "player_gear_context": "学生时期家中准备的基础装备仍可使用，但已不完全适合正式野外委托",
+      "wang_ou_injury": "肋侧挫伤恢复不少，可正常行走和日常活动，暂不适合剧烈运动与负重",
+      "player_income_context": "使用本人此前委托收入购买装备，不动用队伍共同材料"
+    }
+  },
+  "initialInventory": [
+    {
+      "id": "old_dagger",
+      "name": "原有匕首",
+      "description": "你学生时期一直使用的一阶四品匕首。",
+      "quantity": 1
+    },
+    {
+      "id": "student_field_gear",
+      "name": "学生时期基础装备",
+      "description": "旧护腕、外衣、短靴和任务行囊，仍能使用但已显出不够贴合正式委托的地方。",
+      "quantity": 1
+    }
+  ],
+  "inventoryDefinitions": [
+    {
+      "id": "old_dagger",
+      "name": "原有匕首",
+      "description": "你继续使用的原有匕首，不在本章更换。",
+      "quantity": 1
+    },
+    {
+      "id": "student_field_gear",
+      "name": "学生时期基础装备",
+      "description": "旧护腕、外衣、短靴和任务行囊。",
+      "quantity": 1
+    },
+    {
+      "id": "tier2_grade1_stealth_boots",
+      "name": "二阶一品潜行靴",
+      "description": "适合潜行修长期野外行动的职业软靴，购买约十五银币。",
+      "quantity": 1
+    },
+    {
+      "id": "adjusted_dagger_sheath",
+      "name": "调整后的匕首刀鞘",
+      "description": "原有刀鞘增加软衬和防晃固定结构，并调整了携带位置，花费约二银币。",
+      "quantity": 1
+    },
+    {
+      "id": "family_tea_and_cooked_food",
+      "name": "给家里的茶和熟食",
+      "description": "你逛街时给家里带回去的普通茶叶和当天熟食。",
+      "quantity": 1
+    }
+  ],
+  "startSceneId": "ch4_01_street_find",
+  "scenes": [
+    {
+      "id": "ch4_01_street_find",
+      "title": "街口找到你",
+      "phase": "上午开场",
+      "location": "临川城河运街附近的街口",
+      "presentCharacters": [
+        "你",
+        "王鸥"
+      ],
+      "narration": [
+        "玄甲林蜥的委托结束已经四五天。王鸥的肋侧挫伤恢复了不少，正常走路和日常活动已经不成问题，只是还不适合剧烈运动。",
+        "你刚从家门口出来，正准备往街上走，便看见王鸥从街口那边过来。她显然是沿着这一片问过路，脚步不快，手里的药包也背得很稳。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "我记得你家大概在这片，就先到街口问了两个人。还好没走错。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥停在离你两步远的地方。"
+        }
+      ],
+      "controlPrompt": "在街口碰见王鸥，你先怎么回应。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问她是怎么从街口找到你家的。",
+          "nextSceneId": "ch4_02_walk_from_corner",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你还记得我家大概在哪儿？怎么问到这边来的。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "只记得大概在这一带。我到街口问了两个人，顺着他们指的方向才找到你。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥转身朝来路示意，指了指刚才问路的街角。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "笑着说她记得还挺清楚。",
+          "nextSceneId": "ch4_02_walk_from_corner",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我都没想到你能这么快找过来，记得还挺清楚。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "你以前提过河运街附近，我记住了。到了街口再问路，也没有绕太久。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先告诉她自己正好已经出门，不让她继续站在街口。",
+          "nextSceneId": "ch4_02_walk_from_corner",
+          "effect": {
+            "outcomeNarration": [
+              "你把已经迈出门的脚收回来半步，又指了指前面的街道。王鸥顺着你的动作跟上来。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_02_walk_from_corner",
+      "title": "一起往外走",
+      "phase": "上午开场",
+      "location": "河运街外侧巷道",
+      "presentCharacters": [
+        "你",
+        "王鸥"
+      ],
+      "narration": [
+        "你们从街口并肩往市场方向走。王鸥没有把今天说成一件早就约好的事，只是在走出巷子后才把自己的想法顺手讲出来。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "我这几天想了想，你既然已经真正跟着进过一次森林，原来那套装备就该重新看一遍了。今天有空，带你去逛逛职业装备。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥把药包肩带往上理了理，步子仍旧放得从容。"
+        }
+      ],
+      "controlPrompt": "听见她临时想到的安排，你怎么接话。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说自己正好也觉得旧装备开始不够用了。",
+          "nextSceneId": "ch4_03_recovery_and_plan",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我也有这种感觉。以前在学校用着够，进过一次森林以后，很多地方就露出来了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "所以今天才带你自己看。上次进过森林以后，再挑东西就知道该留意什么了。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先问她今天会不会走得太久。",
+          "nextSceneId": "ch4_03_recovery_and_plan",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你今天能走这么久吗？肋侧还没有完全好吧。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "{{playerGivenName}}，正常走路已经没问题。我会控制时间，累了就停。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "她说着调整了一下呼吸，脸上没有勉强的神色。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "说自己对职业装备几乎没有比较经验，今天愿意慢慢看。",
+          "nextSceneId": "ch4_03_recovery_and_plan",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我以前都是家里准备什么就用什么，真要自己挑，可能得慢慢看。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "那就慢慢看。我和何炅会提醒用途，最后还是由你自己选。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_03_recovery_and_plan",
+      "title": "恢复期的出门",
+      "phase": "上午开场",
+      "location": "通往市场的街道",
+      "presentCharacters": [
+        "你",
+        "王鸥"
+      ],
+      "narration": [
+        "离开河运街外侧的巷道，转上通往市场的街道后，王鸥走得比平时慢一点，但不需要人扶。她自己也清楚现在的边界：可以逛，可以处理日常装备，不能把一天安排成负重训练。",
+        "你们约好先去市场和装备街，何炅会在那边碰头。今天不接委托，也不安排任何需要赶路的事。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "我没打算逛到走不动。看装备本来就要多比较几家，慢一点正好。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "她抬手压了一下药包的肩带。"
+        }
+      ],
+      "controlPrompt": "你要怎么确认今天的节奏？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说先看需要，再决定买不买。",
+          "nextSceneId": "ch4_04_market_meet",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那就先看需要，不急着看见好的就买。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "对，先把需要看明白。今天买不到合适的也没关系。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问何炅和吴昕会在哪儿等。",
+          "nextSceneId": "ch4_04_market_meet",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "何炅和昕昕是在市场口等我们吗。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "对，他们在市场口等。再往前走一段就能看见。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥望向前方逐渐热闹的街口，脚步没有停。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "把今天只处理日常事情的安排记下来。",
+          "nextSceneId": "ch4_04_market_meet",
+          "effect": {
+            "outcomeNarration": [
+              "你点点头，把今天不接委托、不赶路和傍晚取修理物品几件事在心里理了一遍。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_04_market_meet",
+      "title": "市场口碰头",
+      "phase": "上午开场",
+      "location": "临川城市场口",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "走到临川城市场口时，市场口的人声渐渐密起来。何炅站在木器摊旁边，吴昕就在他身边，背着一个轻便的小包。两个人看起来已经等了一会儿，却没有催促的意思。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "{{playerGivenName}}，到了？我和昕昕刚到不久。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅看见你们走近，抬手示意木器摊旁还有位置。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "我哥说今天只是出来看看。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕从何炅身后探出半步，眼里带着刚出门的轻快。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "我说的是先看看。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅看了吴昕一眼。"
+        }
+      ],
+      "controlPrompt": "碰头之后，你先把话递给谁？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "先和吴昕打招呼，问她毕业后最近过得怎么样。",
+          "nextSceneId": "ch4_05_four_person_route",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "昕昕，最近毕业以后怎么样？今天也想看看真正工作的装备吗。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "最近就在家收拾毕业留下的东西，偶尔睡到很晚。今天当然要看看真正工作的装备。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕的眼睛亮了亮，肩上的小包也跟着晃了一下。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问何炅今天是不是也有装备要处理。",
+          "nextSceneId": "ch4_05_four_person_route",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "何炅，你今天也有东西要买或者要修吗。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "长剑、剑鞘和护腕都要检查一下。维护为主，今天不买新剑。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅拍了拍身侧的剑鞘，让你看固定带磨旧的位置。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "笑说今天看起来像四个人一起出来过日子。",
+          "nextSceneId": "ch4_05_four_person_route",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "今天看着不像单纯买装备，倒像四个人一起出来过一天。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "我觉得挺像。任务结束以后还能一起逛街，也很好啊。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_05_four_person_route",
+      "title": "先把路线说清楚",
+      "phase": "上午开场",
+      "location": "市场口至装备街",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "四个人沿着市场边缘往装备街走。何炅负责记着送修和取回的时间，王鸥把自己的药具问题说得很简短，吴昕则一路看着两侧店铺的招牌。",
+        "今天的事情不少，却都在同一条路上，谁也没有急着替别人把决定先做完。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "你先看靴子和刀鞘。我的剑、剑鞘和护腕送去检查，王鸥的针具和药包也一起处理。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅展开随手记下的几行清单，指腹沿着顺序往下划。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "昕昕想看符具的话，下午再去符具街。那边离护具铺也不远。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "听完路线，你最先关注哪一部分。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说先从自己的靴子开始，看完再处理刀鞘。",
+          "nextSceneId": "ch4_06_equipment_street",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那我先看脚下的东西。靴子确定了，再看刀鞘怎么调。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "就按这个顺序。靴子要多试几家，刀鞘调整会快一些。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问王鸥今天需不需要把药包整套拆开检查。",
+          "nextSceneId": "ch4_06_equipment_street",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "王鸥，你的药包是要整套拆开看，还是只换坏掉的东西？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "只换坏掉的东西。药包的分区已经用惯了，修好隔层和绑带就行。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥隔着药包按了按分格，确认里面没有东西错位。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先听吴昕说她最想看的是什么。",
+          "nextSceneId": "ch4_06_equipment_street",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "昕昕，你毕业以后最想先看看哪类符具。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "先看符袋和符纸吧。符笔也想看，不过我还没打算马上买。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕掰着手指数了数，显然早已想过先看哪些东西。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_06_equipment_street",
+      "title": "先看一圈",
+      "phase": "上午装备比较",
+      "location": "装备街入口",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "从市场边缘走到装备街入口，装备街比你想象得长。软靴、护腕、剑鞘配件和修理铺挨在一起，店门口挂着的样品也从普通野外用品一直排到专门职业装备。",
+        "王鸥先带着大家把几家店的位置和价位看了一遍，没有直接走进最贵的店。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "先别进第一家就定。看过范围，才知道店家说的‘好’到底好在哪儿。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥没有急着看招牌，先扫过几家店门口摆出的样品。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "我先记住哪家看起来最贵。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕仰头看了一圈价牌，悄悄弯起嘴角。"
+        }
+      ],
+      "controlPrompt": "你准备怎么开始比较？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "先看普通野外软靴的价位和做法。",
+          "nextSceneId": "ch4_07_old_gear_review",
+          "effect": {
+            "outcomeNarration": [
+              "你先走到最普通的软靴铺前，把几种常见鞋底和鞋面材料看了一遍。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先把自己旧靴的磨损处指出来。",
+          "nextSceneId": "ch4_07_old_gear_review",
+          "effect": {
+            "outcomeNarration": [
+              "你把旧靴鞋底的磨损和脚踝处已经变软的位置给大家看。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问何炅上次委托里最容易被旧装备拖住的是哪一步。",
+          "nextSceneId": "ch4_07_old_gear_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "上次委托里，你觉得我最容易被旧装备拖住的是哪一步？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "上次撤退时的急停和转向最明显。旧靴的支撑不够，刀鞘也一直在晃。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅回想片刻，目光落到你的旧靴和刀鞘上。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_07_old_gear_review",
+      "title": "旧装备的边界",
+      "phase": "上午装备比较",
+      "location": "装备街普通靴铺前",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "四个人在装备街第一家普通靴铺前停下。旧靴并没有坏到不能穿，护腕和衣物也都还能继续用。只是当它们被放到真正的野外装备旁边，差别就不再只是新旧。",
+        "鞋底的抓地、脚踝的支撑、静步时的反馈和长时间走路后的疲劳，都变成了可以被你逐项比较的东西。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "你原来的东西能应付学习和低强度出门。进森林以后，奔跑、急停和变向都让它们的短处露出来了。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "脚踝和鞋底先看。脚受伤以后，后面的动作都要跟着让。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥蹲下看了一眼旧靴的边缘。"
+        }
+      ],
+      "controlPrompt": "面对这些差别，你先从哪里问起。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问普通软靴能不能先满足日常森林行动。",
+          "nextSceneId": "ch4_08_plain_boots",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "如果只是先解决森林里的走路和落脚，普通软靴够不够。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "普通软靴应付走路够用。你还要潜行、急停和变向，所以最好看完职业款再决定。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥弯腰看了一眼旧靴的鞋底，指腹停在磨损最深的位置。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先比较鞋底抓地和脚踝支撑。",
+          "nextSceneId": "ch4_08_plain_boots",
+          "effect": {
+            "outcomeNarration": [
+              "你把几双样靴依次翻过来，看鞋底纹路，又用手按了按脚踝处的支撑。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "承认自己原来只看过外观和能不能穿。",
+          "nextSceneId": "ch4_08_plain_boots",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我以前其实只看外观和合不合脚，没想到还有这么多差别。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "我以前也只看这些。今天正好跟着你一起学怎么比较。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_08_plain_boots",
+      "title": "先试普通软靴",
+      "phase": "上午装备比较",
+      "location": "第一家普通软靴铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "你们推门走进第一家普通软靴铺。第一家店给你拿来几双普通野外软靴。它们不算昂贵，鞋底扎实，脚踝处也有基本支撑，适合经常走土路和碎石路的人。",
+        "店里没有专门的静步试走区，掌柜只在门后铺了一小段木板和碎石，足够让你感受落脚时的声音。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "掌柜",
+          "speakerName": "掌柜",
+          "text": "先别看价钱，穿上走两圈。脚趾挤不挤，脚跟会不会抬，走一会儿就知道。",
+          "speakerCategory": "generic_npc",
+          "isGenericNpc": true,
+          "dialogueColorToken": "neutral",
+          "actionBefore": "掌柜蹲下按了按鞋头，又用手指卡住鞋跟的位置。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "听起来比挑衣服认真多了。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕抱着手臂认真看了两眼，神情比刚进店时专注。"
+        }
+      ],
+      "controlPrompt": "你试靴时先注意什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "先走木板，再走碎石，感受声音和脚底反馈。",
+          "nextSceneId": "ch4_09_plain_boots_try",
+          "effect": {
+            "outcomeNarration": [
+              "你先在木板上走了几步，又踩过门后的碎石。鞋底的硬度和落脚声很快变得清楚。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先做几次急停和变向。",
+          "nextSceneId": "ch4_09_plain_boots_try",
+          "effect": {
+            "outcomeNarration": [
+              "你在店门口的空处短短加速，又停下换了一个方向。王鸥的视线落在你的脚踝上。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "让王鸥和何炅分别看鞋底与脚踝处。",
+          "nextSceneId": "ch4_09_plain_boots_try",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你们一个看脚踝，一个看落脚声，帮我一起看一眼？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "你先照平时的步子走，我听落脚声。王鸥看脚踝和受力。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅走到试走处侧面，给你让出直走和转身的空间。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_09_plain_boots_try",
+      "title": "走过一遍再说",
+      "phase": "上午装备比较",
+      "location": "普通软靴铺的试走处",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "掌柜领你来到铺子里的试走处。普通软靴穿起来比旧靴稳，长时间走路也不会立刻让脚底发酸。可当你把脚步放轻，再从碎石上绕过一根木桩时，鞋面传回来的重量感仍然很明显。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "它的优点是可靠。缺点也很清楚，静步和快速换向不是它最擅长的地方。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅侧耳听完你走过碎石的声音，才低头看向鞋底。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "穿久了不会立刻累，这一点也不能丢。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "你要怎么判断这双靴子是否适合自己。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "承认它稳，但还想看看专门的潜行靴。",
+          "nextSceneId": "ch4_10_professional_boots",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "它确实稳，不过我还想看看专门给潜行修用的靴子会差多少。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "应该再看。普通款的长处你已经走出来了，比较过职业款才好判断。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "把长时间行走放在第一位，记下这双靴子的优点。",
+          "nextSceneId": "ch4_10_professional_boots",
+          "effect": {
+            "outcomeNarration": [
+              "你把尺码和鞋底做法记下来，没有因为它不够安静就立刻否定。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问吴昕穿起来是不是显得太笨重。",
+          "nextSceneId": "ch4_10_professional_boots",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "昕昕，你从旁边看，会不会觉得这双穿起来太笨重。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "看起来不算笨重，就是鞋底比你原来的厚一点。走路时能看出重量。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕绕着你看了半圈，又退开两步观察整体。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_10_professional_boots",
+      "title": "职业潜行靴",
+      "phase": "上午装备比较",
+      "location": "职业软靴铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "离开普通软靴铺，你们走进旁边的职业软靴铺。第二家店的软靴更轻，鞋面和鞋底的连接处做了灵力传导处理，落脚时的声音也被压低。掌柜先问你平时在哪种地形行动，再从货架里取出适合的款式。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "掌柜",
+          "speakerName": "掌柜",
+          "text": "潜行靴不是越轻越好。你常进森林，还是主要在城里跑？",
+          "speakerCategory": "generic_npc",
+          "isGenericNpc": true,
+          "dialogueColorToken": "neutral",
+          "actionBefore": "掌柜把两双重量不同的潜行靴并排放到你面前。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "她需要森林碎石、树根和长时间走动都能用的。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥俯身摸过鞋底纹路，指尖在脚踝支撑处停了停。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "还要考虑急停、撤退和临时变向。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "掌柜问到使用场景，你怎么回答。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说明自己刚参加过一次森林委托，今后还会继续接类似工作。",
+          "nextSceneId": "ch4_11_boots_forest_test",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我刚参加过一次森林委托，之后还会继续接类似的野外工作。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "掌柜",
+                "speakerName": "掌柜",
+                "text": "那就按森林和长时间行走来挑。太偏城里静步的款式不适合你。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral",
+                "actionBefore": "掌柜听见森林两个字，便把偏城内使用的款式放回架上。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "让掌柜先拿最适合森林碎石和树根的型号。",
+          "nextSceneId": "ch4_11_boots_forest_test",
+          "effect": {
+            "outcomeNarration": [
+              "掌柜从架子下方取出两双鞋底纹路更深、脚踝支撑更稳定的型号。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先问轻和安静是否会牺牲耐磨与舒适。",
+          "nextSceneId": "ch4_11_boots_forest_test",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "如果更轻、更安静，会不会反而不耐磨，走久了也不舒服。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "会有这种情况。轻和安静都要看，脚踝支撑、耐磨和久走也得一起算。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_11_boots_forest_test",
+      "title": "把差别走出来",
+      "phase": "上午装备比较",
+      "location": "职业软靴铺的试走区",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "掌柜把你带到店内专门的试走区。试走区铺着木板、碎石和几段仿树根的凸起。你先把脚步放轻，再短距离加速、急停和改变方向。",
+        "轻量鞋款在城市木板上几乎没有声音，到了碎石和凸起处却让脚底更容易感到地形；另一双略重一点，却把脚踝和落脚的稳定都保留下来。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "这双更轻，但你刚才过凸起时脚踝晃了一下。另一双声音多一点，动作更稳。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅指了指试走区边缘的仿树根。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "你自己走久一点。别只听我们说。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "两双靴子的差别已经走出来了，你怎么定方向？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "选择更稳、适合森林和长时间行走的型号。",
+          "nextSceneId": "ch4_12_buy_boots",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我想要那双稳一点的。安静很重要，但森林里走久了和急停也不能靠运气。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "这个取舍合理。森林里先保证落脚稳，静步效果够用就行。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅赞同地抬了下眉，视线仍留在你的落脚位置。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "再走一遍最安静的型号，确认自己不是被价格吓退。",
+          "nextSceneId": "ch4_12_buy_boots",
+          "effect": {
+            "outcomeNarration": [
+              "你又穿着更轻的那双走了一遍，最后仍然回到碎石和仿树根处，把脚踝的反馈记了下来。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问掌柜能否把两种型号的优点做出折中。",
+          "nextSceneId": "ch4_12_buy_boots",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "有没有脚踝更稳、声音又能压低一些的折中款？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "掌柜",
+                "speakerName": "掌柜",
+                "text": "有一双折中款。声音比最轻的那双大一点，脚踝会稳不少，你再试一遍。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral",
+                "actionBefore": "掌柜从较低的货架抽出另一只鞋盒，放到试走区边缘。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_12_buy_boots",
+      "title": "第一次自己买职业装备",
+      "phase": "上午装备购买",
+      "location": "职业软靴铺柜台",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "试走结束，你们回到职业软靴铺的柜台前。最后定下的是一双二阶一品潜行靴，价格约十五银币。它不是店里最轻、最安静的那双，却更适合你现在要走的森林和野外路线。",
+        "你把自己的钱放到柜台上。直到掌柜把靴子包好，你才真正意识到这是第一次由自己比较、自己决定、自己买下的职业装备。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "{{playerGivenName}}，穿着走一下午，晚上再看脚底有没有哪儿不舒服。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥看着你把新靴系紧，眉眼稍稍舒展开。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "价格和用途都对得上。以后换更高阶的，也照今天这样先走过再说。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "靴子买下以后，你想说什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说这是自己第一次真正挑职业装备。",
+          "nextSceneId": "ch4_13_sheath_check",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "这是我第一次真正自己挑职业装备。以前都是家里准备好什么我就用什么。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "以后再挑装备，你就知道该先问自己会在哪里用、要走多久。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥温和地笑了，伸手替你压平靴口翻起的一小块软皮。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先把新靴穿上，边走边适应脚感。",
+          "nextSceneId": "ch4_13_sheath_check",
+          "effect": {
+            "outcomeNarration": [
+              "你当场换上新靴走出店门，脚下的支撑和旧靴明显不同。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问王鸥和何炅接下来先处理谁的装备。",
+          "nextSceneId": "ch4_13_sheath_check",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我的靴子先定了。接下来先处理你们谁的装备？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "先处理你的刀鞘。就在旁边，调好以后再去送修我们的东西。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午",
+      "onEnterEffect": {
+        "setFlags": {
+          "player_boots_purchased": true
+        },
+        "addInventoryIds": [
+          "tier2_grade1_stealth_boots"
+        ]
+      }
+    },
+    {
+      "id": "ch4_13_sheath_check",
+      "title": "匕首还不用换",
+      "phase": "上午装备购买",
+      "location": "装备街配件铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "买好潜行靴后，四个人走进装备街的配件铺。原有匕首的刃口和重心都还适合你。真正让你在上次委托里反复感觉不顺的，是刀鞘固定得不够稳，奔跑和变向时会轻轻撞到腰侧。",
+        "配件铺的伙计把刀鞘拆开，先看内衬和固定带，再问你平时把它放在哪个位置。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "匕首先不用换。刀鞘调好，先把携带时的晃动解决。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅用两指扶住刀鞘，轻轻试了试它晃动的幅度。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "刀鞘总在撞，走久了腰侧也会跟着不舒服。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "你要怎么处理匕首和刀鞘？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "明确说不换匕首，只调整刀鞘。",
+          "nextSceneId": "ch4_14_adjust_sheath",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "匕首我先继续用，刀鞘加软衬和固定结构，位置也调一下。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "这样最合适。匕首本身顺手，先把携带的问题解决。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "请伙计先演示不同携带位置的差别。",
+          "nextSceneId": "ch4_14_adjust_sheath",
+          "effect": {
+            "outcomeNarration": [
+              "伙计把刀鞘分别固定在腰侧偏前和偏后的位置，你走了几步，比较它们对抬腿和转身的影响。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问何炅上次委托里哪次晃动最容易出问题。",
+          "nextSceneId": "ch4_14_adjust_sheath",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "上次委托里哪次晃动最容易影响动作？我想按实际情况调。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "上次撤退时连续变向最明显。刀鞘撞腰侧，还会带出一点声音。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅抬手模拟了一次急停后的转身，示意刀鞘碰撞的位置。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_14_adjust_sheath",
+      "title": "把刀鞘调到顺手",
+      "phase": "上午装备购买",
+      "location": "装备街配件铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "伙计在刀鞘里加了软衬，又换上防晃固定结构，把携带位置向前侧微调。费用约二银币。你在店门口走了几步，刀鞘没有再随着步子撞来撞去。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "这样就够了。先把原来的东西调到真正能用，比现在急着换新武器划算。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "而且你今天已经买了一双靴子。钱也得留一点。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕瞄了一眼柜台上的价签，把声音压得像在提醒你守住钱袋。"
+        }
+      ],
+      "controlPrompt": "刀鞘调好以后，你怎么确认。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "做一次短距离奔跑和急停。",
+          "nextSceneId": "ch4_15_he_sword_maintenance",
+          "effect": {
+            "outcomeNarration": [
+              "你在店门口短跑几步，急停后转身。刀鞘贴在固定位置，没有再把动作带偏。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "说现在暂时不用为了新鲜感换匕首。",
+          "nextSceneId": "ch4_15_he_sword_maintenance",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "这样就够了。现在没必要为了换新而换匕首。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "嗯，匕首已经用熟了。现在把刀鞘调顺，比换武器更有用。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "把旧刀鞘收好，准备傍晚再取。",
+          "nextSceneId": "ch4_15_he_sword_maintenance",
+          "effect": {
+            "outcomeNarration": [
+              "你把调整后的刀鞘重新挂好，跟着三人往兵器铺走。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午",
+      "onEnterEffect": {
+        "setFlags": {
+          "player_sheath_adjusted": true
+        },
+        "addInventoryIds": [
+          "adjusted_dagger_sheath"
+        ]
+      }
+    },
+    {
+      "id": "ch4_15_he_sword_maintenance",
+      "title": "何炅不换剑",
+      "phase": "上午装备维护",
+      "location": "装备街兵器铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "刀鞘调整好后，四个人走进附近的兵器铺。何炅把长剑递给兵器铺师傅。剑身没有需要更换的地方，导灵结构也保持稳定；要处理的是剑柄缠带、剑鞘固定带和护腕的磨损。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "兵器铺师傅",
+          "speakerName": "兵器铺师傅",
+          "text": "剑不用换。先做检查，再把该补的地方补上。",
+          "speakerCategory": "generic_npc",
+          "isGenericNpc": true,
+          "dialogueColorToken": "neutral",
+          "actionBefore": "兵器铺师傅接过长剑，先迎着光检查了一遍剑身。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "我也是这么想的。剑顺手，结构没问题，没必要为了看起来更新就换。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "看到何炅的处理方式，你怎么参与。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问师傅剑柄缠带是否会按何炅原来习惯的粗细处理。",
+          "nextSceneId": "ch4_16_try_third_tier",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "师傅，剑柄缠带会按他原来习惯的粗细来吗？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "兵器铺师傅",
+                "speakerName": "兵器铺师傅",
+                "text": "会照他原来的粗细来。旧缠带拆下前，我先把尺寸记清楚。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral",
+                "actionBefore": "师傅捻了捻旧缠带边缘，露出下面尚未磨损的部分。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "站在旁边，看师傅逐项记下需要维护的位置。",
+          "nextSceneId": "ch4_16_try_third_tier",
+          "effect": {
+            "outcomeNarration": [
+              "你站到工作台侧面，看师傅逐项记下剑身、剑鞘和护腕的问题。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提醒师傅一并检查护腕内侧的磨损。",
+          "nextSceneId": "ch4_16_try_third_tier",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "护腕内侧这块也磨得很明显，麻烦一起检查。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "兵器铺师傅",
+                "speakerName": "兵器铺师傅",
+                "text": "看见了。内侧磨得更深，我会连固定扣一起检查。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_16_try_third_tier",
+      "title": "把维护细节说清楚",
+      "phase": "上午装备维护",
+      "location": "装备街兵器铺工作台旁",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "师傅带何炅走到兵器铺工作台旁，让他握住尚未拆下缠带的剑柄，确认习惯的粗细和防滑位置。随后，师傅又当面试过剑鞘固定带的松紧，把护腕磨损处圈在单子上。",
+        "何炅只确认维护后的手感和取剑位置。他今天没有购买新剑的打算，师傅也按修护旧装备的要求记录。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "兵器铺师傅",
+          "speakerName": "兵器铺师傅",
+          "text": "缠带照原来的粗细换，磨平的地方补足防滑。剑鞘固定带收紧后，取剑的位置不会变。",
+          "speakerCategory": "generic_npc",
+          "isGenericNpc": true,
+          "dialogueColorToken": "neutral",
+          "actionBefore": "师傅用软尺量过旧缠带，又在单子上补了两笔。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "这样就行。剑的手感已经习惯了，维护后保持原样最好。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "维护细节确认到这里，你还注意到什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问何炅新缠带按这个粗细处理是否顺手。",
+          "nextSceneId": "ch4_17_he_repairs_send",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "新缠带按这个粗细来，你握着会顺手吗？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "顺手。粗细不变，只补回防滑，握法不用重新适应。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅重新握了握剑柄，拇指在防滑处来回试过。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "向师傅确认修好固定带后，拔剑位置会不会改变。",
+          "nextSceneId": "ch4_17_he_repairs_send",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "固定带修好以后，拔剑的位置会不会跟现在不一样？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "兵器铺师傅",
+                "speakerName": "兵器铺师傅",
+                "text": "不会。我按原来的悬挂长度收紧，拔剑角度能保持。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "记住傍晚取件时再检查一遍缠带和固定带。",
+          "nextSceneId": "ch4_17_he_repairs_send",
+          "effect": {
+            "outcomeNarration": [
+              "你记下傍晚取件时还要再检查缠带粗细、剑鞘固定带和护腕内侧。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_17_he_repairs_send",
+      "title": "把装备留下来",
+      "phase": "上午装备维护",
+      "location": "装备街兵器铺与药具铺之间",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "确认完维护细节，大家从工作台旁走到两家铺子之间。何炅的长剑、剑鞘和护腕需要留在铺里处理，傍晚再回来取。王鸥也带着自己的药具走进旁边的药具铺。能交给店家慢慢处理的工作都先留下，上午继续按原定顺序往下走。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "下午回来拿就行。先陪你们把你的东西看完。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅把取件单折好收进袖袋，回头看向你们。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "我的也一样，傍晚前能处理好就好。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "装备暂时留在店里，你要先跟谁走？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "跟王鸥进药具铺，看她先处理针具。",
+          "nextSceneId": "ch4_18_wang_needle_check",
+          "effect": {
+            "outcomeNarration": [
+              "你跟着王鸥进了旁边的药具铺，何炅和吴昕随后一起跟进来。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问何炅傍晚取剑时要不要你一起确认。",
+          "nextSceneId": "ch4_18_wang_needle_check",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "傍晚取剑的时候，要不要我也一起看一眼？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "可以。傍晚取回来时正好一起确认，省得遗漏。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先把上午送修、傍晚取回的顺序记住。",
+          "nextSceneId": "ch4_18_wang_needle_check",
+          "effect": {
+            "outcomeNarration": [
+              "你把几家铺子的招牌和取回时间记在心里，跟着大家转进药具铺。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午",
+      "onEnterEffect": {
+        "setFlags": {
+          "he_jiong_maintenance_sent": true
+        }
+      }
+    },
+    {
+      "id": "ch4_18_wang_needle_check",
+      "title": "先看针具",
+      "phase": "上午装备维护",
+      "location": "药具铺内桌前",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "从兵器铺出来，王鸥带大家走进旁边的药具铺，在内侧桌前坐下。王鸥把主用封药针具和几枚备用针放到桌面上，先按用途分开，再请掌柜检查针尖、针身和收纳位置。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "主用的还能继续用，备用的有几枚已经变形。换掉就好，不需要整套重买。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥用指腹轻轻拨开其中一枚备用针。"
+        },
+        {
+          "speakerId": "掌柜",
+          "speakerName": "掌柜",
+          "text": "这几枚留着也会影响取用，换掉吧。",
+          "speakerCategory": "generic_npc",
+          "isGenericNpc": true,
+          "dialogueColorToken": "neutral"
+        }
+      ],
+      "controlPrompt": "你怎么参与她检查针具？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问她最常用的针具是不是要单独收在顺手的位置。",
+          "nextSceneId": "ch4_19_wang_bag_check",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "最常用的针是不是要放在更顺手的位置？取的时候不用翻一遍。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "对，主用针放在外层固定槽。备用针分开放，取的时候不会混。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥把常用针槽推到你面前，指给你看最外侧的位置。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "把变形的备用针和正常针分开放。",
+          "nextSceneId": "ch4_19_wang_bag_check",
+          "effect": {
+            "outcomeNarration": [
+              "你按王鸥的指示把变形的备用针移到一旁，给掌柜留出检查主用针具的空位。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "只问她自己是否觉得用起来不顺，不替她决定。",
+          "nextSceneId": "ch4_19_wang_bag_check",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你自己用起来还有哪里不顺吗？如果没有，就不用为了换新全部重来。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "其他地方都顺手。保持原来的分区，只修坏掉的部分就够了。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "上午"
+    },
+    {
+      "id": "ch4_19_wang_bag_check",
+      "title": "药包和药瓶",
+      "phase": "上午装备维护",
+      "location": "药具铺内桌前",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "针具看完，王鸥又把斜挎药包里的分隔层一层层打开。药粉、药瓶和处理工具都有自己的位置，只是隔层边缘已经磨薄，几条绑带也在上次委托的行动里留下了明显的拉痕。",
+        "她需要修补隔层和绑带，再换几个已经损坏的小药瓶。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "药包不用换，隔层修好就行。瓶子坏了几个，换掉以后还是按原来的位置放。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥将药瓶按原来的次序摆回隔层，动作熟练得没有停顿。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "这样取药的习惯不会被打乱。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "面对药包的磨损，你怎么回应。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问修补后能不能继续保持她现在的分区。",
+          "nextSceneId": "ch4_20_lunch",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "只要修好以后还能按现在的分区取药，就不用为了换新重新适应。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "我也是这个意思。位置不变，修好以后拿药的习惯就不用改。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "她合上修好的隔层，依次按过每一处扣带。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "帮她把要换的药瓶数量点清楚。",
+          "nextSceneId": "ch4_20_lunch",
+          "effect": {
+            "outcomeNarration": [
+              "你和王鸥一起把损坏的药瓶、变形备用针和需要修补的绑带逐项点清，掌柜把它们记在单子上。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "等她确认完，再跟大家一起去吃午饭。",
+          "nextSceneId": "ch4_20_lunch",
+          "effect": {
+            "outcomeNarration": [
+              "王鸥把最后一枚药瓶放回桌面，药具铺约好傍晚取货。四个人这才离开店铺。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "接近中午",
+      "onEnterEffect": {
+        "setFlags": {
+          "wang_ou_kit_sent": true
+        }
+      }
+    },
+    {
+      "id": "ch4_20_lunch",
+      "title": "中午坐下来",
+      "phase": "中午",
+      "location": "临川城普通小馆",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "逛了一整个上午，四个人在装备街附近找了家普通小馆。店里桌椅不新，热气却足，刚坐下便有人端来茶和小菜。",
+        "王鸥坐下以后明显松了些。大家只是顺手给她让出更舒服的位置，没有把她当病号围在中间。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "我现在才发现，原来陪人买靴子也会饿。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕刚坐稳就摸了摸空着的肚子，自己先笑出声来。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "那你先点最想吃的。下午还要陪你看符具。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅把菜单推到吴昕面前，顺手替她压住卷起的纸角。"
+        }
+      ],
+      "controlPrompt": "坐下以后，你先聊什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "让大家先点自己最想吃的，不做上午总结。",
+          "nextSceneId": "ch4_21_lunch_everyday",
+          "effect": {
+            "outcomeNarration": [
+              "你把菜单往桌子中间推了推，先让大家各自点菜。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "说起上午那位特别会推销普通软靴的掌柜。",
+          "nextSceneId": "ch4_21_lunch_everyday",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "上午那位掌柜说得太熟练了，我差点以为那双普通软靴什么路都能走。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "他再多说一会儿，我可能真会相信。幸好你们让我先穿着走。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕想起掌柜当时的神情，忍不住笑了一下。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先说自己走了一上午，终于知道职业装备为什么要慢慢挑。",
+          "nextSceneId": "ch4_21_lunch_everyday",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我走了一上午才发现，职业装备真不能只看一眼就决定。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "我也没想到一双靴子能看这么久。下午轮到符具，估计还会发现更多差别。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "中午"
+    },
+    {
+      "id": "ch4_21_lunch_everyday",
+      "title": "饭桌上的闲话",
+      "phase": "中午",
+      "location": "临川城普通小馆",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "午饭没有变成装备总结。吴昕说起上午那家店的掌柜如何把普通软靴夸成万能靴，何炅顺手替她把差点碰倒的茶碗挪开，王鸥则慢慢吃完了半碗饭。",
+        "话题从店铺绕到吴昕毕业后最近每天在家做什么，又绕到下午先去护具铺还是先去符具街。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "上午那位掌柜把普通软靴说得像什么路都能走，听久了我差点忘了我们只是来挑鞋。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕学着掌柜上午的语气拖长尾音，眼睛里全是揶揄。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "店家会介绍很正常，最后还是要看自己真正怎么用。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "你怎么接这段普通闲聊？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问吴昕毕业后在家最常做什么。",
+          "nextSceneId": "ch4_22_he_thin_scale_idea",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你毕业以后最近每天在家最常做什么？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "收拾考试留下的纸，陪家里吃饭，再把没睡够的觉补回来。最近差不多就这些。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕托着下巴想了想，筷子在碗边轻碰了一声。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "笑说掌柜大概把所有客人都当成马上发财的人。",
+          "nextSceneId": "ch4_22_he_thin_scale_idea",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "听起来那位掌柜默认所有人今天都能突然发财。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "他要是再说几句，我大概会先问能不能穿着那双靴子去水里走。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先问王鸥吃得够不够，再把话题带回下午路线。",
+          "nextSceneId": "ch4_22_he_thin_scale_idea",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你吃得还够吗？下午如果要走护具铺，路线可以再慢一点。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "吃得够。下午走慢一点就行，不用为了我改掉所有安排。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥放下筷子，活动了一下走久后有些发紧的肩背。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "中午"
+    },
+    {
+      "id": "ch4_22_he_thin_scale_idea",
+      "title": "饭后想起薄鳞",
+      "phase": "午后开始",
+      "location": "小馆门外",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "结账走出小馆后，何炅在门边停了一下。他这几天一直在想上次委托留下的几片玄甲活动鳞，今天出门前便特意把薄鳞包好，放进自己的随身包里。",
+        "想到王鸥肋侧受伤的位置，他想请轻型护具匠人看看，能否把薄鳞做成一小块贴身防护。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "我把薄鳞带来了。这几天一直在想，如果做成贴身的肋侧护片，应该能补一点防护，也不会像厚甲那样影响王鸥投针和转身。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅从自己的随身包里取出一个布包，打开一角，露出里面的玄甲薄鳞。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "可以拿去问问。只要别做成一整块硬板。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥接过一片薄鳞在掌心比了比，神情认真起来。"
+        }
+      ],
+      "controlPrompt": "何炅提出薄鳞护片，你先怎么参与讨论。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问王鸥最担心它影响哪几个动作。",
+          "nextSceneId": "ch4_23_walk_guard",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你最担心它影响投针、取药，还是转身和弯腰？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "最怕抬手和取药被卡住。转身、弯腰也要顺，覆盖小一点没关系。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "确认薄鳞是委托后归大家的材料，可以拿来加工。",
+          "nextSceneId": "ch4_23_walk_guard",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那几片薄鳞是我们委托后留下的材料，拿来做护片没问题吧。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "没问题。薄鳞一直在我这里，我今天特意带出来，就是想拿去问匠人。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6",
+                "actionBefore": "何炅把布包往上托了托，免得鳞片边缘碰到桌角。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "直接说这个思路值得找匠人看看。",
+          "nextSceneId": "ch4_23_walk_guard",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "听起来值得试试。先让做轻型护具的人看看能不能兼顾。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "我也是这么想的。吃完就去轻型护具铺，让匠人先看材料。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_23_walk_guard",
+      "title": "边走边定范围",
+      "phase": "午后护片",
+      "location": "去护具铺的街道",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "四个人沿着午后的街道往护具铺走。包着玄甲薄鳞的布包仍由何炅拿着；做成轻型肋侧护片的用途已经商量清楚，到了铺子就能直接请匠人判断。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "我宁可覆盖小一点，也不要抬手时卡住。药包和针具要能照常取。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "就是平时不觉得，真撞到肋侧时能挡一下？",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕用手在自己肋侧虚比了一小块位置，向王鸥确认。"
+        }
+      ],
+      "controlPrompt": "你要把什么要求说清楚。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "强调护片要薄、边缘要平滑。",
+          "nextSceneId": "ch4_24_guard_smith",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "只要能贴身挡一下就好，薄一点，边缘也要处理平滑。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "对，先保证贴身和活动。防护范围可以小一些，边缘一定要稳妥。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问何炅固定带怎样才不会压到受伤位置。",
+          "nextSceneId": "ch4_24_guard_smith",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "固定带要怎么避开她这次受伤的位置。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "先让匠人量位置。伤处我自己能指出来，固定带往上下错开就行。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥用指尖沿伤处外侧划出一段距离，避开最疼的位置。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "让王鸥先说她自己的使用边界。",
+          "nextSceneId": "ch4_24_guard_smith",
+          "effect": {
+            "outcomeNarration": [
+              "你把话停在这里，让王鸥先把她不愿意牺牲的动作和范围说清楚。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_24_guard_smith",
+      "title": "匠人说可以做",
+      "phase": "午后护片",
+      "location": "轻型护具铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "沿街走到轻型护具铺后，何炅把包好的薄鳞递给匠人。护具铺的匠人把薄鳞一片片放到木案上，检查厚度、韧性、弯曲程度和面积。他按贴身活动护具的做法逐片估量，没有把鳞片拼成僵硬的整块甲片。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "护具匠人",
+          "speakerName": "护具匠人",
+          "text": "能做。面积不能贪大，边缘要磨平，固定也得跟着人的动作走。做成硬板，反而会妨碍转身。",
+          "speakerCategory": "generic_npc",
+          "isGenericNpc": true,
+          "dialogueColorToken": "neutral",
+          "actionBefore": "护具匠人用指节压了压鳞片边缘，观察它回弹的弧度。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "那就按能活动的范围来。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "听见匠人的判断，你先确认哪件事？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问护片能不能兼容王鸥现在的衣物和药包。",
+          "nextSceneId": "ch4_25_measure_guard",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "它能不能跟她现在常穿的衣物和药包一起用。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "护具匠人",
+                "speakerName": "护具匠人",
+                "text": "可以。衣物贴身穿，药包从外侧斜挎，我会给两边留出活动位置。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先请匠人说需要量哪些动作和位置。",
+          "nextSceneId": "ch4_25_measure_guard",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那量的时候要看哪些动作？抬手、弯腰和转身都要试吗。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "护具匠人",
+                "speakerName": "护具匠人",
+                "text": "都要试。尤其是抬手取药和弯腰，这两下最容易让边缘顶到人。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral",
+                "actionBefore": "匠人拿起软尺，在自己手臂旁示范了几个需要测量的角度。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "认可小范围防护比僵硬大面积覆盖更实际。",
+          "nextSceneId": "ch4_25_measure_guard",
+          "effect": {
+            "outcomeNarration": [
+              "你看着木案上的薄鳞，点头同意先把能真正使用的范围做出来。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_25_measure_guard",
+      "title": "量出能活动的位置",
+      "phase": "午后护片",
+      "location": "轻型护具铺内侧",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "看过鳞片后，匠人请王鸥走到铺子内侧量位置。王鸥站到铺子内侧，配合匠人抬手、转身、弯腰，再模拟从药包里取东西。软尺只量贴身位置，匠人每换一个角度，都会把鳞片的边缘重新比一遍。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "尽量做薄，边缘磨平。固定带别压在这次受伤的位置。抬手和弯腰如果明显牵扯，就把范围缩小。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅在匠人准备记录的位置旁停了一下。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "这里再往外一点，取药时手臂会碰到。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "那一小块看起来不大，但穿上衣服应该看不出来。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
+        }
+      ],
+      "controlPrompt": "量位置时，你怎么补充自己的意见？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "提醒匠人宁可少一点，也不要顶住抬手。",
+          "nextSceneId": "ch4_26_guard_commission",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "如果两边兼顾不了，就宁可小一点，别影响她抬手和取药。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "嗯，活动优先。真兼顾不了，就缩小到最需要挡的那一块。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问王鸥现在这个位置会不会碰到药包。",
+          "nextSceneId": "ch4_26_guard_commission",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你现在转身拿药包，会不会刚好碰到这里。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "现在这条边还碰不到。再往外一点，手臂取药时就会擦上。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥按着匠人标出的边线，慢慢做了一次取药动作。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "站到旁边看她把几个动作完整做完。",
+          "nextSceneId": "ch4_26_guard_commission",
+          "effect": {
+            "outcomeNarration": [
+              "你没有再靠近，只看着王鸥把抬手、转身和取药几个动作连起来，等匠人把最后的尺寸记下。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_26_guard_commission",
+      "title": "留下材料",
+      "phase": "午后护片",
+      "location": "轻型护具铺柜台",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "量完位置，几个人回到护具铺柜台前。护片方案定下来了：几片薄鳞会被切成贴身的小块，边缘磨平，用不压伤处的固定带连接。当天做不完，之后还要回来取。",
+        "王鸥自己付了加工费用，把薄鳞留下。何炅又确认了一遍取用时的动作要求，匠人把它们写进了订单。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "我自己来付。之后做好了，我再过来试。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥取出钱袋，先把匠人写好的尺寸单看完。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "先试穿。要是牵扯动作，就现场改，不要为了覆盖大一点硬留下。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "护片留下以后，下午接着去哪里？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "提醒之后取护片时要再试一次动作。",
+          "nextSceneId": "ch4_27_to_wu_area",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "取的时候再把抬手、弯腰和取药都试一遍，合适了再带走。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "我会。取货时先把动作都做一遍，合适了再付尾款带走。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问吴昕现在是不是轮到她看自己的东西。",
+          "nextSceneId": "ch4_27_to_wu_area",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "护片要过几天才能取。昕昕，现在是不是轮到你看自己的东西了？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "终于轮到我了。先去看符具，我想把贵的和真正能买的都看一遍。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕立刻站直了些，视线已经越过门口投向符具街。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "跟着何炅和王鸥离开护具铺，顺手确认大家都跟上。",
+          "nextSceneId": "ch4_27_to_wu_area",
+          "effect": {
+            "outcomeNarration": [
+              "你把包好的订单交还给王鸥，四个人一起离开护具铺，转向符具街。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后",
+      "onEnterEffect": {
+        "setFlags": {
+          "rib_guard_commissioned": true
+        }
+      }
+    },
+    {
+      "id": "ch4_27_to_wu_area",
+      "title": "陪吴昕去看",
+      "phase": "午后符具",
+      "location": "去符具街的路上",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "离开护具铺，四个人沿着去符具街的路继续往前。处理完护片，下午的步子重新轻松下来。何炅自然走在吴昕旁边，王鸥也顺手问她想先看符笔还是符袋。两个人都没有把她当成只需要跟着看的新人。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "符具街先陪你从头看一遍。想买什么你自己决定，我们帮你看用途和价格。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅把符具街的方向指给吴昕，脚步跟着慢下来。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "先看你真正会用的，再看喜欢的。顺序可以反过来，决定别反过来。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "听见他们这样陪吴昕，你怎么接话。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "让吴昕先带大家去她最想看的店。",
+          "nextSceneId": "ch4_28_wu_professional_tools",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那昕昕先带路，想看的店我们都进去看看。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "好，我先去那家职业用品铺。橱窗里的符笔看得最清楚。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问她毕业后最想补的是符笔还是收纳。",
+          "nextSceneId": "ch4_28_wu_professional_tools",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你现在最想补的是符笔，还是先把符袋和收纳换掉。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "先看符笔，再认真挑符袋和收纳。最后买什么，要看价格和现在的需要。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先陪她看，不急着替她判断买不买。",
+          "nextSceneId": "ch4_28_wu_professional_tools",
+          "effect": {
+            "outcomeNarration": [
+              "你把步子放慢，跟着吴昕看向符具街的第一排店铺。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_28_wu_professional_tools",
+      "title": "先看真正的职业符具",
+      "phase": "午后符具",
+      "location": "符具街职业用品铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "走到符具街后，四个人先进入一家职业用品铺。吴昕进门后先停在几支更像样的职业符笔前。笔杆材质、导灵纹路和收势时的手感，确实和学生阶段的练习用品不同。",
+        "何炅替她问了笔尖维护和常用符纸的适配，王鸥则拿起一个符袋看内层是否容易受潮。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "这支写起来应该很顺。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕用指尖碰了碰笔杆上的导灵纹路。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "顺手是一点。你现在最常用的符纸和练习量，也要一起算进去。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "喜欢可以先记下来。别让一支笔把后面真正要用的东西挤掉。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "你怎么参与吴昕看贵符笔。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问她喜欢这支笔的具体地方。",
+          "nextSceneId": "ch4_29_wu_practical_needs",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你喜欢它，是因为笔尖手感，还是导灵纹路？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "笔尖的回弹很舒服，导灵纹路也顺。不过我还得问清楚平时维护要花多少。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕转了转笔杆，细看笔尖回正时有没有偏斜。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "让何炅帮她问清楚长期使用和维护的成本。",
+          "nextSceneId": "ch4_29_wu_practical_needs",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "何炅，你帮她问问这支笔平时维护和换笔尖要多少。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "我来问。买得起笔还不够，耗材和维护也要算进去。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "陪王鸥看符袋，把两边的比较一起做完。",
+          "nextSceneId": "ch4_29_wu_practical_needs",
+          "effect": {
+            "outcomeNarration": [
+              "你跟王鸥一起看了几种符袋的防潮层和分格，吴昕仍站在符笔前，但开始认真听店家的报价。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_29_wu_practical_needs",
+      "title": "从喜欢回到需要",
+      "phase": "午后符具",
+      "location": "符具街职业用品铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "贵符笔的价格一报出来，吴昕没有立刻放下，也没有伸手去掏钱。她把自己现在能做的符术、平时会用到的符纸数量和还没有固定收入的情况重新算了一遍。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "它确实很好，但我现在买了它，符纸和符墨就得往后放。那还是先看能每天用上的。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕把符笔放回软垫，目光又落到旁边的符纸和符墨上。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "能把喜欢和需要分开看，已经是在做职业装备的判断了。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "先买会反复用的，贵的以后需要了再说。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "吴昕开始转向实用品，你怎么回应。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说她不需要靠买贵东西证明自己毕业了。",
+          "nextSceneId": "ch4_30_wu_bag",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "毕业以后不用马上买最贵的东西来证明自己。真正会用到的更重要。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "我没打算拿价格证明毕业。先买每天会用的，心里反而踏实。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "她把价签翻回去，放笔的动作没有半点恋恋不舍。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问她现在最常用的符纸该怎么收纳。",
+          "nextSceneId": "ch4_30_wu_bag",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你现在最常用的符纸，怎样收起来最方便。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "常用符纸要能单手拿到，还得分开防潮。先从符袋的分格看起。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "让她自己列出今天真正愿意花钱的三样东西。",
+          "nextSceneId": "ch4_30_wu_bag",
+          "effect": {
+            "outcomeNarration": [
+              "吴昕从符袋、符纸和符墨里挑出自己愿意认真比较的三类用品，何炅把贵符笔的价格牌放回原处。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_30_wu_bag",
+      "title": "先买一个好用的符袋",
+      "phase": "午后符具",
+      "location": "符具街基础用品铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "看完职业符具，四个人又走进第二家基础用品铺。第二家铺子里，吴昕认真挑起符袋。她需要的是结实、防潮、方便分类的款式，不需要复杂的灵纹和过多的装饰。",
+        "何炅从袋口和背带的缝线看耐用程度，王鸥则把几种内部分格摆开，让吴昕自己试着按常用顺序放东西。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "你把常用的放在前面，备用的放里面。以后急着找的时候不会全倒出来。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "背带也试一下。符袋装满以后，肩膀会不会往一边坠。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "你要怎么帮吴昕挑符袋。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "让吴昕按自己平时的使用顺序装一遍。",
+          "nextSceneId": "ch4_31_wu_paper_ink",
+          "effect": {
+            "outcomeNarration": [
+              "吴昕把常用符纸、空白纸和小瓶符墨依次放进袋中，试着在不看里面的情况下摸出其中一件。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先检查防潮层和袋口的缝线。",
+          "nextSceneId": "ch4_31_wu_paper_ink",
+          "effect": {
+            "outcomeNarration": [
+              "你捏了捏内层的防潮布，又沿袋口的缝线看了一圈。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问她背满以后会不会影响走路和抬手。",
+          "nextSceneId": "ch4_31_wu_paper_ink",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "装满以后，你抬手和走路会不会觉得一边重。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "我把东西装满再走一圈。空袋顺手，装满以后也得顺才行。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕把背带扣好，原地抬手又走了几步。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_31_wu_paper_ink",
+      "title": "把消耗品补齐",
+      "phase": "午后符具",
+      "location": "符具街基础用品铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "符袋定下来以后，吴昕又比较了几种符纸。她没有买最高档的成品纸，只选了少量比学生练习用品好一些的纸，再配一小份基础符墨。",
+        "这些东西不显眼，却能真正进入她接下来每天的练习和初期工作。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "这几种就够了。符纸先买少一点，用完了再看自己最常用哪一类。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "先用起来，才知道下一次该补什么。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "吴昕把用品选得很实际，你想说什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "问她要不要把符纸按用途分开装。",
+          "nextSceneId": "ch4_32_wu_purchase",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "符纸要不要按用途分开？这样找起来会快一点。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "要分。我按练习、备用和已经画好的位置分开，摸起来也不会混。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕摊开符袋内层，按使用顺序比划了三个分格。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "说以后真正需要职业符笔时再回来比较。",
+          "nextSceneId": "ch4_32_wu_purchase",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那支贵符笔先记着。以后真需要了，再回来认真比较。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "先记着。以后真需要换笔，我会带着常用符纸再来试。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "陪她把袋子、符纸和符墨一起放到柜台。",
+          "nextSceneId": "ch4_32_wu_purchase",
+          "effect": {
+            "outcomeNarration": [
+              "你把已经选好的符袋、符纸和符墨一起递到柜台，吴昕又确认了一遍数量。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后"
+    },
+    {
+      "id": "ch4_32_wu_purchase",
+      "title": "吴昕的第一套基础用品",
+      "phase": "午后符具",
+      "location": "符具街基础用品铺柜台",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "选好符袋、符纸和符墨后，吴昕抱着东西来到柜台前。她最后买下结实防潮的符袋、少量质量更好的符纸和一小份基础符墨，总支出约一至二银币。她付钱时没有犹豫，也没有为了显得已经毕业而把预算花在暂时用不上的东西上。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "这一套带回去就能用。等你有固定收入，再换更专门的也不迟。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "嗯，贵的东西以后需要了再说。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕把找回的零钱收进小袋。"
+        }
+      ],
+      "controlPrompt": "买完以后，你怎么和吴昕说。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "祝她以后把真正需要的装备一件件补起来。",
+          "nextSceneId": "ch4_33_stroll",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "以后真正需要什么，就一件件补起来。今天这套已经是很好的开始了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "我也这么想。今天这几样能马上用，剩下的以后慢慢补。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "笑她现在已经知道何炅说的‘先看看’会逛多久。",
+          "nextSceneId": "ch4_33_stroll",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "现在你知道你哥说‘先看看’，通常会看到什么时候了吧？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "现在知道了。我哥说先看看，通常要等所有能看的都看完。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕斜眼看向哥哥，嘴角压着一点故意的调侃。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "帮她把符袋挂到最不影响走路的位置。",
+          "nextSceneId": "ch4_33_stroll",
+          "effect": {
+            "outcomeNarration": [
+              "你和吴昕一起把新符袋调整到不妨碍手臂和步子的地方，四个人才离开铺子。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "午后",
+      "onEnterEffect": {
+        "setFlags": {
+          "wu_xin_supplies_purchased": true
+        }
+      }
+    },
+    {
+      "id": "ch4_33_stroll",
+      "title": "不急着继续买",
+      "phase": "下午日常",
+      "location": "市场侧街",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "结完账，四个人离开符具铺，走到市场侧街。真正要办的几件事暂时都落了下来，四个人顺着市场侧街慢慢走，没有急着再钻进下一家店。吴昕看到一个奇怪的小符具，拉着你停下来看；你穿着新靴走了一下午，也逐渐适应了它的脚感。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "{{playerGivenName}}，你看这个，像是把收纳盒做成了小阵盘。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕举起那个小符具朝你晃了晃，像发现了一件有趣的玩意。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "先看看就好，今天已经买得够多了。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "你怎么加入这段随意逛街。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "跟吴昕一起看那个奇怪的小符具。",
+          "nextSceneId": "ch4_34_rest",
+          "effect": {
+            "outcomeNarration": [
+              "你凑过去看了看那个小符具，发现它确实能分出几格，却离真正的阵盘还差得很远。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问王鸥要不要找地方坐一会儿。",
+          "nextSceneId": "ch4_34_rest",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我们要不要先找地方坐一会儿？你走了一下午了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "好，前面树荫下有空位。坐一会儿再去买你要带回家的东西。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥缓缓吐出一口气，手掌在身旁的石栏上撑了一下。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "低头感受新靴走在不同路面上的变化。",
+          "nextSceneId": "ch4_34_rest",
+          "effect": {
+            "outcomeNarration": [
+              "你在木板、石路和土路之间各走了几步，慢慢找到了新靴在不同地面上的落脚节奏。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "下午"
+    },
+    {
+      "id": "ch4_34_rest",
+      "title": "路边坐一会儿",
+      "phase": "下午日常",
+      "location": "市场侧街树荫下",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "沿市场侧街走了一段，大家在路边树荫下停下来休息。王鸥走久以后确实有些累，四个人便在路边的树荫下坐了一会儿。何炅把手里比较沉的东西接过去，吴昕把新符袋放到自己腿上，谁也没有把这件事说成特别需要照顾。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "坐一会儿就好。今天走的路比我想的长。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥向后靠在树干旁。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "那就坐一会儿。傍晚取东西还早。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "坐下来以后，你做什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "把手里的重物交给何炅，自己去买几份热栗子。",
+          "nextSceneId": "ch4_35_family_gift",
+          "effect": {
+            "outcomeNarration": [
+              "你把手里沉一点的东西分给何炅，转身到旁边的摊子买了几份热栗子。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问大家还有没有漏掉的日常小事。",
+          "nextSceneId": "ch4_35_family_gift",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "大家还有没有漏掉什么小事？傍晚取完东西就可以回去了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "送修的东西记着，给家里带的东西还没买。除此之外没有漏。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "安静坐着，让王鸥把这一口气缓下来。",
+          "nextSceneId": "ch4_35_family_gift",
+          "effect": {
+            "outcomeNarration": [
+              "你没有催着继续走，只把买来的热栗子分到每个人手里，等王鸥坐直以后再起身。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "下午"
+    },
+    {
+      "id": "ch4_35_family_gift",
+      "title": "想起家里",
+      "phase": "下午日常",
+      "location": "市场侧街茶铺前",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "从树荫下起身后，你们继续往前，在一家茶铺门口停下。重新走起来以后，你在一家茶铺前停了停。今天出门时已经和家里说过，可能会在外面待一整天；可既然逛到了这里，带点东西回去仍然是很自然的念头。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "想给家里带东西？这边茶叶和熟食都还不错。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥顺着你停下的方向看见茶铺，语气也放松下来。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "你要是买甜的，记得多买一份。家里通常最先没的就是甜食。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
+        }
+      ],
+      "controlPrompt": "想给家里带点东西，你先看什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "先进去挑适合全家一起喝的茶。",
+          "nextSceneId": "ch4_36_tea_choice",
+          "effect": {
+            "outcomeNarration": [
+              "你带着三人走进茶铺，先看适合家里日常喝的普通茶。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问王鸥茶铺和熟食摊是不是都在附近。",
+          "nextSceneId": "ch4_36_tea_choice",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "王鸥，这附近能买茶，也能顺路带点熟食吗？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "都在附近。先进去挑茶，出来往前走几步就是熟食摊。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥朝茶铺旁边的小巷口指了指，又示意更前面的摊位。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "说不用贵，带一点今晚能吃到的就好。",
+          "nextSceneId": "ch4_36_tea_choice",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "不用买贵的，带点今晚就能一起吃到的东西就好。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "那就挑日常会吃的。茶选顺口的，熟食也别买太多。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "下午"
+    },
+    {
+      "id": "ch4_36_tea_choice",
+      "title": "普通茶也要挑",
+      "phase": "下午日常",
+      "location": "市场茶铺",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "你们从门口走进茶铺，来到摆着茶样的柜台前。茶铺老板拿出几种日常茶样。你不需要最贵的礼盒，只想挑一种家里人平时喝得惯、带回去也不会显得太正式的茶。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "家里平时喝得淡，别买味道太重的。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "先闻一下。日常喝的茶，顺口比名头重要。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "你怎么挑给家里的茶。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "按何炅说的，选味道清淡、适合日常的。",
+          "nextSceneId": "ch4_37_cooked_food",
+          "effect": {
+            "outcomeNarration": [
+              "你选了一包味道清淡的普通茶，老板用纸包好，递给你时又提醒了日常冲泡的水温。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "让王鸥帮你闻几种，再选最顺口的一包。",
+          "nextSceneId": "ch4_37_cooked_food",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "王鸥，你帮我闻一下哪包更适合平时喝？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "这包更清一些，平时喝不容易腻。你再闻闻，看是不是家里常喝的方向。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥依次闻过两包茶样，最后将气味更清的一包递给你。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先问老板哪种最适合一家人一起喝。",
+          "nextSceneId": "ch4_37_cooked_food",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "老板，家里人喝口味不一样的话，哪种最稳妥。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "掌柜",
+                "speakerName": "掌柜",
+                "text": "选这款最稳妥，香气不重，泡淡泡浓都能入口。",
+                "speakerCategory": "generic_npc",
+                "isGenericNpc": true,
+                "dialogueColorToken": "neutral"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "下午"
+    },
+    {
+      "id": "ch4_37_cooked_food",
+      "title": "再带一点熟食",
+      "phase": "下午日常",
+      "location": "市场熟食摊",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "买好茶，从茶铺出来以后，四个人走到旁边的熟食摊。茶包好以后，四个人又到旁边的熟食摊看了一圈。你挑了当天就能吃完的几样，纸包不大，路上带着也方便。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "别挑太多。今天回去晚，放久了反而不好吃。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "如果家里有嘴馋的人，多带一份最容易被先拿走的。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
+        }
+      ],
+      "controlPrompt": "你准备买多少熟食。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "选两样当天吃完的，按王鸥说的控制分量。",
+          "nextSceneId": "ch4_38_bring_home",
+          "effect": {
+            "outcomeNarration": [
+              "你选了两样当天吃完的熟食，摊主把纸包扎紧，又在外面套了一层干净的布。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "顺着吴昕的话，多带一份最容易被抢走的。",
+          "nextSceneId": "ch4_38_bring_home",
+          "effect": {
+            "outcomeNarration": [
+              "你听吴昕的，多添了一份最容易被先拿走的小食。纸包的重量增加不多，刚好能带回家。"
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问何炅哪样适合一路提着不散味。",
+          "nextSceneId": "ch4_38_bring_home",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "何炅，哪样一路提着不容易散味？我想带回去还像样一点。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "卤味封好以后最稳，路上不容易散味。糕点怕压，得放在上面。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "下午",
+      "onEnterEffect": {
+        "setFlags": {
+          "family_gift_bought": true
+        },
+        "addInventoryIds": [
+          "family_tea_and_cooked_food"
+        ]
+      }
+    },
+    {
+      "id": "ch4_38_bring_home",
+      "title": "把礼物提好",
+      "phase": "下午日常",
+      "location": "市场侧街",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "离开熟食摊，你们重新回到市场侧街。茶和熟食都装好以后，何炅自然接过比较沉的纸包，吴昕把自己的符袋挂到身侧，王鸥只拿着轻的一包。你脚上穿着新靴，手里还留着给家里的东西。",
+        "这件事本来只是你自己的小安排，却很自然地被四个人一起完成了。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "这个我拿着。熟食别压坏。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "等回去再分，路上别一直翻。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "看着大家自然地分东西，你怎么回应。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说谢谢，然后自己接回较轻的一包。",
+          "nextSceneId": "ch4_39_return_repair",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "谢谢。轻的给我拿就好，重的你先帮我提一段。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "行，重的我先提。到了岔口再把你的那份交回去。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "笑说这已经不像临时帮忙，像大家习惯了分东西。",
+          "nextSceneId": "ch4_39_return_repair",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你们现在分东西的样子，已经不像临时帮忙了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "都一起走了一整天了，早就不算临时帮忙。谁手空就多拿一点。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕把新符袋往肩上提了提，腾出一只手来分东西。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提醒大家时间差不多，该回装备街取东西了。",
+          "nextSceneId": "ch4_39_return_repair",
+          "effect": {
+            "outcomeNarration": [
+              "你抬头看了看天色，提醒大家该往装备街回去，免得错过店家傍晚前的取货时间。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "下午后半"
+    },
+    {
+      "id": "ch4_39_return_repair",
+      "title": "回装备街",
+      "phase": "傍晚取回装备",
+      "location": "回装备街的路上",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "接近傍晚，四个人沿原路折回装备街。上午送进去的东西已经在各家铺子里处理了一段时间，街上的光线也从明亮变成了偏金的颜色。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "今天比我想的长。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "慢慢看东西，本来就会长一点。取完就能各自回去了。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "回程时，你先确认什么？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "先去配件铺确认新靴和刀鞘。",
+          "nextSceneId": "ch4_40_pickup",
+          "effect": {
+            "outcomeNarration": [
+              "你带着大家先往配件铺走，想把自己的新靴和刀鞘再确认一遍。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先问何炅的剑和王鸥的药具是否都能按时取。",
+          "nextSceneId": "ch4_40_pickup",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "何炅和王鸥的东西，今天都能取回来吗？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "都能取。师傅上午估过时间，回去逐件确认就行。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "抱稳给家里的茶和熟食，跟着大家一起走。",
+          "nextSceneId": "ch4_40_pickup",
+          "effect": {
+            "outcomeNarration": [
+              "你把纸包抱稳，跟在三人中间往装备街走。新靴踩过傍晚的石路，脚感已经没有上午那么陌生。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "傍晚"
+    },
+    {
+      "id": "ch4_40_pickup",
+      "title": "一件件取回来",
+      "phase": "傍晚取回装备",
+      "location": "装备街各家铺子",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "回到装备街后，四个人依次走进上午送修装备的铺子取货。何炅先取回维护好的长剑、剑鞘和护腕。剑柄缠带换过以后，握感仍旧熟悉；剑鞘固定带也不再有松动的空隙。",
+        "王鸥随后取回整理好的封药针具、药包和药瓶。玄甲护片还在加工，匠人说过几天再来取。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "都在。剑没换，顺手的东西修好就够。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "药瓶换了，隔层也补过。护片还要等几天。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "取回装备以后，你先检查哪一样？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "先把自己的新靴和刀鞘再试一遍。",
+          "nextSceneId": "ch4_41_boot_sheath_test",
+          "effect": {
+            "outcomeNarration": [
+              "你在配件铺门口走了几步，又蹲下检查刀鞘固定的位置。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问王鸥护片大概什么时候能取。",
+          "nextSceneId": "ch4_41_boot_sheath_test",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "护片大概过几天能取？到时候要不要再一起过来试。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "匠人说要几天。做好后我会过去试，你们有空的话可以一起。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥收好取件凭条，把约定的日期又看了一遍。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先帮何炅把剑鞘和王鸥的药包分开拿好。",
+          "nextSceneId": "ch4_41_boot_sheath_test",
+          "effect": {
+            "outcomeNarration": [
+              "你把两人的装备按各自的携带方式分开，确认没有把药瓶和剑鞘挤在同一个纸包里。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "傍晚"
+    },
+    {
+      "id": "ch4_41_boot_sheath_test",
+      "title": "新靴和旧匕首",
+      "phase": "傍晚取回装备",
+      "location": "配件铺门口空地",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "取完东西，大家来到配件铺门口的空地。你穿着新靴在门口走了几圈，刀鞘随着转身贴在新的位置。短距离奔跑、急停和侧身时，它们都没有再互相干扰。",
+        "王鸥没有催你，只在你走完以后看了看脚踝和刀鞘边缘。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "脚踝没有被顶到，刀鞘也没再晃。前几天别一上来就走太久。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥的视线从你的脚踝移到腰侧。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "至少它现在不会先把你的位置告诉别人了。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
+        }
+      ],
+      "controlPrompt": "试完以后，你怎么评价今天的购买？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "说价格高不代表每一件都适合现在的自己。",
+          "nextSceneId": "ch4_42_walk_together",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我今天才明白，价格高不代表就一定适合现在的自己。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "今天走过几种路，你自己得出的这个判断比店家介绍更可靠。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "说新靴还要再走几天，不能今天买完就当熟练了。",
+          "nextSceneId": "ch4_42_walk_together",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "新靴还得再走几天，今天只是把合不合适先确认了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "对，脚底和脚踝要多走几天才知道。今天先确认没有明显顶脚。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "再走一圈，把脚感记在身体里。",
+          "nextSceneId": "ch4_42_walk_together",
+          "effect": {
+            "outcomeNarration": [
+              "你又走了一圈，直到脚底不再刻意注意每一步，才回到三人身边。"
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "傍晚"
+    },
+    {
+      "id": "ch4_42_walk_together",
+      "title": "路线已经习惯等四个人",
+      "phase": "傍晚日常",
+      "location": "装备街至回程岔口",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "离开装备街以后，四个人没有立刻分开。吴昕看到路边的小店会直接叫你，王鸥经过糕点摊时问你要不要一起看看，何炅决定往哪边走时已经习惯回头确认四个人都跟上。",
+        "没有谁重新宣布你可以同行。你只是自然地走在他们中间。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "{{playerGivenName}}，前面那家糕点店有种新口味，你要不要一起看？",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕闻到前面飘来的甜香，脚下不自觉快了半步。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "看一眼再走，反正还没到岔口。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899"
+        }
+      ],
+      "controlPrompt": "这段自然同行里，你怎么回应。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "跟吴昕和王鸥一起进店看一眼。",
+          "nextSceneId": "ch4_43_he_wu_remember_dinner",
+          "effect": {
+            "outcomeNarration": [
+              "你跟她们一起进了小店，最后只看没有买，又沿着何炅选的路继续往前。"
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问何炅接下来走哪条路，主动跟上他的安排。",
+          "nextSceneId": "ch4_43_he_wu_remember_dinner",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "接下来走哪条？我跟着你们一起走。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "沿这条路走到前面的岔口。到那里再看各自往哪边回。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "说自己已经不需要每件事都先问能不能一起。",
+          "nextSceneId": "ch4_43_he_wu_remember_dinner",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我好像已经不用每件事都先问一句能不能一起了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "你本来就不用问。看到想看的，跟我们一起过去就好了。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕伸手拉了你一下，带着你跟上王鸥的脚步。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "傍晚"
+    },
+    {
+      "id": "ch4_43_he_wu_remember_dinner",
+      "title": "岔路口想起晚饭",
+      "phase": "傍晚分别",
+      "location": "回程岔口",
+      "presentCharacters": [
+        "你",
+        "王鸥",
+        "何炅",
+        "吴昕"
+      ],
+      "narration": [
+        "沿着回程方向走到岔口时，走到回程岔口时，吴昕忽然想起早上父母已经说过，今天让兄妹两个回家吃晚饭。何炅也跟着停下来，确认了回何家的方向。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "text": "我想起来了，早上家里说今天回去吃饭。哥，我们得往这边走。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕拍了下额头，立刻转身辨认回家的方向。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "text": "差点把这件事忘了。你们呢，回去的路顺吗？",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "blue",
+          "dialogueColorHex": "#3B82F6"
+        }
+      ],
+      "controlPrompt": "听见兄妹要回家吃饭，你怎么接话。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "和兄妹俩道别，叫他们别让家里久等。",
+          "nextSceneId": "ch4_44_dinner_start",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你们快回去吧，别让家里久等。改天再一起出来。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wu_xin",
+                "speakerName": "吴昕",
+                "text": "知道了，改天再一起逛。我们先回去，免得爸妈等。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "让何炅和吴昕先回去，不用专门送你们。",
+          "nextSceneId": "ch4_44_dinner_start",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你们先回家吧，不用为了送我们特意绕路。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "好，那我们从这里分开。你们也别走得太晚。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先问王鸥要不要一起找个地方吃点东西。",
+          "nextSceneId": "ch4_44_dinner_start",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "王鸥，我们要不要也找个地方简单吃一点？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "好，我也饿了。附近找家小店，简单吃一点就行。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "傍晚"
+    },
+    {
+      "id": "ch4_44_dinner_start",
+      "title": "两个人的晚饭",
+      "phase": "晚饭",
+      "location": "临川城普通小馆",
+      "presentCharacters": [
+        "你",
+        "王鸥"
+      ],
+      "narration": [
+        "何炅和吴昕顺着回家的方向走远以后，王鸥和你在附近找了家普通小馆。两碗面、两个小菜，正好解决逛了一整天后的饥饿。",
+        "你把给家里的茶和熟食放到脚边。王鸥替你把筷子顺到手边，等面端上来以后才随口问起你今晚为什么不回家吃饭。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "你今晚不回去吃？",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥把一小碟酱菜推到你这边。"
+        },
+        {
+          "speakerId": "player",
+          "speakerName": "你",
+          "text": "早上出门时我已经跟爸妈说过，今天可能会在外面待一整天，晚饭也可能在外面解决，所以没关系。",
+          "speakerCategory": "player",
+          "isGenericNpc": false,
+          "dialogueColorToken": "neutral"
+        }
+      ],
+      "controlPrompt": "解释过家里的安排后，你怎么把话接下去。",
+      "choices": [
+        {
+          "id": "1",
+          "text": "顺势反问王鸥今晚原本准备怎么安排。",
+          "nextSceneId": "ch4_45_wang_past",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你呢？你今晚原本准备怎么安排？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "我原本打算回去随便吃点。我现在一个人住，晚一点也不用特意和谁说。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥用筷子拨开碗里的葱花，回答得很随意。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问她是不是也需要提前和家里说一声。",
+          "nextSceneId": "ch4_45_wang_past",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你呢？你不用提前和家里说一声吗？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "不用，我现在一个人住。毕业以后搬出来，生活基本都自己安排。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先问她平时是不是也经常一个人解决晚饭。",
+          "nextSceneId": "ch4_45_wang_past",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你呢？你平时是不是也经常一个人解决晚饭。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "差不多。一个人住以后，晚饭简单解决的时候很多。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "夜里"
+    },
+    {
+      "id": "ch4_45_wang_past",
+      "title": "她一个人住的日子",
+      "phase": "晚饭",
+      "location": "普通小馆里",
+      "presentCharacters": [
+        "你",
+        "王鸥"
+      ],
+      "narration": [
+        "你们的问答顺着晚饭自然往下走。王鸥说自己现在一个人住，父母在她小时候就分开了；后来她在父母、亲戚和熟识的邻居之间都住过一段时间。",
+        "她说得很平静。那些人其实都对她不错，只是从小住在不同地方，让她比较早习惯自己处理生活，也习惯尽量不给别人添麻烦。毕业以后能够自己挣钱，她便租下现在的住处，开始真正一个人生活。她没有把这段经历说成需要别人替她难过的故事。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "大家其实都对我不错。只是住过几个地方以后，很多事情就会早点学着自己处理。毕业后能自己挣钱，我就租了现在的地方。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥低头夹了一点菜，停了停才继续。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "不用把它想得太重。我只是比较早习惯一个人住。",
+          "speakerCategory": "main_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥抬眼看了看你，语气平静，指尖仍搭在温热的碗沿。"
+        }
+      ],
+      "controlPrompt": "听见这些以后，你准备怎样回应她？",
+      "choices": [
+        {
+          "id": "1",
+          "text": "关心地问她小时候是不是经常换地方。",
+          "nextSceneId": "ch4_terminal",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你小时候是不是经常要换地方住？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "有过几次，但也不是一直搬来搬去。每到一个地方，总有人认真照顾我。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问她什么时候开始真正一个人住。",
+          "nextSceneId": "ch4_terminal",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "你是什么时候开始真正一个人住的？",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "毕业以后。能靠自己挣钱了，我才租下现在的住处。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "轻轻说她很早就学会照顾自己了。",
+          "nextSceneId": "ch4_terminal",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "那你确实很早就学会照顾自己了。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "也不是什么都会，只是遇到事情时，习惯先自己想办法。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "察觉这是比较私人的话题，换一个轻松的晚饭话题。",
+          "nextSceneId": "ch4_terminal",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "text": "我明白了。那这家店的面还不错，你下次还会来吗。",
+                "speakerCategory": "player",
+                "isGenericNpc": false,
+                "dialogueColorToken": "neutral"
+              },
+              {
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "会。这家的面汤清淡，下次逛到附近还可以来。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "timeOfDay": "夜里"
+    },
+    {
+      "id": "ch4_terminal",
+      "title": "添置以后",
+      "phase": "章节收束",
+      "location": "临川城夜色街巷",
+      "presentCharacters": [
+        "你",
+        "王鸥"
+      ],
+      "narration": [
+        "吃完饭后，你和王鸥又并肩走了一小段，才在各自回家的方向分别。你带着新买的潜行靴、调整好的匕首刀鞘和给家里的茶与熟食；王鸥带着修好的药具，玄甲护片还要过几天才能取。",
+        "这一天没有新的委托，也没有危险。只是经历过一次共同冒险以后，你们已经很自然地愿意在没有委托的时候待在一起；而你也第一次从王鸥本人那里，知道了一点她如何长大的事情。"
+      ],
+      "npcDialogue": [],
+      "terminal": true,
+      "freeInputEnabled": false,
+      "controlPrompt": null,
+      "choices": [],
+      "onEnterEffect": {
+        "setFlags": {
+          "equipment_day_completed": true,
+          "player_boots_purchased": true,
+          "player_sheath_adjusted": true,
+          "he_jiong_maintenance_sent": true,
+          "wang_ou_kit_sent": true,
+          "rib_guard_commissioned": true,
+          "wu_xin_supplies_purchased": true,
+          "family_gift_bought": true
+        },
+        "setState": {
+          "current_chapter": "equipment_day_completed",
+          "relationship_tier": "trusted_friends_and_field_partners",
+          "wang_ou_injury": "can_go_out_but_avoid_heavy_strain"
+        }
+      }
+    }
+  ]
+}

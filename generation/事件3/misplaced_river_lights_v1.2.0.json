@@ -1,0 +1,4771 @@
+{
+  "metadata": {
+    "id": "misplaced_river_lights_v1_2_0",
+    "title": "错位的河灯",
+    "titleZh": "第三章：错位的河灯",
+    "titleEn": "Misplaced River Lights",
+    "chapterNumber": 3,
+    "scenarioPrefix": "misplaced_river_lights",
+    "version": "v1.2.0",
+    "documentType": "codex_ready_scenario_json",
+    "status": "runtime_scenario_json",
+    "language": "zh-CN",
+    "createdAt": "2026-07-30",
+    "updatedAt": "2026-07-30",
+    "knowledgeVersion": "6.0",
+    "canonicalSource": "project_knowledge_v6.0.json",
+    "hostRulesVersion": "1.0",
+    "hostRulesSource": "game_host_rules_v1.0.json",
+    "previousScenario": "misplaced_river_lights_v1.1.0.json",
+    "generatedFrom": [
+      "AGENTS.md",
+      "CONTENT_FREEZE.md",
+      "project_knowledge_v6.0.json",
+      "game_host_rules_v1.0.json",
+      "old_sluice_v2.4.1.json UI and runtime structure",
+      "first_acquaintance_v4.10.0.json scene pacing and dialogue density",
+      "misplaced_river_lights_v1.1.0.json fixed-truth case design"
+    ],
+    "optionNumbering": "final_json_numeric_1_2_3_4",
+    "purpose": "第三章可运行 Scenario JSON，沿用现有统一网页与旧水闸/前两章的固定 UI，仅以 JSON 提供剧情文本、对白、选项与状态。",
+    "revisionSummary": [
+      "本次更新为节奏扩写、开头补全、调查拆分、人物互动增强和夜间救援分阶段处理，在不改变案件真相、UI 字段和单一成功结局的前提下，显著放慢第三章推进速度。",
+      "新增主角家中事故后续、前往承务所的交接过程，以及四人重新会合、确认委托和出城准备的完整段落。",
+      "将白天调查拆为河道整体观察、三船记录比对、水色与流纹判断、探杆确认浅脊、白桩与浮灯与黑石标分步核对，以及芦苇岸线索逐层发现。",
+      "强化吴昕第一次正式委托的成长过程，保留何炅、王鸥和主角各自独立判断，并让玩家的部分分工选择持续影响后续两到三个场景。",
+      "把傍晚等待、夜间观察、预警、救援和善后分段处理，确保来船获救、罗顺暴露、即时危险解除、航标临时恢复和承务所交接仍为唯一完整成功结局。"
+    ]
+  },
+  "canonicalRules": {
+    "playerAuthority": "玩家只决定主角自身的语言、态度、行动与承担方式；何炅、王鸥和吴昕依据既定人物设定独立判断和行动。",
+    "entryPremise": "进入第三章即默认主角愿意把家中记录送至承务所，并在了解情况后认真考虑参加这项委托；选项只表现加入动机和合作方式，不提供拒绝主线的结局。",
+    "fixedTruth": "回鹭湾事故由雨后新浅脊与罗顺私自移动浮灯和黑石标、秘密打捞旧货驳叠加造成，案件真相与关键历史在章节开始前固定。",
+    "singleEnding": "所有合理路径最终都会完成夜间救援、恢复临时安全与制度交接，并汇入同一章节收束。",
+    "uiRule": "页面继续使用固定的“剧情文本”和“人物对白”两个区域；不显示 phase 首行，不改布局、颜色、字体、按钮和交互。"
+  },
+  "initialState": {
+    "flags": {
+      "river_lights_commission_joined": false,
+      "ship_records_compared": false,
+      "silt_ridge_confirmed": false,
+      "float_lamp_tampering_confirmed": false,
+      "marker_alignment_confirmed": false,
+      "salvage_site_found": false,
+      "underwater_rope_found": false,
+      "luo_shun_identified": false,
+      "incoming_ship_warned": false,
+      "river_hazard_removed": false,
+      "institutional_handoff_completed": false,
+      "misplaced_river_lights_completed": false,
+      "road_companion_he": false,
+      "road_companion_wang": false,
+      "road_companion_wu": false,
+      "road_asked_worker_early": false,
+      "day_partner_he": false,
+      "day_partner_wang": false,
+      "day_partner_wu": false,
+      "day_partner_solo": false,
+      "night_role_channel": false,
+      "night_role_rope": false,
+      "night_role_star": false,
+      "night_role_reeds": false,
+      "relationship_progress": "你和何炅、王鸥、吴昕已经在第二章之后隔了几日再见，这次则要第一次以四人小队的形式面对正式委托。"
+    }
+  },
+  "initialInventory": [
+    {
+      "id": "route_notes",
+      "name": "航路记录",
+      "description": "记着主角家里货船经过回鹭湾前后的时辰、吃水、转向与搁碰位置。",
+      "quantity": 1
+    },
+    {
+      "id": "cargo_loss_slip",
+      "name": "货损单据",
+      "description": "家中长辈连夜整理的货损和赔付草单，上面还压着几处没干透的指印。",
+      "quantity": 1
+    },
+    {
+      "id": "oilcloth_pouch",
+      "name": "防潮布包",
+      "description": "装着纸张、木炭笔和一路要带去承务所的小东西。",
+      "quantity": 1
+    }
+  ],
+  "sidebarNotes": [
+    {
+      "id": "incident_pattern",
+      "flag": "ship_records_compared",
+      "title": "三起事故的共同路线",
+      "detail": "三艘船都在经过湾心浮灯后往内侧偏去，出事并不是某一户船工单独看错路。"
+    },
+    {
+      "id": "new_silt_ridge",
+      "flag": "silt_ridge_confirmed",
+      "title": "内侧新浅脊",
+      "detail": "雨后泥沙在回鹭湾内侧堆出新的浅脊，轻船只是擦底，重船却会真正搁浅。"
+    },
+    {
+      "id": "float_lamp_tampering",
+      "flag": "float_lamp_tampering_confirmed",
+      "title": "浮灯和黑石标都被动过",
+      "detail": "浮灯系绳有重新打结的痕迹，黑石标背后的油脂与铜锈也说明它们不是自然漂歪。"
+    },
+    {
+      "id": "marker_alignment",
+      "flag": "marker_alignment_confirmed",
+      "title": "三处航标明显错位",
+      "detail": "白桩、湾心浮灯和黑石标重新定点后不再成正常引导线，说明存在人为改动。"
+    },
+    {
+      "id": "salvage_marks",
+      "flag": "salvage_site_found",
+      "title": "芦苇岸边的打捞痕迹",
+      "detail": "岸边留有脚印、小船拖擦和反复压出来的工作痕，不像偶然停靠。"
+    },
+    {
+      "id": "underwater_rope",
+      "flag": "underwater_rope_found",
+      "title": "通向水下旧货驳的绳索",
+      "detail": "隐蔽岸点有绳索延进水里，旧木屑和铜锈表明这里连着沉在水下的老物件。"
+    },
+    {
+      "id": "luo_shun",
+      "flag": "luo_shun_identified",
+      "title": "罗顺被确认涉入",
+      "detail": "罗顺熟悉现场布置和河工手法，夜里回到芦苇岸继续拉绳，直接暴露了自己。"
+    },
+    {
+      "id": "river_safe",
+      "flag": "river_hazard_removed",
+      "title": "即时风险已解除",
+      "detail": "浮灯和黑石标得到临时恢复，新浅脊也被重新标明，回鹭湾暂时不会继续误导夜船。"
+    }
+  ],
+  "startSceneId": "home_after_grounding",
+  "scenes": [
+    {
+      "id": "home_after_grounding",
+      "title": "船刚靠回来的傍晚",
+      "phase": "家中事故余波",
+      "location": "家中后院与泊船埠头",
+      "presentCharacters": [
+        "你",
+        "家中长辈",
+        "船工",
+        "杂役"
+      ],
+      "narration": [
+        "回鹭湾那场事故闹到傍晚才把船勉强拖回。院里满是湿木头味和河泥味，卸下来的麻袋、断木条和被刮花的箱板堆在一起，看着比账簿上的数字更让人心口发沉。",
+        "你刚把袖口挽好，跑船回来的船工就又被叫去前头回话。长辈们忙着清点货损、稳住跟来的货主和伙计，没有谁把决定赔偿的事交到你手上，但送记录、听经过和把话记清楚这类细活，自然落到了你这里。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "boatman_old_qi",
+          "speakerName": "齐叔",
+          "actionBefore": "老船工抹了把额上的水，站在台阶下还没缓过气来。",
+          "text": "我跑那一段河多少年了，错一步都认。今天不是我自己眼花，是灯位不对，带得船头往里偏了。"
+        },
+        {
+          "speakerId": "elder_aunt",
+          "speakerName": "大娘",
+          "actionBefore": "大娘把一叠湿漉漉的单据往桌角一按，连说话都没空抬头。",
+          "text": "货损先记，赔付慢慢谈。你别在这儿挡着，把齐叔说的经过记下来，等会儿送去承务所。"
+        },
+        {
+          "speakerId": "young_helper",
+          "speakerName": "小伙计",
+          "actionBefore": "旁边年纪最小的伙计抱着一截断裂的箱角，神情还惊魂未定。",
+          "text": "别家船也在外头打听这事，听说不是只有咱们这一趟。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先问齐叔，船头究竟是在看见哪盏灯之后开始偏的。",
+          "nextSceneId": "home_damage_counts",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把湿了边角的记册摊开，提着笔走到齐叔面前。",
+                "text": "您从看见哪一盏灯开始觉得不对？别急，一步一步说。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先帮大娘把散乱的货损单据压好，再顺势听前头在谈什么。",
+          "nextSceneId": "home_damage_counts",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把快被风吹走的纸页一张张按住，又顺手挪开桌边湿掉的木箱角。",
+                "text": "我先把这些理一理。前面说到哪一步了，等会儿我一起记进去。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "去看被刮坏的船板和箱角，先确认这次到底是擦底还是正面搁上了。",
+          "nextSceneId": "home_damage_counts",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你蹲到卸下来的残板旁边，用手指摸过被磨白的木刺和泥痕。",
+                "text": "先让我看看擦碰的位置。要是吃力点不一样，河底情况也许就不一样。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "安抚还在发抖的小伙计，顺便问外头现在都在传些什么。",
+          "nextSceneId": "home_damage_counts",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你接过他手里那截断木，放轻声音让他慢慢说。",
+                "text": "先别慌。外头都在议论什么，你听见的照实告诉我。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "事故刚结束，你先把哪件事抓稳？"
+    },
+    {
+      "id": "home_damage_counts",
+      "title": "不归你做主的账",
+      "phase": "家中事故余波",
+      "location": "家中前厅",
+      "presentCharacters": [
+        "你",
+        "家中长辈",
+        "船工",
+        "货主"
+      ],
+      "narration": [
+        "前厅灯火一盏接一盏点起来，桌上摆的却不是饭，而是潮湿的清单、临时借来的算盘和压角石。货主皱着眉头，家里长辈低声解释这趟河上到底怎么撞出的损失，几句一停，谁都不想把话说重，却也没人能装作这事不算数。",
+        "你知道自己并不是家里生意的主事人，也不该在这时候插手赔付决定。可正因为不用你做最后拍板，反而更适合把沿途记录和船工口供整理清楚，送去承务所给真正该接手的人看。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "elder_uncle",
+          "speakerName": "二叔",
+          "actionBefore": "二叔把算盘珠子一拨，抬眼看了你一眼。",
+          "text": "赔付我们来谈，你别插嘴。把航路记录、时辰和船工说的那句“灯位不对”都写清楚，别漏。"
+        },
+        {
+          "speakerId": "boatman_old_qi",
+          "speakerName": "齐叔",
+          "actionBefore": "齐叔站在门边，手还扶着腰上的护带。",
+          "text": "我认得那段水。今天先是觉得浮灯离内侧太近，后来黑石标也怪，像是整条线都被人挪过。"
+        },
+        {
+          "speakerId": "freight_owner",
+          "speakerName": "货主",
+          "actionBefore": "货主把被刮裂的箱角放到桌上，语气压得并不尖刻。",
+          "text": "若真是河道或航标出了事，就不该让下一艘船再照样撞上去。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "把齐叔说的“浮灯太近、黑石标也怪”单独记在页边，准备重点送去承务所。",
+          "nextSceneId": "route_notes_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把记册翻到空白一页，特地把那两处词句圈了出来。",
+                "text": "我会把这两句单独写清楚。要是真有人动过标，承务所一眼就能看出来它不只是擦船那么简单。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先替二叔理顺赔付单据和时辰顺序，再回头补航路经过。",
+          "nextSceneId": "route_notes_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把几页被水浸皱的单据重新按时辰摆开。",
+                "text": "我先把前后顺序理出来，免得后面有人问时大家说乱了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "去问跟船回来的另一个船工，轻船和重船今天反应是不是不一样。",
+          "nextSceneId": "route_notes_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你走去门边把另一个船工拦住，压低声音再问了一遍。",
+                "text": "咱们船装得重才真搁住，还是前面轻一点的船也已经擦过底？这两种差别很要紧。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "记下货主那句“不能让下一艘船照样撞上去”，提醒自己这事不只关一家。",
+          "nextSceneId": "route_notes_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你在纸页下方另起一行，把这句提醒郑重记上。",
+                "text": "我记住了。若真不是咱们一家倒霉，那就得赶快把情况送出去。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "在长辈处理赔付时，你准备把哪条线先理顺？"
+    },
+    {
+      "id": "route_notes_review",
+      "title": "灯位不对这句话",
+      "phase": "家中事故余波",
+      "location": "你自己的桌边",
+      "presentCharacters": [
+        "你",
+        "家中长辈",
+        "船工"
+      ],
+      "narration": [
+        "等前厅暂时安静一点，你把航路记录、货损草单和船工口供都搬到了自己桌边。纸上有些地方被水晕过，墨线发毛，你只能一边对照平时的航路习惯，一边凭记忆补足那些没写完整的时辰和转向。",
+        "越看越能看出不对。若只是船工失误，没理由不同船、不同装载的三条船都在差不多的位置往内侧偏。更重要的是，齐叔说“灯位不对”的时候不是发火，更像一个老跑水路的人突然发现熟悉的东西被人悄悄挪开。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "elder_aunt",
+          "speakerName": "大娘",
+          "actionBefore": "大娘从前头折回来，把一张盖了手印的交接纸放到你手边。",
+          "text": "等会儿你把这些送到承务所。先正常交过去，别一进门就抢着替他们断案。"
+        },
+        {
+          "speakerId": "boatman_old_qi",
+          "speakerName": "齐叔",
+          "actionBefore": "齐叔隔着半开的窗子又补了一句，像是怕你记漏。",
+          "text": "我看见那灯的时候心里就是一沉。不是离得远近一点的问题，是它不该站在那个地方。"
+        },
+        {
+          "speakerId": "elder_aunt",
+          "speakerName": "大娘",
+          "actionBefore": "大娘替你把外头风吹开的布包系紧。",
+          "text": "你只送记录，别替家里揽主意。真要查，也等承务所自己开口。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "把“灯位不对”单独夹进最上面，准备先交这页。",
+          "nextSceneId": "east_dock_to_office",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把那页单独折起，压在整叠记录最上面。",
+                "text": "我先把这句放在前头。就算承务所今天忙，也得先看见这个。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "把三条船不同吃水和反应的地方另写一页，免得对方只看成普通刮碰。",
+          "nextSceneId": "east_dock_to_office",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你换了张干净纸，把轻船和重船的差别重新抄清。",
+                "text": "若河底真有变化，这一页反而最能说明问题。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "再翻一遍家里旧航路图，带着它一起去承务所。",
+          "nextSceneId": "east_dock_to_office",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你从柜里抽出卷着边的旧图，在回鹭湾那段多看了两眼。",
+                "text": "图也带上。若今天真要对位置，光靠嘴说不够。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "把布包重新扎严，准备一路再听听外头是不是也有人在谈这场事故。",
+          "nextSceneId": "east_dock_to_office",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把布包扣到肩上，抬手又按了按里头的纸边。",
+                "text": "我路上再听一圈。若外面也在传，就更不像一家自己的麻烦。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "临出门前，你准备把哪份信息放到最前面？"
+    },
+    {
+      "id": "east_dock_to_office",
+      "title": "东门前的议论声",
+      "phase": "去往承务所",
+      "location": "东门外码头到承务所路上",
+      "presentCharacters": [
+        "你",
+        "码头船工",
+        "路人"
+      ],
+      "narration": [
+        "从家里出来往承务所走，东门附近比平时热闹得更杂。有人在抬木料，有人在拖着还没洗净泥痕的小船上岸，更多人只是站在路边压低声音谈白天那几趟倒霉的船。",
+        "你走得越近越听得明白，这事确实不只落在你们家头上。有人说同一段水今天已经连着刮了三艘船，也有人说回鹭湾最近的灯看着怪，只是大多数人说不出怪在哪。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "dock_worker",
+          "speakerName": "搬运船工",
+          "actionBefore": "一个正往肩上套绳带的船工和同伴说话，声音恰好飘进你耳朵里。",
+          "text": "要说是涨水带来的新坑，也不该连灯都看着不顺眼。"
+        },
+        {
+          "speakerId": "market_woman",
+          "speakerName": "挑担妇人",
+          "actionBefore": "路边挑担的妇人停了一下，跟另一个人接了句嘴。",
+          "text": "昨晚回来的人就说过了，回鹭湾那盏灯好像贴里头去了点。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "停一停，专门听搬运船工继续往下说什么。",
+          "nextSceneId": "commission_office_arrival",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你脚步慢下来，装作整理布包，实则把后半句话听了个完整。",
+                "text": "看来不只我们家盯上了灯位。承务所那边多半也已经收了别家的话。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "看一眼码头边停着的受损小船，记住刮痕方向。",
+          "nextSceneId": "commission_office_arrival",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你朝岸边偏了偏身，远远把那几道斜擦过去的痕迹记进脑子里。",
+                "text": "刮痕方向也往里偏。要是几条船都这样，问题多半是在同一条线。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "加快脚步，先把记录平安送进承务所再说。",
+          "nextSceneId": "commission_office_arrival",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把布包往肩上提紧，抬脚朝承务所门口快走过去。",
+                "text": "外头怎么传都不如先把正经记录交上去。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "留心东门附近的人流，确认今天来问这件事的并不只有船户。",
+          "nextSceneId": "commission_office_arrival",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你转过东门石阶时又朝四周看了一圈，把那些停步议论的人都记在眼里。",
+                "text": "连不跑船的人都开始议论了。若再拖一夜，出事的船只会更多。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "走到承务所前，你最在意哪一层信号？"
+    },
+    {
+      "id": "commission_office_arrival",
+      "title": "承务所门厅再见面",
+      "phase": "承务所会合",
+      "location": "承务所门厅",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "承务所书吏"
+      ],
+      "narration": [
+        "承务所里比外头安静得多，安静到来往的脚步声都被木地板放大了一层。你先在门厅边等书吏腾出手来，正把布包里的纸页按顺序理平，余光里便看见另一侧也站着几个人。",
+        "不是巧认错人。何炅和王鸥站在靠窗的位置，吴昕手里抱着新记册，像是本来就来听什么正式安排。第二章结束到现在已经过了几日，这还是你们第一次在承务所里这样正经地重新碰头。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕先一步看清你，眼睛微微睁大，又很快露出笑意。",
+          "text": "昭宁？你也是为了回鹭湾来的？"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥视线先落到你手臂上，确认没再吊着伤，神情才松一点。",
+          "text": "胳膊看着比前几天顺眼多了。没逞强吧？"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅往你这边走近两步，说话还是一贯平稳。",
+          "text": "家里那趟货的损失处理得怎么样？你今天带记录过来，应该是有新情况。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先回应他们，说明自己是替家里送记录来的。",
+          "nextSceneId": "commission_record_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把布包往身前托了托，先朝他们点了下头。",
+                "text": "嗯，家里那趟船今天也在回鹭湾出了事。长辈让我先把记录送来，别的还得等书吏登记。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先回答王鸥，说手臂已经恢复得差不多，不影响写记录和跑一趟。",
+          "nextSceneId": "commission_record_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬了抬手臂，动作比前几天自然得多。",
+                "text": "已经好多了，至少不耽误送东西。今天这趟更要紧，我就先过来了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先问吴昕，她今天怎么会在承务所，是不是也和这件委托有关。",
+          "nextSceneId": "commission_record_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看向抱着记册的吴昕，声音也不自觉放轻了些。",
+                "text": "你今天也在？是来听承务所的安排，还是已经跟这件事扯上了？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先告诉何炅，东门外已经有人在谈不止一艘船出事。",
+          "nextSceneId": "commission_record_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你往门外偏了下头，把刚才路上听见的议论先说给他听。",
+                "text": "外头已经有人在说今天不止一艘船刮底了。要是承务所还没合并这几份材料，现在大概也快了。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "久别重逢后，你先接哪一句？"
+    },
+    {
+      "id": "commission_record_handoff",
+      "title": "先把东西正常交上去",
+      "phase": "承务所会合",
+      "location": "承务所门厅柜台",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "承务所书吏"
+      ],
+      "narration": [
+        "你们没有堵在门口把话一下子说完。书吏那边终于腾出手来，你抱着布包过去登记来意，把家中带来的记录、货损草单和补写的那页航路说明一一放到柜台上，按承务所最正常的流程先做交接。",
+        "何炅他们没有抢着替你开口，只是在旁边等你把手续走完。这种不越俎代庖的安静，反而让你心里一下子踏实许多。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "office_clerk",
+          "speakerName": "书吏",
+          "actionBefore": "书吏用镇纸压住纸页，先扫了一遍落款和时辰。",
+          "text": "回鹭湾的材料今天已经收了三家，你这份也算进去。后头若要复核，可能还会再请你们家的人补口供。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅等书吏写完登记，才把问题接过去。",
+          "text": "三家都在今天？那就不太像零散的小意外了。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕抱着记册往前挪了半步，声音里有压不住的认真。",
+          "text": "我本来就是来了解第一次正式委托流程的，没想到一进门就撞上这件事。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "请书吏把你单独写出来的“灯位不对”那页也一并夹进正式材料里。",
+          "nextSceneId": "commission_reading_room",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把那张单独折起的页子摊开，又往书吏手边推了推。",
+                "text": "这页请一并收进去。船工反复强调灯位不对，我怕只写在页边会被当成顺口抱怨。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先问清楚，另外两家船户的情况是不是也和你们家一样都在同一段水出事。",
+          "nextSceneId": "commission_reading_room",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你等书吏写完这一笔，才把真正想问的话接上。",
+                "text": "另外两家也是在回鹭湾同一段水撞上的？若位置差不多，那问题可能就是同一个。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "告诉吴昕，你今天来得正好，也许能把第一次正式委托看得更完整。",
+          "nextSceneId": "commission_reading_room",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你侧过身看了眼吴昕，语气不由得柔和了一点。",
+                "text": "你今天来得倒巧。要是真立了委托，正好不是只听规矩，而是能从头看到底。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "把旧航路图一并拿出来，说明家里还带了能对照位置的东西。",
+          "nextSceneId": "commission_reading_room",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你从布包底下把卷着边的旧图抽出来，小心在柜台上摊开一角。",
+                "text": "我还带了家里的旧航路图。若等会儿真要比位置，这张也许用得上。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "交接手续做完后，你先把哪一步补全？"
+    },
+    {
+      "id": "commission_reading_room",
+      "title": "三家材料摊开以后",
+      "phase": "承务所会合",
+      "location": "承务所侧间阅档桌",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "承务所书吏"
+      ],
+      "narration": [
+        "书吏见三份材料都指向同一段河道，干脆把你们引到一旁的长桌前，让你们先按已有资料做初步核对。三家船户的时辰、装载和撞损描述一摊开，桌上立刻从“各自倒霉”的三件小事变成了一件完整得多的问题。",
+        "这下寒暄也终于能慢慢接回来了。第二章之后已经过去几日，彼此身上的小事和近况，反而在这种认真翻纸的间隙里显得格外清楚。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥接过你推过去的一页纸，视线先扫过字，又顺手看了眼你提笔时的手腕。",
+          "text": "字没抖，说明手臂真好得差不多了。家里的货损呢，长辈那边还撑得住吗？"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把三份材料按时辰排开，说话时却没把语气压得像审问。",
+          "text": "你先别急着替家里担责任。把你知道的水路经验说出来，就已经帮上大忙了。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把空白记册翻到新页，先郑重写下日期和委托地点。",
+          "text": "我今天本来就是来了解第一次正式委托怎么开始、怎么交接的。若承务所允许，我也想正式跟一次。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "ship_records_compared": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "先告诉他们，轻船和重船出事程度不同，这一点可能和河床变化有关。",
+          "nextSceneId": "commission_team_register",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把三份材料里写着装载和吃水的地方都点了出来。",
+                "text": "我先看见的是这个。轻船只是擦底，重船却真搁住了，像河底多出一道新东西，不像单纯被风推歪。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先回答王鸥，说明家里赔付由长辈处理，你只是把记录送来。",
+          "nextSceneId": "commission_team_register",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把手指从纸页边缘收回来，朝她轻轻摇了摇头。",
+                "text": "赔付还轮不到我做主，长辈在前头撑着。我今天就是把该送的都送来，也想弄清到底出了什么问题。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "对吴昕说，如果她真想跟，就别只当旁听，把记录也一起做起来。",
+          "nextSceneId": "commission_team_register",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把自己抄好的那页往吴昕手边挪了挪。",
+                "text": "既然都来了，就别只听流程。你把记录一起做起来，后面真到现场也更不容易慌。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "问何炅，承务所是不是已经打算把这三起事故并成一件委托处理。",
+          "nextSceneId": "commission_team_register",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬头看向何炅，把心里那句已经成形的话问了出来。",
+                "text": "三家材料都摆在这里了，承务所是不是已经准备把它当成同一件事来查？"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "三家材料摊开以后，你先把哪层信息说透？"
+    },
+    {
+      "id": "commission_team_register",
+      "title": "不是被带上，而是决定同行",
+      "phase": "承务所会合",
+      "location": "承务所侧间阅档桌",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "把三份材料看完以后，这件事已经不太可能只靠书面登记搁在那里。回鹭湾在入夜前还会继续走船，承务所若等到明天再派人，怕是下一趟夜船就要撞在同样的地方。",
+        "是否同行却没有人替你做主。何炅没有替你答应，王鸥也只是把外出风险讲清，吴昕则第一次在正式委托面前显得既谨慎又不愿退后。真正要不要一起去，是你自己此刻说出来的话。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把记册抱得更稳了一点，声音仍旧谨慎，却没有退缩。",
+          "text": "如果承务所准我跟，我想正式参加这次委托。不是只看一眼流程，是想把这件事做完。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把随身药包提了提，像是在提前替晚上的冷风和河水做准备。",
+          "text": "外头恐怕要跑一天，还可能留到夜里。昭宁，你若去，就按能长时间在河边忙活的准备来。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅没有立刻收纸，只把视线从三份材料移到你们三个人脸上。",
+          "text": "我会去。但谁同行、各自做什么，都得先说明白，不能把谁当顺路带上的。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "明确表示要去，因为你家的船正好能补上回鹭湾真实通航经验。",
+          "nextSceneId": "supply_room_prep",
+          "effect": {
+            "setFlags": {
+              "river_lights_commission_joined": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把旧航路图压到三份材料旁边，说话时语气反而比刚进门时稳了。",
+                "text": "我去。家里跑那段水的经验正好能补上你们现在缺的一块，光把记录送来还不够。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "表示要去，因为不能让今晚再有船照着错灯撞进去。",
+          "nextSceneId": "supply_room_prep",
+          "effect": {
+            "setFlags": {
+              "river_lights_commission_joined": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看了眼桌上那三份材料，目光又落回回鹭湾几个字上。",
+                "text": "我去。若今晚还有船照着那盏灯进湾，撞上的就不一定是谁家了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "表示要去，也想看看第一次正式和他们三个人同队会是什么样。",
+          "nextSceneId": "supply_room_prep",
+          "effect": {
+            "setFlags": {
+              "river_lights_commission_joined": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬眼看过何炅、王鸥和吴昕，像是终于把心里那一点犹豫放下。",
+                "text": "我去。前两次算是撞上，这次既然要认真做一件事，我也想真正和你们一起把它做完。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先提醒吴昕别把自己只当新人，再一并答应同行。",
+          "nextSceneId": "supply_room_prep",
+          "effect": {
+            "setFlags": {
+              "river_lights_commission_joined": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你先朝吴昕点了下头，随后把自己的那句答应也说得清清楚楚。",
+                "text": "你既然想正式跟，就别只把自己当新人。我也去，我们四个把这趟事从头走到尾。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "真正决定是否同行的时候，你怎么把自己的理由说出来？"
+    },
+    {
+      "id": "supply_room_prep",
+      "title": "出门前该带的东西",
+      "phase": "出城准备",
+      "location": "承务所物资间",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "决定同行以后，事情反而慢了下来。你们先去承务所物资间登记外出用品，把仓格里旧航路图、干粮、水袋、绳索、备用灯具、木炭笔和防潮纸一件件取出，再对着今晚可能拖到多晚重新盘算够不够。",
+        "王鸥没有只盯着药包，她还把能看水面流纹的显流药粉、处理油脂和河泥残留的小瓶也分门别类装好；吴昕则把基础定向星符和备用符纸逐张压平。何炅把天黑前后的行动安排只说到大框，不替任何人把每一步都定死。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把几个小纸包在桌上分成两列，一列给白天，一列给夜里。",
+          "text": "显流药粉、清创粉、干布、驱寒丸和落水后用的热散都带上。河边的麻烦不只是一道伤口。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕低头把符纸边角捋平，又把空白记册压进布套里。",
+          "text": "我先不带花哨的，只带最基础的定向和照明。真到现场，稳比快重要。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把一圈绳索绕好，抬手在桌面轻轻点了两下。",
+          "text": "天黑前先查清白天能查的，夜里若要留守，再一起商量站位。谁熟哪块，就让谁先拿主意。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "帮何炅把旧航路图和绳索整理好，顺便确认天黑前后的大致安排。",
+          "nextSceneId": "road_to_egret_bay",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你伸手接过图卷和一截粗绳，把它们并排放好。",
+                "text": "图和绳都交给我这边一起看。若真要夜里守，白天就得先把哪几处最危险想清楚。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "帮王鸥分装白天和夜里要用的药粉，顺便问她为什么连油脂处理也要带。",
+          "nextSceneId": "road_to_egret_bay",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把几个小纸包按她指的顺序摆开，忍不住多问了一句。",
+                "text": "连处理油脂的东西都带上？你是觉得现场除了人和水，还会留下别的手脚痕迹？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "帮吴昕把符纸和记册收好，顺便问她第一次正式委托现在是什么感觉。",
+          "nextSceneId": "road_to_egret_bay",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你替吴昕把快滑出的符纸压回布套里，语气比刚才轻松些。",
+                "text": "真要出城了，你现在心里怎么样？和在书院里准备考试的时候一样吗？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "把自己的航路记录、木炭笔和水袋单独再检查一遍，确保不会在路上掉链子。",
+          "nextSceneId": "road_to_egret_bay",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把布包里的纸页和木炭笔又摸了一遍，确认都在顺手的位置。",
+                "text": "我先把自己这份准备扎实。到了河边，能少翻一次包就少乱一回。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "出门前的准备里，你先把哪一块抓紧？"
+    },
+    {
+      "id": "road_to_egret_bay",
+      "title": "城门外的同行路",
+      "phase": "出城同行",
+      "location": "临川城外通往回鹭湾的土路",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "四个人出东门以后，路反而比承务所里宽松许多。车辙印里还积着前几天雨后的浅泥，远处偶尔能看见顺河回城的小船。回鹭湾离城不算远，却也正好够你们把白天查什么、夜里怎么办和彼此擅长什么都再说得细一点。",
+        "这一路上没有谁像先生一样连着讲。何炅只在必要处提纲，王鸥会自然接话把河边可能遇到的细节补足，吴昕的问题也越来越具体。轮到你时，大家听的不是客气，而是真把你的河运经验当成眼前最该用上的那一块。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕走在你身边半步的位置，终于把一路憋着的问题问出来。",
+          "text": "平时跑这段河的人，是怎么从水色、吃水和船身反应里看出前面安不安全的？"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅听到这里，略微放慢脚步，没有抢着替你回答。",
+          "text": "这题你来讲更合适。书上的说法和真正跑水路的感觉，常常差半步。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把水袋往肩后挪了挪，笑意很淡，却把气氛接得很自然。",
+          "text": "我也想听。每次别人说“看一眼就知道水不对”，我总想知道那一眼到底看见了什么。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "边走边和何炅核对回鹭湾平时的航线与天黑后的危险点。",
+          "nextSceneId": "road_with_he",
+          "effect": {
+            "setFlags": {
+              "road_companion_he": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你和何炅并肩走近一点，顺手把图卷抽出半截。",
+                "text": "那我先跟你对一下平时怎么走。白天还能靠岸形认路，天一黑，错一盏灯就足够把船头带歪。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "和王鸥聊河边常见的油脂、旧木料和船身擦痕，看看她会怎么记这些细节。",
+          "nextSceneId": "road_with_wang",
+          "effect": {
+            "setFlags": {
+              "road_companion_wang": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你放慢半步等王鸥跟上，主动把话题往现场残留物那边带。",
+                "text": "若岸边真有人动过航标，除了脚印，你最先会看什么？油脂、旧木头，还是绳索沾的东西？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "和吴昕聊第一次正式委托的紧张，顺便把看水色和吃水的方法慢慢讲给她听。",
+          "nextSceneId": "road_with_wu",
+          "effect": {
+            "setFlags": {
+              "road_companion_wu": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把步子放缓到能和吴昕说得更从容的速度。",
+                "text": "考试时错了能重写，河上错了就是整条船顶上去。你先别急，我把平时怎么看水一点点说给你听。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先留心前面回城的小船，想直接问问他们有没有经过回鹭湾。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "setFlags": {
+              "road_asked_worker_early": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手指了指前面靠岸歇脚的小船，脚步已经先偏了过去。",
+                "text": "前头那船像是刚从河上回来。我先去问问，他们今天也许正好看见了回鹭湾那一段。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "同行路上，你想先把哪一块交流说深一点？"
+    },
+    {
+      "id": "road_with_he",
+      "title": "和何炅对路线",
+      "phase": "出城同行",
+      "location": "通往回鹭湾的土路",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你和何炅把图卷摊到刚好能看清的大小，沿着土路边走边指回鹭湾那道弯。你说哪一段白天能看岸、哪一段夜里只能认灯，何炅则顺着你的习惯，把今晚若要留守时最该先守的几处点一一记住。",
+        "这不像第二章那种边走边随口聊天，更像真正把各自会的东西接到一起。何炅没有把你的话当成补充说明，而是直接拿它来改自己原本脑中的行动顺序。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把指尖压在图上那道弯的外侧，认认真真听完你每一句解释。",
+          "text": "那今晚真要留人，就不能只守灯，也得守你说的那条会把船头慢慢带歪的内侧水线。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥在旁边听了两句，顺手把图卷另一端按住，免得被风掀起。",
+          "text": "这样一来，若有人动手脚，也多半会挑既看得见灯、又看不太清岸的时辰。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "继续补充夜里最容易误认深水的角度。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你用手背在图上轻轻一划，划出船工最容易被带偏的那条假线。",
+                "text": "尤其这个角度，岸黑下来以后最会骗人。若灯也错了，船工几乎会本能地往里贴。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "告诉何炅，跑船的人会先看船身反应，再决定要不要怀疑灯。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把图收拢一点，换成更像船工口吻的说法。",
+                "text": "真在船上时，人不会第一反应就怪灯。往往是先觉得船身反应不对，才会回头去怀疑那盏灯是不是站偏了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问何炅，今晚若真要留守，他最担心哪一步失手。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把图卷重新系回绳扣，侧头多问了一句。",
+                "text": "要是今晚真得守到天黑，你最担心的是人没等到，还是等到了却来不及拦？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "把图卷收好，留意前面是不是有刚回城的船工可问。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把图卷扣回布包，目光已经转向前方路边歇着的小船。",
+                "text": "先说到这儿。前面那边像有刚回来的船，我想再听一句真正从河上回来的话。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "和何炅核对路线后，你还想再坐实哪一点？"
+    },
+    {
+      "id": "road_with_wang",
+      "title": "和王鸥看现场会留下什么",
+      "phase": "出城同行",
+      "location": "通往回鹭湾的土路",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你和王鸥把话题从河道本身，慢慢转到“人在河边做过什么会留下什么”。她不像在开药单，更像把自己平时观察环境的那套方式摊给你看：油脂会沾在哪，旧木头和新木头的味道怎么分，冷水里拖出来的绳子又会在手上留下什么样的磨痕。",
+        "这种交流意外地自然，像是原本就该在同一路上发生。她并没有把自己缩成“负责救人”的那一个人，而是把对白天调查同样有用的一块判断主动推到了你面前。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥抬手比了比一个拉绳的动作，语气并不急，却很具体。",
+          "text": "若有人反复在水边拖重东西，手上和袖口都会留下不太一样的痕。油脂、细铜锈、旧木屑，通常不是分开来的。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕在旁边听着，已经低头把那几个关键词记进本子里。",
+          "text": "原来不是发现一种痕迹就够，而是要看它们有没有串成同一件事。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "追问她，若浮灯和黑石标都被动过，岸边最可能先留下什么。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你顺着她的手势追了下去，把问题落到今晚最要紧的地方。",
+                "text": "那若他既动了灯又动了标，岸边最先会留下什么？绳痕、撬痕，还是他自己踩出来的路？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "说起家里跑船时常见的封箱油脂，和她核对是否能和河工用油区分开。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你回想起家里封箱时常见的那股味道，主动拿来做对照。",
+                "text": "船家自己封箱的油我认得一点。若现场真有别的油味，也许我能帮你先排掉一层。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问王鸥，若夜里有人落水，她准备怎么兼顾救人和不放跑线索。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你沉默了一下，还是把夜里最坏的可能先提了出来。",
+                "text": "要是夜里真有人落水，你会先救人还是先让别人把绳和现场看住？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "收住话题，转去看看前面靠岸的小船是不是能补两句新消息。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你往前方小船停着的地方看了一眼，脚下方向也跟着偏了过去。",
+                "text": "这些话我记住了。前面像有刚回来的船，我想先去问问他们今天看见了什么。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "和王鸥聊完现场残留后，你最想先坐实哪一类痕迹？"
+    },
+    {
+      "id": "road_with_wu",
+      "title": "和吴昕说第一次正式委托",
+      "phase": "出城同行",
+      "location": "通往回鹭湾的土路",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你和吴昕并肩走着，把“看水色”“看吃水”“看船身反应”这些平时在码头边一句带过的经验，拆成她能跟上的细节慢慢说。吴昕听得极认真，不像为了显得勤快而乱记，而是真的想把那些只在活水里才成立的判断学到手。",
+        "路讲到一半，她也把自己的紧张说了出来。第一次正式委托和书院里的测验完全不同，错了不是扣分，而可能真有人受伤、真有船要翻。你们两个都算第一次真正站到这种事里，只是各自紧张的方向不太一样。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把笔尖停在记册上方，难得直白地承认自己的心思。",
+          "text": "在书院里做题时，我总想着怎么写对。今天却一直在想，若我看错一步，会不会有人真的因为这一步出事。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅在前头听见这句，只回头看了你们一眼，没有把话头抢走。",
+          "text": "会紧张很正常。把紧张变成认真，总比装作自己什么都不怕要有用。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "告诉吴昕，第一次正式上手时最重要的是先把自己看见的说清楚。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把水色和船身反应的比喻换成更容易记住的话，再郑重补上一句。",
+                "text": "你不用一上来就把结论说满。先把自己真的看见的说清楚，很多错反而就不会从那一步开始。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "承认自己也紧张，只是更担心今晚还会不会有下一艘船照样撞进去。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你笑了一下，却没有把那份紧绷藏起来。",
+                "text": "我也紧张。只是我想的不是自己会不会说错，而是今晚会不会真有下一艘船照着那盏灯进湾。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "继续把“看水色”和“看吃水”的差别讲给她听，帮她先抓住最实用的两点。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手往河道方向比了比，把两个最容易混掉的判断拆开来讲。",
+                "text": "水色是在远处先提醒你，吃水是船真正踩上去以后才给你答案。记住这两个先后，你今晚就不会乱。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "停下这段教学，去前面靠岸的小船那边听几句真正跑回来的消息。",
+          "nextSceneId": "ferry_worker_stop",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看见前面有人在拴船，便把记册往吴昕怀里轻轻一推。",
+                "text": "先说到这里。前头像有刚回来的船工，我们去听听真正从河上回来的说法。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "和吴昕聊起第一次正式委托时，你想先把哪一层经验给到她？"
+    },
+    {
+      "id": "ferry_worker_stop",
+      "title": "路边歇船的人",
+      "phase": "出城同行",
+      "location": "回鹭湾外侧岔路边",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "返城船工"
+      ],
+      "narration": [
+        "靠近回鹭湾前的一处分岔小坡边，正有一条回城的小船在歇脚。船工把桨靠在树下，像是刚忙完一天，还没来得及把鞋上的泥拍干净。你们停下来问路，也顺势把今天的事故带进了新的口供里。",
+        "这类顺路问来的话未必能直接当结论，却往往最能补足“现场之外的人到底看见了什么”。"
+      ],
+      "conditionalDialogue": [
+        {
+          "speakerId": "boatman_return",
+          "speakerName": "返城船工",
+          "actionBefore": "那船工显然还记得你刚才先一步过来打招呼的样子，说起来便少了点拘谨。",
+          "text": "我今儿下午路过时就觉得那盏浮灯贴里了点，可我船轻，没敢往里试，只绕外头走了。",
+          "visibility": {
+            "flag": "road_asked_worker_early",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把刚才你路上讲的“先说看见的，再谈判断”记在心里，先替对方把话理顺。",
+          "text": "你先说自己实际看见了什么就好，浮灯、黑石标还是水面，都可以慢慢讲。",
+          "visibility": {
+            "flag": "road_companion_wu",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥顺着你们刚才聊过的方向，问得尤其具体。",
+          "text": "你靠岸的时候，附近有没有闻到不该在河边待很久的油味，或者看见有人拖过旧木料？",
+          "visibility": {
+            "flag": "road_companion_wang",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把问题压得很窄，像是完全顺着你刚才讲过的航线重点在问。",
+          "text": "你过弯时，若照正常路线看，那盏灯有没有把船头往内侧引的意思？",
+          "visibility": {
+            "flag": "road_companion_he",
+            "equals": true
+          }
+        }
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "boatman_return",
+          "speakerName": "返城船工",
+          "actionBefore": "那船工把脚边泥块踢开一点，回忆的时候还皱着眉。",
+          "text": "我没真进去试，但今天那段水看着不安生。外侧还好，里头那片颜色发滞，像是底下有东西把水托住了。"
+        },
+        {
+          "speakerId": "boatman_return",
+          "speakerName": "返城船工",
+          "actionBefore": "他想了想，又补了另一句。",
+          "text": "还有，芦苇那头下午像有小船靠过两回，不像打渔，停得鬼鬼祟祟的。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "追问他，浮灯到底是“贴里了点”还是已经把整条引导线带歪了。",
+          "nextSceneId": "egret_bay_overview",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你顺着他的说法再往下压一步，生怕含糊过去。",
+                "text": "你说它贴里，是近了一点，还是已经足够把整条线带歪？这差别很大。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问他，芦苇岸那边的小船看着像在上下人，还是像在拖什么重物。",
+          "nextSceneId": "egret_bay_overview",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把重心往前倾了一点，把另一个更要紧的疑点接上。",
+                "text": "那两回靠芦苇岸的小船，你觉得像是送人，还是像在拖什么沉东西？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先谢他提醒，再把“里头水色发滞”这句话记进本子里。",
+          "nextSceneId": "egret_bay_overview",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你点头道谢，顺手把这句最像现场感觉的话记了下来。",
+                "text": "多谢。这句“像底下有东西把水托住了”很有用，我记下了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "不再耽搁，先赶去回鹭湾把整体地形和正常路线看清。",
+          "nextSceneId": "egret_bay_overview",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你朝对方拱了下手，随后把布包重新背稳。",
+                "text": "够了，先到地方看一眼整体再说。若河道真变了，站在湾口比在路上猜强。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "路边得来的消息里，你最想先追哪一条？"
+    },
+    {
+      "id": "egret_bay_overview",
+      "title": "先看整段湾，再看单个点",
+      "phase": "白天调查",
+      "location": "回鹭湾湾口高处",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "走到回鹭湾外侧稍高一点的坡面，整段河道终于能一起落进眼里。外侧深水线还像从前那样稳，湾口也没有被彻底冲坏，真正显得别扭的是靠内的一段弧线：表面看着平，可水色、漂浮草屑和回旋的方向都不像一条一直安稳的旧水路。",
+        "你们没有急着冲下去对某一盏灯下结论，而是先把“正常路线应该怎么走”重新在脑子里立住。只有先记清楚该是什么样，后头的每一处错位才有意义。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅站在高处看了一阵，先把视线固定在外侧那条相对稳的水线上。",
+          "text": "整体轮廓还在，说明不是整个湾都变了。问题大概率集中在内侧和引导线之间。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥顺着风向闻了闻潮湿芦苇和河泥混在一起的味道。",
+          "text": "白天都能看出里头那段水不顺，到了夜里只会更容易把人骗过去。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把三家船户的大致时辰记在页边，准备等会儿一边走一边对照。",
+          "text": "那我们先把正常路线定出来，再去核对每条船是从哪里开始偏的。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先从自己熟悉的角度，把平时船该怎么从外侧走过去讲给他们听。",
+          "nextSceneId": "bay_records_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手在空中划出一条熟悉的弧线，把船头该怎么转讲得很细。",
+                "text": "正常路线应该先贴外侧，再慢慢顺着弯过去，绝不是一见灯就往里切。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先看内侧那段颜色发滞的水，记住它在整段湾里大概占了多宽。",
+          "nextSceneId": "bay_records_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你眯起眼睛对着内侧那片水看了又看，把宽窄先估进心里。",
+                "text": "这片不对劲的水不是一点点。若下面真起了浅脊，它已经宽到足够让重船吃亏。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先提醒大家，夜里看不见岸的时候，船工很容易只剩灯可认。",
+          "nextSceneId": "bay_records_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把视线从水面挪开，先把夜里最危险的那层说在前头。",
+                "text": "白天还好说，夜里岸一黑下来，很多人就只剩灯可以认。若灯再错，偏过去几乎是本能。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先让吴昕把这里看到的整体轮廓记下来，免得后面只顾着近处细节。",
+          "nextSceneId": "bay_records_review",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你指了指湾口和内外两条不同的水色，让吴昕先照着记。",
+                "text": "先把整体记住。后面我们再怎么分开看，也别忘了它在整段湾里是怎么摆着的。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "到了回鹭湾，你准备先把哪层“整体印象”立起来？"
+    },
+    {
+      "id": "bay_records_review",
+      "title": "三条船不是同一种撞法",
+      "phase": "白天调查",
+      "location": "回鹭湾湾口与旧系船石旁",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你们借着岸边旧系船石，把三家船户的材料和眼前河道一一对照。最早出事的是一条装得轻的杂货船，只是擦底；中间那条装木材的船更沉，已经有明显卡顿；到你们家这条货船时，吃水最深，才会在同一段位置真正搁上去。",
+        "这个差别让“纯粹看错灯”的解释站不住脚，也让“全是河底突然塌坏”听起来不够。更像是有一道新生的浅东西在内侧等着，但船还得先被带去那里，才会把轻重不同的三条船都依次送上去。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕一边抄一边自己先复述了一遍，像是在逼自己别跳结论。",
+          "text": "先轻擦，再重搁，同一段、不同程度。那就说明“去到那里”是一件事，“到了那里会不会真卡住”又是另一件事。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把材料重新按船只轻重排了一遍，赞同地点了点头。",
+          "text": "对。河道变化和引导线偏差，很可能是叠在一起的，不是二选一。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥抬眼看向内侧那段颜色更沉的水面。",
+          "text": "那我们下一步就别急着找人，先把“新东西”到底是不是河床变化坐实。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "明确提出自己的判断：轻船和重船结果不同，更像河床新起了浅脊。",
+          "nextSceneId": "bay_river_color",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把三份材料上写着吃水的地方依次点过，终于把心里那句判断说出来。",
+                "text": "若只看这三条船的差别，我更怀疑河床起了新浅脊。轻船擦过去，重船才真会坐上去。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "让吴昕把“先被带偏、再因轻重不同出事”的逻辑单独记成一条。",
+          "nextSceneId": "bay_river_color",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把吴昕的记册轻轻转了半圈，替她圈出最要紧的那一句。",
+                "text": "把这条单独写出来：问题不是只有撞上什么，而是船先被同一条错线带到了那里。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问何炅，若真是两层原因叠在一起，他想先查河床还是先查航标。",
+          "nextSceneId": "bay_river_color",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把一页纸合上，转而把顺序问题抛给何炅。",
+                "text": "若真是两件事叠一起，你想先查哪一头？河床还是航标？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "和王鸥确认，光凭眼前材料还不能直接认定人为，只能先去看水。",
+          "nextSceneId": "bay_river_color",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把材料收起一半，主动把语气往谨慎收了收。",
+                "text": "先别急着认定有人动手脚。就现在这些，还只够我们去看水、看底、看灯。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "比完三条船的记录后，你想先把哪一步推下去？"
+    },
+    {
+      "id": "bay_river_color",
+      "title": "先看水色，只能看到怀疑",
+      "phase": "白天调查",
+      "location": "回鹭湾内侧浅水边",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "走近内侧浅水后，那种“看着不顺”的感觉更明显了。水色不是彻底浑，而是像在某一条带状区域里发滞；漂浮的草屑也总在那附近慢半拍地回旋，好像底下有东西把流速顶得不均。",
+        "但也就到这里为止。只凭肉眼，你们最多只能说“疑似淤积”或者“底下水形不对”，还远远不到把新浅脊当成定论的时候。"
+      ],
+      "conditionalNarration": [
+        {
+          "text": "以你机关傀儡师的习惯来看，这片水面不像被单点绊了一下，更像是底下有一条横向起伏，把整片水纹托得不自然。",
+          "visibility": {
+            "playerProfession": "机关傀儡师"
+          }
+        },
+        {
+          "text": "以你炼丹师平时看药液流层的经验，这里水色混得不匀，像不同深浅的流层叠到了一起。",
+          "visibility": {
+            "playerProfession": "炼丹师"
+          }
+        },
+        {
+          "text": "以你潜行修常年观察水面与落脚点的直觉，这地方最危险的不是看见障碍，而是看不见它时会误把它当安全水面。",
+          "visibility": {
+            "playerProfession": "潜行修"
+          }
+        }
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥半蹲在岸边，看了一会儿漂浮草屑转圈的样子。",
+          "text": "肉眼能看出水不顺，却还不足以说明它到底是坑、脊，还是只是雨后暂时淤了一层。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅抬头往上游看了一眼，又把视线收回来。",
+          "text": "先把怀疑记着，不要急着把怀疑写成答案。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "把这片“发滞”的带状水色记下来，先保留成疑似淤积。",
+          "nextSceneId": "bay_flow_powder",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你用木炭笔在纸上画了条窄窄的带状区域，只写下最保守的词。",
+                "text": "先记成疑似淤积。它不对，但还不够我们现在就说河底一定起了脊。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "问王鸥，显流药粉能不能把这片不自然的流纹再看清一点。",
+          "nextSceneId": "bay_flow_powder",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你盯着那片慢半拍的草屑回旋，又转头问王鸥。",
+                "text": "你带了显流药粉，对吧？光看还不够，我想把它底下的走向再看清一层。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先提醒吴昕，这一步只能记观察，不要在本子上先写“新浅脊”。",
+          "nextSceneId": "bay_flow_powder",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你按住吴昕准备落笔的那一行，低声提醒她。",
+                "text": "先写水色、草屑和回旋，别急着写“浅脊”。还差一步。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "站远一点再看一次，确认这不是自己靠得太近才看花了。",
+          "nextSceneId": "bay_flow_powder",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你后退两步，又从另一个角度把那片水色重新看了一遍。",
+                "text": "不是近处才显得乱，站远了还是一样。问题确实在这儿。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "第一轮看水以后，你准备怎么处理这份“还不能下结论”的怀疑？"
+    },
+    {
+      "id": "bay_flow_powder",
+      "title": "显流药粉把水纹托出来",
+      "phase": "白天调查",
+      "location": "回鹭湾内侧浅水边",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "王鸥从纸包里捏出一小撮显流药粉，顺着风口轻轻撒进水面。细粉先像普通灰尘一样散开，紧接着便沿着水纹被拉成几道颜色略深的细线。那几道线在外侧走得还算顺，一接近内侧那片发滞区域，便明显被托得抬高，又在尾端往两边分。",
+        "这一步终于让“水不对”从感觉变成了更可以复述的异常：底下确实有东西在改流。但那东西到底有多宽、多高，仍需要更直接的验证。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥盯着那几道被托起的细线，语气比刚才更笃定，却依旧留着分寸。",
+          "text": "不是单纯一团浑水。流纹在这儿被抬起来了，底下确实有新形成的东西。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕飞快记下显流后的变化，写字速度明显比之前稳。",
+          "text": "所以现在可以写“流纹异常”，但还不能直接写“浅脊已证实”。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把探杆从绳套里解下来，顺势接过下一步。",
+          "text": "对。接下来换更笨一点的办法，把它摸出来。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "接过探杆，亲自去试一试那片被托起的流纹下面是不是有硬起的浅东西。",
+          "nextSceneId": "bay_probe_silt",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把探杆握到手里，在岸边先试了试长度和吃力点。",
+                "text": "光看已经够了，下一步得摸。若下面真起了脊，探杆会告诉我们它从哪儿开始。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先沿着药粉拉出的线比一比宽窄，估摸那片异常区域到底有多长。",
+          "nextSceneId": "bay_probe_silt",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你顺着那几道被托起的粉线缓缓走了两步，把范围先记进脑子里。",
+                "text": "至少先估个大概。等会儿探杆一落下去，我们才知道自己是在摸头、摸腰，还是摸尾。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "让吴昕先把显流后的线条位置固定下来，免得后面说不清刚才看见了什么。",
+          "nextSceneId": "bay_probe_silt",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你示意吴昕先别急着跟上，把药粉线条的位置画下来。",
+                "text": "先把刚才那几道线记清。我们后面就算摸出别的，也得能对得上这一层。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "提醒何炅探杆别一下子插太深，先找边，再找最高点。",
+          "nextSceneId": "bay_probe_silt",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手按了按何炅正要往里踏出的那一步，先把顺序说在前头。",
+                "text": "别一上来就插最深。先摸边，再摸最高点，不然会把它的形状全搅乱。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "显流药粉把异常托出来后，你准备怎么把它再坐实一步？"
+    },
+    {
+      "id": "bay_probe_silt",
+      "title": "探杆摸出来的新浅脊",
+      "phase": "白天调查",
+      "location": "回鹭湾内侧浅水边",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "探杆一点点落进水里，先是顺，再是涩，最后在某一段位置明显提早碰到底。你们顺着显流药粉刚才拉出的线试了几回，终于摸出一条并不旧、却已经足以妨碍重船的浅脊。岸边更高一点的位置，还能看出最近涨落水留下的新水痕，正好和这条浅脊的高度对得上。",
+        "到这一步，河床变化终于从怀疑变成了事实。它解释了为什么轻船只是擦底、重船却会真正搁住，也解释了为什么最近几场雨以后，原本熟悉的回鹭湾会突然变得不认人。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把探杆再往旁边试了一次，确认不是单点碰到底以后，才松开一口气。",
+          "text": "是新起的浅脊，而且宽得足够让重船吃亏。第一层原因算是坐实了。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥抬手指了指岸边新水痕和水里那条被摸出来的位置。",
+          "text": "涨水退得急，泥沙就在这儿堆起来了。可光有这条浅脊，还不至于让那么多船同样往里偏。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把“新浅脊”三个字终于写下去，落笔时比前面所有字都稳。",
+          "text": "那第二层就得回到航标。到底是哪一处，或者哪几处，把船带到了这里。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "silt_ridge_confirmed": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "先去看白桩，确认最上游那一点有没有先被动过。",
+          "nextSceneId": "bay_white_stake",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把探杆交回去，抬头先望向更上游的白桩。",
+                "text": "既然浅脊是真的，那就回头找是谁把船带过来的。先看最上游那一点。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "提醒大家记住这条浅脊的具体位置，免得后面只顾着追人忘了危险还在。",
+          "nextSceneId": "bay_white_stake",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你回头又看了一眼那片不自然的水色，把位置郑重记在心里。",
+                "text": "这条浅脊自己就够害人了。后面就算追到谁动了航标，也别忘了它还躺在这儿。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "问何炅，若航标真被人改过，他觉得最先露出旧痕的会是哪一处。",
+          "nextSceneId": "bay_white_stake",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把目光从浅水收回来，转向另一层更难抓的线索。",
+                "text": "要是有人真动过标，你觉得最先露出旧痕的会是白桩、浮灯，还是黑石标？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "让吴昕把“浅脊已证实，但仍不足以独立解释偏航”单独记成一条。",
+          "nextSceneId": "bay_white_stake",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你指了指吴昕已经写满一半的页子，再补上一句。",
+                "text": "把这句单独记：浅脊解释出事程度，不解释为什么几条船都会先偏过去。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "浅脊确认以后，你准备怎么把调查转回航标？"
+    },
+    {
+      "id": "bay_white_stake",
+      "title": "先看白桩有没有说谎",
+      "phase": "白天调查",
+      "location": "回鹭湾上游白桩旁",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "白桩在上游的位置看着最不起眼，也最容易被人忽略成“反正只是起头那一点”。可真正走船的人都知道，起头那一点最能决定船工第一眼会不会把方向认偏。你们靠近以后，很快发现桩身本身没断，但木脚周围的新泥和旧压痕并不完全重合。",
+        "这还不足以说明有人整根拔起过它，却已经说明白桩最近受过不太自然的外力。至少它不是安安稳稳在原位站了一整个雨季。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅蹲下去看桩脚泥色，指尖顺着旧压痕慢慢绕了一圈。",
+          "text": "旧痕和现在的位置不完全贴合。不是大挪，但也不像没动过。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥用细枝拨了拨桩脚边的新泥，皱眉看了看颜色。",
+          "text": "这圈新泥比周边更实，像是有人动完以后又刻意把它踩紧过。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "记下白桩不是主因，却像是整条错线的起点之一。",
+          "nextSceneId": "bay_float_lamp",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看了看白桩与内侧水线之间的角度，把这一步先收进心里。",
+                "text": "它未必是最要命的那一处，但若它先偏了半步，后面那盏灯就更容易把人带进去。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "提醒大家别在白桩这里就把结论说满，还得去看湾心浮灯。",
+          "nextSceneId": "bay_float_lamp",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你直起身，把视线转向更下游那盏真正会引船的浮灯。",
+                "text": "白桩只够说明起点也有问题，真正会把船头带过去的，还得看浮灯。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "让吴昕把白桩的旧痕和新泥分开记，不要混成一句“被动过”。",
+          "nextSceneId": "bay_float_lamp",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你按住吴昕笔尖，替她把记录拆得更细。",
+                "text": "先分开写：旧痕不合、桩脚新泥被踩实。等看完后两处，再决定能不能合起来说“被动过”。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "和何炅确认，这种幅度不大的偏移在夜里反而最难察觉。",
+          "nextSceneId": "bay_float_lamp",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你绕着白桩站到船工平时更可能看见它的角度，再比了一眼。",
+                "text": "白天还看得出来，夜里这种半步最会骗人。要不是老船工，总有人会觉得只是自己看岔了。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "看完白桩以后，你准备带着哪种判断去看浮灯？"
+    },
+    {
+      "id": "bay_float_lamp",
+      "title": "湾心浮灯的绳结",
+      "phase": "白天调查",
+      "location": "回鹭湾湾心浮灯旁",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "靠近湾心浮灯以后，最先刺眼的不是灯罩，而是系绳。粗绳上有一截颜色明显更新，重打的结也比周边其余结法短促得多，像是有人拆开以后特地把灯往某个方向挪近，再急着重新固定。",
+        "这一次，怀疑终于不再只是怀疑。水流自己能把灯拽偏，却很难把绳结重打成这种样子。浮灯的错位开始显出人的手。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅托起那截粗绳，用指腹捻过新旧绳痕交界的地方。",
+          "text": "拆过，再打过，而且留短了一截。若这是维护，不会做得这么偷偷摸摸。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥沿着灯座边缘看了一圈，把目光停在一片发暗的污痕上。",
+          "text": "灯座边有油脂，不多，但不像河水自己蹭上来的。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "float_lamp_tampering_confirmed": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "凑近绳结细看，确认这绝不是被水流缠乱后自己回成的形状。",
+          "nextSceneId": "bay_black_marker",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你伸手在不妨碍原样的位置轻轻比了一下绳结松紧。",
+                "text": "这种收法太刻意了。不是冲乱了再随手绑回去，是有人知道自己要把它往哪里挪。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "顺着王鸥提到的油脂继续看，怀疑这一步和岸边别的动作连在一起。",
+          "nextSceneId": "bay_black_marker",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你沿着她视线看向灯座边缘那点发暗的痕，心里多了一层联想。",
+                "text": "若只有改灯位，不一定会留下这种油。除非他后来还要去碰别的更沉、更费力的东西。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提醒吴昕把“重打绳结”和“缩短留绳”分成两项单独记。",
+          "nextSceneId": "bay_black_marker",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你侧身看了眼吴昕的本子，把记录拆得更细。",
+                "text": "别只写一条“浮灯被动过”。重打绳结是一件事，故意留短又是另一件事。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先把这一步定成“人为”，再去看黑石标是不是也一起出了问题。",
+          "nextSceneId": "bay_black_marker",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把视线从灯移开，直接往更下游的黑石标望去。",
+                "text": "浮灯这边已经够说明有人动过手。现在只差看黑石标是不是也被他一起改了。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "面对浮灯这一步明显的人为痕迹，你最想先坐实哪一点？"
+    },
+    {
+      "id": "bay_black_marker",
+      "title": "黑石标背面的油与锈",
+      "phase": "白天调查",
+      "location": "回鹭湾下游黑石标旁",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "黑石标的正面远看还算平常，真正不对劲的是背面和底座转角处。那里残着一层发暗的油脂，边缘还混着细细的旧铜锈和木屑，像是有人先碰过并不轻的旧金属件，再回头来拧这块标。",
+        "和浮灯比起来，黑石标更像在告诉你：改动航标这件事也许根本不是目的，而是某个更隐蔽行动的一部分。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥用布角擦下极薄的一层油，又在指腹间轻轻捻开。",
+          "text": "味道偏像河工常用的防水油，里面还混着旧锈，不像普通船家封箱或补桨时会留下的东西。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅顺手试了试标片角度，又对了一眼底座边缘的旧压痕。",
+          "text": "角度也和旧痕不合。黑石标不仅被碰过，还被人调到了更会把船往里引的方向。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把“油脂”“铜锈”“木屑”三个词并排写下，写完抬头看你们。",
+          "text": "这三样凑在一起，就不像只为改一块标了。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "承认自己也开始怀疑，动航标的人手里还另有一件更旧、更沉的东西要弄。",
+          "nextSceneId": "bay_marker_alignment",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你盯着那点细锈看了片刻，终于把第二层怀疑也说出来。",
+                "text": "若只想让船出事，不一定会沾上这些。更像他先忙别的，再顺手把航标改成对自己有利的样子。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先不把“别的东西”说死，只确认黑石标和浮灯都已有人为痕迹。",
+          "nextSceneId": "bay_marker_alignment",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把推到嘴边的猜测又压住半分，先保留最稳的一层。",
+                "text": "先记住现在能坐实的：浮灯有人动过，黑石标也有人动过。至于他到底还碰了什么，等会儿再追。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "请吴昕下一步把白桩、浮灯和黑石标三点重新定下来，别只凭直觉说错位。",
+          "nextSceneId": "bay_marker_alignment",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你转向吴昕，依次点了点上游白桩、湾心浮灯和眼前的黑石标。",
+                "text": "你来重新定一下这三点。只要它们不再成正常线，船工今天就不是找借口。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先比较旧压痕和现在角度，再确认这不是黑石标自己松动。",
+          "nextSceneId": "bay_marker_alignment",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你蹲到旧压痕边，比着现在的角度看了两回。",
+                "text": "就算它会松，也不会正好松到这种方向。这个角度太像人有意为之。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "黑石标也露出问题后，你最想先把哪一步做实？"
+    },
+    {
+      "id": "bay_marker_alignment",
+      "title": "三点不再成原来的线",
+      "phase": "白天调查",
+      "location": "回鹭湾白桩、浮灯与黑石标之间",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "吴昕没有一次把符纸全抛出去，而是按你们刚才已经确认过的三处位置，先定白桩，再定浮灯，最后定黑石标。微亮的标记一枚一枚落定以后，三点之间那条本该给船工看的引导线终于清清楚楚地显出来：它歪了，而且歪向的正是那道新起的浅脊。",
+        "到这一步，三件事终于首尾相接。河床变化是真的，航标错位也是真的，而航标并不是被水自己冲成这样的。接下来要追的，只剩那个把它们改成这样的人到底在芦苇岸边做什么。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把最后一张小符按亮，退后一步重新看那三点连成的线。",
+          "text": "若照现在这条线走，船头会慢慢往里切。船工没有看错，是线本身已经不对了。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅顺着那条歪掉的线望向芦苇更密的那一侧，眼神沉了沉。",
+          "text": "航标是被用来遮另一件事的。现在该去找那件事本身。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把刚擦下来的那点油脂重新封进纸角里，显然准备当成后面的对照。",
+          "text": "芦苇岸那边若真有人反复动手，脚印、拖痕、旧木屑和锈味总会留下些什么。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "marker_alignment_confirmed": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "和吴昕一起沿着这条错线去追，看她记录、你认河边路。",
+          "nextSceneId": "reeds_first_tracks",
+          "effect": {
+            "setFlags": {
+              "day_partner_wu": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看了眼吴昕本子上刚定出的三点，主动把她往芦苇岸那边带。",
+                "text": "你跟我走。你记线，我认岸边哪条小路像是常被人踩出来的。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "和王鸥一起顺着油脂、锈味和木屑去找，看残留物会不会先带路。",
+          "nextSceneId": "reeds_first_tracks",
+          "effect": {
+            "setFlags": {
+              "day_partner_wang": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你朝王鸥偏了偏头，把最像“会留下痕迹”的那条路接了过去。",
+                "text": "我跟你查残留。若他真在岸边反复忙活，那些油和锈味比脚印更不容易骗人。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "和何炅一起去看岸边有没有固定重物或挂滑轮的地方。",
+          "nextSceneId": "reeds_first_tracks",
+          "effect": {
+            "setFlags": {
+              "day_partner_he": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把视线从错线收回来，转而看向更适合固定绳索的那片岸。",
+                "text": "我跟你看结构。若他不是临时乱碰，而是在这里反复动手，总得有地方挂绳、借力。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先自己沿岸边去问熟悉这片水的人，看芦苇岸最近是不是总有小船偷靠。",
+          "nextSceneId": "reeds_first_tracks",
+          "effect": {
+            "setFlags": {
+              "day_partner_solo": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把布包重新背紧，决定先走最像船家会去问的那条路。",
+                "text": "我先沿岸问一圈。若这边最近真老有小船鬼鬼祟祟靠岸，附近的人不会一点印象都没有。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "航标三点错位坐实后，你想先从哪种方式追进芦苇岸？"
+    },
+    {
+      "id": "reeds_first_tracks",
+      "title": "芦苇岸先露出来的是脚和船",
+      "phase": "白天调查",
+      "location": "回鹭湾芦苇岸外侧",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "芦苇岸外侧比远看更乱一些。泥地上有被反复踩实又被新泥半盖住的脚印，小船拖上拖下留下的擦痕也不是一回两回。再往里一点，地上散着几片旧木屑，混在芦叶里不显眼，却明显不是今早才新折下来的颜色。",
+        "这些痕迹还不足以一下子说明“秘密打捞旧货驳”，但至少已经把调查从“也许有人动过航标”推进到“这里确实有人反复做过不想让外人看见的事”。"
+      ],
+      "conditionalDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕一边照着你刚才指的路认脚印深浅，一边把最容易混掉的痕迹分开记。",
+          "text": "脚印有新有旧，小船拖痕却是顺着同一条坡下去的，像是总往同一个入水点走。",
+          "visibility": {
+            "flag": "day_partner_wu",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥捡起一片旧木屑在鼻尖前停了一下，又看了看边缘的磨损。",
+          "text": "这不是新木，也不像船边随便蹭落的。更像泡过水又晒过几回的旧板件。",
+          "visibility": {
+            "flag": "day_partner_wang",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅沿着坡面往下看，视线很快落在几道更深的压痕上。",
+          "text": "这几道力不是人徒手拖个箱子能留下的，像是借了轮或者绳。继续往里看。"
+          ,
+          "visibility": {
+            "flag": "day_partner_he",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "fisher_old_woman",
+          "speakerName": "老渔妇",
+          "actionBefore": "你刚问过的老渔妇隔着芦苇朝这边扬声补了一句。",
+          "text": "最近傍晚总有条小船来这儿，不打鱼，也不叫人，看着就不像干光明事的。",
+          "visibility": {
+            "flag": "day_partner_solo",
+            "equals": true
+          }
+        }
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅弯下身比了比小船拖痕宽窄，没急着下结论。",
+          "text": "先是船，再是人。至少说明来的人不是站在岸上随便碰一下航标就走。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥用树枝拨开浅泥，露出下面更旧一点的压实层。",
+          "text": "脚印和拖痕叠了不止一次，说明这里不是临时起意，来回有一阵了。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "salvage_site_found": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "先提出一个保守方向：也许是有人在这儿偷卸旧货，不一定已经能说成打捞。",
+          "nextSceneId": "reeds_rope_entry",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看着那些脚印和拖痕，先把更保守的可能摆出来。",
+                "text": "先别把话说死。也许只是有人在这儿偷着卸旧货、藏东西，不一定已经能说是打捞。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "提出另一种方向：这些旧木屑和反复拖痕，更像在折腾一件沉水里的旧物。",
+          "nextSceneId": "reeds_rope_entry",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你捡起那片旧木屑转了转，终于把更冒险的怀疑说出口。",
+                "text": "可这些木屑太旧了。若岸边总在拖同一件泡过水的旧东西，那就更像是在折腾水里的老物件。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提醒大家，先沿着拖痕和更深的压痕往里走，再决定是哪一种可能。",
+          "nextSceneId": "reeds_rope_entry",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你压住立刻下结论的冲动，抬手往更里面指了指。",
+                "text": "顺着拖痕往里看。只要后头真有借力点或入水绳，我们自然知道这是偷卸还是打捞。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "让吴昕把脚印、船拖痕和旧木屑分成三类记下，别混成一句模糊描述。",
+          "nextSceneId": "reeds_rope_entry",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把吴昕的本子转过来，干脆替她先分了三行。",
+                "text": "先分开写。脚印是一层，拖痕是一层，旧木屑又是一层。后面才能知道哪一层最像真相。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "芦苇岸刚露出第一层痕迹后，你准备怎么继续追？"
+    },
+    {
+      "id": "reeds_rope_entry",
+      "title": "滑轮压痕和入水绳",
+      "phase": "白天调查",
+      "location": "回鹭湾芦苇岸深处",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "再往里走，真正把两种可能分开的东西终于出现了。泥地上有两道更圆、更深的压痕，像滑轮或借力木架长时间压出来的；芦苇根部还缠着几丝被水磨毛的粗绳纤维，顺着找下去，果然在更隐蔽的入水点摸到一截刻意压在淤泥底下的绳索。",
+        "绳索往水下延去，拉一拉便有沉重迟滞的回力，不像拴小船，也不像临时系货。旧木屑、油脂和细铜锈在这里终于能串成同一条行为链：有人一直在借着错位航标掩护，偷偷从水下拖取某件旧金属和木件混在一起的沉物。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把那截粗绳从泥里缓缓提起一点，又立刻放回去避免惊动更多痕迹。",
+          "text": "不是卸货，也不是打渔。下面连着的东西很沉，而且来的人明显熟悉怎么借力。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥用布角包起几片旧木屑和锈粉，连同先前的油脂一起放好。",
+          "text": "旧木、铜锈、防水油和反复磨绳的痕迹都凑齐了。像沉过水的旧货驳，或者至少像某种旧船件。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕盯着入水点那截绳，先把话说得很慢，像在一层层确认自己没有越界。",
+          "text": "所以他不是为了害船才动标，而是为了不让别人靠近、也不让正常船工看出这里在打捞什么。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "underwater_rope_found": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "点头认同：下面多半连着旧货驳或旧船件，但现在先别惊动，等人晚上回来。",
+          "nextSceneId": "dusk_riverbank_wait",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把手从绳上收开，生怕多拉一下就把整件事提前惊散。",
+                "text": "下面多半真连着旧船上的东西。可现在动它只会把人惊跑，不如等他晚上自己回来。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "提出判断：他改航标是为了让人别靠近这片危险水，也顺便替自己的打捞遮眼。",
+          "nextSceneId": "dusk_riverbank_wait",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你回头望了一眼那条被错位航标带向这里的线，终于把前后串了起来。",
+                "text": "他不是单纯想害人，而是想把正常船都吓离这边，再把自己的活藏在这条错线上。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提醒大家，今晚他很可能回来继续收绳或起货，因为白天已经连出三起事故。",
+          "nextSceneId": "dusk_riverbank_wait",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看着那截被重新压回泥里的绳子，开始把目光往天色上移。",
+                "text": "连着出三起事，他若真想把痕迹抹平，今晚反而更可能回来。不是收绳，就是赶着把下面的东西再挪一回。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "让吴昕记下两个被排除的方向：不是单纯看错航标，也不是普通偷卸货。",
+          "nextSceneId": "dusk_riverbank_wait",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看向吴昕，先把被排掉的两条路说得很清楚。",
+                "text": "记下来：一，不是普通看错灯；二，不是岸边随手偷卸货。后面的判断，都是在这两条之外。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "发现入水绳以后，你准备怎么把白天调查收束到夜里的行动上？"
+    },
+    {
+      "id": "dusk_riverbank_wait",
+      "title": "先找能坐下来的安全地",
+      "phase": "傍晚等待",
+      "location": "回鹭湾外侧较高的干地",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "离开芦苇岸以后，你们没有立刻扑到夜守的紧张里去，而是先在外侧较高的一片干地停下。这里既能看见回鹭湾的大致轮廓，又不至于离隐蔽入水点太近，正适合把白天查到的东西整理一遍，也给走了一整天的腿脚一点喘气的时间。",
+        "天色还没真正暗下来，最适合做的不是逞强，而是把后面的风险想在前头。你们把记录摊开、把水袋和干粮分一分，谁也没把“休息一下”当成偷懒。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥先摸了摸每个人袖口有没有被水汽打透，又把干布和驱寒丸放到伸手就能取到的位置。",
+          "text": "先坐下，喝两口水。真要守到夜里，现在多撑着只会后面动作发僵。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕抱着记册坐下，像终于从白天那股绷劲里稍微松开一点。",
+          "text": "书院里从来不会考“等天黑”这种题。原来真正的委托，很多时候不是一直在动，而是得在该等的时候稳稳等住。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把水袋递过来，自己却没急着先喝。",
+          "text": "先把白天那条线重新捋一遍。等会儿真讨论去留，谁都能说得明白自己为什么这么想。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先和大家一起把白天记录重新顺一遍，确认没有跳步和漏项。",
+          "nextSceneId": "dusk_stay_or_return",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把自己那份记录展开，先把白天的顺序从头又说了一遍。",
+                "text": "先顺记录。只要我们自己没跳步，等会儿不管是留守还是回城，都知道自己凭的是什么。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先问吴昕，她现在觉得第一次正式委托和在书院想象的最大差别是什么。",
+          "nextSceneId": "dusk_stay_or_return",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把水袋递给吴昕，顺势把气氛往轻一点的方向带了带。",
+                "text": "到现在为止，和你原先想的最不一样的是哪一块？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先和王鸥确认夜里若有人落水、受凉或磨伤，该把哪些东西放在最顺手的位置。",
+          "nextSceneId": "dusk_stay_or_return",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看了一眼她已经摊开的药包，主动先把夜里的底线问清楚。",
+                "text": "若夜里真有人掉进水里，最先要拿到手的是什么？我想提前记住。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先看着天色和水面，琢磨对方今晚为什么很可能回来而不是就此收手。",
+          "nextSceneId": "dusk_stay_or_return",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬头看了看还没完全沉下去的天光，又望向那条被芦苇遮住的入水点。",
+                "text": "我想先把“他今晚为什么会回来”想透。只要这一步站得住，留守才不是赌。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "傍晚暂时停下来后，你想先把哪一块理顺？"
+    },
+    {
+      "id": "dusk_stay_or_return",
+      "title": "要不要今晚就守在这里",
+      "phase": "傍晚等待",
+      "location": "回鹭湾外侧较高的干地",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "把白天的线索重新捋完以后，真正的分歧并不是“真相是什么”，而是“今晚是不是要留下来”。若现在回承务所，再带人和船回来，稳妥归稳妥，却很可能错过来人继续拉绳或挪标的时机；若留下，就得自己承担夜里河边一切突然升级的风险。",
+        "何炅没有独自下决定，王鸥也先说风险后说意见，吴昕虽是第一次正式委托，却并没有躲在“听安排”后面。轮到你时，大家都在等你的河运判断。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把手里的树枝折成两段，一段放在“今晚留守”，一段放在“先回城再报”。",
+          "text": "两条路都能走，但代价不同。昭宁，这段河你最熟，你先说你为什么倾向哪边。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把药包合上，又看了一眼你们四个人的体力状态。",
+          "text": "留守最大的问题不是冷，是一旦来船和来人撞在一起，我们得同时顾两头。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕攥着记册边角，话虽轻，却没退回去。",
+          "text": "若现在回去，我怕书面报告还没送到，晚船已经先照着错灯进来了。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "主张留守，因为那截绳还压在原处，干这件事的人不会安心拖到明天。",
+          "nextSceneId": "dusk_meal_and_roles",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把树枝轻轻拨向“今晚留守”那一边，理由说得很稳。",
+                "text": "我倾向今晚留。绳还压在原处，他若真靠这个吃饭或图利，不会安心把它晾到明天。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "主张留守，因为连着出三起事故后，对方反而最可能急着回来抹痕迹。",
+          "nextSceneId": "dusk_meal_and_roles",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你望向已经开始暗下来的水面，把另一层时机问题说清楚。",
+                "text": "今天连着出三起事，他若知道风声起来了，最可能做的不是躲，而是今晚抢着回来把痕迹收一收。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "主张留守，因为夜里一旦再有船来，只有现场的人来得及第一时间改正方向。",
+          "nextSceneId": "dusk_meal_and_roles",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你没有只盯着来人，而是把来船这一头也一并算进去。",
+                "text": "就算等不到他，只要夜里再有船来，现场也只有我们能第一时间把方向喊回来。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先把风险说透，再表示仍倾向留守，但必须提前分好站位和应急顺序。",
+          "nextSceneId": "dusk_meal_and_roles",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手指了指河、芦苇岸和可能来船的方向，把最坏情形一一摆开。",
+                "text": "我还是倾向留，但不是硬守。得先把站位、喊船、看绳、照明和接应顺序都想好，不然就是拿自己去赌。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "讨论去留时，你准备用什么理由说服大家今晚守在这里？"
+    },
+    {
+      "id": "dusk_meal_and_roles",
+      "title": "干粮、站位和一点点放松",
+      "phase": "傍晚等待",
+      "location": "回鹭湾外侧较高的干地",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "留守的决定一定下来，气氛反而松了一丝。你们把干粮分开，轮流喝水，趁天还亮着把夜里的用品重新排顺手：灯具和长杆放在更靠河的一侧，干布、药包和热散放在更稳的岸段，符纸压在不会受潮的位置。",
+        "短暂的放松没有把案件晾在一边，反而让四个人第一次真正像一队同行的人。有人补路线，有人补风险，有人把本来只准备自己记住的细节直接说给其他人听。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕咬了一口已经凉下来的干粮，停了一下才笑出来。",
+          "text": "原来第一次正式委托不是一直紧张到说不出话，而是会在某些地方突然发现，自己其实也能插上手。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把热散塞进最顺手的小袋里，语气里难得有一点轻松。",
+          "text": "能插上手就对了。谁要是把自己缩成“只会某一样”，夜里反而最容易手忙脚乱。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把长杆、备用绳和小灯位置都重新看了一遍，最后才坐下吃了两口干粮。",
+          "text": "天再暗一点，我们就去各自站位。到时候不是我一个人下命令，是谁先看见，谁先开口。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "趁还没全黑，再把夜里若有来船时该怎么喊方向对一遍。",
+          "nextSceneId": "night_watch_positions",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把最后一口水咽下去，先把最容易乱掉的那一步提出来。",
+                "text": "先把喊船的话对一遍。真到那一刻，少迟疑一息都可能救下一条船。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "和大家确认，如果来人、来船和绳索同时动起来，先后顺序该怎么抢。",
+          "nextSceneId": "night_watch_positions",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把手边几样东西依次点过，先把最混乱的情形摆出来。",
+                "text": "若三样一起撞上来，我们先救哪头、谁先喊、谁去绳边，得现在就说清。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "看着将暗的水面，主动说出自己更适合站在看船还是看绳那一边。",
+          "nextSceneId": "night_watch_positions",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬头看向河弯和芦苇岸各自的暗影，先想好了自己的位置。",
+                "text": "等会儿真站开，我大概更适合去看船那头。或者若绳一动得太快，我也能立刻去帮。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "最后再看吴昕一眼，提醒她夜里不用逞快，先把看见的方向稳住。",
+          "nextSceneId": "night_watch_positions",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把符纸递回吴昕手里，顺势把最想说的一句轻轻压给她。",
+                "text": "夜里真乱起来时，你不用和谁比快。只要把方向稳住，我们后面每一步都能跟上。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "夜色真正压下来之前，你还想先把哪一块说透？"
+    },
+    {
+      "id": "night_watch_positions",
+      "title": "各自站位",
+      "phase": "夜间留守",
+      "location": "回鹭湾夜守位置",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "天色终于从“还看得见轮廓”跌进了真正的夜里。白天那条浅脊、那几处旧痕和芦苇间的入水点，全都被黑水和阴影吞下去大半，只剩错误的位置、临时备好的物件和你们四个人各自压低的呼吸还在岸边。",
+        "何炅留在最接近危险绳线的地方，王鸥守着更稳也更适合接落水者的岸段，吴昕则准备把临时星光标记点在既能给船工看见、又不至于太早惊动人的位置。现在轮到你决定自己站去哪里。"
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "站去最适合看见来船的角度，准备负责第一声转向提醒。",
+          "nextSceneId": "night_watch_channel",
+          "effect": {
+            "setFlags": {
+              "night_role_channel": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你沿着外侧河岸走了几步，挑了个既看得见弯口、声音也送得出去的位置。",
+                "text": "我去看来船。只要真有船进湾，第一声该什么时候喊，我来盯。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "靠近何炅那边，准备一旦绳子被拉起就立刻帮忙处理。",
+          "nextSceneId": "night_watch_rope",
+          "effect": {
+            "setFlags": {
+              "night_role_rope": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把脚步放轻，沿着芦苇边往何炅那侧靠过去。",
+                "text": "我跟你看绳。它要是真被人抬起来，光靠一个人不一定压得住。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "站到吴昕附近，准备帮她一起盯星光标记和来船方向。",
+          "nextSceneId": "night_watch_star",
+          "effect": {
+            "setFlags": {
+              "night_role_star": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你先去吴昕那边低声确认了几处标记会亮起的位置。",
+                "text": "我陪你盯方向。真有船进来，我们两个一起看，少错一个角度都算赚。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "退到芦苇岸更隐蔽的地方，准备先盯谁会回来碰那条绳子。",
+          "nextSceneId": "night_watch_reeds",
+          "effect": {
+            "setFlags": {
+              "night_role_reeds": true
+            },
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你俯下身钻进更深一点的芦苇阴影，只给自己留了一个能看见入水点的角度。",
+                "text": "我先盯回来的人。只要他真来动这条绳，我们就能看见他第一步是怎么做的。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "夜守开始前，你决定把自己放在哪个位置？"
+    },
+    {
+      "id": "night_watch_channel",
+      "title": "先守最远处的船灯",
+      "phase": "夜间观察",
+      "location": "回鹭湾外侧看船位置",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你站到最外侧那片更能看见河弯的位置，夜色一压下来，白天还能分清的岸线很快只剩模糊的黑边。真正能留下来的只剩水面偶尔反起的一点微光，以及远处也许会出现、也可能整夜都不来的船灯。",
+        "一开始什么都像动静。风拨芦叶像小船擦岸，远处几声桨响也像船要进弯。可你知道越是这个时候越不能急着喊，第一声若错了，后面真来船时大家反而更难信你。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "隔着一段距离，何炅只用很低的声音给了你一句提醒。",
+          "text": "先看清，不急。你认船比我准。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把更暖的外层布往你这边递了递，又没有逼你立刻接过。",
+          "text": "风起来了。冷的时候呼吸会乱，你自己记着。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "继续盯最远处的黑水，不被第一点假动静带走注意力。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把外层布搭到肩上，目光却没从最远处的水线移开。",
+                "text": "我知道。先认清是真船还是风声，第一声不能喊错。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先记住错误浮灯在夜里的样子，免得真有船来时自己也被它骗到。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你转头看了一眼那盏错位浮灯，把它在夜里的位置死死刻进脑子里。",
+                "text": "我先把错灯认死。只有先知道它怎么骗人，待会儿才能把船工从它手里抢回来。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "压低声音，先把可能来船时的几句喊话在心里过一遍。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你几乎无声地动了动嘴唇，把最短最清楚的几句话先默了一遍。",
+                "text": "外侧、别看错灯、船头压稳……好，真来时就这么喊。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "听见风拨芦叶的声响后，仍忍住不出声，继续等第二个信号出现。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你听见那点像船擦岸的声响，肩背绷了一瞬，最后还是稳住了。",
+                "text": "不是现在。再等一个信号，别让风声把我们全都提前带乱。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你站在看船位时，准备先稳住哪一层判断？"
+    },
+    {
+      "id": "night_watch_rope",
+      "title": "先守最危险的绳线",
+      "phase": "夜间观察",
+      "location": "回鹭湾芦苇岸绳线附近",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你守到何炅旁边后，注意力很快从河面移到脚下和手边。那条白天摸过的入水绳在夜里几乎看不见，只能靠记忆和偶尔传来的细微受力感去认。附近的泥地一旦被人踩上来，或绳线稍微被提起一点，离得近的人比谁都更早知道。",
+        "可这种位置也最折磨人。风吹水动都会让绳纤维轻轻颤一下，你必须学会分辨哪一丝颤是自然，哪一丝颤是有人上手。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅半蹲在你旁边，声音压得只够你一个人听见。",
+          "text": "真动起来时，我先卡绳，你盯受力方向。若他是熟手，会先试绳再发力。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "更外侧的王鸥把长杆摆到更顺手的地方，隔着暗处补了一句。",
+          "text": "你们两个别在第一下就跟他硬扯。夜里最怕人和绳一起摔进水里。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "把注意力放在绳线最先会受力的那一点，准备第一时间判断是试探还是猛拉。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把手压在更靠近绳线的泥地上，连呼吸都刻意放轻。",
+                "text": "我先看第一下受力。若他只是试绳，我们就还有半步余地。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先把芦苇边容易绊脚的地方记熟，免得待会儿抢绳时自己先摔。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你趁还没真正动起来，悄悄把脚下能借力和会打滑的地方都摸熟了。",
+                "text": "先把自己站稳。真要抢绳的时候，谁先滑一步就全乱了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "低声和何炅再确认一次：若远处先有船声，该谁立刻转去提醒来船。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把目光从绳线上抬起半瞬，把另一头最坏的情况也问清楚。",
+                "text": "要是绳一动、船也来了，我们谁先留在这儿，谁去配合喊船？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "听见芦叶擦动时先不抓绳，等第二下更实的动静再出手。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "那一点擦叶声掠过去时，你手指已经绷紧，却还是忍住没往前探。",
+                "text": "先等等。风能骗耳朵，不能替人把绳真正带出受力。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你守在绳线附近时，准备先把哪一层风险稳住？"
+    },
+    {
+      "id": "night_watch_star",
+      "title": "先守会亮起来的方向",
+      "phase": "夜间观察",
+      "location": "回鹭湾临时星光标记旁",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你站在吴昕旁边，视线不断在她还没点亮的几处小标记和远处河面之间来回。夜里最容易丢的不是勇气，而是方向，一旦真有船来，吴昕点亮的顺序、亮起的角度和你们共同盯住的那条正确外侧线，都必须比错位浮灯更先被船工看见。",
+        "比起白天一口气把三点定完，这一步更考验她在真实夜色里稳不稳。你能感觉到她紧张，却也能感觉到她没有想躲。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕捏着符纸，先深吸了一口气，才把声音压得足够稳。",
+          "text": "等会儿若真有船，你先看河，我先看符。只要你告诉我该亮哪一点，我不会乱。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "远处的何炅没有回头，只留下一句简短的支撑。",
+          "text": "你们那边最重要的是别抢快，宁可稳一息。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先和吴昕把点亮顺序默一遍，确保一紧张也不会亮错。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你凑近她一点，用几乎听不见的声音把顺序又过了一遍。",
+                "text": "外侧先、提醒后、补位最后。真乱起来的时候，就按这个顺序，不用想别的。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先观察错位浮灯在黑暗里的欺骗感，好给吴昕形容“要把船工从哪儿抢回来”。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把目光投向那盏错位浮灯，努力记住它在夜里最会骗船工的角度。",
+                "text": "待会儿我会直接告诉你，我们要把船从那盏错灯手里往哪边抢回来。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提醒吴昕，若听见你喊“外侧”，她就不必等第二句再亮符。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手在她掌心轻点了一下，像是把最关键的一句先压进去。",
+                "text": "你记住，只要我喊“外侧”，你就立刻亮，不用等我再补别的话。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "听见第一点水声时先稳住吴昕，不让她过早点亮标记暴露自己。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "那一点像船又像风的水声响起时，你先按住了她将要抬起的手腕。",
+                "text": "再等一下，不是现在。让真正该亮的那一刻只出现一次。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你陪吴昕守标记时，想先把哪一步稳到不会出错？"
+    },
+    {
+      "id": "night_watch_reeds",
+      "title": "先守回来的人",
+      "phase": "夜间观察",
+      "location": "回鹭湾芦苇岸隐蔽处",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "你躲进芦苇更深的阴影后，四周一下子近得只剩水气和叶片擦过肩背的声音。这个位置看不清整段河，却能最早看见谁会摸回那条入水绳附近。若真有人把这里当成自己的秘密活路，他第一步会去哪、先摸什么、会不会先四下张望，都逃不过这个角度。",
+        "但同样地，真要出事，这个位置也离危险最近。你能感觉到自己离真相只剩一道芦苇，却也离突然爆发只剩一道芦苇。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "隔着暗处，何炅低低地朝你这边提醒了一句。",
+          "text": "先看，不急着扑。只要确认是同一个人回来，我们就算先赢半步。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把长杆和干布都摆到更容易够到的地方，声音压得发沉。",
+          "text": "若他自己先踩空掉水里，别让自己为了抓人一起翻下去。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "盯住入水点周围最容易先被人试探的一小片泥地。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把身体压得更低，视线死死扣在那片最可能先落脚的泥地上。",
+                "text": "只要他真回来，第一步一定会先试这里。我先盯这一步。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "盯住小船最可能靠岸的位置，想先看清来的是人还是船影。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把视线从绳口挪到更外一点的靠岸处，先守船再守人。",
+                "text": "若先来的不是脚步而是船影，我得先认清他从哪边摸进来。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "提前摸熟自己退开的路线，免得待会儿离得太近反而被发现。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你趁夜还没真正动起来，把身后能退的两步先摸清了。",
+                "text": "先给自己留条退路。离真相太近的人，反而最怕在第一眼就让对方看见。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "听见第一点水声时先屏住气，不给对方一点“岸上有人”的反应。",
+          "nextSceneId": "night_risk_rises",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "水声掠过芦叶的那一瞬，你连呼吸都刻意停住了半拍。",
+                "text": "先让他以为岸上什么都没有。只有他放松，我们才看得见下一步。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你守在芦苇暗处时，准备先把哪一层观察稳住？"
+    },
+    {
+      "id": "night_risk_rises",
+      "title": "第二个信号终于跟上来",
+      "phase": "夜间观察",
+      "location": "回鹭湾夜守位置",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "第一点可疑动静过去以后，真正不自然的第二个信号很快还是来了。不是风，不是普通水响，而是某个东西在你们已经熟悉过的那片岸、那段绳、或那盏错灯附近发生了细小却明确的变化。夜色里，危险并不是一下子炸开的，而是像一根慢慢绷紧的线，终于从“也许是错觉”变成“不能再当错觉”。",
+        "四个人都没有立刻冲出去，却也都知道接下来该把注意力从等待转为准备。"
+      ],
+      "conditionalDialogue": [
+        {
+          "speakerId": "player",
+          "speakerName": "你",
+          "actionBefore": "你盯着远处一点刚亮又灭的模糊灯火，终于确认那不是岸边人家，而是水上缓慢移动的船灯。",
+          "text": "远处有灯，不快，像是晚到的货船。",
+          "visibility": {
+            "flag": "night_role_channel",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "player",
+          "speakerName": "你",
+          "actionBefore": "你指尖下的泥地和绳纤维同时传来极轻的一跳，几乎像有人在试第一下力。",
+          "text": "绳动了，不是风，是有人在试它。",
+          "visibility": {
+            "flag": "night_role_rope",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "player",
+          "speakerName": "你",
+          "actionBefore": "你看见错位浮灯在水面上的角度忽然又偏了半寸，像被极小的力轻轻带了一下。",
+          "text": "浮灯在自己动，不对，是有人碰到了下面的受力。",
+          "visibility": {
+            "flag": "night_role_star",
+            "equals": true
+          }
+        },
+        {
+          "speakerId": "player",
+          "speakerName": "你",
+          "actionBefore": "你看见一截船影擦着芦苇外缘悄悄靠岸，动作熟得不像第一次来。",
+          "text": "有人到了，而且是熟路的。",
+          "visibility": {
+            "flag": "night_role_reeds",
+            "equals": true
+          }
+        }
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅听到你压低的提醒，只回了很短一句。",
+          "text": "收到。再看他下一步。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕已经把第一张会用到的符纸夹在指间，声音比白天更稳。",
+          "text": "只要你们一给信，我这边立刻跟。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先把这条第二信号低声传给其余三人，不让任何一边独自猜。",
+          "nextSceneId": "luo_shun_returns",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把声音压到几乎只够同伴听见的程度，先把确认过的那一句送出去。",
+                "text": "都注意，这不是错觉了。动静是真的。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "继续盯住最关键的变化点，等对方把动作做得更明显一点。",
+          "nextSceneId": "luo_shun_returns",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你压住立刻扑上去的冲动，决定再等半步真相自己露头。",
+                "text": "先再等一下。只要他下一步更明显，我们就知道该往哪头先动。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先记住来船和来人的相对方向，防止两头危险撞在一起时自己混乱。",
+          "nextSceneId": "luo_shun_returns",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你强迫自己同时记住水上那点远灯和岸边这点近动静的位置。",
+                "text": "一头在水上，一头在岸边，我得先把它们的相对方向记死。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "悄悄调整一步站位，让自己既能继续看，又不至于太早暴露。",
+          "nextSceneId": "luo_shun_returns",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你借着暗影轻轻挪开半步，把自己从最容易被余光扫到的地方退了出去。",
+                "text": "再近就要露了。我换个角度，继续看他下一步。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "第二个信号出现后，你准备先怎么应对这份正在逼近的危险？"
+    },
+    {
+      "id": "luo_shun_returns",
+      "title": "熟门熟路的人回来了",
+      "phase": "夜间观察",
+      "location": "回鹭湾芦苇岸入水点附近",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺"
+      ],
+      "narration": [
+        "再过片刻，小船影和人影终于都清楚起来。来人不是误闯河边的闲人，而是一路摸到入水点、先低头看绳，再抬头看四周的熟手。他对这片芦苇、这条坡、甚至哪块泥最不容易打滑都很熟，动作里的熟练感几乎比脸还更先暴露身份。",
+        "等他侧身去摸那段压在泥里的绳子时，你们终于看清了那张脸。是罗顺。此前白天所有还需要谨慎收着说的话，在这一刻都落到了一个具体的人身上。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕在极低的吸气声里认出了人，连声音都更轻了。",
+          "text": "是罗顺……他对白天这些位置太熟了，不像第一次来。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅看着罗顺先摸绳、再试坡脚，眼神一点点沉下去。",
+          "text": "他不是回来看看，是回来继续做事的。先别惊动，等他自己把动作做满。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把长杆又往外送了一点，已经在给可能发生的最坏情形留手。",
+          "text": "他手上动作急，比白天留的痕迹还急。像是知道自己今晚不能空手走。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "luo_shun_identified": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "继续盯他的手，想先看清他到底先碰绳、先碰滑轮，还是先看河面。",
+          "nextSceneId": "incoming_ship_alarm",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把目光收得更窄，只盯罗顺手上每一个先后动作。",
+                "text": "先看他的手。只要知道他第一步先保哪一头，我们就知道他最怕哪一头出问题。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "悄悄记住他看四周的顺序，确认他对现场熟得像在守自己的活。",
+          "nextSceneId": "incoming_ship_alarm",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你没有只看绳，而是把罗顺抬头扫视四周的顺序也一并记住。",
+                "text": "他先看坡、再看灯、最后看河。这不是路过，是熟得像把这里当成自己的工位。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "低声提醒吴昕准备，若远处真有来船，就不能再只看罗顺一个人。",
+          "nextSceneId": "incoming_ship_alarm",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你朝吴昕那边压低声音，把注意力从“抓人”往“救船”那头挪了一半。",
+                "text": "盯住河面。只要远处真有船灯，我们就不能只顾着看他。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先把自己的脚步和退路再看一遍，准备罗顺一旦猛拉就立刻动作。",
+          "nextSceneId": "incoming_ship_alarm",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你眼角扫过自己脚下和最近的长杆位置，把下一息能动到哪儿都先算清。",
+                "text": "只要他一发力，我们就没有再商量的时间了。我先把自己这一步站稳。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "确认来人是罗顺后，你准备先盯住哪一件最关键的事？"
+    },
+    {
+      "id": "incoming_ship_alarm",
+      "title": "远灯、错灯和受力一起逼近",
+      "phase": "夜间预警",
+      "location": "回鹭湾夜守位置",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺"
+      ],
+      "narration": [
+        "危险真正开始升级，不是因为罗顺已经把整件事拉出来，而是因为另一头也同时动了。更远处的河面上，晚到货船的灯火终于从黑水里一点点显形；同一时间，罗顺已经试完绳，开始把力往自己这边收。错位浮灯在夜里还稳稳站在最会误人的位置，整条错线像终于等到了它最糟的一刻。",
+        "现在已经不是单纯抓人，也不是单纯守证。你们必须几乎在同一刻确认来船位置、正确外侧线和那条随时可能被抬进航道的绳索受力。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅一手已压到更靠近绳线的位置，声音却比动作还先一步变短。",
+          "text": "来船也到了。各自动手，别等他猛拉。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕已经把第一张符夹到最顺手的指缝里，抬眼等你们的信。",
+          "text": "只要喊方向，我就亮。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把长杆和干布都往自己最熟的岸段拖近了一点。",
+          "text": "谁离哪头最近就先救哪头，但别忘了船还没完全过去。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先去负责对来船喊外侧方向，把船工从错灯手里抢回来。",
+          "nextSceneId": "rescue_channel",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你先朝最能送出声音的外侧冲了半步，肺里那口气已经提了起来。",
+                "text": "我去喊船。先把船头抢回来，不然别的都来不及。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先冲去帮何炅压绳，免得罗顺一猛拉就把绳线抬进航道。",
+          "nextSceneId": "rescue_rope",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你掉头往绳线那边抢过去，手已经先去找更好借力的地方。",
+                "text": "我帮你压绳！它一抬起来，船就算听见也不一定来得及躲。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先去配合吴昕点亮正确方向标记，让晚到货船立刻看见外侧线。",
+          "nextSceneId": "rescue_star",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你先朝吴昕那边一步并过去，把最关键的方向交给她。",
+                "text": "跟着我看外侧。你一亮出来，船工才会知道眼前还有另一条路。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先守在芦苇岸和安全岸段之间，准备随时接罗顺或拖离危险物。",
+          "nextSceneId": "rescue_reeds",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你不再只藏着看，而是抢到更适合接人又能碰到绳子的那条线上。",
+                "text": "我守这边。谁先掉进来，我就先把谁从最危险的地方拖开。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "危险同时逼近时，你先把自己放到哪一头？"
+    },
+    {
+      "id": "rescue_channel",
+      "title": "先把船头喊回外侧",
+      "phase": "夜间救援",
+      "location": "回鹭湾外侧看船位置",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺",
+        "晚到货船船工"
+      ],
+      "narration": [
+        "你抢到外侧能送声音的位置时，那艘晚到货船已经被错位浮灯带得有点往里切。夜里风把声音吹散得厉害，你不可能靠一句话就让满船人立刻明白状况，只能把最短、最狠、最不会被听岔的方向一遍一遍喊出去。",
+        "船上的人似乎先听见了，却未必立刻信。那种犹豫最要命，因为错灯还稳稳站在那里，像在替错误的一边作证。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "late_boatman",
+          "speakerName": "货船船工",
+          "actionBefore": "远处船上终于有人大声回了句什么，却被风和水声切得很碎。",
+          "text": "……哪边？你们喊的是哪边？"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕在你身后半步的位置，正等你给出最准确的那一下信。",
+          "text": "你只要定方向，我这边马上补亮。"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "继续只喊最短的一句“走外侧，别看错灯”。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你提起气，一字一顿地把最短那句反复压进夜风里。",
+                "text": "走外侧！别看错灯！走外侧！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "一边喊外侧，一边把船头该怎么压稳也补进去。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看见对方似乎听清却还没敢转，立刻把第二层动作也喊了出去。",
+                "text": "外侧！船头压稳，别回看错灯！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先等吴昕亮起正确标记，再借着那点亮光把外侧方向喊得更死。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抬手朝吴昕那边一压，等第一点星光亮起后再把方向喊了出去。",
+                "text": "看亮的那边！沿外侧走，别被错灯带进去！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "在船工迟疑时主动报出“内侧有浅脊”，逼他们别再犹豫。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看见那船还在迟疑，干脆把最重的一句风险也直接压了过去。",
+                "text": "内侧有浅脊！立刻走外侧，不然要搁上去！"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你负责喊船时，准备把哪一句先送到船工耳朵里？"
+    },
+    {
+      "id": "rescue_rope",
+      "title": "先把绳别抬进航道",
+      "phase": "夜间救援",
+      "location": "回鹭湾芦苇岸绳线附近",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺",
+        "晚到货船船工"
+      ],
+      "narration": [
+        "你扑到何炅身边时，罗顺已经把绳子往自己这边带出一截。那股力还没完全成形，却足够让你们知道，再迟半息，这条湿沉的粗绳就会被抬得更高，直接变成横在航道上的另一道杀招。",
+        "水里和泥里的力比白天更难对付。你们不能只靠蛮力硬扯，得先把绳线往更安全的位置压住，再想办法让它失去继续抬高的角度。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅一手卡住绳，一手朝更稳的岸石位置示意你。",
+          "text": "别跟他对着拔，先压到石边，让它起不来。"
+        },
+        {
+          "speakerId": "luo_shun",
+          "speakerName": "罗顺",
+          "actionBefore": "罗顺发现绳上突然多了阻力，动作明显慌了一瞬，手上力道反而更猛。",
+          "text": "谁？谁在那边！"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "立刻帮何炅把绳压向岸石，不给它再往航道里抬高。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你扑到岸石边，肩背一沉，把那截湿绳死死压向更低的位置。",
+                "text": "先压下去！只要它起不来，船还有得救！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先盯住罗顺手上的发力节奏，等他猛拉那一下再借力反制。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你没有立刻死扯，而是先看罗顺肩背和手腕下一下会怎么发力。",
+                "text": "等他自己猛拉那一下，我们顺着反压，比硬拔更快。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "一边压绳一边朝外侧大喊，让来船别往这边切进来。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你肩上压着绳，喉咙里还是硬挤出了一声给水上的警告。",
+                "text": "走外侧！这边有绳，别往里切！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先把脚下借力点换到更稳的位置，免得被湿泥拖着一起滑下去。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你脚下一滑又立刻稳住，赶在第二下用力前抢到更牢的落脚点。",
+                "text": "先站稳！我不能跟着它一起进水里！"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你负责绳线这一头时，先把哪一步做稳？"
+    },
+    {
+      "id": "rescue_star",
+      "title": "先让正确方向亮起来",
+      "phase": "夜间救援",
+      "location": "回鹭湾临时星光标记旁",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺",
+        "晚到货船船工"
+      ],
+      "narration": [
+        "你和吴昕同时动起来时，真正决定成败的不是快，而是准。错位浮灯在夜里太像“原本就该看它”，若临时星光标记亮错一处、早一处或晚一处，船工只会更糊涂。你必须把最该亮给船工看的外侧线，准确地从黑暗里剥出来。",
+        "吴昕手在抖，但动作没有乱。你看得出来，她已经把白天那种“先记事实再说判断”的稳劲带到了夜里。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕眼睛盯着你指的方向，符纸已经亮起第一丝星芒。",
+          "text": "你说哪一点，我就亮哪一点。"
+        },
+        {
+          "speakerId": "late_boatman",
+          "speakerName": "货船船工",
+          "actionBefore": "远处船上传来的声音终于更清楚了一些，像是有人真的看见了你们这边额外亮起的点。",
+          "text": "前头那是什么亮的？外侧吗？"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先亮最外侧那一点，再配合喊声把船工视线整个拽过去。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你手指一划，把最关键的那一点先稳稳指给吴昕。",
+                "text": "先亮外侧！让他们先看见真正该走的那条线！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先补亮第二点，免得船工只看见一个亮点却不知道怎么顺过去。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你眼看第一点已经够显眼，立刻把下一点接上去。",
+                "text": "第二点接上！别只给他们一个方向，给整条走法！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "一边报方向，一边提醒吴昕别被罗顺那头的动静带乱手。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "罗顺那头绳线一紧时，你先稳住吴昕，再把话喊得更短。",
+                "text": "别看那边，稳住手！就照外侧线亮！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "趁船工回话时立刻补一句“别看错灯”，让正确星光和错误浮灯形成对照。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你听见船上那句回话，立刻抓住这口气把最关键的提醒压上去。",
+                "text": "对，外侧！别看错灯，只看亮起来的这边！"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你配合吴昕打出正确方向时，准备先把哪一步做准？"
+    },
+    {
+      "id": "rescue_reeds",
+      "title": "先守岸边接应和失足那一刻",
+      "phase": "夜间救援",
+      "location": "回鹭湾芦苇岸与安全岸段之间",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺",
+        "晚到货船船工"
+      ],
+      "narration": [
+        "你抢在芦苇岸和更稳的岸段之间站住，眼里同时装着两件事：罗顺一旦慌乱，最容易往哪边摔；那截绳若被甩起，又最可能朝哪边砸回来。这个位置不一定最显眼，却最适合在最糟的一刻把人和危险物往不同方向分开。",
+        "王鸥已经把长杆和干布摆好，像是在和你无声分工：她守救人后的处理，你守把“落水”和“继续出险”之间最乱的那一瞬先拆开。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥朝你点了下头，显然已经看懂你站位的意思。",
+          "text": "他真摔下来，你先拖离绳和深水，我接手看人。"
+        },
+        {
+          "speakerId": "luo_shun",
+          "speakerName": "罗顺",
+          "actionBefore": "罗顺被突然出现的阻力和喊声逼得更急，脚下泥地已经开始打滑。",
+          "text": "别、别碰这边！"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "先把长杆探到最可能够到罗顺的位置，等他一滑就立刻顶过去。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把长杆先送到离他最近却不致惊动他的角度，随时准备顶过去。",
+                "text": "只要你一滑，我先把你从绳和水里分开。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先盯住甩起来的湿绳，准备它一离地就往更高处拖。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你没有只盯人，而是先盯那截最可能要命的湿绳。",
+                "text": "人会掉，绳也会甩。它只要离地，我就先把它拖高。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先朝水上补一句提醒，让来船别因为岸边混乱反而往里靠。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看见罗顺那头开始乱，还是强行分出一口气朝河面吼了一声。",
+                "text": "外侧走！岸边乱了，别往这边靠！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先给王鸥一句最要紧的预告：罗顺如果掉下来，手上和肩上最可能先伤在哪。",
+          "nextSceneId": "rescue_converges",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你盯着罗顺握绳的姿势，先把最可能的伤处告诉王鸥。",
+                "text": "他若掉下来，先看手掌和肩，刚才全靠这两处在硬拉。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "你负责岸边接应时，准备先把哪一头风险拆开？"
+    },
+    {
+      "id": "rescue_converges",
+      "title": "星光、喊声和粗绳撞在同一刻",
+      "phase": "夜间救援",
+      "location": "回鹭湾危险弯口",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺",
+        "晚到货船船工"
+      ],
+      "narration": [
+        "接下来的几息几乎没有空隙。你的喊声、吴昕亮起的正确方向、何炅压住或改开绳线的动作和王鸥已经提前准备好的接应同时撞到了一起。那艘晚到货船终于没有再顺着错灯往内切，而是在最险的一段勉强把船头掰回了外侧。",
+        "罗顺却乱了。他本想趁混乱再猛拉一把，结果脚下湿泥一滑，整个人连同半截湿绳一起摔进浅水边。船还没完全过去，人已经先落了水，剩下的危险却没有自动结束。"
+      ],
+      "conditionalDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把最后一张符按亮，亮光在夜里硬生生割出一条正确外侧线。",
+          "text": "看亮的这边！外侧，别再看错灯！",
+          "visibility": {
+            "any": [
+              {
+                "flag": "night_role_star",
+                "equals": true
+              },
+              {
+                "flag": "night_role_channel",
+                "equals": true
+              },
+              {
+                "flag": "night_role_reeds",
+                "equals": true
+              }
+            ]
+          }
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅借着你递过去的力把绳线更死地压住，声音已经短得没有多余字。",
+          "text": "船过去了，先救人，再收线！",
+          "visibility": {
+            "any": [
+              {
+                "flag": "night_role_rope",
+                "equals": true
+              },
+              {
+                "flag": "night_role_reeds",
+                "equals": true
+              }
+            ]
+          }
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥已经半跪到最稳的岸边，长杆和干布都摊在手边。",
+          "text": "先把人拖上干地，别让他继续在冷水和绳里挣！"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "incoming_ship_warned": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "先扑过去用长杆和借力把罗顺从水里拖上来。",
+          "nextSceneId": "shore_confession",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你抄起长杆，身体压得极低，先把杆端递向罗顺能抓住的地方。",
+                "text": "先抓这个！别再拽那条线，先上岸！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "在确认货船完全过弯前继续喊外侧路线，给船工最后一段稳住心神的时间。",
+          "nextSceneId": "shore_confession",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你一边盯着落水的罗顺，一边还是先把最后几句喊完了。",
+                "text": "就沿外侧走，别回头看灯！船头压住，过去再收！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "帮何炅把甩起来的湿绳拖离航道，免得它再勾住后面的船。",
+          "nextSceneId": "shore_confession",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你转身抓住那截已经甩上岸的湿绳，用全身力气把它往更高的泥地上拖。",
+                "text": "这条先离水！后头若再来船，不能再让它挂进去！"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "立刻赶到王鸥那边，把罗顺刚才的受力和落水方式先说清楚。",
+          "nextSceneId": "shore_confession",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你快步赶到王鸥那边，蹲下时先把刚才看见的几件事交代得很快。",
+                "text": "他先猛拉过入水那截，摔下去前手一直在磨绳。先看他手和肩，再看呛水。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "最危险的一瞬过去后，你先把哪一步做稳？"
+    },
+    {
+      "id": "shore_confession",
+      "title": "先保现场安全，再一点点问",
+      "phase": "真相与善后",
+      "location": "回鹭湾安全岸段",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺"
+      ],
+      "narration": [
+        "罗顺被拖上干地以后，第一件事不是问话，而是救命。王鸥先把他湿透的外衣扯松，确认他有没有继续呛水、手掌和肩背有没有在刚才那一拉一摔里伤得更重；何炅则把还带着危险的绳线压到一边，确保航道边不会再突然竖起别的东西。",
+        "等人能喘过气、现场也暂时稳住以后，你们才开始问必要的问题。不是为了听一段完整自白，而是为了确认还有没有别的危险物、还有没有同伙、以及水下到底连着什么。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把干布压到罗顺手上磨开的地方，动作利落得几乎不给人插嘴。",
+          "text": "先别乱动。你手掌磨破、肩背拉伤，又灌了冷水。想说话可以，但先按我说的呼吸。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅确认那条绳线已经不再能直接抬进航道，才回过身来问。",
+          "text": "我们现在只问跟现场安全有关的。水下连着什么？还有没有第二条绳，或者别的人会回来？"
+        },
+        {
+          "speakerId": "luo_shun",
+          "speakerName": "罗顺",
+          "actionBefore": "罗顺咳了几声，整个人还在发抖，声音也断得厉害。",
+          "text": "没、没人了……只有我。下面连着旧货驳的一截旧仓和铁件，我……我原想再拉一点出来。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕记着记着，语气比白天更稳，也更像真正参与问案的人。",
+          "text": "航标改了几次？白桩、浮灯和黑石标，是一次一起动，还是分开动的？"
+        }
+      ],
+      "choices": [
+        {
+          "id": "1",
+          "text": "追问水下到底是什么，确认是不是旧货驳残件和还能不能继续拖出来。",
+          "nextSceneId": "river_restore",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你蹲到能让罗顺看清你却不至于再逼到他的距离，问得很直接。",
+                "text": "下面连的到底是哪一段？是整条旧货驳的一截，还是只剩仓件和铁料？还有没有继续往外跑的危险？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "追问他航标到底动了几次，先后顺序是什么，想确认事故不是一夜之间突然造成的。",
+          "nextSceneId": "river_restore",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把问题收得更窄，专门逼向今天最该交代的一层责任。",
+                "text": "白桩、浮灯、黑石标，你是分开动的还是一起动的？动了几回？别只说一句“动过”。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "追问还有没有别的危险物或同伙，确保今晚不会留下第二个看不见的祸根。",
+          "nextSceneId": "river_restore",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你先不谈动机，先把会继续害人的那一层问清。",
+                "text": "除了这条绳，还有没有别的固定点、别的埋着的线，或者今晚还会回来的人？"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "追问他为什么要冒着连出事故的风险还继续回来，想确认他今晚的真正打算。",
+          "nextSceneId": "river_restore",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看着他仍旧没缓下来的慌乱，还是把那句最核心的动机问了出来。",
+                "text": "今天已经连出三起事，你为什么还回来？是怕被人发现，还是今晚必须把下面的东西再拉走一截？"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "现场安全暂时稳住后，你最先要把哪一条必要信息问清？"
+    },
+    {
+      "id": "river_restore",
+      "title": "临时把河还回去",
+      "phase": "真相与善后",
+      "location": "回鹭湾河边",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "罗顺"
+      ],
+      "narration": [
+        "罗顺的动机和过程并不是一口气全倒出来的，而是在你们一边处理现场、一边继续逼问时慢慢拼起来的：雨后新起的浅脊让回鹭湾本就变得更危险，罗顺却为了偷偷打捞旧货驳残件，私自动了浮灯和黑石标，想着把正常船都引离那一片，又能替自己的秘密活计遮掩视线。结果自然河床变化和人为错位航标叠在一起，把事故越滚越大。",
+        "可真相说出来并不会自动让河道安全。你们四个人只能先做临时恢复：把危险绳线彻底处理出航道，把浮灯和黑石标尽量调回正确位置，再给那条已经确认的新浅脊做出能让夜船暂避的标记。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅先把那截最危险的绳线绕开，确认它不会再被一脚带回水里。",
+          "text": "先救即时风险，后面正式打捞和重测河床，自会有该负责的人接手。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥一边看着罗顺别再失温，一边也没耽误递布、递绳和递小瓶药粉。",
+          "text": "浮灯和黑石标先恢复，浅脊再标出来。今夜的目标不是把所有事做完，而是让下一艘船别再照样撞上。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把临时标记按在最该提醒夜船避开的那条浅线外侧，动作已经比夜里最开始时稳得多。",
+          "text": "我把临时标记留到天亮前。至少在承务所正式派人来之前，这里还有一条清楚的避让线。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "river_hazard_removed": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "先帮何炅处理剩余绳线，确保没有任何一段还能再抬进航道。",
+          "nextSceneId": "commission_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你和何炅一起把最后几段湿绳重绕、拖高，再反复确认它们不再碰得到水线。",
+                "text": "先把绳彻底弄开。只要它还可能甩回去，这条河今晚就还不算真的安全。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先去核对浮灯和黑石标的临时位置，确认它们重新指向外侧安全水线。",
+          "nextSceneId": "commission_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你沿着白天记住的正常线又对了一回浮灯和黑石标的角度。",
+                "text": "再差也不能差回去。只要今晚还会有船过，这两处临时位置就必须先对。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先去看吴昕的临时浅脊标记够不够清楚，想把自己熟悉的船工视角也补进去。",
+          "nextSceneId": "commission_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你绕到更像船工会看见的角度，把吴昕留下的标记从水上视角重新看了一遍。",
+                "text": "从船上看，这样就够明显了。至少今晚再来的人不会把浅脊当成还能闯的一片平水。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "看着将亮未亮的天色，先把回城后该怎么向承务所交接在脑子里过一遍。",
+          "nextSceneId": "commission_handoff",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你站在河边最后看了一眼重新归位的灯和标，终于想起承务所里的长桌还在等你们回去。",
+                "text": "回去以后，得把记录、物证、罗顺和后续要做的事全分开说清，不能让这件事又在纸面上混成一句。"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "临时恢复河道安全时，你想先把哪一步做扎实？"
+    },
+    {
+      "id": "commission_handoff",
+      "title": "回承务所把每一项都交出去",
+      "phase": "回城交接",
+      "location": "承务所夜值房与登记桌",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕",
+        "夜值书吏",
+        "罗顺"
+      ],
+      "narration": [
+        "等你们带着湿冷和疲惫回到承务所时，天边已经开始发白。真正的结束并不是跨进门那一刻，而是把该交给制度的东西一项项交出去：三家船户材料和你们的调查记录分开放，白天收集到的油脂、锈粉和旧木屑另包存证，罗顺的状况和口供重点单独说明，回鹭湾仍需正式重测河床和后续打捞也另外立项。",
+        "这一整串动作做下来，才像真的把夜里发生的一切安稳地送到了该落下去的地方。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "night_clerk",
+          "speakerName": "夜值书吏",
+          "actionBefore": "夜值书吏一边接记录一边快速誊抄重点，明显已经知道这不是普通夜间报事。",
+          "text": "回鹭湾先按紧急河道风险登记，后续重测、维护和水下旧物处置我会立刻转给对应司署。"
+        },
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕把自己的记册翻到最后一页，认真补上“临时恢复已完成”的结项说明。",
+          "text": "原来正式委托的最后一步不是“抓到人”就算了，而是要把所有该交接的东西都落回去。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把罗顺的临时处理情况也一并说明，末了才揉了揉自己发冷的指节。",
+          "text": "他失温和手掌肩背伤都先记在这里，后面若要押送或继续问话，别让人以为他是装的。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅把最后一份记录放上桌，整个人终于像是把肩上那口气慢慢放下。",
+          "text": "今晚能做的我们已经做完。之后正式修复航标、处理旧货驳和重测河床，都该由后续的人接过去。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "institutional_handoff_completed": true
+        }
+      },
+      "choices": [
+        {
+          "id": "1",
+          "text": "先向吴昕道一声辛苦，也肯定她今晚不只是记录，而是真正撑住了关键一步。",
+          "nextSceneId": "chapter_closure",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看着吴昕把最后一页写完，先把今晚一直想说的话补给她。",
+                "text": "今晚你不只是把东西记下来。要不是你把那条正确方向稳稳亮出来，船头未必抢得回来。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "text": "先问书吏，后面正式修复和重测会由谁接手，想确认这件事不会又被拖着。",
+          "nextSceneId": "chapter_closure",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把最后一包物证推过去后，还是追着问了制度上的下一步。",
+                "text": "后面正式修复航标和重测河床，会立刻转出去吧？这事若再拖，回鹭湾还会继续出险。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "text": "先和何炅确认，今晚这一趟最像真正同队，而不是谁带着谁跑一圈。",
+          "nextSceneId": "chapter_closure",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你把目光从登记桌移到何炅身上，语气里带了点熬夜后的轻哑。",
+                "text": "今晚这一趟，倒真不像谁带着谁。更像每个人都把自己那块顶上去了。"
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "text": "先让王鸥也歇一歇，顺便问她自己今晚有没有逞强到她看不顺眼。",
+          "nextSceneId": "chapter_closure",
+          "effect": {
+            "outcomeDialogue": [
+              {
+                "speakerId": "player",
+                "speakerName": "你",
+                "actionBefore": "你看见王鸥直到现在才肯活动发僵的手指，忍不住把话递了过去。",
+                "text": "你先坐一会儿吧。还有，我今晚有没有哪一步逞强得让你现在才想骂我？"
+              }
+            ]
+          }
+        }
+      ],
+      "freeInputEnabled": true,
+      "controlPrompt": "回到承务所完成交接后，你最想先把哪一句留给今晚的同行人？"
+    },
+    {
+      "id": "chapter_closure",
+      "title": "回城路上的浮灯",
+      "phase": "结束",
+      "location": "东门回城路上",
+      "presentCharacters": [
+        "你",
+        "何炅",
+        "王鸥",
+        "吴昕"
+      ],
+      "narration": [
+        "再走出承务所时，天色已经快亮了。回鹭湾那盏差点把船一次次带错的浮灯，终于被放回了本该待着的位置；黑石标也被重新调回临时正确方向，新浅脊更有了足够让夜船避开的提醒。来船获救，罗顺被当场发现，即时危险解除，剩下的正式修复与河床重测也已经交给了承务所以后的流程。",
+        "和第一章的意外相识、第二章的日常重逢不同，这一次是你们四个人真正选了同一条路，也一起把它从白天的怀疑、夜里的危险走到了回城后的交接。等东门后的河风重新吹过来时，你已经很难再把自己只当成被顺手带上的新人。"
+      ],
+      "npcDialogue": [
+        {
+          "speakerId": "wu_xin",
+          "speakerName": "吴昕",
+          "actionBefore": "吴昕抱着记册走在你身边，像是这会儿才终于敢把整夜绷着的那口气慢慢放下来。",
+          "text": "原来真的把课堂上那点东西放到河上，是这种感觉。紧张，可一旦稳住了，也真能救下一条船。"
+        },
+        {
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "actionBefore": "王鸥把空了不少的药包重新理好，偏头看了你一眼。",
+          "text": "今晚你在河上的判断一直很稳。下次再碰到水路上的事，我会先问你。"
+        },
+        {
+          "speakerId": "he_jiong",
+          "speakerName": "何炅",
+          "actionBefore": "何炅走在稍外侧，听完她们两个的话，眼里的笑意也慢慢深了一点。",
+          "text": "那就记着这句话。下次真再一起出门，谁熟哪一块，就让谁把那一块说到底。"
+        }
+      ],
+      "onEnterEffect": {
+        "setFlags": {
+          "misplaced_river_lights_completed": true
+        },
+        "setState": {
+          "relationship_progress": "从第二章后的重新会合，推进到四个人第一次正式同行、共同完成一项完整委托。"
+        }
+      },
+      "choices": [],
+      "freeInputEnabled": false,
+      "terminal": true,
+      "controlPrompt": null
+    }
+  ]
+}

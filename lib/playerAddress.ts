@@ -21,7 +21,7 @@ export function getPlayerAddress(name: string): {
 } {
   const cleanName = name.trim();
   if (!cleanName) {
-    return {formal: "姑娘", familiar: "姑娘"};
+    return { formal: "姑娘", familiar: "姑娘" };
   }
 
   const isChineseName = /^[\u3400-\u9fff]+$/u.test(cleanName);

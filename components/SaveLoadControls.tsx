@@ -7,6 +7,10 @@ export default function SaveLoadControls({
   onLoadMealCheckpoint,
   hasRescueCheckpoint,
   hasMealCheckpoint,
+  onUndoTurn,
+  hasUndoTurn,
+  rescueCheckpointLabel = "读取救援存档",
+  mealCheckpointLabel = "读取共餐存档",
 }: {
   onSave: () => void;
   onLoad: () => void;
@@ -16,6 +20,10 @@ export default function SaveLoadControls({
   onLoadMealCheckpoint: () => void;
   hasRescueCheckpoint: boolean;
   hasMealCheckpoint: boolean;
+  onUndoTurn: () => void;
+  hasUndoTurn: boolean;
+  rescueCheckpointLabel?: string;
+  mealCheckpointLabel?: string;
 }) {
   return (
     <div className="flex flex-wrap gap-2">
@@ -23,7 +31,15 @@ export default function SaveLoadControls({
         保存
       </button>
       <button type="button" className="toolbar-button" onClick={onLoad} disabled={!hasSave}>
-        读取
+        读档
+      </button>
+      <button
+        type="button"
+        className="toolbar-button"
+        onClick={onUndoTurn}
+        disabled={!hasUndoTurn}
+      >
+        回退上一回合
       </button>
       <button
         type="button"
@@ -31,7 +47,7 @@ export default function SaveLoadControls({
         onClick={onLoadRescueCheckpoint}
         disabled={!hasRescueCheckpoint}
       >
-        读取救援存档
+        {rescueCheckpointLabel}
       </button>
       <button
         type="button"
@@ -39,7 +55,7 @@ export default function SaveLoadControls({
         onClick={onLoadMealCheckpoint}
         disabled={!hasMealCheckpoint}
       >
-        读取共餐存档
+        {mealCheckpointLabel}
       </button>
       <button type="button" className="toolbar-button-danger" onClick={onRestart}>
         重新开始

@@ -179,7 +179,6 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "narrationAfter": "要换药的紧绷感，终于被他们两人冲淡了一点。"
         }
       ],
       "interactionPoint": true,

@@ -1,24 +1,50 @@
 import React from "react";
-import { getPlayerAddress } from "../lib/playerAddress";
 import {
   FirstAcquaintanceDialogueLine,
   FirstAcquaintanceProfession,
   FirstAcquaintanceScene,
   FirstAcquaintanceTransitionOutcome,
 } from "../lib/firstAcquaintanceTypes";
+import { getPlayerAddress } from "../lib/playerAddress";
+
+function getSpeakerClass(speakerId: string): string {
+  if (speakerId === "he_jiong") return "dialogue-he";
+  if (speakerId === "wang_ou") return "dialogue-wang";
+  if (speakerId === "player") return "dialogue-player";
+  if (speakerId === "wu_xin") return "dialogue-wu";
+  return "dialogue-neutral";
+}
+
+function groupDialogue(lines: FirstAcquaintanceDialogueLine[]): FirstAcquaintanceDialogueLine[][] {
+  return lines.reduce<FirstAcquaintanceDialogueLine[][]>((groups, line) => {
+    const lastGroup = groups.at(-1);
+    if (lastGroup?.[0]?.speakerId === line.speakerId) {
+      lastGroup.push(line);
+    } else {
+      groups.push([line]);
+    }
+    return groups;
+  }, []);
+}
 
 export default function FirstAcquaintanceSceneView({
   scene,
   outcome,
+  narration,
+  dialogue,
   playerName,
   playerProfession,
 }: {
   scene: FirstAcquaintanceScene;
   outcome: FirstAcquaintanceTransitionOutcome;
+  narration?: string[];
+  dialogue?: FirstAcquaintanceDialogueLine[];
   playerName: string;
   playerProfession: FirstAcquaintanceProfession;
 }) {
   const playerAddress = getPlayerAddress(playerName);
+  const sceneNarration = narration ?? scene.narration;
+  const sceneDialogue = dialogue ?? scene.npcDialogue;
 
   const renderText = (text: string) =>
     text
@@ -31,42 +57,27 @@ export default function FirstAcquaintanceSceneView({
       .replaceAll("{{playerProfession}}", playerProfession)
       .replaceAll("{{playerWeapon}}", "匕首");
 
-  const renderDialogue = (lines: FirstAcquaintanceDialogueLine[]) => {
-    const groups = lines.reduce<FirstAcquaintanceDialogueLine[][]>((result, line) => {
-      const lastGroup = result.at(-1);
-      if (lastGroup?.[0]?.speakerId === line.speakerId) {
-        lastGroup.push(line);
-      } else {
-        result.push([line]);
-      }
-      return result;
-    }, []);
+  const renderSpeakerName = (line: FirstAcquaintanceDialogueLine) =>
+    line.speakerId === "player" ? playerName : renderText(line.speakerName);
 
-    return groups.map((group, index) => {
+  const renderDialogue = (lines: FirstAcquaintanceDialogueLine[]) =>
+    groupDialogue(lines).map((group, index) => {
       const firstLine = group[0];
-      const speakerClass =
-        firstLine.speakerId === "he_jiong"
-          ? "dialogue-he"
-          : firstLine.speakerId === "wang_ou"
-            ? "dialogue-wang"
-            : firstLine.speakerId === "wu_xin"
-              ? "dialogue-wu"
-            : firstLine.speakerId === "player"
-              ? "dialogue-player"
-              : "dialogue-neutral";
-
       return (
-        <div key={`${firstLine.speakerId}-${index}`} className={`dialogue-line ${speakerClass}`}>
-          <p className="mb-1 text-sm font-semibold text-stone-950">
-            {renderText(firstLine.speakerName)}
-          </p>
+        <div
+          key={`${firstLine.speakerId}-${index}`}
+          className={`dialogue-line ${getSpeakerClass(firstLine.speakerId)}`}
+        >
+          <p className="mb-1 text-sm font-semibold text-stone-950">{renderSpeakerName(firstLine)}</p>
           <div className="space-y-1">
             {group.map((line, lineIndex) => (
               <div key={`${line.speakerId}-${lineIndex}`} className="space-y-1">
                 {line.actionBefore ? (
                   <p className="leading-7 text-stone-800">{renderText(line.actionBefore)}</p>
                 ) : null}
-                <p className="dialogue-text leading-7">{renderText(line.text)}</p>
+                {typeof line.text === "string" && line.text.trim() ? (
+                  <p className="dialogue-text leading-7">{renderText(line.text)}</p>
+                ) : null}
                 {line.actionAfter ? (
                   <p className="leading-7 text-stone-800">{renderText(line.actionAfter)}</p>
                 ) : null}
@@ -76,7 +87,6 @@ export default function FirstAcquaintanceSceneView({
         </div>
       );
     });
-  };
 
   return (
     <div className="space-y-5">
@@ -102,29 +112,25 @@ export default function FirstAcquaintanceSceneView({
 
       <section className="paper-panel overflow-hidden">
         <div className="border-b border-stone-200 px-5 py-4 sm:px-7">
-          <p className="text-xs tracking-[0.24em] text-blue-700">{scene.phase}</p>
+          <p className="text-xs tracking-[0.24em] text-blue-700">剧情文本</p>
           <h2 className="display-title mt-1 text-3xl text-stone-900">{scene.title}</h2>
         </div>
         <div className="space-y-4 px-5 py-6 text-[1.02rem] leading-8 text-stone-700 sm:px-7">
-          {scene.narration.map((paragraph, index) => (
+          {sceneNarration.map((paragraph, index) => (
             <p key={`${index}-${paragraph}`}>{renderText(paragraph)}</p>
           ))}
         </div>
       </section>
 
-      <section className="paper-panel p-5 sm:p-6" aria-labelledby="dialogue-title">
-        <div className="mb-4">
-          <h3 id="dialogue-title" className="section-title">
+      <section className="paper-panel overflow-hidden" aria-labelledby="dialogue-title">
+        <div className="border-b border-stone-200 px-5 py-4 sm:px-7">
+          <p id="dialogue-title" className="text-xs tracking-[0.24em] text-blue-700">
             人物对白
-          </h3>
-        </div>
-        {scene.npcDialogue.length > 0 ? (
-          <div className="space-y-3">{renderDialogue(scene.npcDialogue)}</div>
-        ) : (
-          <p className="rounded-lg border border-dashed border-stone-300 px-4 py-5 text-sm text-stone-500">
-            这一段暂时没有额外对白，更多变化会落在你的下一次回应里。
           </p>
-        )}
+        </div>
+        {sceneDialogue.length > 0 ? (
+          <div className="space-y-3 px-5 py-5 sm:px-6">{renderDialogue(sceneDialogue)}</div>
+        ) : null}
       </section>
     </div>
   );

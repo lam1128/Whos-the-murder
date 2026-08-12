@@ -107,9 +107,14 @@ function Sidebar({ state }: { state: GameState }) {
   );
 }
 
+function cloneStateSnapshot(source: GameState): GameState {
+  return JSON.parse(JSON.stringify(source)) as GameState;
+}
+
 export default function OldSluiceGamePage() {
   const router = useRouter();
   const [state, setState] = useState<GameState | null>(null);
+  const [undoStack, setUndoStack] = useState<GameState[]>([]);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [hasSave, setHasSave] = useState(false);
@@ -129,6 +134,7 @@ export default function OldSluiceGamePage() {
 
   function handleChoice(choice: Choice) {
     if (!state) return;
+    setUndoStack((current) => [...current, cloneStateSnapshot(state)]);
     const updated = applyChoice(state, choice);
     setState(updated);
     setNotice(updated.lastFeedback);
@@ -141,6 +147,7 @@ export default function OldSluiceGamePage() {
 
   function handleFreeInput(text: string) {
     if (!state) return;
+    setUndoStack((current) => [...current, cloneStateSnapshot(state)]);
     const updated = applyFreeInput(state, text);
     setState(updated);
     setNotice(updated.lastFeedback);
@@ -161,6 +168,7 @@ export default function OldSluiceGamePage() {
       return;
     }
     setState(loaded);
+    setUndoStack([]);
     setNotice("已读取本地存档。");
   }
 
@@ -171,6 +179,7 @@ export default function OldSluiceGamePage() {
       return;
     }
     setState(loaded);
+    setUndoStack([]);
     setNotice("已读取救援汇合后的测试存档。");
   }
 
@@ -181,12 +190,29 @@ export default function OldSluiceGamePage() {
       return;
     }
     setState(loaded);
+    setUndoStack([]);
     setNotice("已读取共餐前的测试存档。");
   }
 
+  function handleUndoTurn() {
+    setUndoStack((current) => {
+      if (current.length === 0) {
+        setNotice("当前没有可回退的上一回合。");
+        return current;
+      }
+
+      setState(current[current.length - 1]);
+      setNotice("已回退到上一回合，方便继续检查其他选项。");
+      return current.slice(0, -1);
+    });
+  }
+
   function handleRestart() {
-    if (!globalThis.confirm("确定重新开始吗？当前剧情的浏览器本地存档会被清除。")) return;
+    if (!globalThis.confirm("确定重新开始吗？当前剧情的浏览器本地存档会被清除。")) {
+      return;
+    }
     clearSave();
+    setUndoStack([]);
     void router.push("/create-character?scenario=old-sluice");
   }
 
@@ -247,6 +273,8 @@ export default function OldSluiceGamePage() {
               hasSave={hasSave}
               hasRescueCheckpoint={hasRescueCheckpoint}
               hasMealCheckpoint={hasMealCheckpoint}
+              onUndoTurn={handleUndoTurn}
+              hasUndoTurn={undoStack.length > 0}
             />
           </header>
 

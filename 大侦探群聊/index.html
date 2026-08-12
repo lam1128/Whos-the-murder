@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大侦探群聊</title>
+    <meta
+      name="description"
+      content="大侦探仙侠篇的独立本地群聊网页，支持多角色回复、本地记忆与独立存档。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero-panel paper-panel">
+        <div>
+          <p class="eyebrow">独立本地模式</p>
+          <h1 class="display-title">大侦探群聊</h1>
+          <p class="hero-copy">
+            与主线分离的日常群聊。当前阶段开放你、何炅、王鸥三人聊天，群聊记录与记忆仅保存在本地浏览器。
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button class="toolbar-button" id="export-button" type="button">导出记录</button>
+          <button class="toolbar-button-danger" id="reset-button" type="button">清空群聊</button>
+        </div>
+      </section>
+
+      <section class="layout-grid">
+        <div class="chat-column">
+          <section class="paper-panel chat-panel">
+            <div class="panel-head">
+              <div>
+                <p class="section-title">群聊记录</p>
+                <p class="section-subtitle">会按现实时间延迟回复；有人晚看见时，会带着引用接上前面的消息。</p>
+              </div>
+              <div class="save-indicator" id="save-indicator">本地自动保存中</div>
+            </div>
+
+            <div aria-live="polite" class="message-list" id="message-list"></div>
+
+            <div class="typing-row hidden" id="typing-row" aria-live="polite">
+              <div class="typing-list" id="typing-list"></div>
+            </div>
+
+            <form class="composer" id="composer">
+              <label class="field-label" for="chat-input">发送消息</label>
+              <div class="quick-mention-row">
+                <button class="quick-mention-button" data-mention="@何炅" type="button">@何炅</button>
+                <button class="quick-mention-button" data-mention="@王鸥" type="button">@王鸥</button>
+                <button class="quick-mention-button" data-mention="@全体成员" type="button">@全体成员</button>
+              </div>
+              <div
+                class="field composer-input composer-editor"
+                id="chat-input"
+                contenteditable="true"
+                role="textbox"
+                aria-multiline="true"
+                aria-label="发送消息"
+                data-placeholder="试试输入 @何炅、@王鸥、@全体成员，或者直接聊委托、吃饭、休息、想买的东西。"
+              ></div>
+              <div class="composer-foot">
+                <p class="hint-text">输入“记住”“别忘了”可写入共享记忆；带点名加“先别告诉”会写入私人记忆。</p>
+                <button class="primary-button" id="send-button" type="submit">发送</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <aside class="sidebar-column">
+          <section class="paper-panel side-panel">
+            <div class="panel-head">
+              <div>
+                <p class="section-title">当前成员</p>
+                <p class="section-subtitle">只开放何炅、王鸥；其余角色先保留扩展位。</p>
+              </div>
+            </div>
+            <div id="member-list"></div>
+          </section>
+
+          <section class="paper-panel side-panel">
+            <div class="panel-head">
+              <div>
+                <p class="section-title">共享记忆</p>
+                <p class="section-subtitle">只有明确偏好、约定和长期玩笑会留在这里。</p>
+              </div>
+            </div>
+            <div class="memory-list" id="shared-memory-list"></div>
+          </section>
+
+          <section class="paper-panel side-panel">
+            <div class="panel-head">
+              <div>
+                <p class="section-title">私人记忆</p>
+                <p class="section-subtitle">仅用于验证隔离效果，不会自动共享给另一位角色。</p>
+              </div>
+            </div>
+            <div class="private-memory-grid" id="private-memory-grid"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <template id="message-template">
+      <article class="message-row">
+        <div class="message-avatar"></div>
+        <div class="message-stack">
+          <div class="message-meta">
+            <span class="speaker-name"></span>
+          </div>
+          <div class="message-bubble">
+            <div class="message-quotes hidden"></div>
+            <p class="message-text"></p>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -18,9 +18,9 @@ export default function OldSluiceSceneView({
   flags: Record<string, boolean>;
 }) {
   const skillSummaries: Record<Profession, string> = {
-    炼丹师: "我能判断常见材料和污染，也会做简单的应急处理",
-    机关傀儡师: "我能看绳索、齿轮和简单机关，也会使用基础工具",
-    潜行修: "我擅长控制脚步、观察出入口，也能做短距离侦察",
+    炼丹师: "我能判断常见材料和污浊，也会做简单的应急处理。",
+    机关傀儡师: "我能看绳索、齿轮和简单机关，也会使用基础工具。",
+    潜行修: "我擅长控制脚步、观察出入口，也能做短距离侦察。",
   };
   const playerAddress = getPlayerAddress(playerName);
   const renderText = (text: string) =>
@@ -30,14 +30,8 @@ export default function OldSluiceSceneView({
       .replaceAll("{{playerGivenName}}", playerAddress.familiar)
       .replaceAll("{{playerKnownAddress}}", playerIntroduced ? playerAddress.formal : "姑娘")
       .replaceAll("{{playerPreferredAddress}}", playerAddress.familiar)
-      .replaceAll(
-        "{{playerFamiliarAddress}}",
-        playerIntroduced ? playerAddress.familiar : "姑娘",
-      )
-      .replaceAll(
-        "{{rescueHandoffActors}}",
-        flags.secured_trapped_guard ? "你和王鸥" : "何炅和王鸥",
-      )
+      .replaceAll("{{playerFamiliarAddress}}", playerIntroduced ? playerAddress.familiar : "姑娘")
+      .replaceAll("{{rescueHandoffActors}}", flags.secured_trapped_guard ? "你和王鸥" : "何炅和王鸥")
       .replaceAll(
         "{{controlRetreatSummary}}",
         flags.took_control_signal_post ||
@@ -58,6 +52,9 @@ export default function OldSluiceSceneView({
       )
       .replaceAll("{{playerProfession}}", playerProfession)
       .replaceAll("{{playerSkillSummary}}", skillSummaries[playerProfession]);
+  const renderSpeakerName = (line: Scene["npcDialogue"][number]) =>
+    line.speakerId === "player" ? playerName : renderText(line.speakerName);
+
   const renderDialogue = (lines: Scene["npcDialogue"]) => {
     const groups = lines.reduce<(typeof lines)[]>((result, line) => {
       const lastGroup = result.at(-1);
@@ -85,9 +82,7 @@ export default function OldSluiceSceneView({
           key={`${firstLine.speakerId}-${index}`}
           className={`dialogue-line ${speakerClass}`}
         >
-          <p className="mb-1 text-sm font-semibold text-stone-950">
-            {renderText(firstLine.speakerName)}
-          </p>
+          <p className="mb-1 text-sm font-semibold text-stone-950">{renderSpeakerName(firstLine)}</p>
           <div className="space-y-1">
             {group.map((line, lineIndex) => (
               <div key={`${line.speakerId}-${lineIndex}`} className="space-y-1">
@@ -130,27 +125,27 @@ export default function OldSluiceSceneView({
 
       <section className="paper-panel overflow-hidden">
         <div className="border-b border-stone-200 px-5 py-4 sm:px-7">
-          <p className="text-xs tracking-[0.24em] text-blue-700">{scene.phase}</p>
+          <p className="text-xs tracking-[0.24em] text-blue-700">剧情文本</p>
           <h2 className="display-title mt-1 text-3xl text-stone-900">{scene.title}</h2>
         </div>
         <div className="space-y-4 px-5 py-6 text-[1.02rem] leading-8 text-stone-700 sm:px-7">
-          {scene.narration.map((paragraph, index) => (
+          {[scene.phase, ...scene.narration].map((paragraph, index) => (
             <p key={`${index}-${paragraph}`}>{renderText(paragraph)}</p>
           ))}
         </div>
       </section>
 
-      <section className="paper-panel p-5 sm:p-6" aria-labelledby="dialogue-title">
-        <div className="mb-4">
-          <h3 id="dialogue-title" className="section-title">
+      <section className="paper-panel overflow-hidden" aria-labelledby="dialogue-title">
+        <div className="border-b border-stone-200 px-5 py-4 sm:px-7">
+          <p id="dialogue-title" className="text-xs tracking-[0.24em] text-blue-700">
             人物对白
-          </h3>
+          </p>
         </div>
         {scene.npcDialogue.length > 0 ? (
-          <div className="space-y-3">{renderDialogue(scene.npcDialogue)}</div>
+          <div className="space-y-3 px-5 py-5 sm:px-6">{renderDialogue(scene.npcDialogue)}</div>
         ) : (
-          <p className="rounded-lg border border-dashed border-stone-300 px-4 py-5 text-sm text-stone-500">
-            这里暂时没有其他人回应。风穿过破损棚门，远处只有持续的水声。
+          <p className="px-5 py-5 text-sm leading-6 text-stone-500 sm:px-6">
+            这里暂时没有其他人回应。风穿过破损栅门，远处只有持续的水声。
           </p>
         )}
       </section>
