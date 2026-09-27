@@ -6,6 +6,8 @@ export const WeaponSchema = z.enum(["剑", "匕首", "枪", "体"]);
 export const DialogueLineSchema = z.object({
   speakerId: z.string().min(1),
   speakerName: z.string().min(1),
+  dialogueColorToken: z.string().min(1).optional(),
+  dialogueColorHex: z.string().min(1).optional(),
   actionBefore: z.string().min(1).optional(),
   text: z.string().min(1),
   actionAfter: z.string().min(1).optional(),

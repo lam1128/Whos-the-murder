@@ -42,6 +42,10 @@ import {
   createWesternMiningTripInitialState,
   saveWesternMiningTripGame,
 } from "../lib/westernMiningTripEngine";
+import {
+  createChapter6InitialState,
+  saveChapter6Game,
+} from "../lib/chapter6Engine";
 
 const professionDescriptions: Record<Profession, string> = {
   炼丹师: "熟悉药材、材料状态与基础应急调配，但不会取代专业医师的诊断。",
@@ -73,6 +77,10 @@ const chapterDescriptions = {
   "chapter5-western-mining-trip": [
     "第四章添置装备后，你和王鸥、何炅接下了前往西原矿区的护送委托。",
     "这次要护送换班人员与导灵石原矿，住进矿场一晚，再在暴雨与返程路上把所有人带回临川。",
+  ],
+  "chapter6-three-year-sword-echo": [
+    "西原矿区的暴雨过去约一周，大家回到临川城，伤势、装备和日常生活都开始恢复原来的节奏。",
+    "这一天没有新的正式委托，只有一次意外重逢、一场低风险的木剑切磋，以及几段需要你亲自决定如何回应的同行话题。",
   ],
 } as const;
 
@@ -254,6 +262,9 @@ export default function CreateCharacterPage() {
     } else if (scenarioId === "chapter5-western-mining-trip") {
       const initialState = createWesternMiningTripInitialState({ name: cleanName });
       saveWesternMiningTripGame(initialState);
+    } else if (scenarioId === "chapter6-three-year-sword-echo") {
+      const initialState = createChapter6InitialState({ name: cleanName });
+      saveChapter6Game(initialState);
     } else {
       const initialState = createXuanjiaLizardHuntInitialState({ name: cleanName });
       saveXuanjiaLizardHuntGame(initialState);

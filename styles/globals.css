@@ -218,7 +218,7 @@ input:focus-visible {
 
   .dialogue-he {
     border-left-color: rgb(96 165 250);
-    background: rgb(239 246 255);
+    background: rgba(204 232 255 / 0.72);
   }
 
   .dialogue-he .dialogue-text {
@@ -227,7 +227,7 @@ input:focus-visible {
 
   .dialogue-wang {
     border-left-color: rgb(244 114 182);
-    background: rgb(253 242 248);
+    background: rgb(253 237 246);
   }
 
   .dialogue-wang .dialogue-text {
@@ -236,16 +236,25 @@ input:focus-visible {
 
   .dialogue-wu {
     border-left-color: rgb(168 85 247);
-    background: rgb(250 245 255);
+    background: rgb(246 237 255);
   }
 
   .dialogue-wu .dialogue-text {
     color: rgb(126 34 206);
   }
 
+  .dialogue-sa {
+    border-left-color: rgb(251 146 60);
+    background: rgb(255 247 237);
+  }
+
+  .dialogue-sa .dialogue-text {
+    color: rgb(194 65 12);
+  }
+
   .dialogue-player {
     border-left-color: rgb(20 184 166);
-    background: rgb(240 253 250);
+    background: rgb(220 250 243);
   }
 
   .dialogue-player .dialogue-text {
@@ -253,12 +262,12 @@ input:focus-visible {
   }
 
   .dialogue-neutral .dialogue-text {
-    color: rgb(107 114 128);
+    color: rgb(96 96 96);
   }
 
   .dialogue-neutral {
-    border-left-color: rgb(203 213 225);
-    background: rgb(248 250 252);
+    border-left-color: rgb(160 160 160);
+    background: rgba(204 220 228 / 0.72);
   }
 
   .option-button {

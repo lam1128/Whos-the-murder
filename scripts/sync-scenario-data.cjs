@@ -41,6 +41,12 @@ const scenarios = [
     pattern: /^chapter5_western_mining_trip_v(\d+(?:\.\d+)*)\.json$/i,
     targetFile: path.join(dataDir, "chapter5_western_mining_trip_current.json"),
   },
+  {
+    label: "chapter6_three_year_sword_echo",
+    sourceDir: path.join(generationDir, "事件6"),
+    pattern: /^chapter6_three_year_sword_echo_v(\d+(?:\.\d+)*)\.json$/i,
+    targetFile: path.join(dataDir, "chapter6_three_year_sword_echo_current.json"),
+  },
 ];
 
 function parseVersion(versionText) {

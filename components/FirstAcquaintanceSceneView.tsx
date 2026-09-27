@@ -1,4 +1,5 @@
 import React from "react";
+import { getDialogueClassName } from "../lib/dialoguePresentation";
 import {
   FirstAcquaintanceDialogueLine,
   FirstAcquaintanceProfession,
@@ -6,14 +7,6 @@ import {
   FirstAcquaintanceTransitionOutcome,
 } from "../lib/firstAcquaintanceTypes";
 import { getPlayerAddress } from "../lib/playerAddress";
-
-function getSpeakerClass(speakerId: string): string {
-  if (speakerId === "he_jiong") return "dialogue-he";
-  if (speakerId === "wang_ou") return "dialogue-wang";
-  if (speakerId === "player") return "dialogue-player";
-  if (speakerId === "wu_xin") return "dialogue-wu";
-  return "dialogue-neutral";
-}
 
 function groupDialogue(lines: FirstAcquaintanceDialogueLine[]): FirstAcquaintanceDialogueLine[][] {
   return lines.reduce<FirstAcquaintanceDialogueLine[][]>((groups, line) => {
@@ -66,7 +59,7 @@ export default function FirstAcquaintanceSceneView({
       return (
         <div
           key={`${firstLine.speakerId}-${index}`}
-          className={`dialogue-line ${getSpeakerClass(firstLine.speakerId)}`}
+          className={`dialogue-line ${getDialogueClassName(firstLine)}`}
         >
           <p className="mb-1 text-sm font-semibold text-stone-950">{renderSpeakerName(firstLine)}</p>
           <div className="space-y-1">

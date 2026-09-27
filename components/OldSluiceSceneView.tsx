@@ -1,4 +1,5 @@
 import React from "react";
+import { getDialogueClassName } from "../lib/dialoguePresentation";
 import { Profession, Scene, TransitionOutcome } from "../lib/oldSluiceTypes";
 import { getPlayerAddress } from "../lib/playerAddress";
 
@@ -68,14 +69,7 @@ export default function OldSluiceSceneView({
 
     return groups.map((group, index) => {
       const firstLine = group[0];
-      const speakerClass =
-        firstLine.speakerId === "he_jiong"
-          ? "dialogue-he"
-          : firstLine.speakerId === "wang_ou"
-            ? "dialogue-wang"
-            : firstLine.speakerId === "player"
-              ? "dialogue-player"
-              : "dialogue-neutral";
+      const speakerClass = getDialogueClassName(firstLine);
 
       return (
         <div

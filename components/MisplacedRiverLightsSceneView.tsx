@@ -1,4 +1,5 @@
 import React from "react";
+import { getDialogueClassName } from "../lib/dialoguePresentation";
 import { getPlayerAddress } from "../lib/playerAddress";
 import { getWeaponLabel } from "../lib/weaponLabels";
 import {
@@ -8,14 +9,6 @@ import {
   MisplacedRiverLightsTransitionOutcome,
   MisplacedRiverLightsWeapon,
 } from "../lib/misplacedRiverLightsTypes";
-
-function getSpeakerClass(speakerId: string): string {
-  if (speakerId === "he_jiong") return "dialogue-he";
-  if (speakerId === "wang_ou") return "dialogue-wang";
-  if (speakerId === "player") return "dialogue-player";
-  if (speakerId === "wu_xin") return "dialogue-wu";
-  return "dialogue-neutral";
-}
 
 function groupDialogue(lines: MisplacedRiverLightsDialogueLine[]): MisplacedRiverLightsDialogueLine[][] {
   return lines.reduce<MisplacedRiverLightsDialogueLine[][]>((groups, line) => {
@@ -70,7 +63,7 @@ export default function MisplacedRiverLightsSceneView({
       return (
         <div
           key={`${firstLine.speakerId}-${index}`}
-          className={`dialogue-line ${getSpeakerClass(firstLine.speakerId)}`}
+          className={`dialogue-line ${getDialogueClassName(firstLine)}`}
         >
           <p className="mb-1 text-sm font-semibold text-stone-950">{renderSpeakerName(firstLine)}</p>
           <div className="space-y-1">

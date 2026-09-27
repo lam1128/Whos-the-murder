@@ -20,6 +20,8 @@ export type XuanjiaLizardHuntDialogueLine = {
   speakerId: string;
   speakerName: string;
   text: string;
+  dialogueColorToken?: string;
+  dialogueColorHex?: string;
   actionBefore?: string;
   actionAfter?: string;
   visibility?: XuanjiaLizardHuntVisibility;

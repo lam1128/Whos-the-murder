@@ -5,6 +5,7 @@ export const scenarioIds = [
   "xuanjia-lizard-hunt",
   "equipment-day",
   "chapter5-western-mining-trip",
+  "chapter6-three-year-sword-echo",
 ] as const;
 
 export type ScenarioId = (typeof scenarioIds)[number];
@@ -76,6 +77,15 @@ export const scenarioSummaries: Record<ScenarioId, ScenarioSummary> = {
     chapterLabel: "第五章",
     chapterTitle: "西原矿区换班路",
     cardDescription: "承接第四章添置装备后的护送委托，前往西原矿区完成换班与返程护送。",
+    professionMode: "stealth-only",
+    defaultProfession: "潜行修",
+    defaultWeapon: "匕首",
+  },
+  "chapter6-three-year-sword-echo": {
+    id: "chapter6-three-year-sword-echo",
+    chapterLabel: "第六章",
+    chapterTitle: "三年后的剑声",
+    cardDescription: "第五章长途行动后回到临川城，在一顿饭、一场木剑和一次意外重逢里继续认识彼此的日常生活。",
     professionMode: "stealth-only",
     defaultProfession: "潜行修",
     defaultWeapon: "匕首",

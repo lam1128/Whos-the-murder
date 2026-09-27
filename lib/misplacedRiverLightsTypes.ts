@@ -20,6 +20,8 @@ export type MisplacedRiverLightsDialogueLine = {
   speakerId: string;
   speakerName: string;
   text: string;
+  dialogueColorToken?: string;
+  dialogueColorHex?: string;
   actionBefore?: string;
   actionAfter?: string;
   visibility?: MisplacedRiverLightsVisibility;

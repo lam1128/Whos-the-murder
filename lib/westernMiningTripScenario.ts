@@ -14,10 +14,15 @@ import {
 type RawEffect = {
   outcomeNarration?: string[];
   outcomeDialogue?: WesternMiningTripDialogueLine[];
+  setFlags?: Record<string, unknown>;
+  setState?: Record<string, unknown>;
   stateChanges?: {
     flags?: Record<string, unknown>;
     state?: Record<string, unknown>;
   };
+  addClueIds?: string[];
+  impressionTags?: unknown[];
+  addInventoryIds?: string[];
   inventoryChanges?: WesternMiningTripInventoryChange[];
   completion?: string;
 };
@@ -49,7 +54,13 @@ type RawScene = {
 };
 
 type RawScenarioData = {
-  metadata: { scenarioId: string; title: string; version: string };
+  metadata: {
+    id?: string;
+    scenarioId?: string;
+    scenarioPrefix?: string;
+    title: string;
+    version: string;
+  };
   initialState?: { flags?: Record<string, unknown>; state?: Record<string, unknown> };
   initialInventory?: WesternMiningTripInventoryItem[];
   inventoryDefinitions?: WesternMiningTripInventoryItem[];
@@ -67,9 +78,12 @@ function toRuntimeSceneEffect(effect?: RawEffect): WesternMiningTripSceneEffect 
 
   return {
     setFlags: {
+      ...(effect.setFlags ?? {}),
+      ...(effect.setState ?? {}),
       ...(effect.stateChanges?.flags ?? {}),
       ...(effect.stateChanges?.state ?? {}),
     },
+    addInventoryIds: effect.addInventoryIds ?? [],
     inventoryChanges: effect.inventoryChanges ?? [],
     outcomeNarration: effect.outcomeNarration ?? [],
     outcomeDialogue: effect.outcomeDialogue ?? [],
@@ -118,7 +132,11 @@ const runtimeScenes: WesternMiningTripScene[] = sourceData.scenes.map((scene) =>
 });
 
 const westernMiningTripScenario: WesternMiningTripScenario = {
-  id: sourceData.metadata.scenarioId,
+  // v2.0 uses scenarioPrefix; v1.0 used scenarioId. Keep one stable runtime id.
+  id:
+    sourceData.metadata.scenarioPrefix ??
+    sourceData.metadata.scenarioId ??
+    "chapter5_western_mining_trip",
   title: sourceData.metadata.title,
   startSceneId: sourceData.startSceneId,
   scenes: runtimeScenes,

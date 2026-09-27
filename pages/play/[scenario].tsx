@@ -6,6 +6,7 @@ import MisplacedRiverLightsGamePage from "../../components/MisplacedRiverLightsG
 import OldSluiceGamePage from "../../components/OldSluiceGamePage";
 import XuanjiaLizardHuntGamePage from "../../components/XuanjiaLizardHuntGamePage";
 import WesternMiningTripGamePage from "../../components/WesternMiningTripGamePage";
+import Chapter6GamePage from "../../components/Chapter6GamePage";
 import { parseScenarioId } from "../../lib/scenarioRegistry";
 
 export default function ScenarioPlayPage() {
@@ -46,6 +47,10 @@ export default function ScenarioPlayPage() {
 
   if (scenarioId === "chapter5-western-mining-trip") {
     return <WesternMiningTripGamePage />;
+  }
+
+  if (scenarioId === "chapter6-three-year-sword-echo") {
+    return <Chapter6GamePage />;
   }
 
   return <FirstAcquaintanceGamePage />;

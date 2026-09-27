@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "title": "全面文件审查指导命令",
+  "purpose": "供以后发起整项目审查时直接复用的指令模板。",
+  "location_role": "core_reference",
+  "variants": [
+    {
+      "id": "standard_full_audit",
+      "title": "标准全面审查版",
+      "prompt": "请对整个项目做一次全面文件审查。\n\n审查范围包括：\n- core/\n- current/\n- pk_references/\n- scenarios/\n- archive/\n\n审查目标包括：\n- 检查当前主文件之间是否存在冲突、过时引用或断链\n- 检查 Project Knowledge、Game Host Rules、Scenario、人物记录、补充资料之间的职责边界是否清楚\n- 检查文件命名、版本号、章节编号、引用路径是否一致\n- 检查哪些内容属于当前生效层，哪些只是历史归档\n- 检查是否存在应该合并、拆分、归档、重命名或单独说明的文件\n\n输出要求：\n- 先列出发现的问题，按严重程度分组\n- 再给出建议调整方案\n- 最后给出一份当前目录结构与文件职责总表\n\n不要直接修改文件，先只输出审查报告。\n如需修改，等我确认后再执行。"
+    },
+    {
+      "id": "setting_focused_audit",
+      "title": "偏设定审查版",
+      "prompt": "请重点审查这个项目的设定文件体系。\n\n重点检查：\n- Project Knowledge 主文件是否仍然准确\n- pk_references/ 是否仍和主文件一致\n- current/ 里的补充资料是否有内容应该上升为长期设定\n- scenarios/ 中是否出现已经反向改写长期设定的情况\n- archive/ 中是否有仍被误引用的旧内容\n\n输出：\n- 设定冲突\n- 过时内容\n- 可上升为长期设定的内容\n- 应继续留在运行态/章节态的内容"
+    },
+    {
+      "id": "structure_focused_audit",
+      "title": "偏结构审查版",
+      "prompt": "请重点审查这个项目的文件结构和命名体系。\n\n重点检查：\n- 文件夹分工是否清楚\n- 文件名是否统一\n- 章节编号是否一致\n- AGENTS / PK / Scenario / current 补充资料之间的入口是否清楚\n- 是否还存在旧命名、旧路径或历史残留引用\n\n输出：\n- 当前结构中的问题清单\n- 推荐目录结构\n- 推荐命名规范\n- 建议保留、迁移、归档、删除的文件"
+    },
+    {
+      "id": "continuity_focused_audit",
+      "title": "偏连续性审查版",
+      "prompt": "请重点审查 scenarios/ 与 current 资料、Project Knowledge 之间的连续性。\n\n重点检查：\n- 章节之间的人物关系推进是否连续\n- 伤势、物品、委托结果、时间顺序是否连续\n- 当前章节引用的前章文件名与版本是否正确\n- 连续性摘要文件是否仍准确\n\n输出：\n- 连续性错误\n- 连续性风险\n- 应更新的摘要或主文件"
+    },
+    {
+      "id": "audit_then_low_risk_fix",
+      "title": "边审边改版",
+      "prompt": "请先审查，再直接执行低风险修正。\n\n允许直接修改：\n- 断链引用\n- 明显错误的文件名引用\n- 已确认应该统一的章节编号\n- AGENTS / 摘要 / 主文件中的一致性修正\n\n不要直接修改：\n- 世界观内容\n- 人物长期设定\n- 章节剧情事实\n- 历史归档内容\n\n请先报告，再执行修改，最后汇总你改了什么。"
+    },
+    {
+      "id": "short_reusable_audit",
+      "title": "最短可复用版",
+      "prompt": "请对整个项目做一次全面文件审查。\n检查文件结构、命名、版本、引用、职责边界和连续性。\n先只输出问题清单和建议，不要直接改文件。"
+    }
+  ]
+}

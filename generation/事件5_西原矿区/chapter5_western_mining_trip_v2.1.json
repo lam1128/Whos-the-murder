@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "id": "chapter5_western_mining_trip_v2_5",
+    "id": "chapter5_western_mining_trip_v2_1",
     "title": "西原矿区换班路",
     "title_en": "Western Mining Shift Road",
     "scenarioPrefix": "chapter5_western_mining_trip",
-    "version": "v2.5",
-    "versionRuleApplied": "在 v2.4 基础上进行作者对话节奏修订：降低为了活泼而刻意设计的“铺垫—接梗—补刀—收尾”喜剧结构，重点重写吴昕第一次委托收束，让笑意来自具体经历和人物即时反应；同步清理饭桌中的元叙事式活泼说明。",
+    "version": "v2.1",
+    "versionRuleApplied": "在 v2.0 基础上按作者审查修订：恢复 concept v1.12 已确认的优先保留对白，删除水囊共享桥段，并取消玩家称何炅为“炅哥”的全部路径。",
     "knowledgeVersion": "7.6",
     "canonicalSource": "project_knowledge_v7.6.json",
     "hostRulesVersion": "2.0",
@@ -43,26 +43,7 @@
       "结尾先完成西门交接，再与等待已久的吴昕在附近小馆会合，完成你们之间的日常关系收束。",
       "按最新版创作要求补入真实短分支与后续条件回响：部分选择会进入不同场景或在后续场景留下可见差异，不再让全部交互节点只做即时同路收束。",
       "按 chapter5_western_mining_trip_concept_v1.12.md 逐项复核“优先原样保留”的画面化桥段，恢复问题骆驼、干粮、头发、腌菜、何炅手背小伤、护片、丢锅、崴脚与狼狈返城等关键对白。",
-      "按作者新要求完整删除何炅递自己的水给玩家的桥段；同时取消玩家称何炅为“炅哥”的选项、对白、旗标和后续回响。矿工仍可自然称何炅“炅哥”，以保留已确认群体对白。",
-      "保留西门集合时玩家主动说“早，大家辛苦。我的靴子先替我跟西原打个招呼。”，本次不将这类轻量主动寒暄视为需要删除的问题。",
-      "唐小满继续承担较高比例的活跃、嘴快与快速熟络功能；不削弱她，而是增加赵成、许岚、韩明、杜青、周永福等重点 NPC 各自不同风格的生活反应。",
-      "重写问题骆驼段：许岚作为骆驼、驮具与受惊牲口负责人亲自接手处理；王鸥与何炅只在旁边自然接话，不再让王鸥越过许岚承担驮兽专业工作。",
-      "系统性降低“这个判断很成熟”“我接受这个结论”“状态正常”“谢谢总结”等高完成度功能句，改为更短、更松、更像真实年轻人现场说出口的语言。",
-      "危险段不强行增加笑点，继续维持暴雨与砂甲獾阶段的短句、职责清楚和危险到来后立刻收住玩笑。",
-      "全章重新审查玩家、何炅、王鸥、吴昕、赵成、许岚、韩明、唐小满、杜青、周永福、承务所职员与普通矿工对白；日常场景优先删除“做得对/挺好/这个判断/我同意/状态正常”等裁判式和总结式口吻。",
-      "何炅的活泼更多来自顺势接话、自嘲和被别人逗到；王鸥更多通过具体观察、轻轻接梗和熟人间的实际关心表现，不再频繁替别人下结论。",
-      "赵成、许岚、韩明、杜青、老周继续保留专业身份，但日常对白增加各自工作经验形成的生活化幽默；唐小满继续保持全章最外放的活跃度。",
-      "玩家预设对白同步降总结感，减少“至少、确实、看来、这个很合理”等站在场外概括局面的表达。",
-      "暴雨、撤离、稳车、受伤与砂甲獾战斗阶段保留短促明确的专业判断，不为了追求活泼削弱危险场景执行力。",
-      "删除或改写“某人说某词时你最好如何”“某人一向如何”“这个回答没有参考价值”等标签化、总结式玩笑，避免把人物写成固定语录说明书。",
-      "日常场景改用事件驱动互动：递东西、抢热水、夹菜、接绳、沾灰、占座、收拾行囊、互相插话和被逗笑等具体动作先发生，对白随动作自然出现。",
-      "唐小满继续作为最活泼、嘴快、容易熟的年轻矿工，不人为降频；赵成、许岚、韩明、杜青、周永福则分别用工作习惯、冷幽默、下班心态和熟人插话增加活人感。",
-      "何炅与王鸥减少互相评价、提醒对错和概括关系的台词，更多通过半句玩笑、顺口接话、具体动作和熟悉反应呈现长期搭档感。",
-      "战斗与暴雨核心危险段继续以短促专业信息为主，不为了全员活泼强塞笑点。",
-      "重写章节结尾吴昕讲述第一次正式委托的对白：删除“我忍住了”“路过你桌边”“骡子比你省心”等刻意包袱，不再让王鸥固定承担揭何炅短、吴昕固定承担冷吐槽。",
-      "吴昕改为通过跟错蹄印、返回重判、结合水源草地与麻绳纤维、使用标记符、找到正在吃草的骡子等具体经历自然讲完整任务；何炅和王鸥主要听、追问和即时回应。",
-      "新增本章轻松对白执行规则：活泼不等于每段都必须有笑点；允许普通回应、短暂停顿、话题自然跑开和无人接梗，避免每一轮都形成完整喜剧结构。",
-      "清理矿场饭桌中“没有谁永远负责逗笑”等作者总结式旁白，改为直接呈现多人同时吃饭、聊天、插话和处理琐事的现场。"
+      "按作者新要求完整删除何炅递自己的水给玩家的桥段；同时取消玩家称何炅为“炅哥”的选项、对白、旗标和后续回响。矿工仍可自然称何炅“炅哥”，以保留已确认群体对白。"
     ]
   },
   "canonicalRules": {
@@ -71,8 +52,7 @@
     "commissionNature": "本章是普通职业护送与运输委托，不包含阴谋、失踪谜团、幕后操控、委托人欺骗或强制反转。",
     "commissionStructure": "第一日护送10人接班组与生产补给进入导灵石矿场并住一晚；第二日护送另一批10人下班组和导灵石原矿返城。赵成、许岚全程往返且不占班组名额。",
     "transportDistinction": "临川—矿场长途使用骆驼牵引矿运货车；矿场内部短距使用轨道小矿车。两者不得混写。",
-    "outboundTone": "去程必须真实轻松顺利；风、土、灰属于西部正常环境，不算倒霉，但正式沾灰从离开装运区后的 ch5_13_dust_welcome 才开始，集合装运阶段不得写成角色已经沾灰。真正的倒霉从返程突发暴雨开始。",
-    "continuityAuditRule": "出城前不得提前写人物已经沾灰；ch5_49b_evacuation_role 与 ch5_50_wagon_slip 均处于返程暴雨的中午阶段，时间不得从中午倒退或标成第二天下午。动作和旁白直接写可见行为，不猜测角色内心；玩家队伍统一使用“你们”或具体姓名，不使用人数标签代替称呼。",
+    "outboundTone": "去程必须真实轻松顺利；风、土、灰属于西部正常环境，不算倒霉。真正的倒霉从返程突发暴雨开始。",
     "stormPriority": "危机时人员第一；在不危及人的前提下保护骆驼；主要矿货和车辆其次；普通物件和少量原矿允许损失。",
     "badgerTruth": "暴雨后固定出现4只砂甲獾。它们先因巢穴被淹和导灵石吸引靠近车辆；最强个体攻击人后成为必须处理目标。只击杀最强一只，其余3只散去。",
     "badgerRank": "砂甲獾成年常用评级低阶四品；被击杀个体实际战斗表现接近普通低阶五品，并出现浅淡零碎天然灵纹。",
@@ -83,12 +63,7 @@
     "choiceRule": "所有交还玩家控制的节点提供3个数字选项并开放自由输入；玩家说话必须显示实际说出口的文本并获得及时回应。",
     "largeBlockLayoutRule": "沿用前四章 narration / npcDialogue 与 choice.effect.outcomeNarration / outcomeDialogue 的单套结构。",
     "playerHeAddressOverride": "矿工和其他同行者可自然称何炅“炅哥”；玩家本人本章不使用“炅哥”称呼何炅。",
-    "removedWaterBeat": "concept v1.12 中何炅把自己的水囊递给玩家、玩家喝后才发现的桥段已被作者明确取消，任何路径均不得出现。",
-    "livelinessDistribution": "唐小满保持最高活跃度与快速熟络能力；其他重点 NPC 也必须主动参与场景，但活泼方式不同：赵成偏实用冷幽默，许岚围绕驮兽经验顺口吐槽，韩明稳中带笑，杜青干脆直接，周永福有下班与吃饭的烟火气；何炅、王鸥在非危险场景会笑场、插话、接半句和互相打趣，不写成高冷或负责总结的人。",
-    "professionalOwnershipRule": "生活化互动不得抢走专业负责人的职责。车辆问题首先由赵成处理，骆驼与驮具问题首先由许岚处理，班组人员与路线判断由对应领队推进；主角人物可以协助、观察和接话，但不能为了制造关系互动让专业 NPC 退成围观者。",
-    "dialogueHumanityRule": "日常对白不得频繁以评价、打分、总结他人行为的方式推进关系。除工作现场确需专业判断外，优先写人物当下会脱口而出的反应、具体观察、追问、抱怨、笑场、自嘲、没说完的话和生活细节；减少“挺好/很好/这就对了/这个判断/我同意/至少/状态正常/很成熟/很合理”等主持人或老师式口吻。活泼不等于人人抖机灵，各人物必须保持不同的幽默节奏。",
-    "dialogueLivingnessRule": "日常对白优先由眼前具体事情触发，不用“某人一向怎样”“某人说某词时你最好怎样”“这个回答如何”“你这个判断如何”等标签化或裁判式语言代替互动。能通过递、抢、躲、夹、拍、笑、打断、改口、追问等现场动作呈现的，不写成对人物性格或行为规律的总结。",
-    "naturalComedyRule": "轻松场景不要求每轮对白都形成笑点或完整包袱。避免机械使用“铺垫—接梗—补刀—收尾”的连续结构，也不得固定王鸥负责拆何炅台、吴昕负责冷吐槽、唐小满负责所有活跃。优先让笑意从具体动作、工作乌龙、吃饭、赶路和当场发生的小事中自然出现；允许普通回应、停顿、话题转开或一句玩笑无人继续追。"
+    "removedWaterBeat": "concept v1.12 中何炅把自己的水囊递给玩家、玩家喝后才发现的桥段已被作者明确取消，任何路径均不得出现。"
   },
   "authorityAndContinuity": {
     "precedence": [
@@ -307,17 +282,16 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅把委托纸往你这边推了半掌。"
+          "actionBefore": "何炅把委托副本往你这边挪了挪，给你留出能一起看的位置。"
         },
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "先看回程。去的时候车轻，第二天装上矿，后半张才是真正费时间的。",
+          "text": "先把路程和回程载荷看完。这个比单纯送人麻烦一点。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥用指尖点了点回程那一栏。"
+          "dialogueColorHex": "#EC4899"
         }
       ],
       "interactionPoint": true,
@@ -340,7 +314,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "对，先看这两栏。那个“两天”写得最轻松。",
+                "text": "对，先把人和货弄清楚，再谈合不合适。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -397,7 +371,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "我先看风险。平时都能换班，这趟为什么还专门加护送？",
+                "text": "我先看风险。矿区平时能正常换班，还需要额外护送，应该有原因。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -405,7 +379,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "路远，回来又是重车。西边的沟和碎路也麻烦，妖兽反倒只占一项。",
+                "text": "主要是路远、回程重载，西部地形也比城外普通道路麻烦。妖兽只是风险的一部分。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -604,7 +578,7 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我倾向接这个。上次两天林子都走下来了，这回麻烦换成人、车，还有一条长得要命的路。",
+          "text": "我觉得能接。我们上次已经走过两日野外，这次少了长时间追踪，多了运输和人群配合。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -641,7 +615,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "那店里那十几步今天终于不算数了。",
+                "text": "这次会比店里试走诚实得多。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -650,7 +624,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "先别盼下雨。碎石路已经够它交作业了。",
+                "text": "尤其是第二天。如果下雨，你会很快知道它值不值。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -682,7 +656,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "人一多最乱的不是没人干活，是大家一起伸手。你到时候先看看哪边真缺人。",
+                "text": "这个任务合适。真忙起来，不会有人有空一直提醒你。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -692,7 +666,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "真跟绳子较上劲记得喊我，我至少能帮你骂它两句。",
+                "text": "但需要帮忙就直接喊，独立判断不等于一个人扛。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -780,7 +754,7 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "很像昕昕。她真想自己做，你要是连任务都替她挑好了，她回来第一句大概就要问你为什么。",
+          "text": "很像她。她真决定自己做的事，你替她把路铺完，她反而会不高兴。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -790,7 +764,7 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我本来还想再问两句，她把委托纸一合，说“我看完了”。我就闭嘴了。",
+          "text": "所以我只问了她有没有看清退出条件。其他的让她自己来。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -809,7 +783,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "她第一次想自己去也不奇怪。你要真一路跟着，她回来八成先嫌你。",
+                "text": "她想自己走一次挺正常的。第一次如果全跟着你，她可能总觉得是你在替她兜底。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -817,7 +791,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "她原话就一句：“哥，你别跟。”我连第二句都没机会铺垫。",
+                "text": "她大概就是这个意思。她没有拒绝家里关心，只是不想第一步也由我带。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -878,7 +852,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "能不想吗？她第一次正式出门，我脑子里已经把南门外那几条路走了一遍。",
+                "text": "想过。没办法，哥哥这个身份有时候比脑子快。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -888,7 +862,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "我还以为你至少会在承务所门口多晃两圈。",
+                "text": "至少你忍住没替她报名。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -933,7 +907,7 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "她自己都说了，真追到危险地方就回来报，不往里硬跟。",
+          "text": "她也不是为了证明自己什么都不需要。真遇到超过条件的情况，她知道该回来报告。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -958,7 +932,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "你担心你的，她跑她的任务，也不冲突。",
+                "text": "你担心她也很正常。让她自己完成，又不等于你不能担心。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -966,7 +940,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "对。她走她的，我在家里瞎操我的心。互不耽误。",
+                "text": "是。所以我现在负责担心，她负责做。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -1001,7 +975,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "嗯，她那张单正常一天就收。我们反而得在矿场睡一晚。",
+                "text": "嗯。她挑的就是一天能收住的任务。我们这边得在矿场住一晚，至少两天。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -1035,7 +1009,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "怎么说得像我平时很爱替她安排一样。",
+                "text": "我觉得“忍住”这个词对我不太公平。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -1045,32 +1019,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "那你昨晚有没有绕到她桌边看一眼？",
+                "text": "还可以。至少没追着问她带了几张符。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
                 "actionBefore": "王鸥唇角弯了一下。"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "……我只是路过。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6",
-                "actionBefore": "何炅停了一下，自己先笑了。"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "嗯，路过得挺慢。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥低头把委托纸翻了一页，嘴角压了半天还是翘起来。"
               }
             ]
           },
@@ -1100,7 +1054,7 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "找骡子这张挺像她会挑的。路不远，边界也写得明白，真追到危险地方就回来报。",
+          "text": "她的基础剑术、普通符术和方向判断足够处理这种任务。关键是别因为第一次接活，就觉得一定要把骡子追回来才算完成。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -1137,7 +1091,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "我刚开口说“路上——”，她就看我一眼。后面半句没说成。",
+                "text": "基本都猜到了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -1146,7 +1100,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "十八年了，你那点开场她还听不出来？",
+                "text": "她跟你住了十八年。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -1185,7 +1139,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "等我们回来，她多半早就交完差了。到时候让她从头讲一遍。",
+                "text": "正常应该第二天傍晚前后。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -1374,7 +1328,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "今晚多走两圈。明天真磨脚，我可不想在二十里外听你骂鞋。",
+                "text": "这个最实际。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -1383,7 +1337,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "鞋带要真跟你有仇，今晚先把仇报完。",
+                "text": "很好，省得走到二十里以后才后悔。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -1425,32 +1379,32 @@
         {
           "speakerId": "han_ming",
           "speakerName": "韩明",
-          "text": "何炅、王鸥……{{playerName}}也到了。行，人齐。",
+          "text": "何炅、王鸥，还有……{{playerName}}也到了吧？人齐了。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B",
-          "actionBefore": "韩明在名单最后一行划了一笔。"
+          "dialogueColorToken": "green",
+          "dialogueColorHex": "#16A34A",
+          "actionBefore": "韩明把名册合上，夹回臂下，语气依旧利落。"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "早，各位。我们没来晚吧？",
+          "text": "对，我们都到了。早上好，各位。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅把肩上的行囊往上提了提。"
+          "actionBefore": "何炅朝韩明点了点头，顺手把委托副本收进外套。"
         },
         {
-          "speakerId": "han_ming",
-          "speakerName": "韩明",
-          "text": "没晚。再晚一点，赵成都要开始数你们占了几根车绳。",
-          "speakerCategory": "supporting_character",
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "早。今天谁先把新靴子踩出第一层灰，晚上就有话题了。",
+          "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B",
-          "actionBefore": "韩明朝装车区偏了下头。"
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥把药包往肩后一挂，朝车旁的人笑了一下。"
         },
         {
           "speakerId": "player",
@@ -1458,27 +1412,18 @@
           "text": "早，大家辛苦。我的靴子先替我跟西原打个招呼。",
           "speakerCategory": "player",
           "isGenericNpc": false,
-          "dialogueColorToken": "neutral"
+          "dialogueColorToken": "neutral",
+          "actionBefore": "你抬手朝装运区的人招了招，把背包带往肩上提稳。"
         },
         {
           "speakerId": "tang_xiaoman",
           "speakerName": "唐小满",
-          "text": "那它今天任务挺重。",
+          "text": "你那双靴子新的？看着一点灰都没有。今天回去之前应该能解决这个问题。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "amber",
           "dialogueColorHex": "#D97706",
-          "actionBefore": "唐小满低头看了眼你鞋面，又抬脚碰了碰自己的靴尖。"
-        },
-        {
-          "speakerId": "wang_ou",
-          "speakerName": "王鸥",
-          "text": "你别给她示范得太早。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥看着她抬起的靴尖，笑着往旁边让了半步。"
+          "actionBefore": "唐小满把绳子放上车，目光很快落到你的新潜行靴上。"
         }
       ],
       "interactionPoint": true,
@@ -1501,22 +1446,12 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "等第一阵风过来，你就不用问了。",
+                "text": "放心，西边对新东西一向很公平，什么都能吹上一层灰。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
                 "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满伸手在自己袖口上弹了一下，又把手收了回来。"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "别弹了，再弹全到我这边了。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥抬手挡了一下。"
+                "actionBefore": "唐小满笑得很快。"
               }
             ]
           },
@@ -1573,7 +1508,7 @@
                 "isGenericNpc": false,
                 "dialogueColorToken": "slate",
                 "dialogueColorHex": "#64748B",
-                "actionBefore": "赵成从车轮边站起身，把手里的销钉放回工具袋。"
+                "actionBefore": "赵成从车轮边站起身，拍掉手上的灰。"
               }
             ]
           },
@@ -1618,41 +1553,31 @@
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "这几辆今天空得很，别嫌它们占地方。明天装上原矿，谁都得绕着它们走。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "slate",
-          "dialogueColorHex": "#64748B",
-          "actionBefore": "赵成蹲下拍了拍最前一辆货车的轮毂。"
-        },
-        {
-          "speakerId": "xu_lan",
-          "speakerName": "许岚",
-          "text": "牵绳别换啊。左边这两头昨天才刚和好，我不想今天重新劝架。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "teal",
-          "dialogueColorHex": "#0F766E",
-          "actionBefore": "许岚从一头骆驼的颈绳摸到胸带，又俯身看了一眼扣环。"
-        },
-        {
-          "speakerId": "zhao_cheng",
-          "speakerName": "赵成",
-          "text": "你那边是骆驼劝架，我这边是车轮劝架。今天谁都别给我加活。",
+          "text": "这几辆车今天看着像累赘，明天装了原矿，你们就不会这么想了。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
           "dialogueColorHex": "#64748B"
         },
         {
+          "speakerId": "xu_lan",
+          "speakerName": "许岚",
+          "text": "骆驼别随便换牵绳。哪头跟哪头合得来，我已经排好了。",
+          "speakerCategory": "supporting_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "teal",
+          "dialogueColorHex": "#0F766E",
+          "actionBefore": "许岚一边说，一边把最外侧那头骆驼的胸带往上提了一指。"
+        },
+        {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "听见了。我们今天的第一项任务是别给他们添新故事。",
+          "text": "听专业的。我们今天负责少添乱。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥忍着笑把自己的药包带重新收紧。"
+          "actionBefore": "王鸥看了一眼那排驮具，语气里带着一点笑。"
         }
       ],
       "interactionPoint": true,
@@ -1746,7 +1671,7 @@
         {
           "speakerId": "tang_xiaoman",
           "speakerName": "唐小满",
-          "text": "第一次看的人都问，空车为什么也跟着走。总不能明天让原矿自己排队回城吧？",
+          "text": "第一次看的人都问过，空车为什么不留城里。等到了矿里就知道，难道让原矿自己走回来？",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "amber",
@@ -1755,32 +1680,21 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "好，明天谁再问，我直接把小满叫过去。",
+          "text": "这个解释很有说服力。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅往唐小满那边偏了偏头。"
+          "dialogueColorHex": "#3B82F6"
         },
         {
           "speakerId": "han_ming",
           "speakerName": "韩明",
-          "text": "你俩再讲两句，太阳也能跟着一起到矿场。走了。",
+          "text": "她今天还算收着。走吧，再聊下去日头都上来了。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B",
-          "actionBefore": "韩明把名册卷起来，在掌心轻轻一敲。"
-        },
-        {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "看吧，韩队每天最早催的不是矿，是我们。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706",
-          "actionBefore": "唐小满背起行囊，小跑两步跟上队伍。"
+          "dialogueColorToken": "green",
+          "dialogueColorHex": "#16A34A",
+          "actionBefore": "韩明朝队伍前方抬了抬下巴。"
         }
       ],
       "interactionPoint": true,
@@ -1879,40 +1793,31 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "前半程都别走太快。今天腿轻，明天车可不轻。",
+          "text": "前半程别走得太快。今天舒服，明天不一定还能这么轻。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
+          "dialogueColorHex": "#3B82F6",
+          "actionBefore": "何炅把水囊的位置重新压稳，声音不高。"
         },
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "你从承务所念到西门，终于把这句话念完了。",
+          "text": "他今天这句话可以听。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥侧过脸看他，眼里已经带了笑。"
+          "actionBefore": "王鸥顺手接了一句。"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我怕有人新鞋一上路，走着走着就开始跟自己比赛。",
+          "text": "我平时的话也可以听。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "那我先报名不比赛。我只负责走到饭点。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706",
-          "actionBefore": "后面唐小满正好听见，立刻插了一句。"
         }
       ],
       "interactionPoint": true,
@@ -1927,7 +1832,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "行，我今天先不跟你抬这个杠。",
+                "text": "今天先算他说得有道理。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -1935,7 +1840,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "这么早就给我面子，我有点不习惯。",
+                "text": "谢谢，评价非常谨慎。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -1944,7 +1849,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你别得寸进尺。",
+                "text": "已经很给面子了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -1974,7 +1879,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "就这么走。六小时以后再跟这双鞋算账。",
+                "text": "这个判断比刚出城就冲一段靠谱。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -2180,7 +2085,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "明白了，西风负责管嘴。",
+                "text": "这个安全提醒确实非常实用。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -2340,7 +2245,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "灰归灰，别磨脚就成。",
+                "text": "性能没变就行。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -2369,7 +2274,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "我就想拍干净一点。事实证明西边不配合。",
+                "text": "我只是想验证一下。结论已经很明确了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -2378,7 +2283,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "早跟你说了。",
+                "text": "验证得很好。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -2462,7 +2367,7 @@
               {
                 "speakerId": "han_ming",
                 "speakerName": "韩明",
-                "text": "那今天正好。先别管认不认全，等你回去还能从鞋底里倒出半条路。",
+                "text": "那今天先认识路。西边平时没那么吓人，就是很会把人弄脏。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "green",
@@ -2520,7 +2425,7 @@
               {
                 "speakerId": "han_ming",
                 "speakerName": "韩明",
-                "text": "到时候你看哪边没人就往哪边去。我们这帮人一忙起来，最常见的就是十双手一起伸向同一根绳。",
+                "text": "这个比一直冲在最前面有用。运输队最怕大家都想做同一件事。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "green",
@@ -2593,21 +2498,11 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "那你晚上还能自己走去抢热水。",
+                "text": "那至少第一项买对了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥低头扫了一眼你的步子。"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "前提是热水还没被小满抢完。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
+                "dialogueColorHex": "#EC4899"
               }
             ]
           },
@@ -2632,7 +2527,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "就正常走。真需要轻的时候再轻，别现在跟自己较劲。",
+                "text": "对，别为了测试功能改变正常走路。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -2653,7 +2548,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "脚挺舒服，灰也吃得特别均匀。",
+                "text": "性能都挺好，就是完全不负责防灰。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -2745,7 +2640,7 @@
         {
           "speakerId": "xu_lan",
           "speakerName": "许岚",
-          "text": "骆驼也没意见——暂时。",
+          "text": "骆驼也没意见，暂时。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "teal",
@@ -2804,30 +2699,12 @@
               {
                 "speakerId": "xu_lan",
                 "speakerName": "许岚",
-                "text": "最右边那头今天安静得过头。",
+                "text": "有一头脾气多一点。现在它还没决定今天跟谁过不去。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "teal",
                 "dialogueColorHex": "#0F766E",
-                "actionBefore": "许岚咬了一口干粮，抬下巴点了点那头正闭眼嚼草的骆驼。"
-              },
-              {
-                "speakerId": "zhao_cheng",
-                "speakerName": "赵成",
-                "text": "你别当着它面说。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "slate",
-                "dialogueColorHex": "#64748B"
-              },
-              {
-                "speakerId": "xu_lan",
-                "speakerName": "许岚",
-                "text": "它听得懂我还省事了。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "teal",
-                "dialogueColorHex": "#0F766E"
+                "actionBefore": "许岚朝最右边那头骆驼看了一眼。"
               }
             ],
             "setFlags": {
@@ -2867,7 +2744,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅翻了翻手边的公共行囊，抬头问了一圈。"
+          "actionBefore": "何炅翻了翻手边的公共行囊。"
         },
         {
           "speakerId": "wang_ou",
@@ -2877,7 +2754,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥正拆自己的那包，闻言抬起眼。"
+          "actionBefore": "王鸥抬眼看他。"
         }
       ],
       "interactionPoint": true,
@@ -2906,16 +2783,6 @@
                 "dialogueColorToken": "blue",
                 "dialogueColorHex": "#3B82F6",
                 "actionBefore": "何炅安静了一下，随即笑了。"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "你先把嘴里的咽下去再夸队伍。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥把另一小包干粮丢到何炅腿边。"
               }
             ]
           },
@@ -2955,15 +2822,6 @@
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
                 "actionBefore": "王鸥没忍住弯了下嘴角。"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "我是在确认大家有没有吃的，顺便把自己也算进去。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
               }
             ]
           },
@@ -2998,16 +2856,6 @@
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "我真的只是问一句。你们两个别一起看我。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6",
-                "actionBefore": "何炅接过干粮，抬头正撞上王鸥的目光。"
               }
             ]
           },
@@ -3034,8 +2882,8 @@
         "去程班组"
       ],
       "narration": [
-        "歇够以后，许岚招呼大家重新起身。最右边那头骆驼偏偏在何炅顺手帮忙牵它时钉在原地，何炅轻轻带了两下绳，它连耳朵都懒得多动一下。",
-        "何炅没有硬拽。许岚正好从另一头骆驼旁回来，看见这一人一骆驼隔着半截牵绳耗上了，脚下都没停。"
+        "歇够以后，许岚让大家重新起身。最右边那头骆驼偏偏在何炅牵它时停在原地，何炅带了两下牵绳，它连耳朵都懒得动。",
+        "何炅没有硬拽，只在它旁边站了一会儿。那头骆驼也很有耐心地和他耗着。"
       ],
       "npcDialogue": [
         {
@@ -3056,7 +2904,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥站在旁边看了一会儿，忍着笑接了一句。"
+          "actionBefore": "王鸥走过去接过缰绳。"
         },
         {
           "speakerId": "he_jiong",
@@ -3079,31 +2927,22 @@
         {
           "speakerId": "xu_lan",
           "speakerName": "许岚",
-          "text": "行了，别真问。它今天就是不想跟你走。",
+          "text": "炅哥，你还是跟着鸥姐吧，省点力气。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "teal",
           "dialogueColorHex": "#0F766E",
-          "actionBefore": "许岚笑着从何炅手里接过牵绳，先拍了拍骆驼颈侧，又把绳子松了半寸。"
+          "actionBefore": "王鸥刚轻轻一带，骆驼就老老实实往前走了。许岚在后面看得直笑。"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "好，确认了。真是针对我。",
+          "text": "我现在觉得它的问题比我的大。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "那头骆驼跟着许岚往前迈了两步，何炅在后面看得很认真。"
-        },
-        {
-          "speakerId": "wang_ou",
-          "speakerName": "王鸥",
-          "text": "你们总算把话说开了。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899"
+          "actionBefore": "何炅看着那头已经跟王鸥走起来的骆驼。"
         }
       ],
       "interactionPoint": true,
@@ -3111,14 +2950,14 @@
       "choices": [
         {
           "id": "1",
-          "text": "笑何炅一句，说骆驼的态度已经够明确了。",
+          "text": "笑他一句，说骆驼的态度已经很明确。",
           "nextSceneId": "ch5_20_camel_tease",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "它都跟许岚走了，这还不够明确？",
+                "text": "它今天对你的意见确实挺明确。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -3126,7 +2965,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "够了。今天这段我认输。",
+                "text": "谢谢，你的观察也很客观。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -3140,32 +2979,32 @@
         },
         {
           "id": "2",
-          "text": "问许岚它为什么偏偏不肯跟何炅走。",
+          "text": "站在王鸥这边，说骆驼至少很配合她。",
           "nextSceneId": "ch5_20_camel_tease",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "它为什么偏偏不肯跟他走？",
+                "text": "至少它跟鸥很配合。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
               },
               {
-                "speakerId": "xu_lan",
-                "speakerName": "许岚",
-                "text": "没为什么。骆驼闹脾气要是每次都给理由，我这活能省心一半。",
-                "speakerCategory": "supporting_character",
+                "speakerId": "wang_ou",
+                "speakerName": "王鸥",
+                "text": "所以现在别研究它了，走。",
+                "speakerCategory": "main_character",
                 "isGenericNpc": false,
-                "dialogueColorToken": "teal",
-                "dialogueColorHex": "#0F766E",
-                "actionBefore": "许岚牵着它往前走，头也没回。"
+                "dialogueColorToken": "pink",
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥牵着骆驼回头看你们一眼。"
               },
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "听起来我连申诉的地方都没有。",
+                "text": "我听见了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -3179,14 +3018,14 @@
         },
         {
           "id": "3",
-          "text": "替何炅说一句，至少他没有跟骆驼硬拽。",
+          "text": "替何炅说一句，至少他没有和骆驼硬拽。",
           "nextSceneId": "ch5_20_camel_tease",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "好在他没跟它硬拽。",
+                "text": "不过他处理得还行，没跟它硬拽。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -3194,7 +3033,7 @@
               {
                 "speakerId": "xu_lan",
                 "speakerName": "许岚",
-                "text": "他要真跟它拔河，我得先把人拉开，再回来哄骆驼。",
+                "text": "这个确实对。牲口不配合，先分清是脾气还是受惊，比用力重要。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "teal",
@@ -3203,7 +3042,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "听见没有，给我记一笔。",
+                "text": "终于有一句对我有利的。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -3230,7 +3069,7 @@
     },
     {
       "id": "ch5_20_camel_tease",
-      "title": "骆驼留下的一路笑话",
+      "title": "骆驼把称呼也叫松了",
       "phase": "第一日去程",
       "location": "西原常规歇脚点",
       "presentCharacters": [
@@ -3242,14 +3081,14 @@
         "去程班组"
       ],
       "narration": [
-        "许岚把骆驼重新带回队伍，事情就算处理完了。后面却很快又有人喊了一句“炅哥，今天离牵绳远点”，旁边跟着笑成一片。",
-        "何炅回头看了眼那头已经走得好好的骆驼。"
+        "那头骆驼最后还是被许岚带回队伍。事情小得不能再小，却足够让刚熟起来的矿工们找到一整段路的乐子。",
+        "有人先顺口叫了一声“炅哥”，让他以后少跟骆驼讲道理。这个称呼一出来，旁边几个人很自然地跟着叫开了。"
       ],
       "npcDialogue": [
         {
           "speakerId": "miner",
           "speakerName": "矿工",
-          "text": "炅哥，今天你就离牵绳远点吧。",
+          "text": "炅哥，你以后负责跟人讲道理，骆驼这边交给许岚。",
           "speakerCategory": "generic_npc",
           "isGenericNpc": true,
           "dialogueColorToken": "brown",
@@ -3258,32 +3097,30 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我已经离得很远了。你看，我现在两只手都是空的。",
+          "text": "我从头到尾一句道理都没讲。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅当真把两只手抬起来晃了一下。"
-        },
-        {
-          "speakerId": "xu_lan",
-          "speakerName": "许岚",
-          "text": "保持住。它现在走得挺开心。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "teal",
-          "dialogueColorHex": "#0F766E",
-          "actionBefore": "许岚头也没回，牵着骆驼继续往前。"
+          "dialogueColorHex": "#3B82F6"
         },
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "你别真把手举一路。",
+          "text": "它可能提前判断了。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥被他逗得笑了一声。"
+          "actionBefore": "王鸥轻轻接了一句。"
+        },
+        {
+          "speakerId": "xu_lan",
+          "speakerName": "许岚",
+          "text": "那这头骆驼判断挺快。",
+          "speakerCategory": "supporting_character",
+          "isGenericNpc": false,
+          "dialogueColorToken": "teal",
+          "dialogueColorHex": "#0F766E"
         }
       ],
       "interactionPoint": true,
@@ -3291,14 +3128,14 @@
       "choices": [
         {
           "id": "1",
-          "text": "顺着大家的话，说何炅今天已经输得很体面。",
+          "text": "顺着玩笑说，这头骆驼今天确实只跟何炅过不去。",
           "nextSceneId": "ch5_21_midzone",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "放下吧，再举一会儿别人以为你投降了。",
+                "text": "看来它今天是真的只跟你过不去。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -3306,7 +3143,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "我已经向骆驼投降过一次了，不能再扩大范围。",
+                "text": "我接受这个事实，但不接受它的理由。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -3320,35 +3157,36 @@
         },
         {
           "id": "2",
-          "text": "站王鸥这边，说现在双方确实都满意。",
+          "text": "站在王鸥这边，说骆驼判断确实快。",
           "nextSceneId": "ch5_21_midzone",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "你俩今天就隔着许岚和平相处吧。",
+                "text": "我觉得鸥说得对，它判断挺快。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
               },
               {
-                "speakerId": "xu_lan",
-                "speakerName": "许岚",
-                "text": "别把我夹中间，我还得赶路。",
-                "speakerCategory": "supporting_character",
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "很好，你们现在已经形成统一意见了。",
+                "speakerCategory": "main_character",
                 "isGenericNpc": false,
-                "dialogueColorToken": "teal",
-                "dialogueColorHex": "#0F766E"
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
               },
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "听见了？人家不接这个活。",
+                "text": "是骆驼先形成的。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899"
+                "dialogueColorHex": "#EC4899",
+                "actionBefore": "王鸥一本正经。"
               }
             ]
           },
@@ -3358,14 +3196,14 @@
         },
         {
           "id": "3",
-          "text": "问许岚这种小脾气是不是很常见。",
+          "text": "替何炅说一句，至少他没有硬拽。",
           "nextSceneId": "ch5_21_midzone",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "这种突然不肯跟某个人走，很常见吗？",
+                "text": "不过他处理得还行，没跟骆驼硬拽。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -3373,30 +3211,20 @@
               {
                 "speakerId": "xu_lan",
                 "speakerName": "许岚",
-                "text": "有。有时候嫌味道，有时候嫌动作。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "teal",
-                "dialogueColorHex": "#0F766E",
-                "actionBefore": "许岚拍了拍骆驼颈侧。"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "今天是哪种？",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
-              },
-              {
-                "speakerId": "xu_lan",
-                "speakerName": "许岚",
-                "text": "今天不告诉你。",
+                "text": "这个确实对。牲口不配合，先分清是脾气还是受惊，比用力重要。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "teal",
                 "dialogueColorHex": "#0F766E"
+              },
+              {
+                "speakerId": "he_jiong",
+                "speakerName": "何炅",
+                "text": "终于有一句对我有利的。",
+                "speakerCategory": "main_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "blue",
+                "dialogueColorHex": "#3B82F6"
               }
             ]
           },
@@ -3434,23 +3262,23 @@
           "text": "再往后路会碎一点，不过今天空车，走起来轻松。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B"
+          "dialogueColorToken": "green",
+          "dialogueColorHex": "#16A34A"
         },
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "轻松两个字先收着。",
+          "text": "别夸太早。车听见了容易有想法。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
           "dialogueColorHex": "#64748B",
-          "actionBefore": "赵成弯腰捡起一块拳头大的碎石，顺手扔到路边。"
+          "actionBefore": "赵成伸手摸了一下车轴温度。"
         },
         {
           "speakerId": "tang_xiaoman",
           "speakerName": "唐小满",
-          "text": "赵叔一听人夸路就紧张。",
+          "text": "赵叔对车比许岚对骆驼还迷信。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "amber",
@@ -3459,20 +3287,11 @@
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "我不紧张。我只是明天不想蹲泥里挖轮子。",
+          "text": "我这是经验。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
           "dialogueColorHex": "#64748B"
-        },
-        {
-          "speakerId": "han_ming",
-          "speakerName": "韩明",
-          "text": "这句谁都不想。走吧。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B"
         }
       ],
       "interactionPoint": true,
@@ -3602,17 +3421,16 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "{{playerGivenName}}。行。",
+                "text": "行，{{playerGivenName}}。这个比较顺。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满当场叫了一遍，又抬手朝你招了招。"
+                "dialogueColorHex": "#D97706"
               },
               {
                 "speakerId": "miner",
                 "speakerName": "矿工",
-                "text": "听见了，省一个字。",
+                "text": "记住了。",
                 "speakerCategory": "generic_npc",
                 "isGenericNpc": true,
                 "dialogueColorToken": "brown",
@@ -3644,12 +3462,11 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "那就不为难你。{{playerGivenName}}，走快半步，前面那块石头硌脚。",
+                "text": "那就叫名字。等你什么时候想当姐再说。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满叫完名字就顺手指了下路。"
+                "dialogueColorHex": "#D97706"
               }
             ],
             "setFlags": {
@@ -3686,7 +3503,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "叫名字吧。再起一个新的，等会儿她自己都不知道你们在喊谁。",
+                "text": "这个决定很符合赶路效率。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -3753,39 +3570,21 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "嗯？",
+                "text": "你也跟着他们来？",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥回头应得很快，等看见你脸上的笑才反应过来。"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "你也来？",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899"
+                "actionBefore": "王鸥自己先笑了，抬手在你上臂很轻地捶了一下。"
               },
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "叫得挺顺。",
+                "text": "我觉得挺顺。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
                 "dialogueColorHex": "#3B82F6"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "你别在旁边添一句。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899"
               }
             ],
             "setFlags": {
@@ -3813,12 +3612,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "那你刚才一路盯着我干什么，我还以为药包漏了。",
+                "text": "发现了也不用这么认真汇报。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥低头真检查了一眼药包扣。"
+                "actionBefore": "王鸥嘴角弯着。"
               }
             ]
           },
@@ -3936,7 +3735,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "腿酸归腿酸，鞋没磨脚就省事多了。",
+                "text": "这已经算很好的第一天。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -3965,39 +3764,11 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "洗澡。",
+                "text": "洗澡。有人说先吃饭，我觉得那是因为他没吃够灰。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
                 "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "miner",
-                "speakerName": "矿工",
-                "text": "吃饭。",
-                "speakerCategory": "generic_npc",
-                "isGenericNpc": true,
-                "dialogueColorToken": "brown",
-                "dialogueColorHex": "#92400E"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "你看，他就是灰没吃够。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "han_ming",
-                "speakerName": "韩明",
-                "text": "你俩先省点力气，晚上抢热水再争。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "olive",
-                "dialogueColorHex": "#6B7D2B",
-                "actionBefore": "韩明在前面听了半路，终于插进来一句。"
               }
             ]
           },
@@ -4101,7 +3872,7 @@
         {
           "speakerId": "miner",
           "speakerName": "矿工",
-          "text": "哎——“每次”。",
+          "text": "这个“每次”很有东西。",
           "speakerCategory": "generic_npc",
           "isGenericNpc": true,
           "dialogueColorToken": "brown",
@@ -4131,14 +3902,14 @@
         },
         {
           "id": "2",
-          "text": "顺手把玩笑带开，别让大家一直追着王鸥。",
+          "text": "替何炅解围，说长期搭档记得小习惯很正常。",
           "nextSceneId": "ch5_26_after_hair",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "行了，你们再笑一会儿，我头发也要被风吹出“每次”了。",
+                "text": "搭档久了记得这些也正常吧。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -4146,17 +3917,16 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "对，先救一下后面的人。",
+                "text": "对，我本来就是这个意思。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6",
-                "actionBefore": "何炅顺势往你这边一让，自己也笑了。"
+                "dialogueColorHex": "#3B82F6"
               },
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "好好好，先走。",
+                "text": "炅哥，你这个回答很快。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
@@ -4318,7 +4088,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "先问这个。我也没抢到过几次热水。",
+                "text": "这个信息终于开始重要了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -4361,14 +4131,14 @@
           "text": "到了。先交人、交补给，晚上再慢慢看。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B",
-          "actionBefore": "韩明一边说一边已经朝交接棚抬手示意。"
+          "dialogueColorToken": "green",
+          "dialogueColorHex": "#16A34A",
+          "actionBefore": "韩明进门后明显回到工作节奏。"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "比我从坡上看着忙多了。",
+          "text": "比我想的忙。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -4377,29 +4147,12 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "你刚才是不是还以为那两排灯后面就结束了？",
+          "text": "而且比远处看起来大。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "我承认，我少算了后面这一大片。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "第一次来都这样。再住两天你就嫌它哪儿都不够大。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706"
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥目光沿着轨道和装卸区扫了一圈。"
         }
       ],
       "interactionPoint": true,
@@ -4488,17 +4241,17 @@
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "轨道上这个叫矿车，外头那几辆叫货车。",
+          "text": "这边的车别混着叫。轨道车坏了影响矿里搬货，外头那几辆坏了，我们明天就得在路上过夜。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
           "dialogueColorHex": "#64748B",
-          "actionBefore": "赵成刚把一个小矿车的插销推回去，抬头正听见有人把两个名字混在一起。"
+          "actionBefore": "赵成用手背敲了敲长途货车的车帮。"
         },
         {
           "speakerId": "tang_xiaoman",
           "speakerName": "唐小满",
-          "text": "来了，赵叔最不能听的两个字。",
+          "text": "赵叔最怕别人把他的车跟矿车叫成一回事。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "amber",
@@ -4507,25 +4260,7 @@
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "你们爱怎么叫怎么叫。明天外头那辆要是陷了，别跑来喊我“矿车坏了”。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "slate",
-          "dialogueColorHex": "#64748B"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "那时候我保证叫得特别准。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "zhao_cheng",
-          "speakerName": "赵成",
-          "text": "别给我这个机会。",
+          "text": "因为真不是一回事。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
@@ -4552,7 +4287,7 @@
               {
                 "speakerId": "zhao_cheng",
                 "speakerName": "赵成",
-                "text": "明天一装重，昨天好走的坡都得重新看一遍。",
+                "text": "对。重载以后每一处坡和泥都得重新算。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "slate",
@@ -4737,39 +4472,11 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "那是饿的。",
+                "text": "饿的。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
                 "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "zhou_yongfu",
-                "speakerName": "周永福",
-                "text": "第三碗也是饿的？",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "stone",
-                "dialogueColorHex": "#78716C"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "……第三碗是给你面子。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "du_qing",
-                "speakerName": "杜青",
-                "text": "她昨天没这么说。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "indigo",
-                "dialogueColorHex": "#4F46E5",
-                "actionBefore": "杜青抱着交班簿从旁边经过，顺手拆了一句。"
               }
             ]
           },
@@ -4942,17 +4649,7 @@
         {
           "speakerId": "du_qing",
           "speakerName": "杜青",
-          "text": "明天矿工我点人，路也是我带。车找赵成，骆驼找许岚。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "indigo",
-          "dialogueColorHex": "#4F46E5",
-          "actionBefore": "杜青把回程名单折起来塞进衣襟。"
-        },
-        {
-          "speakerId": "du_qing",
-          "speakerName": "杜青",
-          "text": "你们别一看见事就全扑上去，真有我们压不住的，再轮到你们。",
+          "text": "明天出发以后，矿工侧我来点人。路和沟我熟，车听赵成的，骆驼听许岚的。遇到超出我们能处理的，才轮到你们。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
@@ -4961,40 +4658,20 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "行。那我明天先管住自己别抢赵成的绳。",
+          "text": "这样最好。职责清楚，真忙起来省很多话。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6"
         },
         {
-          "speakerId": "zhao_cheng",
-          "speakerName": "赵成",
-          "text": "你先管住别去牵骆驼。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "slate",
-          "dialogueColorHex": "#64748B"
-        },
-        {
-          "speakerId": "xu_lan",
-          "speakerName": "许岚",
-          "text": "骆驼这边我替它们谢谢你。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "teal",
-          "dialogueColorHex": "#0F766E",
-          "actionBefore": "许岚正在理牵绳，头都没抬。"
-        },
-        {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "那伤和药归我。小擦伤谁手边有布先压住，别一个个排到我面前。",
+          "text": "伤员和药物我会接，但小擦伤谁手边方便谁先压住，不用全等我。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥被他们逗笑，抬手把药包往身前拨了拨。"
+          "dialogueColorHex": "#EC4899"
         }
       ],
       "interactionPoint": true,
@@ -5017,7 +4694,7 @@
               {
                 "speakerId": "du_qing",
                 "speakerName": "杜青",
-                "text": "那正好。车边缺手、后面掉人，你都能补得上。",
+                "text": "行。人多的时候能移动的人很有用。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "indigo",
@@ -5046,7 +4723,7 @@
               {
                 "speakerId": "zhao_cheng",
                 "speakerName": "赵成",
-                "text": "货真掉了就掉了。别有人一急，跟着东西往沟里扑。",
+                "text": "对。货掉了能赔，人不能拿去换。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "slate",
@@ -5075,7 +4752,7 @@
               {
                 "speakerId": "du_qing",
                 "speakerName": "杜青",
-                "text": "晴天先按晴天走。真变脸了，再骂。",
+                "text": "对，西边平时就是工作路。天气真变了再处理。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "indigo",
@@ -5134,12 +4811,12 @@
           "isGenericNpc": true,
           "dialogueColorToken": "brown",
           "dialogueColorHex": "#92400E",
-          "actionBefore": "那矿工几乎没停顿，张口就回。"
+          "actionBefore": "对方几乎没犹豫。"
         },
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "你想都没想啊。",
+          "text": "你这个结论下得很快。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -5167,7 +4844,7 @@
               {
                 "speakerId": "miner",
                 "speakerName": "矿工",
-                "text": "妖兽要是就一只，你盯一只。运人运货的时候，人、车、骆驼、路，谁都能临时闹点事。",
+                "text": "妖兽就一只的时候，你盯一只。运人运货的时候，人、车、骆驼、路，哪个都能有意见。",
                 "speakerCategory": "generic_npc",
                 "isGenericNpc": true,
                 "dialogueColorToken": "brown",
@@ -5176,30 +4853,11 @@
               {
                 "speakerId": "zhao_cheng",
                 "speakerName": "赵成",
-                "text": "你说这话的时候离我的车远一点。",
+                "text": "他说得很有实践依据。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "slate",
                 "dialogueColorHex": "#64748B"
-              },
-              {
-                "speakerId": "xu_lan",
-                "speakerName": "许岚",
-                "text": "也离我的骆驼远一点。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "teal",
-                "dialogueColorHex": "#0F766E"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "行，都别念了。等会儿真闹脾气，我先找你们两个。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6",
-                "actionBefore": "何炅看了看赵成，又看了看许岚。"
               }
             ]
           },
@@ -5216,7 +4874,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "今天到现在还挺给面子。",
+                "text": "至少今天大家都挺配合。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -5254,7 +4912,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "我现在觉得“护送”这两个字写得太省事了。",
+                "text": "我以前听“护送”还觉得是一路把人带到地方就行。现在已经有点明白了。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -5262,7 +4920,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "等明天车上装满，你会更嫌这两个字省。",
+                "text": "明天重载以后会更明白。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -5393,7 +5051,7 @@
               {
                 "speakerId": "zhao_cheng",
                 "speakerName": "赵成",
-                "text": "真到要丢东西的时候，手松快点。东西回城能补，人掉下去可不好补。",
+                "text": "这句记住就够。运输最怕有人舍不得一袋货，把自己搭进去。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "slate",
@@ -5441,12 +5099,11 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我收回早上拍两下袖子就能解决的想法。",
+          "text": "我现在赞成。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅低头看了眼自己怎么拍都拍不干净的袖口。"
+          "dialogueColorHex": "#3B82F6"
         },
         {
           "speakerId": "wang_ou",
@@ -5502,30 +5159,11 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "热水。床又不会跑。",
+                "text": "热水。床谁都能躺，热水晚一步就只剩“温过”。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
                 "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "miner",
-                "speakerName": "矿工",
-                "text": "热水会。晚半刻钟就从热水跑成温水。",
-                "speakerCategory": "generic_npc",
-                "isGenericNpc": true,
-                "dialogueColorToken": "brown",
-                "dialogueColorHex": "#92400E"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "所以我现在要走了。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满话音刚落，抱起换洗衣物就往外撤。"
               }
             ]
           },
@@ -5550,7 +5188,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "走一天没疼，刚才洗的时候也没青回来。就是别现在叫我去扛箱子。护片也在。",
+                "text": "还行。长路没问题，真正要避的是持续撞击和硬扛重物。护片也在。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -5606,7 +5244,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "stone",
           "dialogueColorHex": "#78716C",
-          "actionBefore": "周永福刚端起碗，眼皮都没抬。"
+          "actionBefore": "老周把筷子往她那边一放。"
         },
         {
           "speakerId": "tang_xiaoman",
@@ -5620,21 +5258,12 @@
         {
           "speakerId": "du_qing",
           "speakerName": "杜青",
-          "text": "第三碗端回去的时候，你可没这么委屈。",
+          "text": "她每次都这么解释。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
-          "dialogueColorHex": "#4F46E5"
-        },
-        {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "杜队，你今天话有点多。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706",
-          "actionBefore": "唐小满筷子一顿，桌边立刻有人笑。"
+          "dialogueColorHex": "#4F46E5",
+          "actionBefore": "杜青端着饭坐下，语气平得很。"
         }
       ],
       "interactionPoint": true,
@@ -5649,7 +5278,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "老周，那你自己最爱吃你做的哪样？",
+                "text": "老周，那你自己觉得你做得最好的是哪样？",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -5657,7 +5286,7 @@
               {
                 "speakerId": "zhou_yongfu",
                 "speakerName": "周永福",
-                "text": "我掌勺的时候哪有空挑。端出来什么先吃什么。",
+                "text": "我觉得都行。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "stone",
@@ -5666,25 +5295,7 @@
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "你看，他又绕过去了。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "zhou_yongfu",
-                "speakerName": "周永福",
-                "text": "那你别吃。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "stone",
-                "dialogueColorHex": "#78716C"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "那不行。",
+                "text": "这个回答没有参考价值。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
@@ -5722,7 +5333,7 @@
               {
                 "speakerId": "zhou_yongfu",
                 "speakerName": "周永福",
-                "text": "这句我听杜队的。饭先别凉。",
+                "text": "这个顺序很合理。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "stone",
@@ -5787,7 +5398,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅还低头掰着饼，话已经顺口接了出去。"
+          "actionBefore": "何炅正在低头掰饼，顺口接了一句。"
         },
         {
           "speakerId": "wang_ou",
@@ -5797,7 +5408,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥筷子停在半空，转头看他。"
+          "actionBefore": "王鸥转头看他。"
         },
         {
           "speakerId": "he_jiong",
@@ -5807,7 +5418,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅抬起头，自己也反应过来了。"
+          "actionBefore": "何炅这才抬头。"
         },
         {
           "speakerId": "wang_ou",
@@ -5817,7 +5428,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥把小罐接过去，嘴角已经压不住。"
+          "actionBefore": "王鸥把小罐接过去。"
         },
         {
           "speakerId": "zhou_yongfu",
@@ -5874,50 +5485,20 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你先夹一根。别一筷子下去。",
+                "text": "还好，你可以试一点。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥把腌菜罐往你这边推了一点。"
+                "dialogueColorHex": "#EC4899"
               },
               {
                 "speakerId": "tang_xiaoman",
                 "speakerName": "唐小满",
-                "text": "等一下，你先闻闻。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满从旁边伸手挡了一下，自己先凑过去闻了闻。"
-              },
-              {
-                "speakerId": "zhou_yongfu",
-                "speakerName": "周永福",
-                "text": "你昨天不是吃过？",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "stone",
-                "dialogueColorHex": "#78716C"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "昨天我是没防备。",
+                "text": "鸥姐说“还好”的时候，你最好先少夹。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "amber",
                 "dialogueColorHex": "#D97706"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "那你今天还凑这么近。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥笑得筷子都停了一下。"
               }
             ]
           },
@@ -5942,30 +5523,21 @@
               {
                 "speakerId": "zhou_yongfu",
                 "speakerName": "周永福",
-                "text": "我就说两个字，你们自己笑成这样。",
+                "text": "饭桌上闲着也是闲着。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "stone",
                 "dialogueColorHex": "#78716C"
               },
               {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "你那两个字说得很有分量。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
-              },
-              {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你还接。",
+                "text": "你别给他增加职责。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥拿筷尾轻轻点了一下何炅碗沿。"
+                "actionBefore": "王鸥终于也笑出声。"
               }
             ]
           },
@@ -5995,14 +5567,14 @@
         "矿工"
       ],
       "narration": [
-        "腌菜的话题很快被旁边的说话声盖过去。赵成端着碗问是谁把修车扳手放错了棚，隔了半桌还有人回他“明早给你找”；许岚则惦记着那头白天闹脾气的骆驼，说它刚才吃草吃得比谁都香。",
-        "韩明吃到一半又想起夜查的轮次，刚报了两个人名，就被杜青提醒先把饭咽下去。桌上筷子碰碗、有人起身添饭，话题一会儿在矿里，一会儿又绕回白天路上的小事。"
+        "腌菜的话题很快被别的声音盖过去。赵成抱怨有人把修车扳手放错棚，许岚说那头和何炅较劲的骆驼今晚吃得比谁都香，韩明开始算接班后谁先轮夜查。",
+        "同一张桌上没有谁永远负责逗笑，也没有谁只负责正经。白天各自靠谱的人，到了饭桌边照样会接梗、拆台和拿自己的狼狈说事。"
       ],
       "npcDialogue": [
         {
           "speakerId": "xu_lan",
           "speakerName": "许岚",
-          "text": "那头骆驼今晚吃得可香。",
+          "text": "那头骆驼今天心情很好。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "teal",
@@ -6011,30 +5583,30 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "看来它已经把白天那段忘了。",
+          "text": "它应该对我也没有意见，只是表达方式比较特别。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅正低头夹菜，听见以后抬了下头。"
+          "dialogueColorHex": "#3B82F6"
         },
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "你还记着呢？",
+          "text": "你还在替它解释。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
           "dialogueColorHex": "#64748B"
         },
         {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "主要是它态度太鲜明了。",
+          "speakerId": "wang_ou",
+          "speakerName": "王鸥",
+          "text": "说明他很愿意维护关系。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
+          "dialogueColorToken": "pink",
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥说完自己先弯了一下唇。"
         }
       ],
       "interactionPoint": true,
@@ -6042,14 +5614,14 @@
       "choices": [
         {
           "id": "1",
-          "text": "看唐小满把最后一块肉夹走，顺势问她最讨厌轮到什么杂活。",
+          "text": "问唐小满接班后最怕轮到什么杂活。",
           "nextSceneId": "ch5_38_camp_evening",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "肉抢得这么快。那矿里有没有什么活是你一看轮到自己就头疼的？",
+                "text": "你这轮最不想轮到什么活？",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -6066,21 +5638,11 @@
               {
                 "speakerId": "zhou_yongfu",
                 "speakerName": "周永福",
-                "text": "你手里这块就是锅里出来的。",
+                "text": "锅没有意见。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "stone",
                 "dialogueColorHex": "#78716C"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "所以我更珍惜。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满立刻把那块肉塞进嘴里。"
               }
             ]
           },
@@ -6090,14 +5652,14 @@
         },
         {
           "id": "2",
-          "text": "听杜青说起明早交接，问她这一轮有没有哪天特别折腾。",
+          "text": "问杜青这轮下班最满意的是什么。",
           "nextSceneId": "ch5_38_camp_evening",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "你们这一轮有没有哪天特别折腾？",
+                "text": "杜队，这一轮最顺的一件事是什么？",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -6105,30 +5667,12 @@
               {
                 "speakerId": "du_qing",
                 "speakerName": "杜青",
-                "text": "第三天。二号轨卡了一下午，晚上回来谁都不想说话。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "indigo",
-                "dialogueColorHex": "#4F46E5"
-              },
-              {
-                "speakerId": "zhou_yongfu",
-                "speakerName": "周永福",
-                "text": "她还是说了。催我们吃饭。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "stone",
-                "dialogueColorHex": "#78716C"
-              },
-              {
-                "speakerId": "du_qing",
-                "speakerName": "杜青",
-                "text": "那不叫聊天。",
+                "text": "没人受伤，设备也没出大毛病。矿挖多少反倒排后面。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "indigo",
                 "dialogueColorHex": "#4F46E5",
-                "actionBefore": "杜青夹了一口菜，桌边又笑起来。"
+                "actionBefore": "杜青想了想才答。"
               }
             ]
           },
@@ -6138,35 +5682,36 @@
         },
         {
           "id": "3",
-          "text": "听见他们又提起那头骆驼，顺口问许岚它平时是不是也这么挑人。",
+          "text": "继续拿骆驼逗何炅一句。",
           "nextSceneId": "ch5_38_camp_evening",
           "effect": {
             "outcomeDialogue": [
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "它平时也这么挑人吗？",
+                "text": "我觉得你们关系已经很明确了，它不想跟你走。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
               },
               {
-                "speakerId": "xu_lan",
-                "speakerName": "许岚",
-                "text": "偶尔。今天算脾气大一点，明早睡醒说不定就好了。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "teal",
-                "dialogueColorHex": "#0F766E"
-              },
-              {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "那我明早再观察一下。",
+                "text": "谢谢总结。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
                 "dialogueColorHex": "#3B82F6"
+              },
+              {
+                "speakerId": "xu_lan",
+                "speakerName": "许岚",
+                "text": "非常准确。",
+                "speakerCategory": "supporting_character",
+                "isGenericNpc": false,
+                "dialogueColorToken": "teal",
+                "dialogueColorHex": "#0F766E",
+                "actionBefore": "许岚干脆地点头。"
               }
             ]
           },
@@ -6196,7 +5741,8 @@
         "矿工"
       ],
       "narration": [
-        "晚饭散后，驻点没有立刻安静。有人去排热水，有人在棚下打牌，有人靠着柱子补衣服。明早回城的人把靴子往墙边一踢，坐下就开始聊城里哪家店还开着；接班的人玩到一半还会抬头看看夜里的轮值表。"
+        "晚饭散后，驻点没有立刻安静。有人去排热水，有人在棚下打牌，有人靠着柱子补衣服。明早要回城的那批人明显松快，接班的人则一边玩一边记着夜里的轮值。",
+        "你们也没有马上睡。水囊重新灌满，第二天的干粮分进各自行囊，湿布和药品放在伸手够得到的位置。"
       ],
       "npcDialogue": [
         {
@@ -6211,7 +5757,7 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "这比赛谁爱赢谁赢。",
+          "text": "这个比赛可以不比。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -6249,36 +5795,7 @@
             ],
             "setFlags": {
               "played_cards": true
-            },
-            "outcomeDialogue": [
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "先说好，输的人不许怪牌。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706",
-                "actionBefore": "唐小满把牌往铺板上一拍。"
-              },
-              {
-                "speakerId": "player",
-                "speakerName": "你",
-                "text": "那我先问一句，你平时输不输？",
-                "speakerCategory": "player",
-                "isGenericNpc": false,
-                "dialogueColorToken": "neutral"
-              },
-              {
-                "speakerId": "tang_xiaoman",
-                "speakerName": "唐小满",
-                "text": "你这个问题影响我们刚认识的感情。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "amber",
-                "dialogueColorHex": "#D97706"
-              }
-            ]
+            }
           },
           "intent": "个人行动",
           "branchType": "low_impact_reconverge",
@@ -6295,36 +5812,7 @@
             ],
             "setFlags": {
               "helped_sort_meds": true
-            },
-            "outcomeDialogue": [
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "这两瓶放外侧，明天真摔了能直接摸到。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥把两只小药瓶放到你手边。"
-              },
-              {
-                "speakerId": "player",
-                "speakerName": "你",
-                "text": "这个位置？",
-                "speakerCategory": "player",
-                "isGenericNpc": false,
-                "dialogueColorToken": "neutral"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "再往左一点。对，别压着绷带。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899"
-              }
-            ]
+            }
           },
           "intent": "个人行动",
           "branchType": "low_impact_reconverge",
@@ -6341,36 +5829,7 @@
             ],
             "setFlags": {
               "rechecked_common_gear": true
-            },
-            "outcomeDialogue": [
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "这捆够了，别再往包里塞。明天背着走的人是我们。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6",
-                "actionBefore": "何炅按住你又拿起来的一截备用绳。"
-              },
-              {
-                "speakerId": "player",
-                "speakerName": "你",
-                "text": "我只是觉得它看起来还能塞。",
-                "speakerCategory": "player",
-                "isGenericNpc": false,
-                "dialogueColorToken": "neutral"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "包永远看起来还能塞。肩膀不一定。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
-              }
-            ]
+            }
           },
           "intent": "个人行动",
           "branchType": "short_branch",
@@ -6399,7 +5858,7 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "今天挺顺。明天再把人和矿带回去，这趟就齐活了。",
+          "text": "今天整体挺顺。明天把人和矿带回去，这趟就算完整。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -6409,7 +5868,7 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "你少说这种太满的话。",
+          "text": "你最好少说这种话。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -6419,7 +5878,7 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我就说今天顺。",
+          "text": "我只是客观总结今天。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -6428,7 +5887,7 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "那就停在今天。",
+          "text": "那就总结到今天。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -6455,7 +5914,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "好，我闭嘴。",
+                "text": "好，我收回对明天的任何评价。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -6464,21 +5923,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你能闭到明早我就信。",
+                "text": "现在比较安全。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥看了他一眼，自己先笑了。"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "那难度突然变高了。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
+                "actionBefore": "王鸥轻轻笑了一下。"
               }
             ]
           },
@@ -6495,7 +5945,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "我今天一路走下来，矿区跟我原先想的还真不太一样。白天干活，晚上大家还在抢热水。",
+                "text": "不过今天确实让我放心很多。矿区是工作地方，大家都是来过日子的。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -6503,7 +5953,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你看，白天干活，晚上抢热水。谁还能天天把日子过成传奇。",
+                "text": "本来就是。危险是真的，日子也是真的。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -6512,7 +5962,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "我刚才就不该开那个头。",
+                "text": "这句总结比我的安全。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -6541,7 +5991,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "去吧，我现在也只想躺下。",
+                "text": "这个决定最成熟。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -6677,45 +6127,26 @@
           "isGenericNpc": false,
           "dialogueColorToken": "amber",
           "dialogueColorHex": "#D97706",
-          "actionBefore": "唐小满顶着一头刚睡醒的乱发从门口探进来。"
+          "actionBefore": "唐小满一边戴工作手套一边冲你挥了下手。"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "你一大早就来检查这个？",
+          "text": "我们争取没有这个比赛项目。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6"
         },
         {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "我来拿水壶，顺便。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706"
-        },
-        {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "水壶在你手上。",
+          "text": "你昨晚已经被禁止评价今天。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥看了一眼她已经拎着的水壶。"
-        },
-        {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "……那我就是专门来的。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706",
-          "actionBefore": "唐小满低头看了一眼，干脆承认。"
+          "actionBefore": "王鸥看向何炅时停了极短的一瞬，随即把视线移回装车区。"
         }
       ],
       "interactionPoint": true,
@@ -6781,7 +6212,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "睡着了。就是这床硬得很有存在感。",
+                "text": "还行。就是矿场的床比我家的硬。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -6814,24 +6245,24 @@
         "回程班组"
       ],
       "narration": [
-        "天刚亮，赵成已经在装卸区盯第一辆货车。导灵石原矿按重量压低装入，外层再用绳网收紧。昨天看起来轻快的车轮，现在陷进土里更深一点。",
-        "许岚重新检查牵引骆驼的胸带和负载，杜青把回程十人逐一对过。几个刚下班的矿工一边绑行李，一边已经在争回城先吃饭还是先洗澡。"
+        "原矿按昨天确认的顺序装上矿运货车。最重的箱袋压在低处，外层留出紧急卸载的位置，每辆车都预留足够的绳具重新固定。",
+        "许岚重新检查牵引骆驼的胸带和负载，杜青则把回程十人逐一对过。今天的队伍比去程少了韩明和唐小满，多了一种很明显的“下班回家”气氛。"
       ],
       "npcDialogue": [
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "看见没有，昨天那些空车今天终于有正事了。现在谁都别往上坐。",
+          "text": "这就是昨天空车为什么也得走五十里。现在谁都别坐。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
           "dialogueColorHex": "#64748B",
-          "actionBefore": "赵成拍了拍已经压低绑牢的矿箱。"
+          "actionBefore": "赵成收紧最后一道主绳。"
         },
         {
           "speakerId": "zhou_yongfu",
           "speakerName": "周永福",
-          "text": "放心，我还没累到跟矿抢座。",
+          "text": "我本来也没打算跟矿抢位置。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "stone",
@@ -6840,39 +6271,11 @@
         {
           "speakerId": "du_qing",
           "speakerName": "杜青",
-          "text": "人齐，行李齐。许岚那边一声，我们就走。",
+          "text": "人齐，行李齐。等许岚那边一句就走。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
           "dialogueColorHex": "#4F46E5"
-        },
-        {
-          "speakerId": "xu_lan",
-          "speakerName": "许岚",
-          "text": "先别催，最右边这个扣我再看一遍。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "teal",
-          "dialogueColorHex": "#0F766E",
-          "actionBefore": "许岚正蹲在骆驼胸带旁重新穿扣。"
-        },
-        {
-          "speakerId": "zhao_cheng",
-          "speakerName": "赵成",
-          "text": "行，你慢慢看。今天谁催你，谁自己牵。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "slate",
-          "dialogueColorHex": "#64748B"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "我先声明，我不催。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
         }
       ],
       "interactionPoint": true,
@@ -6934,7 +6337,7 @@
               {
                 "speakerId": "xu_lan",
                 "speakerName": "许岚",
-                "text": "今天它看见炅哥没停，昨天那一页大概翻过去了。",
+                "text": "挺好。只要炅哥别主动建立关系。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "teal",
@@ -6943,7 +6346,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "我谢谢它。",
+                "text": "我已经听到了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -6994,16 +6397,16 @@
         {
           "speakerId": "han_ming",
           "speakerName": "韩明",
-          "text": "路上慢点。真碰上路变了，听杜青的。",
+          "text": "路上慢一点。杜队熟路，有事听她判断。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "olive",
-          "dialogueColorHex": "#6B7D2B"
+          "dialogueColorToken": "green",
+          "dialogueColorHex": "#16A34A"
         },
         {
           "speakerId": "du_qing",
           "speakerName": "杜青",
-          "text": "你先顾你这边吧。我们把人带回去，明天你再接着操心。",
+          "text": "你安心接班。我们负责把这批人和矿带回去。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
@@ -7026,25 +6429,6 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "xu_lan",
-          "speakerName": "许岚",
-          "text": "它也没说你吵。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "teal",
-          "dialogueColorHex": "#0F766E",
-          "actionBefore": "许岚在前面牵着骆驼，没回头。"
-        },
-        {
-          "speakerId": "tang_xiaoman",
-          "speakerName": "唐小满",
-          "text": "那就是单方面冷战。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "amber",
-          "dialogueColorHex": "#D97706"
         }
       ],
       "interactionPoint": true,
@@ -7149,7 +6533,7 @@
         {
           "speakerId": "zhou_yongfu",
           "speakerName": "周永福",
-          "text": "照现在这个速度，回城还能赶上一顿正常晚饭。",
+          "text": "按这个速度，回城还能赶上一顿正常晚饭。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "stone",
@@ -7158,7 +6542,7 @@
         {
           "speakerId": "du_qing",
           "speakerName": "杜青",
-          "text": "菜名先别报。",
+          "text": "你先别点菜。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
@@ -7167,45 +6551,17 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "我今天一句都不接，省得又算我头上。",
+          "text": "我昨晚已经被禁止做任何关于今天的乐观判断，所以我保持沉默。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅立刻把话头往外推。"
-        },
-        {
-          "speakerId": "zhou_yongfu",
-          "speakerName": "周永福",
-          "text": "我说我的，怎么还能算你头上？",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "stone",
-          "dialogueColorHex": "#78716C"
+          "actionBefore": "何炅举了下手。"
         },
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "因为他昨晚已经说过一次“明天挺顺”。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥把药包往肩后拨了拨，顺手揭了他的底。"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "你记这个倒是记得很清楚。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "wang_ou",
-          "speakerName": "王鸥",
-          "text": "昨晚就坐你旁边，很难忘。",
+          "text": "很好。继续保持。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -7258,12 +6614,11 @@
               {
                 "speakerId": "du_qing",
                 "speakerName": "杜青",
-                "text": "他这会儿脑子里已经只剩晚饭了。",
+                "text": "很合理。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "indigo",
-                "dialogueColorHex": "#4F46E5",
-                "actionBefore": "杜青看了周永福一眼。"
+                "dialogueColorHex": "#4F46E5"
               }
             ]
           },
@@ -7273,7 +6628,7 @@
         },
         {
           "id": "3",
-          "text": "走到王鸥旁边，问她昨天走完六小时后肋侧有没有再疼。",
+          "text": "走到王鸥旁边，确认她今天状态正常。",
           "nextSceneId": "ch5_45_he_hand_rope",
           "effect": {
             "outcomeDialogue": [
@@ -7288,29 +6643,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "没疼。刚才上坡我还特意扭了一下腰，护片也没顶。",
+                "text": "状态正常。你不用隔半天问一次。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥伸手按了按护片边缘。"
-              },
-              {
-                "speakerId": "wang_ou",
-                "speakerName": "王鸥",
-                "text": "你再问，我就把这块护片交给你背一会儿。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "pink",
-                "dialogueColorHex": "#EC4899"
-              },
-              {
-                "speakerId": "player",
-                "speakerName": "你",
-                "text": "那我不问了。",
-                "speakerCategory": "player",
-                "isGenericNpc": false,
-                "dialogueColorToken": "neutral"
+                "actionBefore": "王鸥语气温和，尾音里有一点熟悉的无奈。"
               }
             ]
           },
@@ -7348,7 +6686,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥已经把清创布抽了出来。"
+          "actionBefore": "王鸥已经从药包外层取出清创布。"
         },
         {
           "speakerId": "he_jiong",
@@ -7358,7 +6696,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅嘴上问着，手倒已经伸过去了。"
+          "actionBefore": "何炅很配合地把手递过去。"
         },
         {
           "speakerId": "wang_ou",
@@ -7367,7 +6705,8 @@
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899"
+          "dialogueColorHex": "#EC4899",
+          "actionBefore": "王鸥低头擦掉伤口边上的灰。"
         },
         {
           "speakerId": "du_qing",
@@ -7377,7 +6716,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
           "dialogueColorHex": "#4F46E5",
-          "actionBefore": "杜青正好从旁边收完一截绳，抬眼看见这一幕。"
+          "actionBefore": "杜青正在旁边收绳，抬头看了一眼。"
         },
         {
           "speakerId": "he_jiong",
@@ -7400,22 +6739,12 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "老周，你手里那捆绳还没收完。",
+          "text": "少说两句。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥笑着抬眼扫了周永福一下。"
-        },
-        {
-          "speakerId": "zhou_yongfu",
-          "speakerName": "周永福",
-          "text": "我这就走。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "stone",
-          "dialogueColorHex": "#78716C",
-          "actionBefore": "周永福抱着绳转身，走出去两步还在笑。"
+          "actionBefore": "旁边笑起来，王鸥也被逗笑，抬手在何炅手腕上轻轻拍了一下。"
         }
       ],
       "interactionPoint": true,
@@ -7491,7 +6820,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "路干的时候这点皮不算什么。真沾上泥水就烦了，所以先包住。",
+                "text": "对。西边路干时无所谓，真碰上水和泥，污染比伤口本身麻烦。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -7579,7 +6908,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "你以后少说两句“没事”。上次虎口你也是这么糊弄的。",
+                "text": "你这个“没事”最好少用一点。上次虎口也是这么说。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -7587,7 +6916,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "怎么这都翻出来了。",
+                "text": "我接受历史证据。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -7596,21 +6925,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "她记得挺清楚。",
+                "text": "这句也记住。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥低头收好药布，没忍住弯了下嘴角。"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "你别跟着笑。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
+                "actionBefore": "王鸥很轻地接了一句。"
               }
             ]
           },
@@ -7737,7 +7057,7 @@
               {
                 "speakerId": "du_qing",
                 "speakerName": "杜青",
-                "text": "先收外露的！雨真砸下来就顾不上捡了。",
+                "text": "对，先收外露的。别等雨下来再找。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "indigo",
@@ -8175,7 +7495,7 @@
               {
                 "speakerId": "zhou_yongfu",
                 "speakerName": "周永福",
-                "text": "别串成一串。你先站稳！",
+                "text": "对，别串成一串。你站稳。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "slate",
@@ -8198,7 +7518,7 @@
         }
       ],
       "freeInputEnabled": true,
-      "timeOfDay": "中午"
+      "timeOfDay": "第二天下午"
     },
     {
       "id": "ch5_50_wagon_slip",
@@ -8661,7 +7981,7 @@
               {
                 "speakerId": "du_qing",
                 "speakerName": "杜青",
-                "text": "能走的先散开，别全堵在王鸥旁边。",
+                "text": "好。能走的别围着，先把位置让出来。",
                 "speakerCategory": "supporting_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "indigo",
@@ -8776,7 +8096,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "呼吸没事。就是疼了一下，我能走。",
+                "text": "没有。就是撞了一下。可以继续。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -8806,7 +8126,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "回去我得把固定带拆开看看，刚才这一撞没白挨。",
+                "text": "我也这么觉得。回去得再检查固定带。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -10291,23 +9611,21 @@
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
-          "dialogueColorHex": "#4F46E5",
-          "actionBefore": "杜青把最后一个名字点完，终于把湿透的名单卷起来。"
+          "dialogueColorHex": "#4F46E5"
         },
         {
           "speakerId": "zhao_cheng",
           "speakerName": "赵成",
-          "text": "主要矿箱都在，车也能走。",
+          "text": "矿石齐——主要的都在。车也能走。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "slate",
-          "dialogueColorHex": "#64748B",
-          "actionBefore": "赵成绕着两辆车又看了一圈。"
+          "dialogueColorHex": "#64748B"
         },
         {
           "speakerId": "xu_lan",
           "speakerName": "许岚",
-          "text": "骆驼也齐。",
+          "text": "驮兽齐。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "teal",
@@ -10321,7 +9639,7 @@
           "isGenericNpc": false,
           "dialogueColorToken": "stone",
           "dialogueColorHex": "#78716C",
-          "actionBefore": "周永福左右看了一圈，忽然停住。"
+          "actionBefore": "老周安静了两息，忽然抬头。"
         },
         {
           "speakerId": "miner",
@@ -10331,25 +9649,6 @@
           "isGenericNpc": true,
           "dialogueColorToken": "brown",
           "dialogueColorHex": "#92400E"
-        },
-        {
-          "speakerId": "zhou_yongfu",
-          "speakerName": "周永福",
-          "text": "我就知道少了点什么。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "stone",
-          "dialogueColorHex": "#78716C",
-          "actionBefore": "周永福盯着沟下看了两息，自己先叹了口气。"
-        },
-        {
-          "speakerId": "du_qing",
-          "speakerName": "杜青",
-          "text": "别看了，它现在比我们走得快。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "indigo",
-          "dialogueColorHex": "#4F46E5"
         }
       ],
       "interactionPoint": true,
@@ -10381,7 +9680,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "老周，回城给你补口锅。",
+                "text": "这件事现在终于可以笑了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -10420,7 +9719,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "谁都别下去。它爱冲哪儿冲哪儿。",
+                "text": "很好。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -10528,7 +9827,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "先回城吧。以后真来西边找材料，也不至于两眼一抹黑。",
+                "text": "记住就行。今天先把护送做完，下次真想找材料再单独来。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -10536,7 +9835,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "嗯，今天已经够本了。",
+                "text": "我也是这么想。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -10545,7 +9844,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "这块先收好。别的回去再看。",
+                "text": "先把样本信息记住，不用现在追。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -10612,7 +9911,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "“运气不错”这四个字你先收回去。",
+                "text": "这个“不错”我不接受。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -10643,8 +9942,8 @@
         "回程班组"
       ],
       "narration": [
-        "砂甲獾散去、人数和主要货物重新清过以后，赵成带人把卸下来的东西重新分装。何炅去帮忙拉一辆车上侧的辅助绳，转身时一脚踩进被雨泡软的浅坑。",
-        "他当场站住，没有摔倒。再迈一步，右脚落地时却明显顿了一下。旁边刚松下来的矿工先看见了。"
+        "危险基本控制以后，大家重新把卸下的矿袋装回车上。何炅去帮一个矿工扶车边的辅助绳，转身避开泥坑时脚下一滑，右脚踩进软边，踝关节狠狠别了一下。",
+        "他当场站住，没有摔倒。可再迈一步时，走法已经明显不对。真正最狼狈的一处伤，反倒来在战斗结束以后。"
       ],
       "npcDialogue": [
         {
@@ -10669,7 +9968,7 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "脚伸过来，我摸一下。",
+          "text": "你先别负责觉得。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
@@ -10715,7 +10014,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "你先笑。笑完再关心我。",
+                "text": "可以。你的道歉顺序很诚实。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -10724,30 +10023,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "能走。你别逞快。",
+                "text": "能走，轻度扭伤。慢一点。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥托着他的鞋跟活动了两下脚踝。"
-              },
-              {
-                "speakerId": "miner",
-                "speakerName": "矿工",
-                "text": "那我们可以继续笑吗？",
-                "speakerCategory": "generic_npc",
-                "isGenericNpc": true,
-                "dialogueColorToken": "brown",
-                "dialogueColorHex": "#92400E"
-              },
-              {
-                "speakerId": "he_jiong",
-                "speakerName": "何炅",
-                "text": "不可以。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "blue",
-                "dialogueColorHex": "#3B82F6"
+                "actionBefore": "王鸥几乎也要笑，还是先把固定带绕好。"
               }
             ]
           },
@@ -10764,7 +10045,7 @@
               {
                 "speakerId": "player",
                 "speakerName": "你",
-                "text": "刚才那一步我应该能记很久。",
+                "text": "我觉得他说得没错，确实挺有特色。",
                 "speakerCategory": "player",
                 "isGenericNpc": false,
                 "dialogueColorToken": "neutral"
@@ -10772,7 +10053,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "你们差不多得了，我还得走回去呢。",
+                "text": "我现在非常需要队友保持基本善意。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -10781,21 +10062,12 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你先把脚伸好。",
+                "text": "她们已经很善意了。没让你再走一遍。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
                 "dialogueColorHex": "#EC4899",
-                "actionBefore": "王鸥按住他还想往回缩的脚。"
-              },
-              {
-                "speakerId": "du_qing",
-                "speakerName": "杜青",
-                "text": "回去慢慢笑，先让她绑。",
-                "speakerCategory": "supporting_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "indigo",
-                "dialogueColorHex": "#4F46E5"
+                "actionBefore": "王鸥低头系结，唇角压不住一点。"
               }
             ]
           },
@@ -10864,7 +10136,7 @@
         {
           "speakerId": "zhou_yongfu",
           "speakerName": "周永福",
-          "text": "早上出门的时候，我还说今天能早点回去。",
+          "text": "早上出门的时候，我觉得今天应该挺顺利的。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "stone",
@@ -10873,50 +10145,29 @@
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "你也说了？",
+          "text": "这种话以后出门前不要说。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥一下回头。"
+          "dialogueColorHex": "#EC4899"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "听见没有，这事终于有第二个人了。",
+          "text": "我昨晚已经被禁止说了。现在看来禁止范围应该扩大。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6"
         },
         {
-          "speakerId": "zhou_yongfu",
-          "speakerName": "周永福",
-          "text": "怎么还带追责的？",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "stone",
-          "dialogueColorHex": "#78716C",
-          "actionBefore": "周永福脚下没停，声音倒先高了一点。"
-        },
-        {
           "speakerId": "du_qing",
           "speakerName": "杜青",
-          "text": "先记着。回城再判。",
+          "text": "以后全队统一不评价天气。",
           "speakerCategory": "supporting_character",
           "isGenericNpc": false,
           "dialogueColorToken": "indigo",
-          "dialogueColorHex": "#4F46E5",
-          "actionBefore": "杜青在前面头也没回。"
-        },
-        {
-          "speakerId": "zhao_cheng",
-          "speakerName": "赵成",
-          "text": "我申请不参加，我早上什么都没说。",
-          "speakerCategory": "supporting_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "slate",
-          "dialogueColorHex": "#64748B"
+          "dialogueColorHex": "#4F46E5"
         }
       ],
       "interactionPoint": true,
@@ -10953,7 +10204,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "知道。今天右边这条软路，我已经被你提醒三回了。",
+                "text": "看见了。你今天已经从搭档进化成路面监督。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -10962,7 +10213,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你再踩进去，我就真给你绑两圈。",
+                "text": "监督得对。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -11104,7 +10355,7 @@
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "她下午就在这儿等，多半已经交完差了。先把这里弄完，我们再过去。",
+          "text": "看来已经做完了。先把这里交完，我们过去。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -11183,7 +10434,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你走你的，别一听昕昕在等就把脚忘了。",
+                "text": "很好，有自知之明。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -11213,8 +10464,8 @@
         "小馆店家"
       ],
       "narration": [
-        "你们离开西门装运区，沿城墙内侧走到附近的小馆。门一推开，暖气和饭香一起涌出来。吴昕坐在靠窗的位置，桌上有一壶添过几次热水的茶。",
-        "她一下站起来，目光从何炅的脚扫到王鸥衣侧的泥，又落到你膝边的擦痕。嘴唇动了一下，先朝你们走了两步。"
+        "你们离开西门装运区，沿城墙内侧走到附近的小馆。门一推开，暖气和饭香一起涌出来。吴昕坐在靠窗的位置，桌上有一壶已经添过水的热茶。",
+        "她抬头看见你们时，先看过何炅的跛脚、王鸥衣侧的泥，再扫到你膝边的擦痕，停了一下。她原本准备好的话卡在了嘴边。"
       ],
       "npcDialogue": [
         {
@@ -11223,9 +10474,9 @@
           "text": "……你们这是去护送矿工，还是去跟西边打一架了？",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E",
-          "actionBefore": "吴昕从桌边站起来，先把何炅从头到脚看了一遍，又看向你和王鸥。"
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕站起来走近两步，先确认你们都能自己走。"
         },
         {
           "speakerId": "he_jiong",
@@ -11237,43 +10488,23 @@
           "dialogueColorHex": "#3B82F6"
         },
         {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "我看出来雨很大。你鞋里是不是还有泥？",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "你先别看鞋，给我留点面子。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅下意识把那只沾满泥的脚往凳子底下收了收。"
-        },
-        {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "先坐吧。人都回来了，矿也带回来大半。",
+          "text": "路冲坏了，又碰上砂甲獾。人都平安，矿也带回了大部分。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥把何炅往靠墙的凳子那边指了一下。"
+          "dialogueColorHex": "#EC4899"
         },
         {
           "speakerId": "wu_xin",
           "speakerName": "吴昕",
-          "text": "我再等半个时辰，这壶水都要被我喝出感情了。",
+          "text": "你们再晚一点，我都快把这壶水喝第三遍了。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E",
-          "actionBefore": "吴昕把桌上的茶壶往中间推了推。"
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "她嘴上说得轻，眼里的担心却还没完全退。"
         }
       ],
       "interactionPoint": true,
@@ -11296,12 +10527,12 @@
               {
                 "speakerId": "wu_xin",
                 "speakerName": "吴昕",
-                "text": "“没大事”先放着。你们坐下来再说。",
+                "text": "那就好。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
-                "dialogueColorToken": "green",
-                "dialogueColorHex": "#22C55E",
-                "actionBefore": "吴昕把旁边两张凳子往外拖了拖。"
+                "dialogueColorToken": "purple",
+                "dialogueColorHex": "#8B5CF6",
+                "actionBefore": "吴昕肩膀明显松下来。"
               },
               {
                 "speakerId": "he_jiong",
@@ -11311,15 +10542,6 @@
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
                 "dialogueColorHex": "#3B82F6"
-              },
-              {
-                "speakerId": "wu_xin",
-                "speakerName": "吴昕",
-                "text": "你先坐。你站着道歉更显眼。",
-                "speakerCategory": "main_character",
-                "isGenericNpc": false,
-                "dialogueColorToken": "green",
-                "dialogueColorHex": "#22C55E"
               }
             ]
           },
@@ -11353,7 +10575,7 @@
               {
                 "speakerId": "he_jiong",
                 "speakerName": "何炅",
-                "text": "一路上已经笑过我一轮了，你别加入。",
+                "text": "这个评价已经在路上听过了。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "blue",
@@ -11362,7 +10584,7 @@
               {
                 "speakerId": "wang_ou",
                 "speakerName": "王鸥",
-                "text": "你现在再走两步，她还能看得更清楚。",
+                "text": "她说得很客观。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "pink",
@@ -11392,12 +10614,12 @@
               {
                 "speakerId": "wu_xin",
                 "speakerName": "吴昕",
-                "text": "下午就交完了。不然我哪有空在西门把你们等到天黑。",
+                "text": "完成了。下午就验收完了，所以我才有时间过来等你们。",
                 "speakerCategory": "main_character",
                 "isGenericNpc": false,
                 "dialogueColorToken": "purple",
                 "dialogueColorHex": "#8B5CF6",
-                "actionBefore": "吴昕说到自己的委托，端起茶杯晃了晃。"
+                "actionBefore": "吴昕说到自己的任务时，眼神终于亮了一点。"
               }
             ]
           },
@@ -11421,108 +10643,55 @@
         "吴昕"
       ],
       "narration": [
-        "店家又添了一壶热水，顺手端来几样能垫肚子的热食。你们终于真正坐稳，何炅把伤脚往前伸了些，王鸥把湿过一遍的药包靠在椅脚边。",
-        "你们把暴雨、陷车和砂甲獾大致讲完，吴昕听到那口锅被水冲走时笑了半天。等桌上重新安静一点，她才说起自己白天从南门出去以后发生的事。"
+        "店家给你们添了热水，又端来几样简单热食。你们终于坐下，何炅把受伤的脚伸直一点，王鸥把湿透过的药包放在椅脚边。说完暴雨为什么耽搁这么久，话题才真正落到吴昕今天的一整天。",
+        "她从南门出去后，先按最后目击位置找蹄印。最开始确实跟上了一组很新的痕迹，走出一段才发现方向和受惊路线对不上，附近还有农户牲畜活动的痕迹。她没有硬把错误解释成新线索，原路返回重新判断。",
+        "第二次她把骡子受惊时的方向、附近水源和草地分布一起考虑，再沿路找蹄印、偶尔的拖曳痕迹，以及灌木上挂住的麻绳纤维。她用基础标记符在几个转折点留下回程节点，最后在一处浅沟旁的草坡找到那头已经平静下来吃草的骡子。",
+        "骡子没有重伤。吴昕先看了腿脚、缰绳和驮具，确认能正常走，才慢慢接近把它牵回临川。承务所验收已经通过，她也拿到了自己第一份正式委托报酬。她身上只有一点泥和被灌木擦过的浅痕，跟你们坐在一起，狼狈程度完全不在一个层级。"
       ],
       "npcDialogue": [
         {
           "speakerId": "wu_xin",
           "speakerName": "吴昕",
-          "text": "我一开始跟错了。",
+          "text": "我一开始走错了。发现不对以后只能回去重找。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E",
-          "actionBefore": "吴昕捧着杯子，先自己笑了一下。"
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6",
+          "actionBefore": "吴昕捧着热茶，说得很平静，没有把那段错误藏起来。"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "跟了多久？",
+          "text": "能发现不对，也肯回去重判，就很好。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
           "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅刚拿起来的筷子停在半空。"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "挺久。越走越觉得方向不对，旁边又全是农户牲畜留下的印子，我才反应过来。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
+          "actionBefore": "何炅没有替她复盘每一步，只认真听完。"
         },
         {
           "speakerId": "wang_ou",
           "speakerName": "王鸥",
-          "text": "然后又回最后看见它的地方？",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "嗯。第二次我就没只盯蹄印了。它受惊往哪边跑、哪里有水有草，我都一起看。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "后来在灌木上看到几根麻绳丝，我才又把方向抓回来。几个岔口我都留了标记符，免得回来的时候再绕。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E",
-          "actionBefore": "她说着用指尖在桌面上比了两个转弯。"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "带了几张？",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "六张，用了四张。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
-        },
-        {
-          "speakerId": "wang_ou",
-          "speakerName": "王鸥",
-          "text": "找到的时候呢？",
+          "text": "而且最后是你自己把整套流程走完的。第一次这样就够了。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "pink",
           "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥把热水往她那边推了推。"
+          "actionBefore": "王鸥靠在椅背上，声音轻，却很肯定。"
         },
         {
           "speakerId": "wu_xin",
           "speakerName": "吴昕",
-          "text": "在浅沟边吃草。",
+          "text": "嗯。就是那头骡子最后比我想象中淡定。我找到它的时候，它在吃草。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
         },
         {
           "speakerId": "he_jiong",
           "speakerName": "何炅",
-          "text": "你找了它大半天，它在吃草？",
+          "text": "我们这边找到砂甲獾的时候，它们没有那么淡定。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
           "dialogueColorToken": "blue",
@@ -11531,78 +10700,11 @@
         {
           "speakerId": "wu_xin",
           "speakerName": "吴昕",
-          "text": "对。我走过去的时候它还抬头看我一眼。",
+          "text": "看得出来。",
           "speakerCategory": "main_character",
           "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "我当时真的有一点不想跟它说话。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E",
-          "actionBefore": "吴昕说到这里自己先笑出了声。"
-        },
-        {
-          "speakerId": "wang_ou",
-          "speakerName": "王鸥",
-          "text": "后来还是牵回来了？",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "pink",
-          "dialogueColorHex": "#EC4899",
-          "actionBefore": "王鸥也跟着弯了下嘴角。"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "先看了腿脚，又看了缰绳和驮具。都没事，我就慢慢牵回来了。下午验收也过了。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "第一份报酬拿到了？",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "拿到了。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E",
-          "actionBefore": "吴昕抬手碰了碰自己腰侧的小钱袋，嘴角又翘了一下。"
-        },
-        {
-          "speakerId": "wu_xin",
-          "speakerName": "吴昕",
-          "text": "你们刚才那个锅，再讲一遍。到底怎么没的？",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "green",
-          "dialogueColorHex": "#22C55E"
-        },
-        {
-          "speakerId": "he_jiong",
-          "speakerName": "何炅",
-          "text": "这个问题你得问老周。",
-          "speakerCategory": "main_character",
-          "isGenericNpc": false,
-          "dialogueColorToken": "blue",
-          "dialogueColorHex": "#3B82F6",
-          "actionBefore": "何炅笑着往椅背上一靠。"
+          "dialogueColorToken": "purple",
+          "dialogueColorHex": "#8B5CF6"
         }
       ],
       "timeOfDay": "夜晚",
@@ -11673,29 +10775,7 @@
     "meaningfulBranches": "至少三个节点存在不同 nextSceneId；另有多处选择旗标在后续 conditionalNarration 中回响。",
     "removedWaterSharingBeat": true,
     "playerNeverAddressesHeAsJiongGe": true,
-    "conceptV112PriorityDialogueReviewed": true,
-    "westGatePlayerGreetingPreserved": true,
-    "tangXiaomanHighLivelinessPreserved": true,
-    "otherKeyNpcsLivelinessStrengthened": true,
-    "camelHandledByXuLan": true,
-    "dangerScenesNoForcedComedy": true,
-    "fullDialogueHumanityAudit": true,
-    "everydayEvaluativeDialogueReduced": true,
-    "professionalJudgmentRetainedInDanger": true,
-    "playerPresetDialogueAlsoAudited": true,
-    "priorityConceptDialoguePreservedExceptExplicitOverrides": true,
-    "dialogueLivingnessFullPass": true,
-    "taglineStyleCharacterLabelsReduced": true,
-    "interactionDrivenDailyDialogue": true,
-    "dangerProfessionalTonePreserved": true,
-    "naturalComedyNoForcedPunchlineChains": true,
-    "wuXinEndingStoryDriven": true,
-    "wangOuNotDefaultHeJiongExposeRole": true,
-    "wuXinNotDefaultColdRoastRole": true,
-    "preDeparturePhysicalDustRemoved": true,
-    "returnTimeSequenceNoRegression": true,
-    "speculativeActionLanguageAudited": true,
-    "playerGroupCountingRemoved": true
+    "conceptV112PriorityDialogueReviewed": true
   },
   "characterPerformanceCalibration": {
     "何炅": "温和、可靠，危险时短而明确；幽默用于缓和和自嘲，不垄断笑点。",
